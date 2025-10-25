@@ -11,6 +11,7 @@ public class DesktopManager : MonoBehaviour
     public Vector2Int gridSize = new Vector2Int(19, 11); // 19x11 grid
     public Vector2 iconCellSize = new Vector2(64, 64); // adjust to your UI scale
     public Vector2 iconPadding = new Vector2(8, 24);
+    public bool aIWindowOpen;
 
 
     [HideInInspector]

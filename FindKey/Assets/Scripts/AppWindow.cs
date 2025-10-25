@@ -7,6 +7,7 @@ public class AppWindow : MonoBehaviour
     public TextMeshProUGUI titleText;
     public Button closeButton;
     public Button minimizeButton;
+    public bool isOpen;
 
     [HideInInspector] public bool isMinimized = false;
 
@@ -24,6 +25,7 @@ public class AppWindow : MonoBehaviour
     public virtual void Close()
     {
         TaskbarManager.GetOrFindInstance()?.UnregisterWindow(this);
+        isOpen = false;
         Destroy(gameObject);
     }
 

@@ -1,13 +1,11 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-
 public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public RectTransform windowRoot;
     private Vector2 offset;
     private Canvas canvas;
-
 
     private void Awake()
     {
@@ -15,20 +13,50 @@ public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         canvas = GetComponentInParent<Canvas>();
     }
 
-
     public void OnBeginDrag(PointerEventData eventData)
     {
         RectTransformUtility.ScreenPointToLocalPointInRectangle(windowRoot, eventData.position, eventData.pressEventCamera, out offset);
     }
 
-
     public void OnDrag(PointerEventData eventData)
     {
+        if (canvas == null || windowRoot == null)
+            return;
+
         Vector2 pos;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)windowRoot.parent, eventData.position, eventData.pressEventCamera, out pos);
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            (RectTransform)windowRoot.parent,
+            eventData.position,
+            eventData.pressEventCamera,
+            out pos
+        );
+
         windowRoot.anchoredPosition = pos - offset;
+        ClampToCanvas();
     }
 
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        ClampToCanvas();
+    }
 
-    public void OnEndDrag(PointerEventData eventData) { }
+    private void ClampToCanvas()
+    {
+        if (canvas == null || windowRoot == null)
+            return;
+
+        RectTransform canvasRect = canvas.transform as RectTransform;
+        Vector2 windowSize = windowRoot.rect.size;
+
+        float minX = -canvasRect.rect.width / 2 + windowSize.x / 2;
+        float maxX = canvasRect.rect.width / 2 - windowSize.x / 2;
+        float minY = -canvasRect.rect.height / 2 + windowSize.y / 2;
+        float maxY = canvasRect.rect.height / 2 - windowSize.y / 2;
+
+        Vector2 clamped = windowRoot.anchoredPosition;
+        clamped.x = Mathf.Clamp(clamped.x, minX, maxX);
+        clamped.y = Mathf.Clamp(clamped.y, minY, maxY);
+
+        windowRoot.anchoredPosition = clamped;
+    }
 }

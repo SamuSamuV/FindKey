@@ -79,7 +79,10 @@ public class DesktopIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         if (Time.time - clickTime < doubleClickThreshold)
         {
             // double click -> launch app
-            if (AppLauncher.Instance != null) AppLauncher.Instance.LaunchApp(labelText.text, rt.anchoredPosition);
+            if (AppLauncher.Instance != null)
+            {
+                AppLauncher.Instance.LaunchApp(labelText.text, rt.anchoredPosition);
+            }
         }
         clickTime = Time.time;
     }

@@ -15,13 +15,23 @@ public class AppLauncher : MonoBehaviour
     public void LaunchApp(string appName, Vector2 launchPosition)
     {
         if (!appWindowPrefab) return;
+
+        AppWindow existing = FindObjectOfType<AppWindow>();
+        if (existing != null && existing.isOpen)
+        {
+            existing.Restore();
+            existing.transform.SetAsLastSibling();
+            return;
+        }
+
         GameObject go = Instantiate(appWindowPrefab, windowsParent);
         AppWindow w = go.GetComponent<AppWindow>();
         w.Setup(appName);
-        RectTransform rt = go.GetComponent<RectTransform>();
-        rt.anchoredPosition = launchPosition;
+        w.isOpen = true;
 
-        // Use el helper seguro
+        RectTransform rt = go.GetComponent<RectTransform>();
+        rt.anchoredPosition = Vector2.zero;
+
         TaskbarManager.GetOrFindInstance()?.RegisterWindow(w, appName);
     }
 }
