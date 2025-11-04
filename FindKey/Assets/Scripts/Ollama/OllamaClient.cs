@@ -8,10 +8,7 @@ using UnityEngine.Networking;
 public class OllamaClient : MonoBehaviour
 {
     [Header("Ollama Settings")]
-    [Tooltip("Modelo que usar (por ejemplo: llama3.1:8b)")]
     public string model = "llama3.1:8b";
-
-    [Tooltip("URL del servidor Ollama. Por defecto: http://localhost:11434/api/generate")]
     public string baseUrl = "http://localhost:11434/api/generate";
 
     [Serializable]
@@ -23,30 +20,14 @@ public class OllamaClient : MonoBehaviour
     }
 
     /// <summary>
-    /// Envía un prompt a Ollama y devuelve la respuesta en el callback onSuccess.
+    /// Envía prompt a Ollama. onSuccess recibe la respuesta (campo "response") ya des-escaped.
     /// </summary>
     public IEnumerator SendPrompt(string prompt, Action<string> onSuccess, Action<string> onError = null)
     {
-        if (string.IsNullOrEmpty(baseUrl))
-        {
-            onError?.Invoke("Base URL vacía o no configurada.");
-            yield break;
-        }
+        if (string.IsNullOrEmpty(baseUrl)) { onError?.Invoke("Base URL vacía."); yield break; }
+        if (string.IsNullOrEmpty(model)) { onError?.Invoke("Modelo no configurado."); yield break; }
 
-        if (string.IsNullOrEmpty(model))
-        {
-            onError?.Invoke("Modelo no configurado.");
-            yield break;
-        }
-
-        // Construye el cuerpo de la petición (JSON válido)
-        OllamaRequest payload = new OllamaRequest
-        {
-            model = model,
-            prompt = prompt,
-            stream = false // desactivamos el stream para que devuelva la respuesta completa
-        };
-
+        OllamaRequest payload = new OllamaRequest { model = model, prompt = prompt, stream = false };
         string jsonBody = JsonUtility.ToJson(payload);
 
         using (UnityWebRequest request = new UnityWebRequest(baseUrl, "POST"))
@@ -66,17 +47,18 @@ public class OllamaClient : MonoBehaviour
 
             string raw = request.downloadHandler.text;
 
-            //Extraemos el campo "response" correctamente con Regex
-            Match match = Regex.Match(raw, "\"response\":\"(.*?)\"[,}]");
-            if (match.Success)
+            // Extraemos "response" robustamente y decodificamos secuencias escapadas
+            var m = Regex.Match(raw, "\"response\":\"(.*?)\"[,}]");
+            if (m.Success)
             {
-                string cleanResponse = match.Groups[1].Value;
-                cleanResponse = Regex.Unescape(cleanResponse);
-                onSuccess?.Invoke(cleanResponse.Trim());
+                string clean = m.Groups[1].Value;
+                clean = Regex.Unescape(clean);
+                onSuccess?.Invoke(clean.Trim());
             }
             else
             {
-                onError?.Invoke("No se pudo leer el campo 'response'.");
+                // fallback: si no encuentra "response", enviar raw
+                onError?.Invoke("No se pudo extraer 'response' del JSON: " + raw);
             }
         }
     }
