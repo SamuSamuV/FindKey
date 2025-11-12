@@ -14,6 +14,7 @@ public class DesktopIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     private CanvasGroup cg;
     private Canvas canvas;
     private DesktopManager manager;
+    private DesktopIconData desktopIconData;
     private Vector2 originalPos;
     private float clickTime = 0f;
     private const float doubleClickThreshold = 0.4f;
@@ -28,6 +29,11 @@ public class DesktopIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         labelText.text = label;
         if (sprite != null) iconImage.sprite = sprite;
         manager = mgr;
+    }
+
+    void Start()
+    {
+        desktopIconData = DesktopManager.
     }
 
 
@@ -64,8 +70,17 @@ public class DesktopIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     public void OnEndDrag(PointerEventData eventData)
     {
         if (cg) { cg.blocksRaycasts = true; cg.alpha = 1f; }
+
         Vector2Int grid = manager.PositionToGrid(rt.anchoredPosition);
-        rt.anchoredPosition = manager.GridToPosition(grid);
+
+        if (manager.IsGridOccupied(grid, this))
+        {
+            rt.anchoredPosition = originalPos;
+        }
+        else
+        {
+            rt.anchoredPosition = manager.GridToPosition(grid);
+        }
     }
 
 
@@ -81,6 +96,7 @@ public class DesktopIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             // double click -> launch app
             if (AppLauncher.Instance != null)
             {
+                AppLauncher.Instance.appWindowPrefab = desktopIconData.windowApp;
                 AppLauncher.Instance.LaunchApp(labelText.text, rt.anchoredPosition);
             }
         }

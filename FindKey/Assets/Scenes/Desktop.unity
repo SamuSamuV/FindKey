@@ -3103,12 +3103,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   desktopArea: {fileID: 124445287}
   iconPrefab: {fileID: 4390448501480410331, guid: ce86dd5f21423e04ca914b2b2dfc3e6f, type: 3}
-  gridSize: {x: 19, y: 11}
   iconCellSize: {x: 64, y: 64}
-  iconPadding: {x: 8, y: 24}
-  aIWindowOpen: 0
+  iconPadding: {x: 10, y: 20}
+  iconsToSpawn:
+  - label: IA
+    sprite: {fileID: 0}
+    gridPos: {x: -1, y: -1}
+    windowApp: {fileID: 2342009986971900181, guid: a739a1d6303648e4091948764dc58033, type: 3}
+  - label: Browser
+    sprite: {fileID: 0}
+    gridPos: {x: -1, y: -1}
+    windowApp: {fileID: 2342009986971900181, guid: 138da431e4ebb85488a0bdf0ab5d2fdc, type: 3}
   icons: []
   selectedIcon: {fileID: 0}
+  appWindows:
+  - {fileID: 2342009986971900181, guid: a739a1d6303648e4091948764dc58033, type: 3}
+  - {fileID: 2342009986971900181, guid: 138da431e4ebb85488a0bdf0ab5d2fdc, type: 3}
 --- !u!1 &1688766884
 GameObject:
   m_ObjectHideFlags: 0

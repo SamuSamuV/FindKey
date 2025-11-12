@@ -8,34 +8,35 @@ public class DesktopManager : MonoBehaviour
     [Header("Desktop Settings")]
     public RectTransform desktopArea;
     public GameObject iconPrefab;
-    public Vector2Int gridSize = new Vector2Int(19, 11);
-    public Vector2 iconCellSize = new Vector2(64, 64);
-    public Vector2 iconPadding = new Vector2(8, 24);
+    public Vector2 iconCellSize = new Vector2(80, 80);
+    public Vector2 iconPadding = new Vector2(10, 20); // espacio entre iconos
 
-    [Header("Icon Data (Configurable desde el Inspector)")]
+    [Header("Icon Data")]
     public DesktopIconData[] iconsToSpawn;
 
     [HideInInspector] public List<GameObject> icons = new List<GameObject>();
     [HideInInspector] public DesktopIcon selectedIcon;
 
-    private Vector2Int nextAutoGridPos = Vector2Int.zero;
+    private int nextColumn = 0;
+    private int nextRow = 0;
+
+    public GameObject[] appWindows;
 
     private void Start()
     {
-        // 🔹 Esperar un frame para asegurar que el layout del Canvas ya está calculado
         StartCoroutine(SpawnIconsAfterLayout());
     }
 
     private IEnumerator SpawnIconsAfterLayout()
     {
-        yield return null; // espera un frame
+        yield return null;
+
         foreach (var data in iconsToSpawn)
         {
             if (data == null) continue;
 
             Vector2Int pos = data.gridPos;
 
-            // Si no tiene posición definida, usar autocolocación
             if (pos.x < 0 || pos.y < 0)
                 pos = GetNextAutoGridPosition();
 
@@ -45,16 +46,19 @@ public class DesktopManager : MonoBehaviour
 
     private Vector2Int GetNextAutoGridPosition()
     {
-        Vector2Int pos = nextAutoGridPos;
+        Vector2Int pos = new Vector2Int(nextColumn, nextRow);
 
-        // baja verticalmente
-        nextAutoGridPos.y++;
+        nextRow++;
 
-        // cuando llega abajo, pasa a la siguiente columna
-        if (nextAutoGridPos.y >= gridSize.y)
+        // calcula cuántos iconos caben verticalmente según el alto del escritorio
+        float usableHeight = desktopArea.rect.height;
+        int iconsPerColumn = Mathf.Max(1, Mathf.FloorToInt(usableHeight / (iconCellSize.y + iconPadding.y)));
+
+        // si la columna está llena, pasamos a la siguiente
+        if (nextRow >= iconsPerColumn)
         {
-            nextAutoGridPos.y = 0;
-            nextAutoGridPos.x++;
+            nextRow = 0;
+            nextColumn++;
         }
 
         return pos;
@@ -70,21 +74,33 @@ public class DesktopManager : MonoBehaviour
 
         RectTransform rt = go.GetComponent<RectTransform>();
         rt.anchoredPosition = GridToPosition(gridPos);
-
         icons.Add(go);
     }
 
     public Vector2 GridToPosition(Vector2Int gridPos)
     {
-        float width = desktopArea.rect.width;
-        float height = desktopArea.rect.height;
-        float cellW = width / gridSize.x;
-        float cellH = height / gridSize.y;
+        // coloca desde la esquina superior izquierda hacia abajo
+        float startX = -desktopArea.rect.width / 2f + iconCellSize.x / 2f + iconPadding.x;
+        float startY = desktopArea.rect.height / 2f - iconCellSize.y / 2f - iconPadding.y;
 
-        float x = (cellW * gridPos.x) + cellW / 2 - width / 2;
-        float y = height / 2 - (cellH * gridPos.y) - cellH / 2;
+        float x = startX + gridPos.x * (iconCellSize.x + iconPadding.x);
+        float y = startY - gridPos.y * (iconCellSize.y + iconPadding.y);
 
         return new Vector2(x, y);
+    }
+
+    public Vector2Int PositionToGrid(Vector2 anchoredPos)
+    {
+        float startX = -desktopArea.rect.width / 2f + iconCellSize.x / 2f + iconPadding.x;
+        float startY = desktopArea.rect.height / 2f - iconCellSize.y / 2f - iconPadding.y;
+
+        float dx = anchoredPos.x - startX;
+        float dy = startY - anchoredPos.y;
+
+        int gx = Mathf.Max(0, Mathf.FloorToInt(dx / (iconCellSize.x + iconPadding.x)));
+        int gy = Mathf.Max(0, Mathf.FloorToInt(dy / (iconCellSize.y + iconPadding.y)));
+
+        return new Vector2Int(gx, gy);
     }
 
     public void DeselectIcon()
@@ -100,6 +116,21 @@ public class DesktopManager : MonoBehaviour
         selectedIcon = icon;
         if (selectedIcon != null) selectedIcon.SetSelected(true);
     }
+
+    public bool IsGridOccupied(Vector2Int gridPos, DesktopIcon ignoreIcon = null)
+    {
+        foreach (var go in icons)
+        {
+            if (go == null) continue;
+            DesktopIcon icon = go.GetComponent<DesktopIcon>();
+            if (icon == null || icon == ignoreIcon) continue;
+
+            Vector2Int otherGrid = PositionToGrid(icon.GetComponent<RectTransform>().anchoredPosition);
+            if (otherGrid == gridPos)
+                return true;
+        }
+        return false;
+    }
 }
 
 [System.Serializable]
@@ -108,4 +139,5 @@ public class DesktopIconData
     public string label;
     public Sprite sprite;
     public Vector2Int gridPos = new Vector2Int(-1, -1);
+    public GameObject windowApp;
 }
