@@ -96,6 +96,7 @@ MonoBehaviour:
   iconImage: {fileID: 1086158209674117262}
   labelText: {fileID: 3920227620156524976}
   backgroundImage: {fileID: 6352249274156662034}
+  desktopIconData: {fileID: 0}
   normalBg: {r: 0, g: 0, b: 0, a: 0}
   selectedBg: {r: 0, g: 0.48, b: 1, a: 0.9}
 --- !u!114 &869235681076356841
@@ -261,10 +262,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1212370606232249008}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.08325}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.046585083, y: -78.00001}
-  m_SizeDelta: {x: 0, y: 0.1999855}
+  m_AnchoredPosition: {x: 0.046585083, y: -74.19996}
+  m_SizeDelta: {x: 0, y: 8.1999855}
   m_Pivot: {x: -0.35, y: 0.5}
 --- !u!222 &5018565043148144459
 CanvasRenderer:

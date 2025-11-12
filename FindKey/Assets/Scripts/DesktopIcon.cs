@@ -14,7 +14,7 @@ public class DesktopIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     private CanvasGroup cg;
     private Canvas canvas;
     private DesktopManager manager;
-    private DesktopIconData desktopIconData;
+    [SerializeField] GameObject desktopIconData;
     private Vector2 originalPos;
     private float clickTime = 0f;
     private const float doubleClickThreshold = 0.4f;
@@ -33,7 +33,7 @@ public class DesktopIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     void Start()
     {
-        desktopIconData = DesktopManager.
+
     }
 
 
@@ -96,7 +96,7 @@ public class DesktopIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             // double click -> launch app
             if (AppLauncher.Instance != null)
             {
-                AppLauncher.Instance.appWindowPrefab = desktopIconData.windowApp;
+                //AppLauncher.Instance.appWindowPrefab = desktopIconData.windowApp;
                 AppLauncher.Instance.LaunchApp(labelText.text, rt.anchoredPosition);
             }
         }
