@@ -15,23 +15,39 @@ public class AppLauncher : MonoBehaviour
     public void LaunchApp(string appName, Vector2 launchPosition)
     {
         if (!appWindowPrefab) return;
-
-        AppWindow existing = FindObjectOfType<AppWindow>();
-        if (existing != null && existing.isOpen)
+    
+        DesktopManager dm = FindObjectOfType<DesktopManager>();
+        if (dm != null)
         {
-            existing.Restore();
-            existing.transform.SetAsLastSibling();
-            return;
+            foreach (var data in dm.iconsToSpawn)
+            {
+                if (data.label == appName)
+                {
+                    if (data.isOpen)
+                    {
+                        Debug.Log($"La app '{appName}' ya está abierta.");
+                        return;
+                    }
+    
+                    data.isOpen = true;
+                    break;
+                }
+            }
         }
-
-        GameObject go = Instantiate(appWindowPrefab, windowsParent);
-        AppWindow w = go.GetComponent<AppWindow>();
-        w.Setup(appName);
-        w.isOpen = true;
-
-        RectTransform rt = go.GetComponent<RectTransform>();
+    
+        // Crear la ventana
+        GameObject appGO = Instantiate(appWindowPrefab, windowsParent);
+        AppWindow appWindow = appGO.GetComponent<AppWindow>();
+    
+        // Centrarla o colocarla
+        RectTransform rt = appGO.GetComponent<RectTransform>();
         rt.anchoredPosition = Vector2.zero;
+    
+        // Registrar en la barra de tareas (si tienes)
+        TaskbarManager.Instance?.RegisterWindow(appWindow, appName);
+    
+        Debug.Log($"App '{appName}' lanzada correctamente.");
 
-        TaskbarManager.GetOrFindInstance()?.RegisterWindow(w, appName);
+        appWindow.appName = appName;
     }
 }

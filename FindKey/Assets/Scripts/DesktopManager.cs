@@ -20,8 +20,6 @@ public class DesktopManager : MonoBehaviour
     private int nextColumn = 0;
     private int nextRow = 0;
 
-    public GameObject[] appWindows;
-
     private void Start()
     {
         StartCoroutine(SpawnIconsAfterLayout());
@@ -140,4 +138,5 @@ public class DesktopIconData
     public Sprite sprite;
     public Vector2Int gridPos = new Vector2Int(-1, -1);
     public GameObject windowApp;
+    public bool isOpen;
 }

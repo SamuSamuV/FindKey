@@ -8,6 +8,7 @@ public class AppWindow : MonoBehaviour
     public Button closeButton;
     public Button minimizeButton;
     public bool isOpen;
+    [HideInInspector] public string appName;
 
     [HideInInspector] public bool isMinimized = false;
 
@@ -24,6 +25,19 @@ public class AppWindow : MonoBehaviour
 
     public virtual void Close()
     {
+        DesktopManager dm = FindObjectOfType<DesktopManager>();
+        if (dm != null)
+        {
+            foreach (var data in dm.iconsToSpawn)
+            {
+                if (data.label == appName)
+                {
+                    data.isOpen = false;
+                    break;
+                }
+            }
+        }
+
         TaskbarManager.GetOrFindInstance()?.UnregisterWindow(this);
         isOpen = false;
         Destroy(gameObject);
@@ -45,6 +59,7 @@ public class AppWindow : MonoBehaviour
 
     public void ToggleMinimizeRestore()
     {
-        if (isMinimized) Restore(); else Minimize();
+        if (isMinimized) Restore();
+        else Minimize();
     }
 }

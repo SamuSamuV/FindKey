@@ -725,6 +725,7 @@ MonoBehaviour:
   closeButton: {fileID: 1534395916567784770}
   minimizeButton: {fileID: 4427439958414635494}
   isOpen: 0
+  appName: 
   isMinimized: 0
 --- !u!114 &378559017298775776
 MonoBehaviour:

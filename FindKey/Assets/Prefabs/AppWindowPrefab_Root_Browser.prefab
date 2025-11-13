@@ -344,7 +344,6 @@ GameObject:
   - component: {fileID: 1494243724474291571}
   - component: {fileID: 3095465065208573634}
   - component: {fileID: 8816266659487430629}
-  - component: {fileID: 378559017298775776}
   m_Layer: 5
   m_Name: AppWindowPrefab_Root_Browser
   m_TagString: Untagged
@@ -429,27 +428,6 @@ MonoBehaviour:
   minimizeButton: {fileID: 4427439958414635494}
   isOpen: 0
   isMinimized: 0
---- !u!114 &378559017298775776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2342009986971900181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ca6ff4f134af8f4d9c9116d5d6a2e2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ollamaClient: {fileID: 4152275677396818718}
-  inputField: {fileID: 0}
-  chatOutput: {fileID: 0}
-  password: Pedo
-  systemInstruction: "Eres un guardia malvado que protege una habitaci\xF3n. No dejes
-    pasar a nadie sin la contrase\xF1a. Responde con frases cortas, sarc\xE1sticas
-    y amenazantes cuando el jugador no tenga la contrase\xF1a. Si el jugador dice
-    la contrase\xF1a correcta, reconoce que la contrase\xF1a es v\xE1lida y permite
-    la entrada."
 --- !u!1 &4624077372032562663
 GameObject:
   m_ObjectHideFlags: 0
@@ -731,7 +709,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7416302587320685542}
-  - component: {fileID: 4152275677396818718}
   m_Layer: 0
   m_Name: OllamaClient
   m_TagString: Untagged
@@ -754,20 +731,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 432692766019086495}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4152275677396818718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7232062042058386805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ee2599d3cd375e44b8b4466d2a8c099, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  model: llama3.1:8b
-  baseUrl: http://localhost:11434/api/generate
 --- !u!1 &8341617969201611932
 GameObject:
   m_ObjectHideFlags: 0

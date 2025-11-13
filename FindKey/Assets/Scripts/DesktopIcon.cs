@@ -86,20 +86,33 @@ public class DesktopIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        // single click: select and highlight
+        // Single click  selección visual
         manager.SelectIcon(this);
 
-
-        // detect double click
+        // Detectar doble clic
         if (Time.time - clickTime < doubleClickThreshold)
         {
-            // double click -> launch app
+            // Doble clic  lanzar app individual
             if (AppLauncher.Instance != null)
             {
-                //AppLauncher.Instance.appWindowPrefab = desktopIconData.windowApp;
+                // Buscar si este icono tiene un prefab de ventana asignado desde DesktopManager
+                DesktopManager dm = manager;
+
+                // Buscamos en la lista de iconosToSpawn cuál coincide con este label
+                foreach (var data in dm.iconsToSpawn)
+                {
+                    if (data.label == labelText.text && data.windowApp != null)
+                    {
+                        AppLauncher.Instance.appWindowPrefab = data.windowApp; //asigna la app individual
+                        break;
+                    }
+                }
+
+                // Lanza la app normalmente
                 AppLauncher.Instance.LaunchApp(labelText.text, rt.anchoredPosition);
             }
         }
+
         clickTime = Time.time;
     }
 }
