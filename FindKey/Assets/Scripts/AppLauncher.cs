@@ -23,18 +23,24 @@ public class AppLauncher : MonoBehaviour
             {
                 if (data.label == appName)
                 {
+                    if (data.isMinimized)
+                    {
+                        data.windowInstance.SetActive(true);
+                        data.isMinimized = false;
+                    }
+
                     if (data.isOpen)
                     {
                         Debug.Log($"La app '{appName}' ya está abierta.");
                         return;
                     }
-    
+
                     data.isOpen = true;
                     break;
                 }
             }
         }
-    
+
         // Crear la ventana
         GameObject appGO = Instantiate(appWindowPrefab, windowsParent);
         AppWindow appWindow = appGO.GetComponent<AppWindow>();
@@ -49,5 +55,17 @@ public class AppLauncher : MonoBehaviour
         Debug.Log($"App '{appName}' lanzada correctamente.");
 
         appWindow.appName = appName;
+
+        foreach (var data in dm.iconsToSpawn)
+        {
+            if (data.windowInstance == null)
+            {
+                if (data.label == appName)
+                {
+                    data.windowInstance = appGO;
+                    break;
+                }
+            }
+        }
     }
 }

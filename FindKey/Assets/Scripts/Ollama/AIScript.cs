@@ -18,9 +18,10 @@ public class AIScript : MonoBehaviour
     [TextArea(4, 8)]
     [Tooltip("Instrucción para el modelo: el guardia es malvado y no deja entrar sin la contraseña.")]
     public string systemInstruction =
-        "Eres un guardia malvado que protege una habitación. No dejes pasar a nadie sin la contraseña. " +
-        "Responde con frases cortas, sarcásticas y amenazantes cuando el jugador no tenga la contraseña. " +
-        "Si el jugador dice la contraseña correcta, reconoce que la contraseña es válida y permite la entrada.";
+        "You are an evil guard protecting a room. Do not let anyone in without the password. " +
+        "Respond with short, sarcastic, and threatening phrases when the player does not have the password. " +
+        "If the player says the correct password, acknowledge that the password is valid and allow entry. " +
+        "Respond only in English.";
 
     // Estado simple
     private bool unlocked = false;
@@ -62,8 +63,9 @@ public class AIScript : MonoBehaviour
             AppendToChat("Sistema: Has dicho la contraseña. Te han dejado pasar.");
 
             // nombre único para la variable del prompt
-            string aiPromptAfterPassword = $"{systemInstruction}\n\nJugador ha dicho la contraseña correcta. " +
-                                           "Responde brevemente felicitando o indicando que le dejas pasar.";
+            string aiPromptAfterPassword = $"{systemInstruction}\n\nThe player has said the correct password. " +
+                                           "Respond briefly congratulating them or indicating they are allowed in. " +
+                                           "Respond only in English.";
 
             StartCoroutine(ollamaClient.SendPrompt(aiPromptAfterPassword, OnAIResponse, OnAIError));
             return;
@@ -72,13 +74,14 @@ public class AIScript : MonoBehaviour
         // 2) Si ya desbloqueado, preguntar/seguir charlando (la IA puede reaccionar diferente)
         if (unlocked)
         {
-            string aiPromptUnlocked = $"{systemInstruction}\n\nEl jugador ya ha dicho la contraseña y tiene acceso.\nJugador: {text}\nGuardia:";
-            StartCoroutine(ollamaClient.SendPrompt(aiPromptUnlocked, OnAIResponse, OnAIError));
+            string aiPromptUnlocked = $"{systemInstruction}\n\nThe player already has access.\nPlayer: {text}\nGuard: " +
+                                      "Respond only in English.";
             return;
         }
 
         // 3) Si no ha dicho contraseña, enviamos mensaje normal roleado al guardia malvado
-        string aiPromptNormal = $"{systemInstruction}\n\nJugador: {text}\nGuardia:";
+        string aiPromptNormal = $"{systemInstruction}\n\nPlayer: {text}\nGuard: " +
+                                "Respond only in English.";
         StartCoroutine(ollamaClient.SendPrompt(aiPromptNormal, OnAIResponse, OnAIError));
     }
 

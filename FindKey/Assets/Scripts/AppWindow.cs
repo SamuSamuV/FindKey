@@ -10,7 +10,7 @@ public class AppWindow : MonoBehaviour
     public bool isOpen;
     [HideInInspector] public string appName;
 
-    [HideInInspector] public bool isMinimized = false;
+    public bool isMinimized = false;
 
     protected virtual void Awake()
     {
@@ -33,6 +33,7 @@ public class AppWindow : MonoBehaviour
                 if (data.label == appName)
                 {
                     data.isOpen = false;
+                    data.isMinimized = false;
                     break;
                 }
             }
@@ -45,7 +46,21 @@ public class AppWindow : MonoBehaviour
 
     public virtual void Minimize()
     {
-        if (isMinimized) return;
+        DesktopManager dm = FindObjectOfType<DesktopManager>();
+        if (dm != null)
+        {
+            foreach (var data in dm.iconsToSpawn)
+            {
+                if (data.label == appName)
+                {
+                    data.isMinimized = true;
+                    data.isOpen = true;
+                    break;
+                }
+            }
+        }
+
+        TaskbarManager.GetOrFindInstance()?.UnregisterWindow(this);
         isMinimized = true;
         gameObject.SetActive(false);
     }

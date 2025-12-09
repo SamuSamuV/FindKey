@@ -73,14 +73,18 @@ public class DesktopIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         Vector2Int grid = manager.PositionToGrid(rt.anchoredPosition);
 
+        Vector2 targetPos;
+
         if (manager.IsGridOccupied(grid, this))
         {
-            rt.anchoredPosition = originalPos;
+            targetPos = originalPos;
         }
         else
         {
-            rt.anchoredPosition = manager.GridToPosition(grid);
+            targetPos = manager.GridToPosition(grid);
         }
+
+        rt.anchoredPosition = ClampToCanvas(targetPos);
     }
 
 
@@ -114,5 +118,27 @@ public class DesktopIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         }
 
         clickTime = Time.time;
+    }
+
+    private Vector2 ClampToCanvas(Vector2 pos)
+    {
+        RectTransform canvasRT = canvas.GetComponent<RectTransform>();
+        RectTransform iconRT = rt;
+
+        // Tamaños
+        Vector2 canvasSize = canvasRT.rect.size;
+        Vector2 iconSize = iconRT.rect.size;
+
+        // Límites (centrados en anchor del canvas)
+        float minX = -canvasSize.x * 0.5f + iconSize.x * 0.5f;
+        float maxX = canvasSize.x * 0.5f - iconSize.x * 0.5f;
+
+        float minY = -canvasSize.y * 0.5f + iconSize.y * 0.5f;
+        float maxY = canvasSize.y * 0.5f - iconSize.y * 0.5f;
+
+        pos.x = Mathf.Clamp(pos.x, minX, maxX);
+        pos.y = Mathf.Clamp(pos.y, minY, maxY);
+
+        return pos;
     }
 }

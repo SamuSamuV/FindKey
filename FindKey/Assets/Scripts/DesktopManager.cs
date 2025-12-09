@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class DesktopManager : MonoBehaviour
 {
+    public static DesktopManager Instance { get; private set; }
+
     [Header("Desktop Settings")]
     public RectTransform desktopArea;
     public GameObject iconPrefab;
@@ -139,4 +141,6 @@ public class DesktopIconData
     public Vector2Int gridPos = new Vector2Int(-1, -1);
     public GameObject windowApp;
     public bool isOpen;
+    public bool isMinimized;
+    public GameObject windowInstance;
 }
