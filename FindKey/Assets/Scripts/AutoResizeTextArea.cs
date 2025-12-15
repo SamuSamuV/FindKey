@@ -3,17 +3,23 @@ using TMPro;
 
 public class AutoResizeTextArea : MonoBehaviour
 {
+    [Header("Referencias")]
     public TextMeshProUGUI textElement;
-    public RectTransform targetRect;
+    public RectTransform contentRect;
 
-    void Update()
+    [Header("Configuración")]
+    public float paddingBottom = 20f;
+
+    public void ActualizarTexto(string nuevoTexto)
     {
-        // Calcula la altura real que necesita el texto
+        textElement.text += nuevoTexto + "\n";
+
+        textElement.ForceMeshUpdate();
+
         float preferredHeight = textElement.preferredHeight;
 
-        // Ajusta el tamaño del panel
-        Vector2 size = targetRect.sizeDelta;
-        size.y = preferredHeight;
-        targetRect.sizeDelta = size;
+        Vector2 size = contentRect.sizeDelta;
+        size.y = preferredHeight + paddingBottom;
+        contentRect.sizeDelta = size;
     }
 }

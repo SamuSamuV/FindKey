@@ -12,6 +12,6 @@ public class TextOnlyScroll : MonoBehaviour
         tmpText.text += newText + "\n";
 
         Canvas.ForceUpdateCanvases();
-        scrollRect.verticalNormalizedPosition = 0f; // baja al final
+        scrollRect.verticalNormalizedPosition = 0f;
     }
 }
