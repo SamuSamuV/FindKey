@@ -73,7 +73,6 @@ public class SelectMove : MonoBehaviour
     private void OnTextSubmitted(string input)
     {
         input = input.ToLower().Trim();
-        storyLog.AddLine($"<align=right><b>{input}</b></align>");
 
         if (IsFrontAxe())
         {
@@ -134,7 +133,7 @@ public class SelectMove : MonoBehaviour
                 break;
 
             default:
-                storyLog.AddLine("You can't do that here.");
+                storyLog.SetText("You can't do that here.");
                 break;
         }
     }
@@ -150,11 +149,11 @@ public class SelectMove : MonoBehaviour
 
             case "return":
                 RemoveLastMovement();
-                storyLog.AddLine(movesScript.youComeBackToStartText);
+                storyLog.SetText(movesScript.youComeBackToStartText);
                 break;
 
             default:
-                storyLog.AddLine("You can't do that here.");
+                storyLog.SetText("You can't do that here.");
                 break;
         }
     }
@@ -173,11 +172,11 @@ public class SelectMove : MonoBehaviour
 
             case "return":
                 RemoveLastMovement();
-                storyLog.AddLine(movesScript.youComeBackToStartText);
+                storyLog.SetText(movesScript.youComeBackToStartText);
                 break;
 
             default:
-                storyLog.AddLine("You can't do that here.");
+                storyLog.SetText("You can't do that here.");
                 break;
         }
     }
@@ -193,11 +192,11 @@ public class SelectMove : MonoBehaviour
 
             case "return":
                 RemoveLastMovement();
-                storyLog.AddLine(movesScript.goFirstStraightButYouReturnFromTheAxeText);
+                storyLog.SetText(movesScript.goFirstStraightButYouReturnFromTheAxeText);
                 break;
 
             default:
-                storyLog.AddLine("You can't do that here.");
+                storyLog.SetText("You can't do that here.");
                 break;
         }
     }
@@ -217,7 +216,7 @@ public class SelectMove : MonoBehaviour
                 break;
 
             default:
-                storyLog.AddLine("You can't do that here.");
+                storyLog.SetText("You can't do that here.");
                 break;
         }
     }
@@ -241,7 +240,7 @@ public class SelectMove : MonoBehaviour
 
         else
         {
-            storyLog.AddLine("You can't go back.");
+            storyLog.SetText("You can't go back.");
             Debug.Log("No hay movimientos que quitar");
         }
     }
@@ -283,7 +282,7 @@ public class SelectMove : MonoBehaviour
 
         if (moveAppManager.movementHistory.Count == 0)
         {
-            storyLog.AddLine(movesScript.startText);
+            storyLog.SetText(movesScript.startText);
         }
 
         if (MatchesSequence(Direction.Right))

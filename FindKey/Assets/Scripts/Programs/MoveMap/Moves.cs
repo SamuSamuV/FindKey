@@ -73,7 +73,7 @@ public class Moves : MonoBehaviour
     {
         moveAppManager.dead = true;
         playerInputField.SetActive(false);
-        storyLog.AddLine(rightPathDieText);
+        storyLog.SetText(rightPathDieText);
         Debug.Log("Has muerto");
     }
 
@@ -81,43 +81,43 @@ public class Moves : MonoBehaviour
     {
         moveAppManager.dead = true;
         playerInputField.SetActive(false);
-        storyLog.AddLine(catKillsYouWhenYouTryToRunText);
+        storyLog.SetText(catKillsYouWhenYouTryToRunText);
         Debug.Log("Has muerto");
     }
 
     public void GoToPainting()
     {
-        storyLog.AddLine(goToPaintingText);
+        storyLog.SetText(goToPaintingText);
     }
 
     public void LookPainting()
     {
         if (!moveAppData.playerHasAlreadySeeThis)
         {
-            storyLog.AddLine(lookPaintingText);
+            storyLog.SetText(lookPaintingText);
             moveAppData.playerHasAlreadySeeThis = true;
         }
 
         else
         {
-            storyLog.AddLine(hasAlreadyLookPaintingText);
+            storyLog.SetText(hasAlreadyLookPaintingText);
         }
     }
 
     public void GoToAxe()
     {
         if (!moveAppData.hasAxe)
-            storyLog.AddLine(goToAxeText);
+            storyLog.SetText(goToAxeText);
 
         else
-            storyLog.AddLine(goToAxeButItWasAlreadyPickedText);
+            storyLog.SetText(goToAxeButItWasAlreadyPickedText);
     }
 
     public void PickAxe()
     {
         if (!moveAppData.hasAxe)
         {
-            storyLog.AddLine(pickAxeText);
+            storyLog.SetText(pickAxeText);
             moveAppData.hasAxe = true;
 
             DesktopManager dm = FindObjectOfType<DesktopManager>();
@@ -140,18 +140,18 @@ public class Moves : MonoBehaviour
         }
         else
         {
-            storyLog.AddLine(hasAlreadyPickAxeText);
+            storyLog.SetText(hasAlreadyPickAxeText);
         }
     }
 
     public void FirstGoStraight()
     {
-        storyLog.AddLine(goFirstStraightText);
+        storyLog.SetText(goFirstStraightText);
     }
 
     public void GoToCat()
     {
-        storyLog.AddLine(goToCatText);
+        storyLog.SetText(goToCatText);
     }
 
     public void AtackCat()
@@ -160,13 +160,13 @@ public class Moves : MonoBehaviour
         {
             moveAppManager.dead = true;
             playerInputField.SetActive(false);
-            storyLog.AddLine(catKillsYouWhenYouTryToKillItWithOutAxeText);
+            storyLog.SetText(catKillsYouWhenYouTryToKillItWithOutAxeText);
             Debug.Log("Has muerto");
         }
 
         else
         {
-            storyLog.AddLine(youKillTheCatText);
+            storyLog.SetText(youKillTheCatText);
             moveAppData.catIsDead = true;
         }
     }
