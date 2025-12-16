@@ -27,11 +27,12 @@ public class StoryLog : MonoBehaviour
         scrollView.verticalNormalizedPosition = 0f;
     }
 
+
     public void SetText(string text)
     {
         storyText.text = text;
     }
 
     //Esta linea simplemente me lka guardo para mostrar en negrita el texto a la derecha en negrita lo que escribe el jugador
-    //storyLog.SetText($"<align=right><b>{input}</b></align>");
+    //storyLog.AddLine($"<align=right><b>{input}</b></align>");
 }

@@ -83,7 +83,7 @@ public class SelectMove : MonoBehaviour
 
         if (IsFrontCat())
         {
-            HandleFrontCatInput(input);
+            HandleDeadCatPositionInput(input);
             ResetInput();
             return;
         }
@@ -201,18 +201,17 @@ public class SelectMove : MonoBehaviour
         }
     }
 
-    private void HandleFrontCatInput(string input)
+    private void HandleDeadCatPositionInput(string input)
     {
         switch (input)
         {
-            case "atack":
-                movesScript.AtackCat();
-                moveAppManager.actionsHistory.Add(Actions.Atack);
+            case "straight":
+                AddMovement(Direction.Straight);
                 break;
 
-            case "run":
-                movesScript.CatKillYouWhenYouRun();
-                moveAppManager.actionsHistory.Add(Actions.Run);
+            case "return":
+                RemoveLastMovement();
+                storyLog.SetText(movesScript.goFirstStraightButYouReturnFromTheCatPositionText);
                 break;
 
             default:
@@ -307,7 +306,13 @@ public class SelectMove : MonoBehaviour
 
         if (MatchesSequence(Direction.Straight, Direction.Straight))
         {
-            movesScript.GoToCat();
+            movesScript.GoToCatPosition();
         }
+
+        if (MatchesSequence(Direction.Straight, Direction.Straight, Direction.Straight))
+        {
+            movesScript.GoToNextStageAfterCat();
+        }
+
     }
 }

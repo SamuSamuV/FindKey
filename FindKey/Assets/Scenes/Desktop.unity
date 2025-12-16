@@ -2923,6 +2923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHasAlreadySeeThis: 0
   hasAxe: 0
+  playerIsFrontCat: 0
   catIsDead: 0
 --- !u!4 &1377512962
 Transform:
@@ -3549,6 +3550,13 @@ MonoBehaviour:
     sprite: {fileID: 0}
     gridPos: {x: -1, y: -1}
     windowApp: {fileID: 2342009986971900181, guid: feeb2ca567ddc6b4fa2a98e99d344038, type: 3}
+    isOpen: 0
+    isMinimized: 0
+    windowInstance: {fileID: 0}
+  - label: Enemy Encounter
+    sprite: {fileID: 0}
+    gridPos: {x: -1, y: -1}
+    windowApp: {fileID: 2342009986971900181, guid: aa8a1fc0d97ae284f9ba3969ec8b3668, type: 3}
     isOpen: 0
     isMinimized: 0
     windowInstance: {fileID: 0}

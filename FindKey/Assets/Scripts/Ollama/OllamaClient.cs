@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Text;
-using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -19,14 +18,20 @@ public class OllamaClient : MonoBehaviour
         public bool stream;
     }
 
-    /// <summary>
-    /// Envía prompt a Ollama. onSuccess recibe la respuesta (campo "response") ya des-escaped.
-    /// </summary>
+    // Clase interna para leer el "sobre" de la API de Ollama
+    [Serializable]
+    private class OllamaApiResponse
+    {
+        public string response; // El texto real que generó la IA
+        public bool done;
+    }
+
     public IEnumerator SendPrompt(string prompt, Action<string> onSuccess, Action<string> onError = null)
     {
         if (string.IsNullOrEmpty(baseUrl)) { onError?.Invoke("Base URL vacía."); yield break; }
         if (string.IsNullOrEmpty(model)) { onError?.Invoke("Modelo no configurado."); yield break; }
 
+        // Pedimos stream false para recibir todo de golpe
         OllamaRequest payload = new OllamaRequest { model = model, prompt = prompt, stream = false };
         string jsonBody = JsonUtility.ToJson(payload);
 
@@ -47,18 +52,29 @@ public class OllamaClient : MonoBehaviour
 
             string raw = request.downloadHandler.text;
 
-            // Extraemos "response" robustamente y decodificamos secuencias escapadas
-            var m = Regex.Match(raw, "\"response\":\"(.*?)\"[,}]");
-            if (m.Success)
+            // DEBUG: Respuesta cruda de la API de Ollama (el JSON envoltorio)
+            Debug.Log($"[OllamaClient] Respuesta cruda de la API de Ollama:\n{raw}");
+
+            // 1) Desempaquetar la respuesta de la API de Ollama
+            try
             {
-                string clean = m.Groups[1].Value;
-                clean = Regex.Unescape(clean);
-                onSuccess?.Invoke(clean.Trim());
+                OllamaApiResponse apiResponse = JsonUtility.FromJson<OllamaApiResponse>(raw);
+                if (apiResponse != null && !string.IsNullOrEmpty(apiResponse.response))
+                {
+                    // DEBUG: El JSON interno (respuesta limpia de la IA) que se pasa a BaseAIScript
+                    Debug.Log($"[OllamaClient] Respuesta de la IA (JSON interno):\n{apiResponse.response}");
+
+                    // ¡Éxito! Pasamos solo el contenido interno (el JSON de la IA)
+                    onSuccess?.Invoke(apiResponse.response);
+                }
+                else
+                {
+                    onError?.Invoke("La API de Ollama respondió, pero el campo 'response' estaba vacío.");
+                }
             }
-            else
+            catch (Exception e)
             {
-                // fallback: si no encuentra "response", enviar raw
-                onError?.Invoke("No se pudo extraer 'response' del JSON: " + raw);
+                onError?.Invoke($"Error parseando respuesta de Ollama: {e.Message}. Raw: {raw}");
             }
         }
     }

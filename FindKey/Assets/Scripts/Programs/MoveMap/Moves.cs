@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class Moves : MonoBehaviour
 {
@@ -29,6 +30,12 @@ public class Moves : MonoBehaviour
     public string goFirstStraightButYouReturnFromTheAxeText;
 
     [TextArea(3, 6)]
+    public string goFirstStraightButYouReturnFromTheCatPositionText;
+
+    [TextArea(3, 6)]
+    public string nextStageNextToCatText;
+
+    [TextArea(3, 6)]
     public string goToAxeText;
 
     [TextArea(3, 6)]
@@ -41,7 +48,10 @@ public class Moves : MonoBehaviour
     public string hasAlreadyPickAxeText;
 
     [TextArea(3, 6)]
-    public string goToCatText;
+    public string goToAliveCatText;
+
+    [TextArea(3, 6)]
+    public string goToDeadCatText;
 
     [TextArea(3, 6)]
     public string catKillsYouWhenYouTryToRunText;
@@ -60,8 +70,6 @@ public class Moves : MonoBehaviour
     public InventoryManager inventoryManager;
     public DesktopManager desktopManager;
     [SerializeField] GameObject playerInputField;
-
-
 
     void Start()
     {
@@ -149,25 +157,58 @@ public class Moves : MonoBehaviour
         storyLog.SetText(goFirstStraightText);
     }
 
-    public void GoToCat()
+    public void GoToCatPosition()
     {
-        storyLog.SetText(goToCatText);
-    }
-
-    public void AtackCat()
-    {
-        if (!moveAppData.hasAxe)
+        if (!moveAppData.catIsDead)
         {
-            moveAppManager.dead = true;
+            moveAppData.playerIsFrontCat = true;
             playerInputField.SetActive(false);
-            storyLog.SetText(catKillsYouWhenYouTryToKillItWithOutAxeText);
-            Debug.Log("Has muerto");
+            storyLog.SetText(goToAliveCatText);
+
+            DesktopManager dm = FindObjectOfType<DesktopManager>();
+            foreach (var data in dm.iconsToSpawn)
+            {
+                if (data.label == "Enemy Encounter")
+                {
+                    if (data.isOpen)
+                    {
+                        EnemyEncounterData enemyEncounterData = data.windowInstance.GetComponent<EnemyEncounterData>();
+
+                        if (enemyEncounterData != null)
+                        {
+                            enemyEncounterData.nonEnemyFindedPanel.SetActive(false);
+                        }
+                    }
+                    break;
+                }
+            }
         }
 
         else
         {
-            storyLog.SetText(youKillTheCatText);
-            moveAppData.catIsDead = true;
+            storyLog.SetText(goToDeadCatText);
         }
     }
+
+    public void GoToNextStageAfterCat()
+    {
+        storyLog.SetText(nextStageNextToCatText);
+    }
+
+    //public void AtackCat()
+    //{
+    //    if (!moveAppData.hasAxe)
+    //    {
+    //        moveAppManager.dead = true;
+    //        playerInputField.SetActive(false);
+    //        storyLog.SetText(catKillsYouWhenYouTryToKillItWithOutAxeText);
+    //        Debug.Log("Has muerto");
+    //    }
+
+    //    else
+    //    {
+    //        storyLog.SetText(youKillTheCatText);
+    //        moveAppData.catIsDead = true;
+    //    }
+    //}
 }

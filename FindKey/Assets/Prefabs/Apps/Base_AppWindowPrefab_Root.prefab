@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 3095465065208573634}
   - component: {fileID: 8816266659487430629}
   m_Layer: 5
-  m_Name: AppWindowPrefab_Root_Base
+  m_Name: Base_AppWindowPrefab_Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
