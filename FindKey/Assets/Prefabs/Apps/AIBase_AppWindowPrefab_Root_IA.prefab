@@ -731,13 +731,13 @@ MonoBehaviour:
   inputField: {fileID: 771982017855549717}
   chatOutput: {fileID: 7573727150173417693}
   storyLog: {fileID: 0}
+  npcName: Egg
   password: Patata
+  personalityPrompt: Eres un huevo muy cachondo y gracioso
+  firstMessage: Hi human
   systemInstruction: 'Always respond ONLY with a single valid JSON object. The JSON
     must contain: { "response": string, "action": string } Allowed actions: "none".
     No extra text outside JSON. Respond only in English.'
-  personality: 
-  firstMesage: 
-  npcName: 
 --- !u!1 &4624077372032562663
 GameObject:
   m_ObjectHideFlags: 0

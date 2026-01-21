@@ -1,3 +1,4 @@
+using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
@@ -129,6 +130,7 @@ public class Moves : MonoBehaviour
             moveAppData.hasAxe = true;
 
             DesktopManager dm = FindObjectOfType<DesktopManager>();
+            
             foreach (var data in dm.iconsToSpawn)
             {
                 if (data.label == "Inventory")
@@ -166,6 +168,7 @@ public class Moves : MonoBehaviour
             storyLog.SetText(goToAliveCatText);
 
             DesktopManager dm = FindObjectOfType<DesktopManager>();
+
             foreach (var data in dm.iconsToSpawn)
             {
                 if (data.label == "Enemy Encounter")
@@ -173,6 +176,7 @@ public class Moves : MonoBehaviour
                     if (data.isOpen)
                     {
                         EnemyEncounterData enemyEncounterData = data.windowInstance.GetComponent<EnemyEncounterData>();
+                        enemyEncounterData.CurrentType = EnemyEncounterData.NPCType.Cat;
 
                         if (enemyEncounterData != null)
                         {
