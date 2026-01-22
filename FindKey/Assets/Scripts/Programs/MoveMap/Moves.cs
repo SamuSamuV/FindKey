@@ -70,7 +70,7 @@ public class Moves : MonoBehaviour
     public MoveAppData moveAppData;
     public InventoryManager inventoryManager;
     public DesktopManager desktopManager;
-    [SerializeField] GameObject playerInputField;
+    [SerializeField] public GameObject playerInputField;
 
     void Start()
     {
@@ -191,6 +191,7 @@ public class Moves : MonoBehaviour
         else
         {
             storyLog.SetText(goToDeadCatText);
+            playerInputField.SetActive(true);
         }
     }
 

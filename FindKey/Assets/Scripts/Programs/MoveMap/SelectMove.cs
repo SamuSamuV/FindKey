@@ -220,7 +220,7 @@ public class SelectMove : MonoBehaviour
         }
     }
 
-    private void AddMovement(Direction direction)
+    public void AddMovement(Direction direction)
     {
         moveAppManager.movementHistory.Add(direction);
 
@@ -313,6 +313,5 @@ public class SelectMove : MonoBehaviour
         {
             movesScript.GoToNextStageAfterCat();
         }
-
     }
 }

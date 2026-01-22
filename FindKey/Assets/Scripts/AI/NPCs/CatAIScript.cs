@@ -27,6 +27,47 @@ public class CatAIScript : BaseAIScript
 
     protected override void OpenDoor()
     {
-        Debug.Log("El gato empuja la puerta con la patita con desdén.");
+        moveAppData.catIsDead = true;
+        DesktopManager dm = FindObjectOfType<DesktopManager>();
+
+        foreach (var data in dm.iconsToSpawn)
+        {
+            if (data.label == "Move")
+            {
+                if (data.isOpen)
+                {
+                    Moves moves = data.windowInstance.GetComponent<Moves>();
+
+                    if (moves != null)
+                    {
+                        moves.playerInputField.SetActive(true);
+                        moves.selectMove.AddMovement(Direction.Straight);
+                        moves.GoToNextStageAfterCat();
+                    }
+                }
+
+                break;
+            }
+
+            if (data.label == "Enemy Encounter")
+            {
+                if (data.isOpen)
+                {
+                    EnemyEncounterData enemyEncounterData = data.windowInstance.GetComponent<EnemyEncounterData>();
+
+                    if (enemyEncounterData != null)
+                    {
+                        //Implementar animación del FadeOut del gato proximamente y en cto la acabe volver ha hacer el panel de no hay enemigo true
+
+                        enemyEncounterData.nonEnemyFindedPanel.SetActive(true);
+
+                        //Al final del todo:
+                        enemyEncounterData.CurrentType = EnemyEncounterData.NPCType.None;
+                    }
+                }
+
+                break;
+            }
+        }
     }
 }

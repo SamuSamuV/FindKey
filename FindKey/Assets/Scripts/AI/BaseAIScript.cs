@@ -11,6 +11,7 @@ public abstract class BaseAIScript : MonoBehaviour
     public TMP_InputField inputField;
     public TextMeshProUGUI chatOutput;
     public StoryLog storyLog;
+    public MoveAppData moveAppData;
 
     [Header("Configuración General")]
     public string npcName;
@@ -51,6 +52,9 @@ public abstract class BaseAIScript : MonoBehaviour
 
         // Mensaje inicial en log e historial
         AddLog(npcName, firstMessage);
+
+        GameObject goMoveAppData = GameObject.FindGameObjectWithTag("MoveAppData");
+        moveAppData = goMoveAppData.GetComponent<MoveAppData>();
     }
 
     protected virtual void OnDestroy()

@@ -39,7 +39,10 @@ public class EnemyEncounterData : MonoBehaviour
         moveAppData = goMoveAppData.GetComponent<MoveAppData>();
 
         if (moveAppData.playerIsFrontCat)
+        {
             CurrentType = NPCType.Cat;
+            nonEnemyFindedPanel.SetActive(false);
+        }
 
         ApplyAI();
     }
