@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class CatAIScript : BaseAIScript
 {
+    void Start()
+    {
+        base.Start();
+    }
+
     public override void InitNPC()
     {
         if (string.IsNullOrEmpty(npcName))

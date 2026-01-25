@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,7 +17,7 @@ public class AppLauncher : MonoBehaviour
     public void LaunchApp(string appName, Vector2 launchPosition)
     {
         if (!appWindowPrefab) return;
-    
+
         DesktopManager dm = FindObjectOfType<DesktopManager>();
         if (dm != null)
         {
@@ -24,15 +25,17 @@ public class AppLauncher : MonoBehaviour
             {
                 if (data.label == appName)
                 {
-                    if (data.isMinimized)
+                    if (data.windowInstance != null)
                     {
-                        data.windowInstance.SetActive(true);
-                        data.isMinimized = false;
-                    }
+                        if (data.isMinimized)
+                        {
+                            data.windowInstance.SetActive(true);
+                            data.isMinimized = false;
+                                                    }
 
-                    if (data.isOpen)
-                    {
-                        Debug.Log($"La app '{appName}' ya está abierta.");
+                        data.windowInstance.transform.SetAsLastSibling();
+
+                        Debug.Log($"La app '{appName}' ya estaba abierta. Trayendo al frente.");
                         return;
                     }
 
@@ -42,24 +45,23 @@ public class AppLauncher : MonoBehaviour
             }
         }
 
-        // Crear la ventana
         GameObject appGO = Instantiate(appWindowPrefab, windowsParent);
         AppWindow appWindow = appGO.GetComponent<AppWindow>();
-    
-        // Centrarla o colocarla
+
+        appGO.transform.SetAsLastSibling();
+
         RectTransform rt = appGO.GetComponent<RectTransform>();
         rt.anchoredPosition = Vector2.zero;
-    
-        // Registrar en la barra de tareas (si tienes)
-        TaskbarManager.Instance?.RegisterWindow(appWindow, appName);
-    
+
+        TaskbarManager.GetOrFindInstance()?.RegisterWindow(appWindow, appName);
+
         Debug.Log($"App '{appName}' lanzada correctamente.");
 
         appWindow.appName = appName;
 
-        foreach (var data in dm.iconsToSpawn)
+        if (dm != null)
         {
-            if (data.windowInstance == null)
+            foreach (var data in dm.iconsToSpawn)
             {
                 if (data.label == appName)
                 {

@@ -6,11 +6,15 @@ public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public RectTransform windowRoot;
     private Vector2 offset;
     private Canvas canvas;
+    private AppWindow appWindow;
 
     private void Awake()
     {
         if (!windowRoot) windowRoot = GetComponentInParent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
+
+        appWindow = GetComponent<AppWindow>();
+        if (appWindow == null) appWindow = GetComponentInParent<AppWindow>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -38,6 +42,14 @@ public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public void OnEndDrag(PointerEventData eventData)
     {
         ClampToCanvas();
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if (appWindow != null)
+        {
+            appWindow.BringToFront();
+        }
     }
 
     private void ClampToCanvas()

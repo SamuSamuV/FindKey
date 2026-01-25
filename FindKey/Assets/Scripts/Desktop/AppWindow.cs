@@ -1,14 +1,17 @@
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class AppWindow : MonoBehaviour
+public class AppWindow : MonoBehaviour, IPointerDownHandler
 {
     public TextMeshProUGUI titleText;
     public Button closeButton;
     public Button minimizeButton;
     public bool isOpen;
     [HideInInspector] public string appName;
+    public MoveAppData moveAppData;
 
     public bool isMinimized = false;
 
@@ -16,6 +19,11 @@ public class AppWindow : MonoBehaviour
     {
         if (closeButton != null) closeButton.onClick.AddListener(Close);
         if (minimizeButton != null) minimizeButton.onClick.AddListener(Minimize);
+
+        GameObject goMoveAppData = GameObject.FindGameObjectWithTag("MoveAppData");
+        if (goMoveAppData != null)
+            moveAppData = goMoveAppData.GetComponent<MoveAppData>();
+
     }
 
     public virtual void Setup(string title)
@@ -34,7 +42,23 @@ public class AppWindow : MonoBehaviour
                 {
                     data.isOpen = false;
                     data.isMinimized = false;
-                    break;
+
+                    if (data.label == "Move")
+                    {
+                        foreach (var otherApp in dm.iconsToSpawn)
+                        {
+                            if (otherApp.label == "Enemy Encounter" && otherApp.windowInstance != null)
+                            {
+                                EnemyEncounterData enemyScript = otherApp.windowInstance.GetComponent<EnemyEncounterData>();
+                                if (enemyScript != null)
+                                {
+                                    moveAppData.playerIsFrontCat = false;
+                                    enemyScript.ResetNPC();
+                                }
+                                break;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -70,11 +94,22 @@ public class AppWindow : MonoBehaviour
         if (!isMinimized) return;
         isMinimized = false;
         gameObject.SetActive(true);
+        BringToFront();
     }
 
     public void ToggleMinimizeRestore()
     {
         if (isMinimized) Restore();
         else Minimize();
+    }
+
+    public void BringToFront()
+    {
+        transform.SetAsLastSibling();
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        BringToFront();
     }
 }

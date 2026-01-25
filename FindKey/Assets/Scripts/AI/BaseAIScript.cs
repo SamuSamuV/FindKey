@@ -51,7 +51,10 @@ public abstract class BaseAIScript : MonoBehaviour
         if (inputField != null) inputField.onSubmit.AddListener(OnInputSubmit);
 
         // Mensaje inicial en log e historial
-        AddLog(npcName, firstMessage);
+        if (!string.IsNullOrEmpty(firstMessage))
+        {
+            AddLog(npcName, firstMessage);
+        }
 
         GameObject goMoveAppData = GameObject.FindGameObjectWithTag("MoveAppData");
         moveAppData = goMoveAppData.GetComponent<MoveAppData>();
@@ -117,17 +120,18 @@ public abstract class BaseAIScript : MonoBehaviour
 
         AIResponse data = TryParseAIResponse(raw);
 
-        // Fallback si el JSON viene roto pero necesitamos mostrar algo
         if (data == null)
         {
-            // Si no hay JSON, asumimos que todo el texto es respuesta
-            data = new AIResponse { response = raw, action = "none" };
+            // Fallback si falla el JSON
+            // CAMBIO: Usamos AddLineAnimated
+            AddLog(npcName, raw, true);
+            return;
         }
 
-        // 1. Mostrar lo que dice la IA (Narrativa)
         if (!string.IsNullOrEmpty(data.response))
         {
-            AddLog(npcName, data.response);
+            // CAMBIO: Usamos AddLineAnimated para la respuesta válida
+            AddLog(npcName, data.response, true);
         }
 
         // 2. Lógica de Acción (Gameplay)
@@ -154,11 +158,24 @@ public abstract class BaseAIScript : MonoBehaviour
         if (storyLog != null) storyLog.AddLine($"<color=red>Error: {err}</color>");
     }
 
-    // Helpers
-    protected void AddLog(string speaker, string message)
+    protected void AddLog(string speaker, string message, bool animate = false)
     {
         if (string.IsNullOrEmpty(message)) return;
-        if (storyLog != null) storyLog.AddLine($"<align=left>{speaker}: {message}</align>");
+
+        string formattedMessage = $"<align=left>{speaker}: {message}</align>";
+
+        if (storyLog != null)
+        {
+            if (animate)
+            {
+                storyLog.AddLineAnimated(formattedMessage);
+            }
+            else
+            {
+                storyLog.AddLine(formattedMessage);
+            }
+        }
+
         AddToHistory(speaker, message);
     }
 
@@ -195,25 +212,24 @@ public abstract class BaseAIScript : MonoBehaviour
         return null;
     }
 
+    // En BaseAIScript.cs
+
     public void LoadProfile(NPCProfile profile)
     {
         if (profile == null) return;
 
-        // Sobreescribimos las variables del script con las de la ficha
         this.npcName = profile.npcName;
-        this.password = profile.password;
         this.personalityPrompt = profile.personalityPrompt;
         this.firstMessage = profile.firstMessage;
 
-        // Solo sobreescribimos la instrucción si la ficha tiene algo, si no, dejamos la del código
+        if (!string.IsNullOrEmpty(profile.password))
+        {
+            this.password = profile.password;
+        }
+
         if (!string.IsNullOrEmpty(profile.systemInstruction))
         {
             this.systemInstruction = profile.systemInstruction;
-        }
-
-        if (storyLog != null && !string.IsNullOrEmpty(this.firstMessage))
-        {
-
         }
     }
 }

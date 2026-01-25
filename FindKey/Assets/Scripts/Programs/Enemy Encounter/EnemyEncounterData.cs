@@ -30,7 +30,6 @@ public class EnemyEncounterData : MonoBehaviour
             }
         }
     }
-
     private BaseAIScript currentAI;
 
     void Start()
@@ -44,7 +43,10 @@ public class EnemyEncounterData : MonoBehaviour
             nonEnemyFindedPanel.SetActive(false);
         }
 
-        ApplyAI();
+        if (currentAI == null)
+        {
+            ApplyAI();
+        }
     }
 
     void OnValidate()
@@ -73,6 +75,12 @@ public class EnemyEncounterData : MonoBehaviour
                 currentAI = dog;
                 break;
         }
+    }
+
+    public void ResetNPC()
+    {
+        CurrentType = NPCType.None;
+        nonEnemyFindedPanel.SetActive(true);
     }
 }
 
