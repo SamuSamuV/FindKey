@@ -3920,6 +3920,13 @@ MonoBehaviour:
     isOpen: 0
     isMinimized: 0
     windowInstance: {fileID: 0}
+  - label: Personalizate
+    sprite: {fileID: 0}
+    gridPos: {x: 19, y: 0}
+    windowApp: {fileID: 2342009986971900181, guid: aa8a1fc0d97ae284f9ba3969ec8b3668, type: 3}
+    isOpen: 0
+    isMinimized: 0
+    windowInstance: {fileID: 2342009986971900181, guid: 286a9811723cb274d866c1d792cb1077, type: 3}
   icons: []
   selectedIcon: {fileID: 0}
 --- !u!1 &1688766884
