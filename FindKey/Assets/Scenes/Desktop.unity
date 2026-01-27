@@ -473,7 +473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -2653,7 +2653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.56376827, g: 0.6320257, b: 0.9716981, a: 0.392}
+  m_Color: {r: 0.56376827, g: 0.6320257, b: 0.9716981, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3923,7 +3923,7 @@ MonoBehaviour:
   - label: Personalizate
     sprite: {fileID: 0}
     gridPos: {x: 19, y: 0}
-    windowApp: {fileID: 2342009986971900181, guid: aa8a1fc0d97ae284f9ba3969ec8b3668, type: 3}
+    windowApp: {fileID: 2342009986971900181, guid: 74fef9cdfa65dc546a94d51ccf63a839, type: 3}
     isOpen: 0
     isMinimized: 0
     windowInstance: {fileID: 2342009986971900181, guid: 286a9811723cb274d866c1d792cb1077, type: 3}

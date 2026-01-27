@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 2709354110825581668}
   - component: {fileID: 4647363885361995702}
   - component: {fileID: 5905010467085339149}
+  - component: {fileID: 5751779916860037644}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -196,6 +197,30 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5751779916860037644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385455847142560455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 80, y: 96}
+  m_Spacing: {x: 5, y: 5}
+  m_Constraint: 1
+  m_ConstraintCount: 5
 --- !u!1 &2342009986971900181
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,6 +233,8 @@ GameObject:
   - component: {fileID: 1494243724474291571}
   - component: {fileID: 3095465065208573634}
   - component: {fileID: 8816266659487430629}
+  - component: {fileID: 5534984938352253724}
+  - component: {fileID: 1774389499983400275}
   m_Layer: 5
   m_Name: AppWindowPrefab_Root_Personalizate
   m_TagString: Untagged
@@ -293,6 +320,37 @@ MonoBehaviour:
   appName: 
   moveAppData: {fileID: 0}
   isMinimized: 0
+--- !u!114 &5534984938352253724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2342009986971900181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c84c87dfcf4b270469b2ede6a9dca23d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryGrid: {fileID: 2709354110825581668}
+  wallpaperButtonPrefab: {fileID: 4390448501480410331, guid: ba841942050faf6468a48bacc218fdc1, type: 3}
+--- !u!114 &1774389499983400275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2342009986971900181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd880adc4c575d4daedceab60d21848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  desktopBackground: {fileID: 0}
+  availableWallpapers:
+  - {fileID: 21300000, guid: b1b13d60e6dd4dc4091c3d3aa48f4fed, type: 3}
+  - {fileID: 21300000, guid: a37a9d0b94ee68b4fa3ea8649a1c2a8b, type: 3}
+  - {fileID: 21300000, guid: 505b32d18cc01e6459efa3d977830a05, type: 3}
 --- !u!1 &3018252877830466723
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,7 +537,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Personalizate
+  m_text: Inventory
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
