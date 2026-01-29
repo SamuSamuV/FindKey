@@ -12,23 +12,31 @@ public class PersonalizeManager : MonoBehaviour
     {
         wallpapersScript = FindObjectOfType<WallpapersScript>();
 
-        SetInAppWallpapers();
+        GameObject backgroundObj = GameObject.Find("DesktopArea");
+
+        if (backgroundObj != null)
+        {
+            wallpapersScript.desktopBackground = backgroundObj.GetComponent<Image>();
+        }
+
+        SpawnWallpaperButtons();
     }
 
-    public void SetInAppWallpapers()
+    public void SpawnWallpaperButtons()
     {
-        if (wallpapersScript == null || wallpapersScript.availableWallpapers == null) return;
-
         foreach (Transform child in inventoryGrid)
         {
             Destroy(child.gameObject);
         }
 
+        if (wallpapersScript == null || wallpapersScript.availableWallpapers == null) return;
+
         foreach (Sprite wallpaper in wallpapersScript.availableWallpapers)
         {
             GameObject newBtn = Instantiate(wallpaperButtonPrefab, inventoryGrid);
 
-            Image btnImage = newBtn.GetComponent<Image>();
+            Image btnImage = newBtn.transform.GetChild(0).GetComponent<Image>();
+
             if (btnImage != null)
             {
                 btnImage.sprite = wallpaper;

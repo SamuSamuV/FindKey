@@ -1,5 +1,6 @@
+using System;
+using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -14,6 +15,7 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
     public MoveAppData moveAppData;
 
     public bool isMinimized = false;
+    public float animationDuration = 0.2f;
 
     protected virtual void Awake()
     {
@@ -23,7 +25,12 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
         GameObject goMoveAppData = GameObject.FindGameObjectWithTag("MoveAppData");
         if (goMoveAppData != null)
             moveAppData = goMoveAppData.GetComponent<MoveAppData>();
+    }
 
+    protected virtual void Start()
+    {
+        transform.localScale = Vector3.zero;
+        StartCoroutine(AnimateWindow(Vector3.zero, Vector3.one, 0f, 1f, null));
     }
 
     public virtual void Setup(string title)
@@ -33,42 +40,52 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
 
     public virtual void Close()
     {
-        DesktopManager dm = FindObjectOfType<DesktopManager>();
-        if (dm != null)
-        {
-            foreach (var data in dm.iconsToSpawn)
-            {
-                if (data.label == appName)
-                {
-                    data.isOpen = false;
-                    data.isMinimized = false;
-
-                    if (data.label == "Move")
-                    {
-                        foreach (var otherApp in dm.iconsToSpawn)
-                        {
-                            if (otherApp.label == "Enemy Encounter" && otherApp.windowInstance != null)
-                            {
-                                EnemyEncounterData enemyScript = otherApp.windowInstance.GetComponent<EnemyEncounterData>();
-                                if (enemyScript != null)
-                                {
-                                    moveAppData.playerIsFrontCat = false;
-                                    enemyScript.ResetNPC();
-                                }
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        TaskbarManager.GetOrFindInstance()?.UnregisterWindow(this);
-        isOpen = false;
-        Destroy(gameObject);
+        StartCoroutine(AnimateWindow(transform.localScale, Vector3.zero, 1f, 0f, CloseLogic));
     }
 
     public virtual void Minimize()
+    {
+        StartCoroutine(AnimateWindow(transform.localScale, Vector3.zero, 1f, 0f, MinimizeLogic));
+    }
+
+    public virtual void Restore()
+    {
+        if (!isMinimized) return;
+
+        isMinimized = false;
+        gameObject.SetActive(true);
+        transform.SetAsLastSibling();
+
+        StartCoroutine(AnimateWindow(Vector3.zero, Vector3.one, 0f, 1f, null));
+    }
+
+    private IEnumerator AnimateWindow(Vector3 startScale, Vector3 endScale, float startAlpha, float endAlpha, Action onComplete)
+    {
+        CanvasGroup cg = GetComponent<CanvasGroup>();
+        if (cg == null) cg = gameObject.AddComponent<CanvasGroup>();
+
+        float time = 0;
+        transform.localScale = startScale;
+        cg.alpha = startAlpha;
+
+        while (time < animationDuration)
+        {
+            time += Time.deltaTime;
+            float t = time / animationDuration;
+
+            transform.localScale = Vector3.Lerp(startScale, endScale, t);
+            cg.alpha = Mathf.Lerp(startAlpha, endAlpha, t);
+
+            yield return null;
+        }
+
+        transform.localScale = endScale;
+        cg.alpha = endAlpha;
+
+        onComplete?.Invoke();
+    }
+
+    private void MinimizeLogic()
     {
         DesktopManager dm = FindObjectOfType<DesktopManager>();
         if (dm != null)
@@ -89,12 +106,41 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
         gameObject.SetActive(false);
     }
 
-    public virtual void Restore()
+    private void CloseLogic()
     {
-        if (!isMinimized) return;
-        isMinimized = false;
-        gameObject.SetActive(true);
-        BringToFront();
+        DesktopManager dm = FindObjectOfType<DesktopManager>();
+        if (dm != null)
+        {
+            foreach (var data in dm.iconsToSpawn)
+            {
+                if (data.label == appName)
+                {
+                    data.isOpen = false;
+                    data.isMinimized = false;
+
+                    if (data.label == "Move")
+                    {
+                        foreach (var otherApp in dm.iconsToSpawn)
+                        {
+                            if (otherApp.label == "Enemy Encounter" && otherApp.windowInstance != null)
+                            {
+                                EnemyEncounterData enemyScript = otherApp.windowInstance.GetComponent<EnemyEncounterData>();
+                                if (enemyScript != null)
+                                {
+                                    if (moveAppData != null) moveAppData.playerIsFrontCat = false;
+                                    enemyScript.ResetNPC();
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        TaskbarManager.GetOrFindInstance()?.UnregisterWindow(this);
+        isOpen = false;
+        Destroy(gameObject);
     }
 
     public void ToggleMinimizeRestore()

@@ -1,6 +1,4 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class AppLauncher : MonoBehaviour
 {
@@ -29,12 +27,19 @@ public class AppLauncher : MonoBehaviour
                     {
                         if (data.isMinimized)
                         {
-                            data.windowInstance.SetActive(true);
+                            AppWindow existingWindow = data.windowInstance.GetComponent<AppWindow>();
+                            if (existingWindow != null)
+                            {
+                                existingWindow.Restore();
+                            }
+                            else
+                            {
+                                data.windowInstance.SetActive(true);
+                            }
                             data.isMinimized = false;
-                                                    }
+                        }
 
                         data.windowInstance.transform.SetAsLastSibling();
-
                         Debug.Log($"La app '{appName}' ya estaba abierta. Trayendo al frente.");
                         return;
                     }
