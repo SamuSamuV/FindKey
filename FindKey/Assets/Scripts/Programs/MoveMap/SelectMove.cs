@@ -133,7 +133,7 @@ public class SelectMove : MonoBehaviour
                 break;
 
             default:
-                storyLog.SetText("You can't do that here.");
+                storyLog.SetTextAnimated("You can't do that here.");
                 break;
         }
     }
@@ -149,11 +149,11 @@ public class SelectMove : MonoBehaviour
 
             case "return":
                 RemoveLastMovement();
-                storyLog.SetText(movesScript.youComeBackToStartText);
+                storyLog.SetTextAnimated(movesScript.youComeBackToStartText);
                 break;
 
             default:
-                storyLog.SetText("You can't do that here.");
+                storyLog.SetTextAnimated("You can't do that here.");
                 break;
         }
     }
@@ -172,11 +172,11 @@ public class SelectMove : MonoBehaviour
 
             case "return":
                 RemoveLastMovement();
-                storyLog.SetText(movesScript.youComeBackToStartText);
+                storyLog.SetTextAnimated(movesScript.youComeBackToStartText);
                 break;
 
             default:
-                storyLog.SetText("You can't do that here.");
+                storyLog.SetTextAnimated("You can't do that here.");
                 break;
         }
     }
@@ -192,7 +192,7 @@ public class SelectMove : MonoBehaviour
 
             case "return":
                 RemoveLastMovement();
-                storyLog.SetText(movesScript.goFirstStraightButYouReturnFromTheAxeText);
+                storyLog.SetTextAnimated(movesScript.goFirstStraightButYouReturnFromTheAxeText);
                 break;
 
             default:
@@ -211,7 +211,7 @@ public class SelectMove : MonoBehaviour
 
             case "return":
                 RemoveLastMovement();
-                storyLog.SetText(movesScript.goFirstStraightButYouReturnFromTheCatPositionText);
+                storyLog.SetTextAnimated(movesScript.goFirstStraightButYouReturnFromTheCatPositionText);
                 break;
 
             default:
@@ -239,7 +239,7 @@ public class SelectMove : MonoBehaviour
 
         else
         {
-            storyLog.SetText("You can't go back.");
+            storyLog.SetTextAnimated("You can't go back.");
             Debug.Log("No hay movimientos que quitar");
         }
     }
@@ -281,7 +281,7 @@ public class SelectMove : MonoBehaviour
 
         if (moveAppManager.movementHistory.Count == 0)
         {
-            storyLog.SetText(movesScript.startText);
+            storyLog.SetTextAnimated(movesScript.startText);
         }
 
         if (MatchesSequence(Direction.Right))

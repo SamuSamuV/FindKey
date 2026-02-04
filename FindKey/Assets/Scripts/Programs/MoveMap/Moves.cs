@@ -82,13 +82,14 @@ public class Moves : MonoBehaviour
     {
         GameObject goMoveAppData = GameObject.FindGameObjectWithTag("MoveAppData");
         moveAppData = goMoveAppData.GetComponent<MoveAppData>();
+        if (storyLog != null) storyLog.SetTextAnimated(startText);
     }
 
     public void GoFirstRightDie()
     {
         moveAppManager.dead = true;
         playerInputField.SetActive(false);
-        storyLog.SetText(rightPathDieText);
+        storyLog.SetTextAnimated(rightPathDieText);
         Debug.Log("Has muerto");
     }
 
@@ -96,43 +97,43 @@ public class Moves : MonoBehaviour
     {
         moveAppManager.dead = true;
         playerInputField.SetActive(false);
-        storyLog.SetText(catKillsYouWhenYouTryToRunText);
+        storyLog.SetTextAnimated(catKillsYouWhenYouTryToRunText);
         Debug.Log("Has muerto");
     }
 
     public void GoToPainting()
     {
-        storyLog.SetText(goToPaintingText);
+        storyLog.SetTextAnimated(goToPaintingText);
     }
 
     public void LookPainting()
     {
         if (!moveAppData.playerHasAlreadySeeThis)
         {
-            storyLog.SetText(lookPaintingText);
+            storyLog.SetTextAnimated(lookPaintingText);
             moveAppData.playerHasAlreadySeeThis = true;
         }
 
         else
         {
-            storyLog.SetText(hasAlreadyLookPaintingText);
+            storyLog.SetTextAnimated(hasAlreadyLookPaintingText);
         }
     }
 
     public void GoToAxe()
     {
         if (!moveAppData.hasAxe)
-            storyLog.SetText(goToAxeText);
+            storyLog.SetTextAnimated(goToAxeText);
 
         else
-            storyLog.SetText(goToAxeButItWasAlreadyPickedText);
+            storyLog.SetTextAnimated(goToAxeButItWasAlreadyPickedText);
     }
 
     public void PickAxe()
     {
         if (!moveAppData.hasAxe)
         {
-            storyLog.SetText(pickAxeText);
+            storyLog.SetTextAnimated(pickAxeText);
             moveAppData.hasAxe = true;
 
             DesktopManager dm = FindObjectOfType<DesktopManager>();
@@ -156,13 +157,13 @@ public class Moves : MonoBehaviour
         }
         else
         {
-            storyLog.SetText(hasAlreadyPickAxeText);
+            storyLog.SetTextAnimated(hasAlreadyPickAxeText);
         }
     }
 
     public void FirstGoStraight()
     {
-        storyLog.SetText(goFirstStraightText);
+        storyLog.SetTextAnimated(goFirstStraightText);
     }
 
     public void GoToCatPosition()
@@ -174,7 +175,7 @@ public class Moves : MonoBehaviour
         {
             moveAppData.playerIsFrontCat = true;
             if (playerInputField) playerInputField.SetActive(false);
-            storyLog.SetText(goToAliveCatText);
+            storyLog.SetTextAnimated(goToAliveCatText);
 
             DesktopManager dm = FindObjectOfType<DesktopManager>();
 
@@ -209,7 +210,7 @@ public class Moves : MonoBehaviour
         else
         {
             moveAppData.playerIsFrontCat = false;
-            storyLog.SetText(goToDeadCatText);
+            storyLog.SetTextAnimated(goToDeadCatText);
             if (playerInputField) playerInputField.SetActive(true);
         }
     }
@@ -217,7 +218,7 @@ public class Moves : MonoBehaviour
     public void GoToNextStageAfterCat()
     {
         moveAppData.playerIsFrontCat = false;
-        storyLog.SetText(nextStageNextToCatText);
+        storyLog.SetTextAnimated(nextStageNextToCatText);
     }
 }
 

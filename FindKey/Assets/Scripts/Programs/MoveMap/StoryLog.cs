@@ -34,7 +34,6 @@ public class StoryLog : MonoBehaviour
         UpdateLayout();
     }
 
-    // --- NUEVO: MÉTODO ANIMADO ---
     public void AddLineAnimated(string text)
     {
         // Si ya hay una animación, la paramos (o podrías encolarla si prefieres)
@@ -87,5 +86,13 @@ public class StoryLog : MonoBehaviour
         LayoutRebuilder.ForceRebuildLayoutImmediate(contentRect);
         // Hacemos scroll al fondo
         if (scrollView != null) scrollView.verticalNormalizedPosition = 0f;
+    }
+
+    public void SetTextAnimated(string text)
+    {
+        if (typingCoroutine != null) StopCoroutine(typingCoroutine);
+
+        storyText.text = "";
+        typingCoroutine = StartCoroutine(TypewriterRoutine(text));
     }
 }
