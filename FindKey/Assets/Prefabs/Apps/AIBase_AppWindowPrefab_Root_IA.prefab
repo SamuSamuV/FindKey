@@ -714,7 +714,9 @@ MonoBehaviour:
   minimizeButton: {fileID: 4427439958414635494}
   isOpen: 0
   appName: 
+  moveAppData: {fileID: 0}
   isMinimized: 0
+  animationDuration: 0.2
 --- !u!114 &378559017298775776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -731,13 +733,14 @@ MonoBehaviour:
   inputField: {fileID: 771982017855549717}
   chatOutput: {fileID: 7573727150173417693}
   storyLog: {fileID: 0}
+  moveAppData: {fileID: 0}
   npcName: Egg
   password: Patata
   personalityPrompt: Eres un huevo muy cachondo y gracioso
   firstMessage: Hi human
   systemInstruction: 'Always respond ONLY with a single valid JSON object. The JSON
-    must contain: { "response": string, "action": string } Allowed actions: "none".
-    No extra text outside JSON. Respond only in English.'
+    must contain: { "response": string, "action": string, "emotion": string }. No
+    extra text outside JSON. Respond only in English.'
 --- !u!1 &4624077372032562663
 GameObject:
   m_ObjectHideFlags: 0
@@ -1240,7 +1243,7 @@ MonoBehaviour:
   storyText: {fileID: 7573727150173417693}
   contentRect: {fileID: 3863506334871692437}
   scrollView: {fileID: 6362242956658737369}
-  paddingBottom: 20
+  typingSpeed: 0.03
 --- !u!1 &6236982935313505989
 GameObject:
   m_ObjectHideFlags: 0

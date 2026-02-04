@@ -644,6 +644,7 @@ GameObject:
   - component: {fileID: 7965827391508177018}
   - component: {fileID: 8216123632447424746}
   - component: {fileID: 2478432726860265031}
+  - component: {fileID: 2985693149730328085}
   m_Layer: 5
   m_Name: AppWindowPrefab_Root_Move
   m_TagString: Untagged
@@ -860,6 +861,38 @@ MonoBehaviour:
   dead: 0
   movementHistory: 
   actionsHistory: 
+--- !u!114 &2985693149730328085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2342009986971900181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68cb1c3832017234cada9953f0acbcf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveAppData: {fileID: 0}
+  nonEnemyFindedPanel: {fileID: 0}
+  myAppStoryLog: {fileID: 0}
+  catProfile:
+    npcName: Cat
+    password: meow
+    personalityPrompt: You are a cat
+    firstMessage: Hi human, i am a cat
+    systemInstruction: 'Always respond ONLY with a single valid JSON object. The
+      JSON must contain: { "response": string, "action": string, "emotion": string
+      }. No extra text outside JSON. Respond only in English.'
+  dogProfile:
+    npcName: Dog
+    password: Bone
+    personalityPrompt: You are a dog
+    firstMessage: Hi human, i am a dog
+    systemInstruction: 'Always respond ONLY with a single valid JSON object. The
+      JSON must contain: { "response": string, "action": string, "emotion": string
+      }. No extra text outside JSON. Respond only in English.'
+  selectedType: 0
 --- !u!1 &4624077372032562663
 GameObject:
   m_ObjectHideFlags: 0

@@ -212,8 +212,6 @@ public abstract class BaseAIScript : MonoBehaviour
         return null;
     }
 
-    // En BaseAIScript.cs
-
     public void LoadProfile(NPCProfile profile)
     {
         if (profile == null) return;

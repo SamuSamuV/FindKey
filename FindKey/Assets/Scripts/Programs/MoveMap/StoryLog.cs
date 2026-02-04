@@ -15,6 +15,8 @@ public class StoryLog : MonoBehaviour
 
     private Coroutine typingCoroutine;
 
+    [HideInInspector]
+    public string lastLoadedText = "";
     // Método original (instantáneo)
     public void AddLine(string text)
     {
@@ -90,6 +92,11 @@ public class StoryLog : MonoBehaviour
 
     public void SetTextAnimated(string text)
     {
+        if (!text.Contains("You can't do that here."))
+        {
+            lastLoadedText = text;
+        }
+
         if (typingCoroutine != null) StopCoroutine(typingCoroutine);
 
         storyText.text = "";

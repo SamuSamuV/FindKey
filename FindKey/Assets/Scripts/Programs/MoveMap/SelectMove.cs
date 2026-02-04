@@ -15,7 +15,6 @@ public enum Actions
     Pick,
     Atack,
     Run,
-
 }
 
 public class SelectMove : MonoBehaviour
@@ -41,37 +40,35 @@ public class SelectMove : MonoBehaviour
         inputField.onSubmit.RemoveListener(OnTextSubmitted);
     }
 
-    private bool IsAtFrontPainting()
-    {
-        return MatchesSequence(Direction.Left);
-    }
-
-    private bool IsAtFirstStraightPath()
-    {
-        return MatchesSequence(Direction.Straight);
-    }
-
-    private bool IsFrontAxe()
-    {
-        return MatchesSequence(Direction.Straight, Direction.Right);
-    }
-
-    private bool IsFrontCat()
-    {
-        return MatchesSequence(Direction.Straight, Direction.Straight);
-    }
+    // --- MÉTODOS DE COMPROBACIÓN ---
+    private bool IsAtFrontPainting() => MatchesSequence(Direction.Left);
+    private bool IsAtFirstStraightPath() => MatchesSequence(Direction.Straight);
+    private bool IsFrontAxe() => MatchesSequence(Direction.Straight, Direction.Right);
+    private bool IsFrontCat() => MatchesSequence(Direction.Straight, Direction.Straight);
 
     private bool IsAtBegining()
     {
-        if (moveAppManager.movementHistory.Count == 0)
-            return true;
+        return moveAppManager.movementHistory.Count == 0;
+    }
 
-        else
-            return false;
+    private void ShowInputError()
+    {
+        // 1. Recuperamos el último texto válido que mostró el StoryLog
+        string previousText = storyLog.lastLoadedText;
+
+        // 2. Creamos el mensaje: Error en Rojo + Salto de línea + Texto original
+        // Si no había texto previo, solo mostramos el error.
+        string message = string.IsNullOrEmpty(previousText)
+            ? "<color=red>You can't do that here.</color>"
+            : $"<color=red>You can't do that here.</color>\n\n{previousText}";
+
+        // 3. Lo mostramos animado
+        storyLog.SetTextAnimated(message);
     }
 
     private void OnTextSubmitted(string input)
     {
+        if (string.IsNullOrEmpty(input)) return;
         input = input.ToLower().Trim();
 
         if (IsFrontAxe())
@@ -83,7 +80,7 @@ public class SelectMove : MonoBehaviour
 
         if (IsFrontCat())
         {
-            HandleDeadCatPositionInput(input);
+            HandleDeadCatPositionInput(input); // Solo entra aquí si el gato está muerto (o falló el if de arriba)
             ResetInput();
             return;
         }
@@ -108,6 +105,10 @@ public class SelectMove : MonoBehaviour
             ResetInput();
             return;
         }
+
+        // Si estamos en un limbo desconocido
+        ShowInputError();
+        ResetInput();
     }
 
     private void ResetInput()
@@ -116,6 +117,8 @@ public class SelectMove : MonoBehaviour
         inputField.ActivateInputField();
     }
 
+    // --- HANDLERS MODIFICADOS PARA USAR ShowInputError() ---
+
     private void HandleIsAtBeginingInput(string input)
     {
         switch (input)
@@ -123,17 +126,14 @@ public class SelectMove : MonoBehaviour
             case "right":
                 AddMovement(Direction.Right);
                 break;
-
             case "left":
                 AddMovement(Direction.Left);
                 break;
-
             case "straight":
                 AddMovement(Direction.Straight);
                 break;
-
             default:
-                storyLog.SetTextAnimated("You can't do that here.");
+                ShowInputError(); // <--- CAMBIO AQUÍ
                 break;
         }
     }
@@ -146,14 +146,12 @@ public class SelectMove : MonoBehaviour
                 movesScript.LookPainting();
                 moveAppManager.actionsHistory.Add(Actions.Look);
                 break;
-
             case "return":
                 RemoveLastMovement();
                 storyLog.SetTextAnimated(movesScript.youComeBackToStartText);
                 break;
-
             default:
-                storyLog.SetTextAnimated("You can't do that here.");
+                ShowInputError(); // <--- CAMBIO AQUÍ
                 break;
         }
     }
@@ -165,18 +163,15 @@ public class SelectMove : MonoBehaviour
             case "right":
                 AddMovement(Direction.Right);
                 break;
-
             case "straight":
                 AddMovement(Direction.Straight);
                 break;
-
             case "return":
                 RemoveLastMovement();
                 storyLog.SetTextAnimated(movesScript.youComeBackToStartText);
                 break;
-
             default:
-                storyLog.SetTextAnimated("You can't do that here.");
+                ShowInputError(); // <--- CAMBIO AQUÍ
                 break;
         }
     }
@@ -189,14 +184,12 @@ public class SelectMove : MonoBehaviour
                 movesScript.PickAxe();
                 moveAppManager.actionsHistory.Add(Actions.Pick);
                 break;
-
             case "return":
                 RemoveLastMovement();
                 storyLog.SetTextAnimated(movesScript.goFirstStraightButYouReturnFromTheAxeText);
                 break;
-
             default:
-                storyLog.SetText("You can't do that here.");
+                ShowInputError(); // <--- CAMBIO AQUÍ
                 break;
         }
     }
@@ -208,14 +201,12 @@ public class SelectMove : MonoBehaviour
             case "straight":
                 AddMovement(Direction.Straight);
                 break;
-
             case "return":
                 RemoveLastMovement();
                 storyLog.SetTextAnimated(movesScript.goFirstStraightButYouReturnFromTheCatPositionText);
                 break;
-
             default:
-                storyLog.SetText("You can't do that here.");
+                ShowInputError(); // <--- CAMBIO AQUÍ
                 break;
         }
     }
@@ -223,7 +214,6 @@ public class SelectMove : MonoBehaviour
     public void AddMovement(Direction direction)
     {
         moveAppManager.movementHistory.Add(direction);
-
         Debug.Log($"Move {moveAppManager.movementHistory.Count}: {direction}");
         CheckPosition();
     }
@@ -236,82 +226,43 @@ public class SelectMove : MonoBehaviour
             moveAppManager.movementHistory.RemoveAt(moveAppManager.movementHistory.Count - 1);
             Debug.Log($"Se quitó la última dirección: {removed}");
         }
-
         else
         {
-            storyLog.SetTextAnimated("You can't go back.");
+            ShowInputError();
             Debug.Log("No hay movimientos que quitar");
         }
     }
 
+    // ... (Tus métodos MatchesSequence y MatchesLastMoves siguen igual) ...
     private bool MatchesSequence(params Direction[] sequence)
     {
-        if (moveAppManager.movementHistory.Count != sequence.Length)
-            return false;
-
+        if (moveAppManager.movementHistory.Count != sequence.Length) return false;
         for (int i = 0; i < sequence.Length; i++)
-        {
-            if (moveAppManager.movementHistory[i] != sequence[i])
-                return false;
-        }
-
+            if (moveAppManager.movementHistory[i] != sequence[i]) return false;
         return true;
     }
 
     private bool MatchesLastMoves(params Direction[] sequence)
     {
-        if (moveAppManager.movementHistory.Count < sequence.Length)
-            return false;
-
+        if (moveAppManager.movementHistory.Count < sequence.Length) return false;
         int startIndex = moveAppManager.movementHistory.Count - sequence.Length;
-
         for (int i = 0; i < sequence.Length; i++)
-        {
-            if (moveAppManager.movementHistory[startIndex + i] != sequence[i])
-                return false;
-        }
-
+            if (moveAppManager.movementHistory[startIndex + i] != sequence[i]) return false;
         return true;
     }
 
     private void CheckPosition()
     {
-        if (moveAppManager.dead)
-            return;
+        if (moveAppManager.dead) return;
 
         if (moveAppManager.movementHistory.Count == 0)
-        {
             storyLog.SetTextAnimated(movesScript.startText);
-        }
 
-        if (MatchesSequence(Direction.Right))
-        {
-            movesScript.GoFirstRightDie();
-        }
-
-        if (MatchesSequence(Direction.Left))
-        {
-            movesScript.GoToPainting();
-        }
-
-        if (MatchesSequence(Direction.Straight))
-        {
-            movesScript.FirstGoStraight();
-        }
-
-        if (MatchesSequence(Direction.Straight, Direction.Right))
-        {
-            movesScript.GoToAxe();
-        }
-
-        if (MatchesSequence(Direction.Straight, Direction.Straight))
-        {
-            movesScript.GoToCatPosition();
-        }
-
-        if (MatchesSequence(Direction.Straight, Direction.Straight, Direction.Straight))
-        {
-            movesScript.GoToNextStageAfterCat();
-        }
+        if (MatchesSequence(Direction.Right)) movesScript.GoFirstRightDie();
+        if (MatchesSequence(Direction.Left)) movesScript.GoToPainting();
+        if (MatchesSequence(Direction.Straight)) movesScript.FirstGoStraight();
+        if (MatchesSequence(Direction.Straight, Direction.Right)) movesScript.GoToAxe();
+        if (MatchesSequence(Direction.Straight, Direction.Straight)) movesScript.GoToCatPosition();
+        if (MatchesSequence(Direction.Straight, Direction.Straight, Direction.Straight)) movesScript.GoToNextStageAfterCat();
     }
 }
