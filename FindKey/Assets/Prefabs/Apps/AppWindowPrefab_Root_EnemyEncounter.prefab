@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 1494243724474291571}
   - component: {fileID: 3095465065208573634}
   - component: {fileID: 8816266659487430629}
-  - component: {fileID: 6316825679385241061}
+  - component: {fileID: 4833486625788732213}
   m_Layer: 5
   m_Name: AppWindowPrefab_Root_EnemyEncounter
   m_TagString: Untagged
@@ -307,7 +307,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 7416302587320685542}
   - {fileID: 6158448395528982651}
   - {fileID: 2709354110825581668}
   m_Father: {fileID: 0}
@@ -375,7 +374,7 @@ MonoBehaviour:
   moveAppData: {fileID: 0}
   isMinimized: 0
   animationDuration: 0.2
---- !u!114 &6316825679385241061
+--- !u!114 &4833486625788732213
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -384,29 +383,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2342009986971900181}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68cb1c3832017234cada9953f0acbcf6, type: 3}
+  m_Script: {fileID: 11500000, guid: e5ec84429dd199f43a590ed133f94208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveAppData: {fileID: 0}
   nonEnemyFindedPanel: {fileID: 1067991120403699259}
-  myAppStoryLog: {fileID: 0}
-  catProfile:
-    npcName: Cat
-    password: meow
-    personalityPrompt: You are a cat
-    firstMessage: Hi human, i am a cat
-    systemInstruction: 'Always respond ONLY with a single valid JSON object. The
-      JSON must contain: { "response": string, "action": string, "emotion": string
-      }. No extra text outside JSON. Respond only in English.'
-  dogProfile:
-    npcName: Dog
-    password: Bone
-    personalityPrompt: You are a dog
-    firstMessage: Hi human, i am a dog
-    systemInstruction: 'Always respond ONLY with a single valid JSON object. The
-      JSON must contain: { "response": string, "action": string, "emotion": string
-      }. No extra text outside JSON. Respond only in English.'
-  selectedType: 0
+  moveAppData: {fileID: 0}
 --- !u!1 &3591361015423859269
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,52 +946,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &7232062042058386805
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7416302587320685542}
-  - component: {fileID: 4152275677396818718}
-  m_Layer: 0
-  m_Name: OllamaClient
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7416302587320685542
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7232062042058386805}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 432692766019086495}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4152275677396818718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7232062042058386805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ee2599d3cd375e44b8b4466d2a8c099, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  model: llama3.1:8b
-  baseUrl: http://localhost:11434/api/generate
 --- !u!1 &8316285008392748901
 GameObject:
   m_ObjectHideFlags: 0

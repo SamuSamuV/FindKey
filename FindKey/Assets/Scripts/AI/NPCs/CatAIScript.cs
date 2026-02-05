@@ -33,45 +33,47 @@ public class CatAIScript : BaseAIScript
     protected override void OpenDoor()
     {
         moveAppData.catIsDead = true;
+
         DesktopManager dm = FindObjectOfType<DesktopManager>();
 
-        foreach (var data in dm.iconsToSpawn)
+        if (dm != null && dm.iconsToSpawn != null)
         {
-            if (data.label == "Move")
+            foreach (var data in dm.iconsToSpawn)
             {
-                if (data.isOpen)
+                if (data.label == "Move")
                 {
-                    Moves moves = data.windowInstance.GetComponent<Moves>();
-
-                    if (moves != null)
+                    if (data.isOpen && data.windowInstance != null)
                     {
+
+                        //////////////////////////////////////////////////////
+
+                        //Implementar animación del FadeOut del gato proximamente con una corrutina y hacer todo lo de ocultar los paneles y demas al final de la corrutina/animación al irse
+
+                        //////////////////////////////////////////////////////
+
+                        Moves moves = data.windowInstance.GetComponent<Moves>();
+
+                        moves.IAPanel.SetActive(false);
+                        moves.MovePanel.SetActive(true);
                         moves.playerInputField.SetActive(true);
+
                         moves.selectMove.AddMovement(Direction.Straight);
                         moves.GoToNextStageAfterCat();
                     }
                 }
 
-                break;
-            }
-
-            if (data.label == "Enemy Encounter")
-            {
-                if (data.isOpen)
+                else if (data.label == "Enemy Encounter")
                 {
-                    EnemyEncounterData enemyEncounterData = data.windowInstance.GetComponent<EnemyEncounterData>();
-
-                    if (enemyEncounterData != null)
+                    if (data.isOpen && data.windowInstance != null)
                     {
-                        //Implementar animación del FadeOut del gato proximamente y en cto la acabe volver ha hacer el panel de no hay enemigo true
+                        EnemyEncounterData enemyEncounterData = GetComponent<EnemyEncounterData>();
+                        BaseEnemyEncounter baseEnemyEncounter = data.windowInstance.GetComponent<BaseEnemyEncounter>();
 
-                        enemyEncounterData.nonEnemyFindedPanel.SetActive(true);
+                        baseEnemyEncounter.nonEnemyFindedPanel.SetActive(true);
 
-                        //Al final del todo:
                         enemyEncounterData.CurrentType = EnemyEncounterData.NPCType.None;
                     }
                 }
-
-                break;
             }
         }
     }

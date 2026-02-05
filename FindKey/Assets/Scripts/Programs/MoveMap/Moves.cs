@@ -70,6 +70,8 @@ public class Moves : MonoBehaviour
     public InventoryManager inventoryManager;
     public DesktopManager desktopManager;
     [SerializeField] public GameObject playerInputField;
+    [SerializeField] public GameObject IAPanel;
+    [SerializeField] public GameObject MovePanel;
 
     void Awake()
     {
@@ -83,6 +85,9 @@ public class Moves : MonoBehaviour
         GameObject goMoveAppData = GameObject.FindGameObjectWithTag("MoveAppData");
         moveAppData = goMoveAppData.GetComponent<MoveAppData>();
         if (storyLog != null) storyLog.SetTextAnimated(startText);
+
+        IAPanel.SetActive(false);
+        MovePanel.SetActive(true);
     }
 
     public void GoFirstRightDie()
@@ -168,13 +173,11 @@ public class Moves : MonoBehaviour
 
     public void GoToCatPosition()
     {
-        // Protección: Si moveAppData es null, salimos para no crashear
         if (moveAppData == null) return;
 
         if (!moveAppData.catIsDead)
         {
             moveAppData.playerIsFrontCat = true;
-            storyLog.SetTextAnimated(goToAliveCatText);
 
             DesktopManager dm = FindObjectOfType<DesktopManager>();
 
@@ -184,37 +187,42 @@ public class Moves : MonoBehaviour
                 {
                     if (data.label == "Enemy Encounter")
                     {
-                        if (data.isOpen && data.windowInstance != null)
+                        if (data.isOpen)
                         {
-                            EnemyEncounterData enemyEncounterData = data.windowInstance.GetComponent<EnemyEncounterData>();
+                            EnemyEncounterData enemyEncounterData = GetComponent<EnemyEncounterData>();
+                            BaseEnemyEncounter baseEnemyEncounter = data.windowInstance.GetComponent<BaseEnemyEncounter>();
 
-                            if (enemyEncounterData != null)
-                            {
-                                enemyEncounterData.CurrentType = EnemyEncounterData.NPCType.Cat;
-                                if (enemyEncounterData.nonEnemyFindedPanel)
-                                    enemyEncounterData.nonEnemyFindedPanel.SetActive(false);
-                            }
+                            enemyEncounterData.CurrentType = EnemyEncounterData.NPCType.Cat;
+                            baseEnemyEncounter.nonEnemyFindedPanel.SetActive(false);
+
+                            IAPanel.SetActive(true);
+                            MovePanel.SetActive(false);
                         }
 
-                        else if (!data.isOpen && data.windowInstance != null)
+                        else
                         {
+                            IAPanel.SetActive(false);
+                            MovePanel.SetActive(true);
+
+                            storyLog.SetTextAnimated(goToAliveCatText);
                             if (playerInputField) playerInputField.SetActive(false);
                         }
 
                         break;
                     }
-
                 }
             }
 
             else
             {
-                Debug.LogWarning("Moves: No se encontró el DesktopManager o sus iconos. Ignorando lógica de ventana externa.");
+                Debug.LogWarning("Moves: No se encontró el DesktopManager.");
             }
         }
 
         else
         {
+            IAPanel.SetActive(false);
+            MovePanel.SetActive(true);
             moveAppData.playerIsFrontCat = false;
             storyLog.SetTextAnimated(goToDeadCatText);
             if (playerInputField) playerInputField.SetActive(true);
