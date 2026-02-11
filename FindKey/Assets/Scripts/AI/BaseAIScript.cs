@@ -6,7 +6,7 @@ using UnityEngine;
 
 public abstract class BaseAIScript : MonoBehaviour
 {
-    [Header("Referencias (Auto-asignadas si están vacías)")]
+    [Header("Referencias")]
     public OllamaClient ollamaClient;
     public TMP_InputField inputField;
     public TextMeshProUGUI chatOutput;
@@ -39,11 +39,22 @@ public abstract class BaseAIScript : MonoBehaviour
         // 1. Configuramos al NPC específico (Gato/Perro)
         InitNPC();
 
-        // 2. Buscamos referencias si no están asignadas
-        if (inputField == null) inputField = GetComponentInChildren<TMP_InputField>(true);
-        if (chatOutput == null) chatOutput = GetComponentInChildren<TextMeshProUGUI>(true);
-        if (ollamaClient == null) ollamaClient = GetComponentInChildren<OllamaClient>(true);
-        if (storyLog == null) storyLog = GetComponentInChildren<StoryLog>(true);
+        AI_References refs = GetComponent<AI_References>();
+        if (refs != null)
+        {
+            this.inputField = refs.inputField;
+            this.chatOutput = refs.chatOutput;
+            this.ollamaClient = refs.ollamaClient;
+            this.storyLog = refs.storyLog;
+        }
+        else
+        {
+            if (inputField == null) inputField = GetComponentInChildren<TMP_InputField>(true);
+            if (chatOutput == null) chatOutput = GetComponentInChildren<TextMeshProUGUI>(true);
+            if (ollamaClient == null) ollamaClient = GetComponentInChildren<OllamaClient>(true);
+            if (storyLog == null) storyLog = GetComponentInChildren<StoryLog>(true);
+
+        }
     }
 
     protected virtual void Start()
@@ -57,7 +68,8 @@ public abstract class BaseAIScript : MonoBehaviour
         }
 
         GameObject goMoveAppData = GameObject.FindGameObjectWithTag("MoveAppData");
-        moveAppData = goMoveAppData.GetComponent<MoveAppData>();
+        if (goMoveAppData != null)
+            moveAppData = goMoveAppData.GetComponent<MoveAppData>();
     }
 
     protected virtual void OnDestroy()
@@ -106,7 +118,10 @@ public abstract class BaseAIScript : MonoBehaviour
                 "\n\nConversation so far:\n" + conversationHistory + $"\n{npcName}:";
         }
 
-        StartCoroutine(ollamaClient.SendPrompt(finalPrompt, OnAIResponse, OnAIError));
+        if (ollamaClient != null)
+        {
+            StartCoroutine(ollamaClient.SendPrompt(finalPrompt, OnAIResponse, OnAIError));
+        }
     }
     protected bool IsPasswordSaid(string text)
     {
@@ -122,15 +137,12 @@ public abstract class BaseAIScript : MonoBehaviour
 
         if (data == null)
         {
-            // Fallback si falla el JSON
-            // CAMBIO: Usamos AddLineAnimated
             AddLog(npcName, raw, true);
             return;
         }
 
         if (!string.IsNullOrEmpty(data.response))
         {
-            // CAMBIO: Usamos AddLineAnimated para la respuesta válida
             AddLog(npcName, data.response, true);
         }
 
@@ -189,13 +201,11 @@ public abstract class BaseAIScript : MonoBehaviour
 
     protected virtual void OpenDoor()
     {
-        // Sobreescribe esto en el hijo si quieres efectos distintos para cada animal
         Debug.Log("La puerta se abre genéricamente.");
     }
 
     private AIResponse TryParseAIResponse(string raw)
     {
-        // Lógica de limpieza de JSON idéntica a la que tenías
         raw = raw?.Trim();
         try
         {
@@ -205,7 +215,6 @@ public abstract class BaseAIScript : MonoBehaviour
         }
         catch { }
 
-        // Regex fallback
         var m = Regex.Match(raw, "\"response\"\\s*:\\s*\"(.*?)\"", RegexOptions.Singleline);
         if (m.Success) return new AIResponse { response = Regex.Unescape(m.Groups[1].Value), action = "none" };
 

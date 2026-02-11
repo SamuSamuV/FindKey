@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemyEncounterData : MonoBehaviour
 {
     public MoveAppData moveAppData;
-    public GameObject nonEnemyFindedPanel;
     public StoryLog myAppStoryLog;
 
     // Tus perfiles de datos
@@ -40,7 +39,6 @@ public class EnemyEncounterData : MonoBehaviour
         if (moveAppData.playerIsFrontCat)
         {
             CurrentType = NPCType.Cat;
-            nonEnemyFindedPanel.SetActive(false);
         }
 
         if (currentAI == null)
@@ -79,8 +77,28 @@ public class EnemyEncounterData : MonoBehaviour
 
     public void ResetNPC()
     {
+        DesktopManager dm = FindObjectOfType<DesktopManager>();
+
+        if (dm != null && dm.iconsToSpawn != null)
+        {
+            foreach (var data in dm.iconsToSpawn)
+            {
+                if (data.label == "Enemy Encounter")
+                {
+                    if (data.isOpen)
+                    {
+                        BaseEnemyEncounter baseEnemyEncounter = data.windowInstance.GetComponent<BaseEnemyEncounter>();
+
+                        baseEnemyEncounter.nonEnemyFindedPanel.SetActive(true);
+                    }
+
+                    break;
+                }
+
+            }
+        }
+
         CurrentType = NPCType.None;
-        nonEnemyFindedPanel.SetActive(true);
     }
 }
 

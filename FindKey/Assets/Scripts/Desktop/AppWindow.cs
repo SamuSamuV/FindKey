@@ -109,37 +109,75 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
     private void CloseLogic()
     {
         DesktopManager dm = FindObjectOfType<DesktopManager>();
+
         if (dm != null)
         {
             foreach (var data in dm.iconsToSpawn)
             {
-                if (data.label == appName)
+                // Buscamos cuál es la ventana que se está cerrando ahora mismo
+                if (data.windowInstance == gameObject)
                 {
+                    // 1. Marcar como cerrada
                     data.isOpen = false;
                     data.isMinimized = false;
+                    data.windowInstance = null; // Importante: Ya no hay ventana
 
-                    if (data.label == "Move")
+                    // ----------------------------------------------------
+                    // CASO A: SE ESTÁ CERRANDO "ENEMY ENCOUNTER"
+                    // ----------------------------------------------------
+                    if (data.label == "Enemy Encounter")
                     {
+                        // Buscamos si "Move" sigue abierta para avisarle
                         foreach (var otherApp in dm.iconsToSpawn)
                         {
-                            if (otherApp.label == "Enemy Encounter" && otherApp.windowInstance != null)
+                            if (otherApp.label == "Move" && otherApp.isOpen && otherApp.windowInstance != null)
                             {
-                                EnemyEncounterData enemyScript = otherApp.windowInstance.GetComponent<EnemyEncounterData>();
-                                if (enemyScript != null)
+                                Moves moves = otherApp.windowInstance.GetComponent<Moves>();
+                                if (moves != null)
                                 {
-                                    if (moveAppData != null) moveAppData.playerIsFrontCat = false;
-                                    enemyScript.ResetNPC();
+                                    // Al llamar a esto, Moves verá que EnemyEncounter está cerrada
+                                    // y mostrará el texto "Deberías abrir la app..."
+                                    moves.GoToCatPosition();
                                 }
                                 break;
                             }
                         }
                     }
+                    // ----------------------------------------------------
+                    // CASO B: SE ESTÁ CERRANDO "MOVE"
+                    // ----------------------------------------------------
+                    else if (data.label == "Move")
+                    {
+                        // Buscamos si "Enemy Encounter" sigue abierta para resetearla
+                        foreach (var otherApp in dm.iconsToSpawn)
+                        {
+                            if (otherApp.label == "Enemy Encounter" && otherApp.isOpen && otherApp.windowInstance != null)
+                            {
+                                BaseEnemyEncounter baseEnemy = otherApp.windowInstance.GetComponent<BaseEnemyEncounter>();
+                                EnemyEncounterData enemyData = otherApp.windowInstance.GetComponent<EnemyEncounterData>();
+
+                                if (baseEnemy != null)
+                                {
+                                    // Ponemos la pantalla de "No Signal"
+                                    baseEnemy.nonEnemyFindedPanel.SetActive(true);
+                                }
+
+                                if (enemyData != null)
+                                {
+                                    // Quitamos el gato de la pantalla
+                                    enemyData.CurrentType = EnemyEncounterData.NPCType.None;
+                                }
+                                break;
+                            }
+                        }
+                    }
+                    // ----------------------------------------------------
+
+                    break; // Ya encontramos la ventana que se cierra, salimos del bucle principal
                 }
             }
         }
 
-        TaskbarManager.GetOrFindInstance()?.UnregisterWindow(this);
-        isOpen = false;
         Destroy(gameObject);
     }
 

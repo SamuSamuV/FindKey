@@ -7,7 +7,7 @@ public class MoveAppData : MonoBehaviour
     public bool hasAxe;
     public bool playerIsFrontCat;
     public bool catIsDead;
-
+    public bool playerIsChattingWithCat;
     void Start()
     {
         
