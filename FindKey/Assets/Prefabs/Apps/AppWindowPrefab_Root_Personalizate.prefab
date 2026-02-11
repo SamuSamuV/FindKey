@@ -314,8 +314,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   titleText: {fileID: 5511757479028437172}
-  closeButton: {fileID: 5969091765433152351}
-  minimizeButton: {fileID: 4427439958414635494}
+  closeButton:
+  - {fileID: 5969091765433152351}
+  minimizeButton:
+  - {fileID: 4427439958414635494}
   isOpen: 0
   appName: 
   moveAppData: {fileID: 0}
@@ -538,7 +540,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Inventory
+  m_text: Personalize
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dfae47ea23a8a0d4788d643a2b17dfc2, type: 2}
   m_sharedMaterial: {fileID: 4779611292267169484, guid: dfae47ea23a8a0d4788d643a2b17dfc2, type: 2}

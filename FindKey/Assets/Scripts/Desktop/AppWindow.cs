@@ -8,8 +8,8 @@ using UnityEngine.UI;
 public class AppWindow : MonoBehaviour, IPointerDownHandler
 {
     public TextMeshProUGUI titleText;
-    public Button closeButton;
-    public Button minimizeButton;
+    public Button[] closeButton;
+    public Button[] minimizeButton;
     public bool isOpen;
     [HideInInspector] public string appName;
     public MoveAppData moveAppData;
@@ -19,8 +19,21 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
 
     protected virtual void Awake()
     {
-        if (closeButton != null) closeButton.onClick.AddListener(Close);
-        if (minimizeButton != null) minimizeButton.onClick.AddListener(Minimize);
+        if (closeButton != null)
+        {
+            for (int i = 0; i < closeButton.Length; i++)
+            {
+                closeButton[i].onClick.AddListener(Close);
+            }
+        }
+
+        if (minimizeButton != null)
+        {
+            for (int i = 0; i < minimizeButton.Length; i++)
+            {
+                minimizeButton[i].onClick.AddListener(Minimize);
+            }
+        }
 
         GameObject goMoveAppData = GameObject.FindGameObjectWithTag("MoveAppData");
         if (goMoveAppData != null)

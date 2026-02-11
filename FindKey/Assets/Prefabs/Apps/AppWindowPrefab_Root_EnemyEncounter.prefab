@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 1494243724474291571}
   - component: {fileID: 3095465065208573634}
   - component: {fileID: 8816266659487430629}
-  - component: {fileID: 6316825679385241061}
+  - component: {fileID: 8197986160548590439}
   m_Layer: 5
   m_Name: AppWindowPrefab_Root_EnemyEncounter
   m_TagString: Untagged
@@ -368,14 +368,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   titleText: {fileID: 5511757479028437172}
-  closeButton: {fileID: 5164196516228535632}
-  minimizeButton: {fileID: 6419909392006508152}
+  closeButton:
+  - {fileID: 5164196516228535632}
+  minimizeButton:
+  - {fileID: 6419909392006508152}
   isOpen: 0
   appName: 
   moveAppData: {fileID: 0}
   isMinimized: 0
   animationDuration: 0.2
---- !u!114 &6316825679385241061
+--- !u!114 &8197986160548590439
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -384,29 +386,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2342009986971900181}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68cb1c3832017234cada9953f0acbcf6, type: 3}
+  m_Script: {fileID: 11500000, guid: e5ec84429dd199f43a590ed133f94208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveAppData: {fileID: 0}
   nonEnemyFindedPanel: {fileID: 1067991120403699259}
-  myAppStoryLog: {fileID: 0}
-  catProfile:
-    npcName: Cat
-    password: meow
-    personalityPrompt: You are a cat
-    firstMessage: Hi human, i am a cat
-    systemInstruction: 'Always respond ONLY with a single valid JSON object. The
-      JSON must contain: { "response": string, "action": string, "emotion": string
-      }. No extra text outside JSON. Respond only in English.'
-  dogProfile:
-    npcName: Dog
-    password: Bone
-    personalityPrompt: You are a dog
-    firstMessage: Hi human, i am a dog
-    systemInstruction: 'Always respond ONLY with a single valid JSON object. The
-      JSON must contain: { "response": string, "action": string, "emotion": string
-      }. No extra text outside JSON. Respond only in English.'
-  selectedType: 0
+  moveAppData: {fileID: 0}
 --- !u!1 &3591361015423859269
 GameObject:
   m_ObjectHideFlags: 0

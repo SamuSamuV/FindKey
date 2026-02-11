@@ -287,8 +287,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   titleText: {fileID: 5511757479028437172}
-  closeButton: {fileID: 5969091765433152351}
-  minimizeButton: {fileID: 4427439958414635494}
+  closeButton:
+  - {fileID: 5969091765433152351}
+  minimizeButton:
+  - {fileID: 4427439958414635494}
   isOpen: 0
   appName: 
   moveAppData: {fileID: 0}
