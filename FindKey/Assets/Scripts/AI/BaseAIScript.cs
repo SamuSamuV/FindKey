@@ -194,9 +194,25 @@ public abstract class BaseAIScript : MonoBehaviour
     protected void AddToHistory(string speaker, string message)
     {
         conversationHistory += $"{speaker}: {message}\n";
-        // Limitar historial
-        if (conversationHistory.Length > 2500)
-            conversationHistory = conversationHistory.Substring(conversationHistory.Length - 2500);
+
+        // OPTIMIZACIÓN: Límite de 2000 caracteres (aprox 400 tokens)
+        // Esto asegura que la IA no tenga que leerse el Quijote cada vez que le dices "hola"
+        if (conversationHistory.Length > 2000)
+        {
+            // Buscamos el primer salto de línea después del corte para no romper frases
+            // y mantener el formato limpio
+            int cutIndex = conversationHistory.IndexOf('\n', conversationHistory.Length - 2000);
+
+            if (cutIndex != -1)
+            {
+                conversationHistory = conversationHistory.Substring(cutIndex + 1);
+            }
+            else
+            {
+                // Fallback por si no encuentra salto de línea
+                conversationHistory = conversationHistory.Substring(conversationHistory.Length - 2000);
+            }
+        }
     }
 
     protected virtual void OpenDoor()
