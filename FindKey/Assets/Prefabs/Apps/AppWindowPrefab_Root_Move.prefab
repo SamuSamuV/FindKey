@@ -1125,8 +1125,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputField: {fileID: 771982017855549717}
   storyLog: {fileID: 3396168387017053476}
-  currentNode: {fileID: 11400000, guid: aa6b58bff5bb47e4083ccd4e46187acc, type: 2}
   movesScript: {fileID: 8216123632447424746}
+  currentNode: {fileID: 11400000, guid: aa6b58bff5bb47e4083ccd4e46187acc, type: 2}
 --- !u!1 &3552299642688330131
 GameObject:
   m_ObjectHideFlags: 0
@@ -3119,7 +3119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee2599d3cd375e44b8b4466d2a8c099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: llama3.1:8b
+  model: llama3.2:3b
   baseUrl: http://localhost:11434/api/generate
   contextSize: 2048
 --- !u!1 &8968409186146594419

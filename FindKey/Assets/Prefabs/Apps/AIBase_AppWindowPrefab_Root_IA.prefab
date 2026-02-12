@@ -1573,8 +1573,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee2599d3cd375e44b8b4466d2a8c099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: llama3.1:8b
+  model: llama3.2:3b
   baseUrl: http://localhost:11434/api/generate
+  contextSize: 2048
 --- !u!1 &8079959227856916642
 GameObject:
   m_ObjectHideFlags: 0

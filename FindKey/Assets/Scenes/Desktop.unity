@@ -5434,7 +5434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7efdf0a3aa2723c4681d529716e8a14d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelToLoad: llama3.1:8b
+  modelToLoad: llama3.2:3b
   showDebugLogs: 1
 --- !u!4 &2069501461
 Transform:

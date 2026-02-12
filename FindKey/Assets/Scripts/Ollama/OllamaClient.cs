@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 public class OllamaClient : MonoBehaviour
 {
     [Header("Ollama Settings")]
-    public string model = "llama3.1:8b";
+    public string model = "llama3.2:3b";
     public string baseUrl = "http://localhost:11434/api/generate";
     
     // REDUCIDO: 2048 tokens suele caber en gráficas de 6GB-8GB. 

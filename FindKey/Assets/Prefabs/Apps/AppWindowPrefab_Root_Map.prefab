@@ -509,25 +509,41 @@ MonoBehaviour:
   mapDisplay: {fileID: 7249831894112745610}
   mapEntries:
   - name: start
-    node: {fileID: 11400000, guid: aa6b58bff5bb47e4083ccd4e46187acc, type: 2}
+    nodes:
+    - {fileID: 11400000, guid: e8ba5160dbc7b7643a95d9aa713e105a, type: 2}
+    - {fileID: 11400000, guid: aa6b58bff5bb47e4083ccd4e46187acc, type: 2}
     image: {fileID: 21300000, guid: 5ca72f2f4e0bd394a953e37d21db5110, type: 3}
   - name: L_Painting
-    node: {fileID: 11400000, guid: c06154369ad25f346973fdc459097d76, type: 2}
+    nodes:
+    - {fileID: 11400000, guid: c06154369ad25f346973fdc459097d76, type: 2}
+    - {fileID: 11400000, guid: 6e95bd6b359307642bccd22f95dcfe1c, type: 2}
+    - {fileID: 11400000, guid: 3a3125c0c0d5a6249948ebf719836044, type: 2}
     image: {fileID: 21300000, guid: bafde817684274145b13752fe2616f7f, type: 3}
   - name: R_Die
-    node: {fileID: 11400000, guid: fbd37a7f94fa53f4b92e8299d520cbe6, type: 2}
+    nodes:
+    - {fileID: 11400000, guid: fbd37a7f94fa53f4b92e8299d520cbe6, type: 2}
     image: {fileID: 21300000, guid: c98f9e23b1cddc141adb8e7f0f527398, type: 3}
   - name: S_BosqueRecto
-    node: {fileID: 11400000, guid: ea0f0c2b7a54091489642097de01efd4, type: 2}
+    nodes:
+    - {fileID: 11400000, guid: ea0f0c2b7a54091489642097de01efd4, type: 2}
+    - {fileID: 11400000, guid: 478d9416a89d7a5458e8eeb79a321456, type: 2}
+    - {fileID: 11400000, guid: 41f1b93bbcac20f4eb5d8bf6fdfbdf6c, type: 2}
     image: {fileID: 21300000, guid: c98f9e23b1cddc141adb8e7f0f527398, type: 3}
   - name: SR_Axe
-    node: {fileID: 11400000, guid: 6fcdfe6f2bdad39468f272083caece26, type: 2}
+    nodes:
+    - {fileID: 11400000, guid: 6fcdfe6f2bdad39468f272083caece26, type: 2}
+    - {fileID: 11400000, guid: bb1aba068dd64ad43b97700368f6b74e, type: 2}
+    - {fileID: 11400000, guid: 707cfd2f160573d469e3de914a00c014, type: 2}
+    - {fileID: 11400000, guid: e857e05b9ec18b840bcd4a38e7844279, type: 2}
     image: {fileID: 21300000, guid: a37a9d0b94ee68b4fa3ea8649a1c2a8b, type: 3}
   - name: SS_Cat
-    node: {fileID: 11400000, guid: 886ebd0641519914c8840d98d712b5af, type: 2}
+    nodes:
+    - {fileID: 11400000, guid: 886ebd0641519914c8840d98d712b5af, type: 2}
+    - {fileID: 11400000, guid: 3da9445d7b25d4b438be370aa918b18a, type: 2}
     image: {fileID: 21300000, guid: ccdcb4d1c5edc9c45a644637c99f646e, type: 3}
   - name: SSS_AfterCat
-    node: {fileID: 11400000, guid: 1c7489dad791aa6488d33b5bb9032d23, type: 2}
+    nodes:
+    - {fileID: 11400000, guid: 1c7489dad791aa6488d33b5bb9032d23, type: 2}
     image: {fileID: 21300000, guid: dedf08ea35ef2e9438f93996b10c9fe2, type: 3}
   defaultImage: {fileID: 21300000, guid: 505b32d18cc01e6459efa3d977830a05, type: 3}
 --- !u!1 &4624077372032562663

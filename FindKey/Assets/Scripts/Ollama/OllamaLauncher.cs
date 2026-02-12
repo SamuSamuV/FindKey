@@ -7,7 +7,7 @@ using System.Collections;
 public class OllamaLauncher : MonoBehaviour
 {
     [Header("Configuración")]
-    public string modelToLoad = "llama3.1:8b";
+    public string modelToLoad = "llama3.2:3b";
     public bool showDebugLogs = true;
 
     // Guardamos referencia, pero usaremos TaskKill para cerrar
