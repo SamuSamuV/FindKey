@@ -5,101 +5,43 @@ using System.Collections.Generic;
 public class MapViewer : MonoBehaviour
 {
     [Header("Referencias")]
-    public Image mapDisplay; // Arrastra aquí el componente Image de tu ventana Mapa
-    public MoveAppManager moveAppManager; // Referencia al manager de movimientos
+    public Image mapDisplay;
 
-    [Header("Imágenes del Mapa")]
-    // Arrastra aquí tus PNGs correspondientes a cada zona
-    public Sprite mapStart;          // Inicio
-    public Sprite mapPainting;       // Cuadro (Izquierda)
-    public Sprite mapCorridor;       // Pasillo (Recto)
-    public Sprite mapAxeArea;        // Hacha (Recto -> Derecha)
-    public Sprite mapCatArea;        // Gato (Recto -> Recto)
-    public Sprite mapUnknown;        // Por si se pierde (opcional)
+    [Header("Configuración Mapa")]
+    public List<MapEntry> mapEntries;
+    public Sprite defaultImage;
+
+    [System.Serializable]
+    public struct MapEntry
+    {
+        public string name;
+        public StoryNode node;
+        public Sprite image;
+    }
 
     void Start()
     {
-        if (moveAppManager == null)
-            moveAppManager = FindObjectOfType<MoveAppManager>();
-
-        DesktopManager dm = FindObjectOfType<DesktopManager>();
+        AdventureManager adventure = FindObjectOfType<AdventureManager>();
+        if (adventure != null) UpdateMap(adventure.currentNode);
+        else if (defaultImage != null) mapDisplay.sprite = defaultImage;
     }
 
-    void Update()
+    public void UpdateMap(StoryNode currentNode)
     {
-        if (moveAppManager == null) return;
+        if (currentNode == null) return;
 
-        UpdateMapImage();
-    }
+        Debug.Log($"[MAPA] Intentando cambiar imagen para el nodo: {currentNode.name}");
 
-    void UpdateMapImage()
-    {
-        // 1. Zona Inicio (Sin movimientos)
-        if (moveAppManager.movementHistory.Count == 0)
+        foreach (var entry in mapEntries)
         {
-            SetImage(mapStart);
-            return;
+            if (entry.node == currentNode)
+            {
+                Debug.Log($"[MAPA] ¡Encontrado! Cambiando a imagen: {entry.image.name}");
+                if (mapDisplay != null) mapDisplay.sprite = entry.image;
+                return;
+            }
         }
 
-        // 2. Zona Cuadro (Izquierda)
-        if (MatchesSequence(Direction.Left))
-        {
-            SetImage(mapPainting);
-            return;
-        }
-
-        // 3. Zona Hacha (Recto -> Derecha)
-        if (MatchesSequence(Direction.Straight, Direction.Right))
-        {
-            SetImage(mapAxeArea);
-            return;
-        }
-
-        // 4. Zona Gato (Recto -> Recto)
-        if (MatchesSequence(Direction.Straight, Direction.Straight))
-        {
-            SetImage(mapCatArea);
-            return;
-        }
-
-        // 5. Zona Pasillo (Recto)
-        // Lo ponemos el último porque "Recto" es el inicio de "Recto->Derecha" y "Recto->Recto"
-        if (MatchesSequence(Direction.Straight))
-        {
-            SetImage(mapCorridor);
-            return;
-        }
-
-        // Si no coincide con nada conocido
-        SetImage(mapUnknown);
-    }
-
-    // Función auxiliar para cambiar la imagen solo si es diferente (optimización)
-    void SetImage(Sprite newSprite)
-    {
-        if (newSprite != null && mapDisplay.sprite != newSprite)
-        {
-            mapDisplay.sprite = newSprite;
-        }
-    }
-
-    // Misma lógica que en tu SelectMove.cs para detectar la ruta
-    private bool MatchesSequence(params Direction[] sequence)
-    {
-        List<Direction> history = moveAppManager.movementHistory;
-
-        if (history.Count != sequence.Length) return false;
-
-        for (int i = 0; i < sequence.Length; i++)
-        {
-            if (history[i] != sequence[i]) return false;
-        }
-        return true;
-    }
-
-    public void SetManager(MoveAppManager manager)
-    {
-        this.moveAppManager = manager;
-        UpdateMapImage();
+        Debug.LogWarning($"[MAPA] El nodo '{currentNode.name}' NO ESTÁ en la lista 'Map Entries'. Manteniendo imagen anterior.");
     }
 }

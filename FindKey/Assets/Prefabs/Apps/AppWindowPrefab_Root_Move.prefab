@@ -842,6 +842,7 @@ GameObject:
   - component: {fileID: 2478432726860265031}
   - component: {fileID: 2985693149730328085}
   - component: {fileID: 3171704360684299008}
+  - component: {fileID: 2585932320975065562}
   m_Layer: 5
   m_Name: AppWindowPrefab_Root_Move
   m_TagString: Untagged
@@ -938,7 +939,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2342009986971900181}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 799fb07c635fba447a38a19324adc19e, type: 3}
   m_Name: 
@@ -1110,6 +1111,22 @@ MonoBehaviour:
   inputField: {fileID: 8217636600777639509}
   chatOutput: {fileID: 2042220249585688343}
   storyLog: {fileID: 8703187602726446899}
+--- !u!114 &2585932320975065562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2342009986971900181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab3e39a3e20b138488ef4f05baa4ee8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputField: {fileID: 771982017855549717}
+  storyLog: {fileID: 3396168387017053476}
+  currentNode: {fileID: 11400000, guid: aa6b58bff5bb47e4083ccd4e46187acc, type: 2}
+  movesScript: {fileID: 8216123632447424746}
 --- !u!1 &3552299642688330131
 GameObject:
   m_ObjectHideFlags: 0
@@ -3104,6 +3121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: llama3.1:8b
   baseUrl: http://localhost:11434/api/generate
+  contextSize: 2048
 --- !u!1 &8968409186146594419
 GameObject:
   m_ObjectHideFlags: 0

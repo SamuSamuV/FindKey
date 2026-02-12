@@ -89,19 +89,18 @@ public class Moves : MonoBehaviour
         IAPanel.SetActive(false);
         MovePanel.SetActive(true);
 
-        MapViewer mapViewer = FindObjectOfType<MapViewer>();
+        //MapViewer mapViewer = FindObjectOfType<MapViewer>();
 
-        if (mapViewer != null)
-        {
-            mapViewer.SetManager(this.moveAppManager);
-        }
+        //if (mapViewer != null)
+        //{
+        //    mapViewer.SetManager(this.moveAppManager);
+        //}
     }
 
     public void GoFirstRightDie()
     {
         moveAppManager.dead = true;
         playerInputField.SetActive(false);
-        storyLog.SetTextAnimated(rightPathDieText);
         Debug.Log("Has muerto");
     }
 
