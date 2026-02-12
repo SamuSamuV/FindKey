@@ -971,7 +971,7 @@ MonoBehaviour:
     -straight'
   rightPathDieText: La has palmao
   goToPaintingText: "You approach an old painting hanging from a tree\r\n\r\r\n-
-    look\n- return\r"
+    look\r\n- return\r"
   lookPaintingText: "Pos est\xE1 wapo el cuadro\n\n- look\r\n- return"
   hasAlreadyLookPaintingText: 'Ya lo he visto
 

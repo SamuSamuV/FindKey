@@ -112,10 +112,11 @@ public class OllamaLauncher : MonoBehaviour
 
     IEnumerator PreloadModel()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1.0f); // Espera breve a que el servidor arranque
         string url = "http://127.0.0.1:11434/api/generate";
-        // Enviamos prompt vacío para cargar en RAM
-        string jsonBody = $"{{\"model\": \"{modelToLoad}\", \"prompt\": \"\", \"keep_alive\": -1}}";
+
+        // Enviamos "hi" y forzamos contexto pequeño también aquí para reservar la VRAM justa
+        string jsonBody = $"{{\"model\": \"{modelToLoad}\", \"prompt\": \"hi\", \"keep_alive\": -1, \"options\": {{\"num_ctx\": 2048}}}}";
 
         var request = new UnityWebRequest(url, "POST");
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonBody);
@@ -123,12 +124,13 @@ public class OllamaLauncher : MonoBehaviour
         request.downloadHandler = new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
 
+        UnityEngine.Debug.Log(">> CALENTANDO MOTORES DE IA (Esto puede tardar unos segundos)...");
         yield return request.SendWebRequest();
-        
+
         if (request.result == UnityWebRequest.Result.Success)
-            UnityEngine.Debug.Log(">> MODELO CARGADO EN RAM Y LISTO.");
+            UnityEngine.Debug.Log(">> IA LISTA Y CARGADA EN VRAM.");
         else
-            UnityEngine.Debug.LogWarning(">> Intento de pre-carga fallido (cargará al hablar): " + request.error);
+            UnityEngine.Debug.LogWarning(">> Pre-carga incompleta: " + request.error);
     }
 
     // --- TRIGGERS DE CIERRE ---

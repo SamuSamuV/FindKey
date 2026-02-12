@@ -88,6 +88,13 @@ public class Moves : MonoBehaviour
 
         IAPanel.SetActive(false);
         MovePanel.SetActive(true);
+
+        MapViewer mapViewer = FindObjectOfType<MapViewer>();
+
+        if (mapViewer != null)
+        {
+            mapViewer.SetManager(this.moveAppManager);
+        }
     }
 
     public void GoFirstRightDie()
