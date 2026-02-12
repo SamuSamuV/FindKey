@@ -736,7 +736,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Instructions
+  m_text: "Hola, me pediste el pc con el juego y aqu\xED est\xE1\nPara empezar la
+    aventura comienza entrando en la carpeta de la derecha\nEn ella est\xE1 la IA
+    de Findkey que te explicar\xE1 un poco la base pero a\xFAn as\xED te dejo\natajos
+    para findkey (los usar\xE1s):\n\nPara caminar hacia delante es: de frente, frente,
+    f, avanzar. recto,\n\nPara caminar hacia la izquierda es: izquierda, i, izq\n\nPara
+    caminar hacia la derecha es: derecha, d, dcha\n\nPara retroceder es: volver atras,
+    atras, a, retroceder, volver, v\n\nPara coger un objeto: recoger, r, coger, interactuar\n\nPara
+    mirar: mirar, m, ver, investigar\n\nPara interactuar: interactuar, int, i\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3095b864b49990e448916514c3c7e96f, type: 2}
   m_sharedMaterial: {fileID: -6891712174442297813, guid: 3095b864b49990e448916514c3c7e96f, type: 2}
@@ -763,17 +770,17 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 14
+  m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: -4.9
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -801,7 +808,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0.92303467, y: -0.5769348, z: 1.9764404, w: 10}
+  m_margin: {x: 0.20013428, y: -0.5769348, z: 1.9764404, w: 10}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -887,7 +894,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Instructions
+  m_text: Instrucciones
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dfae47ea23a8a0d4788d643a2b17dfc2, type: 2}
   m_sharedMaterial: {fileID: 4779611292267169484, guid: dfae47ea23a8a0d4788d643a2b17dfc2, type: 2}
@@ -896,8 +903,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -920,7 +927,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 9
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -995,8 +1002,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 560, y: 350}
+  m_AnchoredPosition: {x: -6.84, y: 0.81}
+  m_SizeDelta: {x: 575, y: 360}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1562927584448738000
 CanvasRenderer:
