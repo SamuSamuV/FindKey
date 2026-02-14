@@ -53,7 +53,6 @@ public abstract class BaseAIScript : MonoBehaviour
             if (chatOutput == null) chatOutput = GetComponentInChildren<TextMeshProUGUI>(true);
             if (ollamaClient == null) ollamaClient = GetComponentInChildren<OllamaClient>(true);
             if (storyLog == null) storyLog = GetComponentInChildren<StoryLog>(true);
-
         }
     }
 
@@ -91,7 +90,10 @@ public abstract class BaseAIScript : MonoBehaviour
         AddToHistory("Player", text);
 
         inputField.text = "";
-        inputField.ActivateInputField();
+
+        // --- MODIFICACIÓN 1: Bloquear Input ---
+        inputField.gameObject.SetActive(false);
+        // -------------------------------------
 
         // Construcción del Prompt
         string finalPrompt = "";
@@ -123,6 +125,7 @@ public abstract class BaseAIScript : MonoBehaviour
             StartCoroutine(ollamaClient.SendPrompt(finalPrompt, OnAIResponse, OnAIError));
         }
     }
+
     protected bool IsPasswordSaid(string text)
     {
         if (string.IsNullOrEmpty(text) || string.IsNullOrEmpty(password)) return false;
@@ -131,24 +134,48 @@ public abstract class BaseAIScript : MonoBehaviour
 
     protected void OnAIResponse(string raw)
     {
-        if (string.IsNullOrEmpty(raw)) return;
-
-        AIResponse data = TryParseAIResponse(raw);
-
-        if (data == null)
+        if (string.IsNullOrEmpty(raw))
         {
-            AddLog(npcName, raw, true);
+            // Si la respuesta es nula, reactivamos input para no bloquear al jugador
+            if (inputField != null) inputField.gameObject.SetActive(true);
             return;
         }
 
-        if (!string.IsNullOrEmpty(data.response))
+        AIResponse data = TryParseAIResponse(raw);
+        string action = "none";
+
+        // --- MODIFICACIÓN 2: Callback para reactivar Input ---
+        System.Action onTypingFinished = () =>
         {
-            AddLog(npcName, data.response, true);
+            if (inputField != null)
+            {
+                inputField.gameObject.SetActive(true);
+                inputField.ActivateInputField();
+            }
+        };
+        // ---------------------------------------------------
+
+        if (data == null)
+        {
+            // Pasamos el callback al StoryLog
+            AddLog(npcName, raw, true, onTypingFinished);
+        }
+        else
+        {
+            if (!string.IsNullOrEmpty(data.response))
+            {
+                // Pasamos el callback al StoryLog
+                AddLog(npcName, data.response, true, onTypingFinished);
+            }
+            else
+            {
+                // Si hay JSON pero no hay texto, reactivamos manualmente
+                onTypingFinished.Invoke();
+            }
+            action = (data.action ?? "none").Trim().ToLowerInvariant();
         }
 
-        // 2. Lógica de Acción (Gameplay)
-        string action = (data.action ?? "none").Trim().ToLowerInvariant();
-
+        // Lógica de Override de Contraseña (Siempre se ejecuta)
         if (!unlocked && IsPasswordSaid(lastPlayerText))
         {
             Debug.Log("C# detectó contraseña correcta. Ignorando posible error de la IA y abriendo puerta.");
@@ -165,14 +192,28 @@ public abstract class BaseAIScript : MonoBehaviour
             }
         }
     }
+
     protected void OnAIError(string err)
     {
         if (storyLog != null) storyLog.AddLine($"<color=red>Error: {err}</color>");
+
+        // --- MODIFICACIÓN 3: Seguridad ---
+        // Si hay error, reactivamos el input o el juego muere
+        if (inputField != null)
+        {
+            inputField.gameObject.SetActive(true);
+            inputField.ActivateInputField();
+        }
     }
 
-    protected void AddLog(string speaker, string message, bool animate = false)
+    // Firma actualizada para aceptar el callback
+    protected void AddLog(string speaker, string message, bool animate = false, System.Action onFinished = null)
     {
-        if (string.IsNullOrEmpty(message)) return;
+        if (string.IsNullOrEmpty(message))
+        {
+            onFinished?.Invoke();
+            return;
+        }
 
         string formattedMessage = $"<align=left>{speaker}: {message}</align>";
 
@@ -180,11 +221,13 @@ public abstract class BaseAIScript : MonoBehaviour
         {
             if (animate)
             {
-                storyLog.AddLineAnimated(formattedMessage);
+                // Importante: StoryLog.cs debe tener este método modificado
+                storyLog.AddLineAnimated(formattedMessage, onFinished);
             }
             else
             {
                 storyLog.AddLine(formattedMessage);
+                onFinished?.Invoke();
             }
         }
 
@@ -195,12 +238,9 @@ public abstract class BaseAIScript : MonoBehaviour
     {
         conversationHistory += $"{speaker}: {message}\n";
 
-        // OPTIMIZACIÓN: Límite de 2000 caracteres (aprox 400 tokens)
-        // Esto asegura que la IA no tenga que leerse el Quijote cada vez que le dices "hola"
+        // OPTIMIZACIÓN: Límite de 2000 caracteres
         if (conversationHistory.Length > 2000)
         {
-            // Buscamos el primer salto de línea después del corte para no romper frases
-            // y mantener el formato limpio
             int cutIndex = conversationHistory.IndexOf('\n', conversationHistory.Length - 2000);
 
             if (cutIndex != -1)
@@ -209,7 +249,6 @@ public abstract class BaseAIScript : MonoBehaviour
             }
             else
             {
-                // Fallback por si no encuentra salto de línea
                 conversationHistory = conversationHistory.Substring(conversationHistory.Length - 2000);
             }
         }

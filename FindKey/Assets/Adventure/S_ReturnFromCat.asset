@@ -25,4 +25,4 @@ MonoBehaviour:
     specialActionID: 
   - commandKeyword: straight
     nextNode: {fileID: 11400000, guid: 886ebd0641519914c8840d98d712b5af, type: 2}
-    specialActionID: 
+    specialActionID: TriggerCat

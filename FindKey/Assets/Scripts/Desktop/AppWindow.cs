@@ -140,28 +140,31 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
                     // ----------------------------------------------------
                     if (data.label == "Enemy Encounter")
                     {
-                        // Buscamos si "Move" sigue abierta para avisarle
                         foreach (var otherApp in dm.iconsToSpawn)
                         {
                             if (otherApp.label == "Move" && otherApp.isOpen && otherApp.windowInstance != null)
                             {
                                 Moves moves = otherApp.windowInstance.GetComponent<Moves>();
-                                if (moves != null)
+
+                                // --- CORRECCIÓN AQUÍ ---
+                                // Solo actualizamos la app "Move" si el jugador REALMENTE está en la zona del gato.
+                                // Si no hacemos este check, al cerrar la ventana te teletransporta al gato desde cualquier sitio.
+                                if (moves != null && moves.moveAppData.playerIsFrontCat)
                                 {
-                                    // Al llamar a esto, Moves verá que EnemyEncounter está cerrada
-                                    // y mostrará el texto "Deberías abrir la app..."
                                     moves.GoToCatPosition();
                                 }
                                 break;
                             }
                         }
-                    }
+                    }                   
+
                     // ----------------------------------------------------
                     // CASO B: SE ESTÁ CERRANDO "MOVE"
                     // ----------------------------------------------------
                     else if (data.label == "Move")
                     {
-                        // Buscamos si "Enemy Encounter" sigue abierta para resetearla
+                        moveAppData.playerIsFrontCat = false;
+
                         foreach (var otherApp in dm.iconsToSpawn)
                         {
                             if (otherApp.label == "Enemy Encounter" && otherApp.isOpen && otherApp.windowInstance != null)

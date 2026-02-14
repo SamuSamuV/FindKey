@@ -16,7 +16,7 @@ MonoBehaviour:
   options:
   - commandKeyword: pick
     nextNode: {fileID: 11400000, guid: e857e05b9ec18b840bcd4a38e7844279, type: 2}
-    specialActionID: 
+    specialActionID: PickAxe
   - commandKeyword: return
     nextNode: {fileID: 11400000, guid: 478d9416a89d7a5458e8eeb79a321456, type: 2}
     specialActionID: 

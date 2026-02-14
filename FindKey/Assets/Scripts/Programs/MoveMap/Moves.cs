@@ -184,7 +184,6 @@ public class Moves : MonoBehaviour
         if (!moveAppData.catIsDead)
         {
             moveAppData.playerIsFrontCat = true;
-
             DesktopManager dm = FindObjectOfType<DesktopManager>();
 
             if (dm != null && dm.iconsToSpawn != null)
@@ -211,9 +210,9 @@ public class Moves : MonoBehaviour
                             MovePanel.SetActive(true);
 
                             storyLog.SetTextAnimated(goToAliveCatText);
-                            if (playerInputField) playerInputField.SetActive(false);
-                        }
 
+                            if (playerInputField) playerInputField.SetActive(true);
+                        }
                         break;
                     }
                 }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyText: 'Sigues recto, y el camino se divide en dos
 
-    
+
 
     -right
 
@@ -29,7 +29,7 @@ MonoBehaviour:
     specialActionID: 
   - commandKeyword: straight
     nextNode: {fileID: 11400000, guid: 886ebd0641519914c8840d98d712b5af, type: 2}
-    specialActionID: 
+    specialActionID: TriggerCat
   - commandKeyword: return
     nextNode: {fileID: 11400000, guid: e8ba5160dbc7b7643a95d9aa713e105a, type: 2}
     specialActionID: 

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class CatAIScript : BaseAIScript
 {
+    public StoryNode nodeAfterCat;
+
     void Start()
     {
         base.Start();
@@ -33,6 +35,7 @@ public class CatAIScript : BaseAIScript
     protected override void OpenDoor()
     {
         moveAppData.catIsDead = true;
+        Debug.Log(moveAppData.catIsDead);
 
         DesktopManager dm = FindObjectOfType<DesktopManager>();
 
@@ -42,7 +45,7 @@ public class CatAIScript : BaseAIScript
             {
                 if (data.label == "Move")
                 {
-                    if (data.isOpen && data.windowInstance != null)
+                    if (data.isOpen)
                     {
 
                         //////////////////////////////////////////////////////
@@ -59,12 +62,14 @@ public class CatAIScript : BaseAIScript
 
                         moves.selectMove.AddMovement(Direction.Straight);
                         moves.GoToNextStageAfterCat();
+
+                        Debug.Log("Cat has been killed. Move app is now open with the next stage available.");
                     }
                 }
 
-                else if (data.label == "Enemy Encounter")
+                if (data.label == "Enemy Encounter")
                 {
-                    if (data.isOpen && data.windowInstance != null)
+                    if (data.isOpen)
                     {
                         EnemyEncounterData enemyEncounterData = GetComponent<EnemyEncounterData>();
                         BaseEnemyEncounter baseEnemyEncounter = data.windowInstance.GetComponent<BaseEnemyEncounter>();
@@ -74,6 +79,20 @@ public class CatAIScript : BaseAIScript
                         enemyEncounterData.CurrentType = EnemyEncounterData.NPCType.None;
                     }
                 }
+            }
+        }
+
+        AdventureManager adventure = FindObjectOfType<AdventureManager>();
+
+        if (adventure != null)
+        {
+            if (adventure.nodeAfterCatWin != null)
+            {
+                adventure.ForceLoadNode(adventure.nodeAfterCatWin);
+            }
+            else
+            {
+                Debug.LogError("ERROR: No has arrastrado el nodo 'After Cat' en el Inspector del AdventureManager.");
             }
         }
     }

@@ -1127,6 +1127,7 @@ MonoBehaviour:
   storyLog: {fileID: 3396168387017053476}
   movesScript: {fileID: 8216123632447424746}
   currentNode: {fileID: 11400000, guid: aa6b58bff5bb47e4083ccd4e46187acc, type: 2}
+  nodeAfterCatWin: {fileID: 11400000, guid: 1c7489dad791aa6488d33b5bb9032d23, type: 2}
 --- !u!1 &3552299642688330131
 GameObject:
   m_ObjectHideFlags: 0

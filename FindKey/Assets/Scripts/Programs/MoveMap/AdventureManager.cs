@@ -9,6 +9,7 @@ public class AdventureManager : MonoBehaviour
 
     [Header("Estado Actual")]
     public StoryNode currentNode;
+    public StoryNode nodeAfterCatWin;
 
     void Start()
     {
@@ -76,5 +77,15 @@ public class AdventureManager : MonoBehaviour
         if (actionID == "PickAxe") movesScript.PickAxe();
         if (actionID == "LookPainting") movesScript.LookPainting();
         if (actionID == "Die") movesScript.GoFirstRightDie();
+    }
+
+    // Añade esto en AdventureManager.cs
+    public void ForceLoadNode(StoryNode newNode)
+    {
+        if (newNode == null) return;
+
+        currentNode = newNode;       // Cambiamos el nodo
+        UpdateStoryVisuals();        // Actualizamos texto
+        TryUpdateMap();              // Actualizamos mapa
     }
 }

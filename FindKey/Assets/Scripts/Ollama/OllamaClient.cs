@@ -10,8 +10,6 @@ public class OllamaClient : MonoBehaviour
     public string model = "llama3.2:3b";
     public string baseUrl = "http://localhost:11434/api/generate";
     
-    // REDUCIDO: 2048 tokens suele caber en gráficas de 6GB-8GB. 
-    // Si sigue fallando, prueba a bajarlo a 1024.
     [Range(1024, 8192)] public int contextSize = 2048; 
 
     [Serializable]
@@ -46,8 +44,8 @@ public class OllamaClient : MonoBehaviour
         // CONFIGURACIÓN DE RENDIMIENTO
         OllamaOptions myOptions = new OllamaOptions
         {
-            num_gpu = 99,           // Forzamos 99 capas a la GPU (básicamente "todo")
-            num_ctx = contextSize,  // Limitamos el contexto para que quepa en VRAM
+            num_gpu = 99,           // ¡IMPORTANTE!
+            num_ctx = contextSize,
             temperature = 0.7f
         };
 

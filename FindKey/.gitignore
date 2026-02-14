@@ -76,4 +76,5 @@ crashlytics-build.properties
 
 # Ignorar modelos pesados de Ollama
 Assets/StreamingAssets/Ollama/models/
+Assets/StreamingAssets/Ollama/lib/
 Assets/StreamingAssets/Ollama/ollama.exe

@@ -1,4 +1,4 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 using System.Diagnostics;
 using System.IO;
 using UnityEngine.Networking;
@@ -6,20 +6,20 @@ using System.Collections;
 
 public class OllamaLauncher : MonoBehaviour
 {
-    [Header("ConfiguraciÛn")]
+    [Header("Configuraci√≥n")]
+    // IMPORTANTE: Aseg√∫rate de que este nombre coincida con la carpeta dentro de 'manifests'
     public string modelToLoad = "llama3.2:3b";
     public bool showDebugLogs = true;
 
-    // Guardamos referencia, pero usaremos TaskKill para cerrar
     private Process ollamaProcess;
     public static bool IsServerRunning = false;
 
     void Awake()
     {
-        // 1. LIMPIEZA INICIAL: Matar cualquier cosa que huela a Ollama
+        // 1. LIMPIEZA INICIAL: Matar cualquier proceso previo
         KillOllamaByForce();
 
-        // 2. Arrancar nuestro servidor
+        // 2. Arrancar servidor
         StartOllamaServer();
         DontDestroyOnLoad(gameObject);
     }
@@ -27,51 +27,82 @@ public class OllamaLauncher : MonoBehaviour
     void StartOllamaServer()
     {
         string streamingPath = Application.streamingAssetsPath;
+
+        // Rutas absolutas para el ejecutable y la carpeta de modelos
         string ollamaPath = Path.Combine(streamingPath, "Ollama", "ollama.exe");
         string modelsPath = Path.Combine(streamingPath, "Ollama", "models");
 
+        // --- VERIFICACIONES DE SEGURIDAD ---
         if (!File.Exists(ollamaPath))
         {
-            UnityEngine.Debug.LogError("FATAL: No se encontrÛ ollama.exe en: " + ollamaPath);
+            UnityEngine.Debug.LogError("FATAL: No se encontr√≥ ollama.exe en: " + ollamaPath);
             return;
+        }
+
+        // Crear carpeta de modelos si no existe (evita errores de variable de entorno)
+        if (!Directory.Exists(modelsPath))
+        {
+            UnityEngine.Debug.LogWarning("[Launcher] Carpeta 'models' no encontrada. Cre√°ndola en: " + modelsPath);
+            Directory.CreateDirectory(modelsPath);
         }
 
         ProcessStartInfo startInfo = new ProcessStartInfo
         {
             FileName = ollamaPath,
             Arguments = "serve",
-            UseShellExecute = false,
+            UseShellExecute = false, // OBLIGATORIO false para modificar variables de entorno
             RedirectStandardOutput = true,
             RedirectStandardError = true,
             CreateNoWindow = true,
             WindowStyle = ProcessWindowStyle.Hidden
         };
 
-        // Variables de entorno para modo portable
-        startInfo.EnvironmentVariables["OLLAMA_MODELS"] = modelsPath;
-        startInfo.EnvironmentVariables["OLLAMA_HOST"] = "127.0.0.1:11434";
-        // IMPORTANTE: Evita que Ollama intente leer config de tu usuario de Windows
-        startInfo.EnvironmentVariables["OLLAMA_ORIGINS"] = "*"; 
+        // --- CONFIGURACI√ìN PORTABLE (LA SOLUCI√ìN AL ERROR 404) ---
+
+        // 1. Limpiamos la variable por si Windows tiene una global
+        if (startInfo.EnvironmentVariables.ContainsKey("OLLAMA_MODELS"))
+        {
+            startInfo.EnvironmentVariables.Remove("OLLAMA_MODELS");
+        }
+
+        // 2. Inyectamos nuestra ruta local
+        startInfo.EnvironmentVariables.Add("OLLAMA_MODELS", modelsPath);
+        UnityEngine.Debug.Log($"[Launcher] Configurando OLLAMA_MODELS a: {modelsPath}");
+
+        // --- OPTIMIZACI√ìN GPU (Tu configuraci√≥n original) ---
+        startInfo.EnvironmentVariables["CUDA_VISIBLE_DEVICES"] = "0";
+        startInfo.EnvironmentVariables["OLLAMA_NUM_GPU"] = "99";
+
+        // Opcional: Forzar host local expl√≠citamente
+        // startInfo.EnvironmentVariables["OLLAMA_HOST"] = "127.0.0.1:11434";
 
         try
         {
-            ollamaProcess = new Process();
-            ollamaProcess.StartInfo = startInfo;
-            ollamaProcess.EnableRaisingEvents = true;
+            ollamaProcess = new Process { StartInfo = startInfo };
 
-            if (showDebugLogs)
+            // Captura de logs
+            ollamaProcess.OutputDataReceived += (sender, e) =>
             {
-                ollamaProcess.OutputDataReceived += (sender, e) => {
-                    if (!string.IsNullOrEmpty(e.Data)) UnityEngine.Debug.Log("[Ollama]: " + e.Data);
-                };
-            }
+                if (!string.IsNullOrEmpty(e.Data) && showDebugLogs)
+                {
+                    // Filtramos logs irrelevantes para no ensuciar la consola
+                    if (!e.Data.Contains("blobs"))
+                        UnityEngine.Debug.Log("[Ollama Server]: " + e.Data);
+                }
+            };
+
+            // Captura de errores / avisos del servidor
+            ollamaProcess.ErrorDataReceived += (sender, e) =>
+            {
+                if (!string.IsNullOrEmpty(e.Data))
+                    UnityEngine.Debug.LogWarning("[Ollama Log]: " + e.Data);
+            };
 
             ollamaProcess.Start();
             ollamaProcess.BeginOutputReadLine();
             ollamaProcess.BeginErrorReadLine();
 
             IsServerRunning = true;
-            UnityEngine.Debug.Log($"Servidor Ollama Iniciado (PID: {ollamaProcess.Id}). Pre-cargando modelo...");
 
             StartCoroutine(PreloadModel());
         }
@@ -81,17 +112,14 @@ public class OllamaLauncher : MonoBehaviour
         }
     }
 
-    // --- LA SOLUCI”N NUCLEAR ---
+    // --- LA SOLUCI√ìN NUCLEAR (TaskKill) ---
     public void KillOllamaByForce()
     {
-        UnityEngine.Debug.Log(">> EJECUTANDO TASKKILL PARA OLLAMA...");
+        // Solo logueamos si realmente vamos a matar algo, para no spamear al iniciar
+        // UnityEngine.Debug.Log(">> EJECUTANDO TASKKILL PARA OLLAMA...");
 
         try
         {
-            // Ejecutamos un comando de CMD para forzar el cierre
-            // /F = Fuerza bruta
-            // /IM ollama.exe = Busca por nombre de imagen
-            // /T = Mata tambiÈn a los hijos (Tree)
             ProcessStartInfo psi = new ProcessStartInfo
             {
                 FileName = "taskkill",
@@ -103,7 +131,7 @@ public class OllamaLauncher : MonoBehaviour
         }
         catch (System.Exception e)
         {
-            UnityEngine.Debug.LogWarning("No se pudo ejecutar TaskKill (quiz·s ya estaba cerrado): " + e.Message);
+            // Ignoramos errores aqu√≠, usualmente es porque no hab√≠a proceso que matar
         }
 
         IsServerRunning = false;
@@ -112,28 +140,34 @@ public class OllamaLauncher : MonoBehaviour
 
     IEnumerator PreloadModel()
     {
-        yield return new WaitForSeconds(1.0f); // Espera breve a que el servidor arranque
+        yield return new WaitForSeconds(2.0f); // Damos un segundo extra para que lea los archivos
         string url = "http://127.0.0.1:11434/api/generate";
 
-        // Enviamos "hi" y forzamos contexto pequeÒo tambiÈn aquÌ para reservar la VRAM justa
-        string jsonBody = $"{{\"model\": \"{modelToLoad}\", \"prompt\": \"hi\", \"keep_alive\": -1, \"options\": {{\"num_ctx\": 2048}}}}";
+        // NOTA: 'stream': false es importante para pre-cargas simples
+        string jsonBody = $"{{\"model\": \"{modelToLoad}\", \"prompt\": \"hi\", \"stream\": false, \"keep_alive\": -1, \"options\": {{\"num_ctx\": 2048}}}}";
 
-        var request = new UnityWebRequest(url, "POST");
-        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonBody);
-        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
-        request.downloadHandler = new DownloadHandlerBuffer();
-        request.SetRequestHeader("Content-Type", "application/json");
+        using (UnityWebRequest request = new UnityWebRequest(url, "POST"))
+        {
+            byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonBody);
+            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            request.downloadHandler = new DownloadHandlerBuffer();
+            request.SetRequestHeader("Content-Type", "application/json");
 
-        UnityEngine.Debug.Log(">> CALENTANDO MOTORES DE IA (Esto puede tardar unos segundos)...");
-        yield return request.SendWebRequest();
+            UnityEngine.Debug.Log($">> CALENTANDO MODELO: {modelToLoad} (Espere unos segundos)...");
+            yield return request.SendWebRequest();
 
-        if (request.result == UnityWebRequest.Result.Success)
-            UnityEngine.Debug.Log(">> IA LISTA Y CARGADA EN VRAM.");
-        else
-            UnityEngine.Debug.LogWarning(">> Pre-carga incompleta: " + request.error);
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                UnityEngine.Debug.Log(">>IA LISTA Y CARGADA EN VRAM.");
+            }
+            else
+            {
+                UnityEngine.Debug.LogError($">>Error cargando modelo. C√≥digo: {request.responseCode}. Error: {request.error}");
+                UnityEngine.Debug.LogError(">> SUGERENCIA: Revisa que la carpeta 'blobs' y 'manifests' est√©n dentro de StreamingAssets/Ollama/models");
+            }
+        }
     }
 
-    // --- TRIGGERS DE CIERRE ---
     void OnApplicationQuit()
     {
         KillOllamaByForce();
@@ -141,8 +175,7 @@ public class OllamaLauncher : MonoBehaviour
 
     void OnDestroy()
     {
-        // Solo matamos si somos el objeto original para evitar cierres accidentales al cambiar de escena
-        if (IsServerRunning) 
+        if (IsServerRunning)
         {
             KillOllamaByForce();
         }
