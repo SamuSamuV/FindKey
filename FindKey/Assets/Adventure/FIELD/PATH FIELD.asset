@@ -10,16 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
-  m_Name: 00_Start
+  m_Name: PATH FIELD
   m_EditorClassIdentifier: 
-  storyText: "\r"
+  storyText: "Estas en un frondoso bosque \xBFHacia donde vas?\r\n\r\n-right\r\n-left\r\n-straight\r"
   options:
   - commandKeyword: frente
-    nextNode: {fileID: 11400000, guid: c025f4fbc0256e6409ad6ae851005ccd, type: 2}
+    nextNode: {fileID: 11400000, guid: c776bcc9e270c134d81c1d6a47cb9d40, type: 2}
     specialActionID: 
   - commandKeyword: izquierda
-    nextNode: {fileID: 11400000, guid: c06154369ad25f346973fdc459097d76, type: 2}
-    specialActionID: 
-  - commandKeyword: atras
-    nextNode: {fileID: 11400000, guid: c4de89f37867341488acc433d4adbbc4, type: 2}
+    nextNode: {fileID: 11400000, guid: 8b90951a96ef10945bc825b69a94a646, type: 2}
     specialActionID: 

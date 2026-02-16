@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
+  m_Name: PATH DF DEATH3
+  m_EditorClassIdentifier: 
+  storyText: "Estas en un frondoso bosque \xBFHacia donde vas?\r\n\r\n-right\r\n-left\r\n-straight\r"
+  options:
+  - commandKeyword: right
+    nextNode: {fileID: 11400000, guid: fbd37a7f94fa53f4b92e8299d520cbe6, type: 2}
+    specialActionID: Die
