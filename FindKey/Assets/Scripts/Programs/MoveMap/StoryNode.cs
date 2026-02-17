@@ -5,18 +5,37 @@ using System.Collections.Generic;
 public class StoryNode : ScriptableObject
 {
     [TextArea(5, 10)]
-    public string storyText; // El texto que se muestra en pantalla
+    public string storyText;
 
-    // Lista de opciones posibles desde este lugar
     public List<StoryOption> options;
+
+    [Space(20)]
+    [Header("Configuración del PopUp")]
+    public PopupData popupData; // Aquí guardamos toda la info del popup
+}
+
+[System.Serializable]
+public class PopupData
+{
+    public bool showPopup = false;
+
+    [Tooltip("Deja en 0 para que no se cierre solo.")]
+    public float duration = 0f;
+
+    public string title;
+    [TextArea(3, 5)]
+    public string message;
+
+    public Sprite image;
+    public AudioClip sound;
+
+    public GameObject specificPrefab;
 }
 
 [System.Serializable]
 public class StoryOption
 {
-    public string commandKeyword; // Lo que el jugador escribe (ej: "straight", "right", "pick axe")
-    public StoryNode nextNode;    // A dónde te lleva (arrastrar otro nodo aquí)
-
-    [Tooltip("Opcional: Si quieres que pase algo especial (ej: 'EncuentroGato')")]
+    public string commandKeyword;
+    public StoryNode nextNode;
     public string specialActionID;
 }
