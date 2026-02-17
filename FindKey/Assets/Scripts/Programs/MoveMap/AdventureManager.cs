@@ -75,41 +75,40 @@ public class AdventureManager : MonoBehaviour
         if (string.IsNullOrEmpty(input) || currentNode == null) return;
 
         input = input.ToLower().Trim();
-
         inputField.text = "";
         inputField.ActivateInputField();
 
         foreach (var option in currentNode.options)
         {
-            bool matchFound = false;
-
-            foreach (string keyword in option.commandKeywords)
+            if (option.validInputs != null)
             {
-                if (keyword.ToLower().Trim() == input)
+                foreach (string keyword in option.validInputs.synonyms)
                 {
-                    matchFound = true;
-                    break;
+                    if (keyword.ToLower().Trim() == input)
+                    {
+                        ExecuteOption(option);
+                        return;
+                    }
                 }
-            }
-
-            if (matchFound)
-            {
-                if (option.actionType != StoryAction.None)
-                {
-                    ExecuteSpecialAction(option.actionType);
-                }
-
-                if (option.nextNode != null)
-                {
-                    currentNode = option.nextNode;
-                    UpdateStoryVisuals();
-                    TryUpdateMap();
-                }
-                return;
             }
         }
 
         ShowError();
+    }
+
+    void ExecuteOption(StoryOption option)
+    {
+        if (option.actionType != StoryAction.None)
+        {
+            ExecuteSpecialAction(option.actionType);
+        }
+
+        if (option.nextNode != null)
+        {
+            currentNode = option.nextNode;
+            UpdateStoryVisuals();
+            TryUpdateMap();
+        }
     }
 
     void TryUpdateMap()
