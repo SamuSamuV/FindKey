@@ -22,7 +22,7 @@ public class BaseEnemyEncounter : MonoBehaviour
         {
             foreach (var data in dm.iconsToSpawn)
             {
-                if (data.label == "Move")
+                if (data.label == "FindKey.exe")
                 {
                     if (data.isOpen && data.windowInstance != null)
                     {

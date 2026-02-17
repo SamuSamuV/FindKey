@@ -4160,7 +4160,7 @@ MonoBehaviour:
     isOpen: 0
     isMinimized: 0
     windowInstance: {fileID: 0}
-  - label: Move
+  - label: FindKey.exe
     sprite: {fileID: 21300000, guid: b100b4fdc81144642a078f9f6682a73b, type: 3}
     gridPos: {x: -1, y: -1}
     windowApp: {fileID: 2342009986971900181, guid: 4e4e635eb969b7d4cbc49969b8e5ad7e, type: 3}
@@ -4468,7 +4468,7 @@ GameObject:
   - component: {fileID: 1822775674}
   m_Layer: 5
   m_Name: Canvas_Desktop
-  m_TagString: Untagged
+  m_TagString: DeskopCanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

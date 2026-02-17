@@ -142,7 +142,7 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
                     {
                         foreach (var otherApp in dm.iconsToSpawn)
                         {
-                            if (otherApp.label == "Move" && otherApp.isOpen && otherApp.windowInstance != null)
+                            if (otherApp.label == "FindKey.exe" && otherApp.isOpen && otherApp.windowInstance != null)
                             {
                                 Moves moves = otherApp.windowInstance.GetComponent<Moves>();
 
@@ -161,7 +161,7 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
                     // ----------------------------------------------------
                     // CASO B: SE ESTÁ CERRANDO "MOVE"
                     // ----------------------------------------------------
-                    else if (data.label == "Move")
+                    else if (data.label == "FindKey.exe")
                     {
                         moveAppData.playerIsFrontCat = false;
 

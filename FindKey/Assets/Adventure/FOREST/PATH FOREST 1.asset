@@ -14,9 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyText: "Estas en un frondoso bosque \xBFHacia donde vas?\r\n\r\n-right\r\n-left\r\n-straight\r"
   options:
-  - commandKeyword: frente
+  - commandKeywords: []
     nextNode: {fileID: 11400000, guid: c8345c8e7c16c4c4587663b387328af7, type: 2}
-    specialActionID: 
-  - commandKeyword: mirar
+    actionType: 0
+  - commandKeywords: []
     nextNode: {fileID: 11400000, guid: b58e35f1c0cd5514dbb02fa9a9004c54, type: 2}
-    specialActionID: 
+    actionType: 0
+  popupData:
+    showPopup: 0
+    duration: 0
+    title: 
+    message: dghsdrhcgah
+    image: {fileID: 0}
+    sound: {fileID: 0}
+    specificPrefab: {fileID: 0}

@@ -202,6 +202,7 @@ public class Moves : MonoBehaviour
 
                             IAPanel.SetActive(true);
                             MovePanel.SetActive(false);
+
                         }
 
                         else
@@ -211,7 +212,7 @@ public class Moves : MonoBehaviour
 
                             storyLog.SetTextAnimated(goToAliveCatText);
 
-                            if (playerInputField) playerInputField.SetActive(true);
+                            if (playerInputField) playerInputField.SetActive(false);
                         }
                         break;
                     }

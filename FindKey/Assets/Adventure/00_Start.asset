@@ -12,16 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: 00_Start
   m_EditorClassIdentifier: 
-  storyText: fwfsf
+  storyText: 
   options:
-  - commandKeyword: frente
+  - commandKeywords:
+    - frente
+    - f
+    - delante
     nextNode: {fileID: 11400000, guid: c025f4fbc0256e6409ad6ae851005ccd, type: 2}
-    specialActionID: 
-  - commandKeyword: izquierda
-    nextNode: {fileID: 11400000, guid: c06154369ad25f346973fdc459097d76, type: 2}
-    specialActionID: 
-  - commandKeyword: atras
+    actionType: 0
+  - commandKeywords: []
+    nextNode: {fileID: 0}
+    actionType: 0
+  - commandKeywords: []
     nextNode: {fileID: 11400000, guid: c4de89f37867341488acc433d4adbbc4, type: 2}
-    specialActionID: 
-  popupPrefab: {fileID: 0}
-  popupSound: {fileID: 0}
+    actionType: 0
+  popupData:
+    showPopup: 0
+    duration: 0
+    title: 
+    message: 
+    image: {fileID: 0}
+    sound: {fileID: 0}
+    specificPrefab: {fileID: 0}

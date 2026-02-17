@@ -10,14 +10,11 @@ public class PopupController : MonoBehaviour
     public TextMeshProUGUI bodyText;
     public Image iconImage;
 
-    // Método que llamará el AdventureManager para inyectar los datos
     public void Setup(PopupData data)
     {
-        // 1. Configurar Textos
         if (titleText != null) titleText.text = data.title;
         if (bodyText != null) bodyText.text = data.message;
 
-        // 2. Configurar Imagen
         if (iconImage != null)
         {
             if (data.image != null)
@@ -27,12 +24,10 @@ public class PopupController : MonoBehaviour
             }
             else
             {
-                // Si no hay imagen, desactivamos el componente Image para que no se vea un cuadro blanco
                 iconImage.gameObject.SetActive(false);
             }
         }
 
-        // 3. Configurar Auto-Cierre
         if (data.duration > 0)
         {
             StartCoroutine(AutoCloseRoutine(data.duration));
@@ -45,7 +40,6 @@ public class PopupController : MonoBehaviour
         ClosePopup();
     }
 
-    // Vincula este método a tu botón de cerrar en el Inspector
     public void ClosePopup()
     {
         Destroy(gameObject);

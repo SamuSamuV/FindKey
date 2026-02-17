@@ -1127,7 +1127,7 @@ MonoBehaviour:
   inputField: {fileID: 771982017855549717}
   storyLog: {fileID: 3396168387017053476}
   movesScript: {fileID: 8216123632447424746}
-  popupContainer: {fileID: 432692766019086495, guid: 032b218b59262404bad4345eeb045cd9, type: 3}
+  popupContainer: {fileID: 0}
   defaultPopupPrefab: {fileID: 2342009986971900181, guid: 032b218b59262404bad4345eeb045cd9, type: 3}
   audioSource: {fileID: 8916219043748113361}
   currentNode: {fileID: 11400000, guid: aa6b58bff5bb47e4083ccd4e46187acc, type: 2}

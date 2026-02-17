@@ -9,7 +9,7 @@ public class AdventureManager : MonoBehaviour
 
     [Header("UI y Audio References")]
     public Transform popupContainer;
-    public GameObject defaultPopupPrefab; // Prefab por defecto (diseño estándar)
+    public GameObject defaultPopupPrefab;
     public AudioSource audioSource;
 
     [Header("Estado Actual")]
@@ -18,6 +18,18 @@ public class AdventureManager : MonoBehaviour
 
     void Start()
     {
+        if (popupContainer == null)
+        {
+            GameObject containerObj = GameObject.FindGameObjectWithTag("DeskopCanvas");
+
+            popupContainer = containerObj.transform;
+        }
+
+        if (audioSource == null)
+        {
+            audioSource = FindObjectOfType<AudioSource>();
+        }
+
         UpdateStoryVisuals();
         inputField.onSubmit.AddListener(ProcessInput);
         TryUpdateMap();
@@ -28,27 +40,22 @@ public class AdventureManager : MonoBehaviour
         if (currentNode != null)
         {
             storyLog.SetTextAnimated(currentNode.storyText);
-            CheckForEvents(); // Verificamos eventos al cambiar de nodo
+            CheckForEvents();
         }
     }
 
     void CheckForEvents()
     {
-        // Accedemos a la estructura de datos que creamos
         PopupData data = currentNode.popupData;
 
-        // 1. Verificamos si el popup está activado
         if (data.showPopup)
         {
-            // Determinamos qué prefab usar (el específico del nodo o el general)
             GameObject prefabToUse = data.specificPrefab != null ? data.specificPrefab : defaultPopupPrefab;
 
             if (prefabToUse != null)
             {
-                // Instanciamos
                 GameObject newPopup = Instantiate(prefabToUse, popupContainer);
 
-                // Buscamos el script controlador y le pasamos los datos
                 PopupController controller = newPopup.GetComponent<PopupController>();
                 if (controller != null)
                 {
@@ -56,7 +63,6 @@ public class AdventureManager : MonoBehaviour
                 }
             }
 
-            // 2. Reproducimos el sonido si existe
             if (data.sound != null && audioSource != null)
             {
                 audioSource.PlayOneShot(data.sound);
@@ -67,15 +73,31 @@ public class AdventureManager : MonoBehaviour
     void ProcessInput(string input)
     {
         if (string.IsNullOrEmpty(input) || currentNode == null) return;
+
         input = input.ToLower().Trim();
+
         inputField.text = "";
         inputField.ActivateInputField();
 
         foreach (var option in currentNode.options)
         {
-            if (option.commandKeyword.ToLower() == input)
+            bool matchFound = false;
+
+            foreach (string keyword in option.commandKeywords)
             {
-                if (!string.IsNullOrEmpty(option.specialActionID)) ExecuteSpecialAction(option.specialActionID);
+                if (keyword.ToLower().Trim() == input)
+                {
+                    matchFound = true;
+                    break;
+                }
+            }
+
+            if (matchFound)
+            {
+                if (option.actionType != StoryAction.None)
+                {
+                    ExecuteSpecialAction(option.actionType);
+                }
 
                 if (option.nextNode != null)
                 {
@@ -86,6 +108,7 @@ public class AdventureManager : MonoBehaviour
                 return;
             }
         }
+
         ShowError();
     }
 
@@ -105,13 +128,32 @@ public class AdventureManager : MonoBehaviour
         storyLog.SetTextAnimated($"<color=red>You can't do that here.</color>\n\n{previousText}");
     }
 
-    void ExecuteSpecialAction(string actionID)
+    void ExecuteSpecialAction(StoryAction action)
     {
         if (movesScript == null) return;
-        if (actionID == "TriggerCat") movesScript.GoToCatPosition();
-        if (actionID == "PickAxe") movesScript.PickAxe();
-        if (actionID == "LookPainting") movesScript.LookPainting();
-        if (actionID == "Die") movesScript.GoFirstRightDie();
+
+        switch (action)
+        {
+            case StoryAction.TriggerCat:
+                movesScript.GoToCatPosition();
+                break;
+
+            case StoryAction.PickAxe:
+                movesScript.PickAxe();
+                break;
+
+            case StoryAction.LookPainting:
+                movesScript.LookPainting();
+                break;
+
+            case StoryAction.Die:
+                movesScript.GoFirstRightDie();
+                break;
+
+            case StoryAction.None:
+            default:
+                break;
+        }
     }
 
     public void ForceLoadNode(StoryNode newNode)

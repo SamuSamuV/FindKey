@@ -1,6 +1,16 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+// 1. Definimos el Enum fuera de la clase para que sea accesible globalmente
+public enum StoryAction
+{
+    None,
+    TriggerCat,
+    PickAxe,
+    LookPainting,
+    Die
+}
+
 [CreateAssetMenu(fileName = "NewStoryNode", menuName = "Adventure/Story Node")]
 public class StoryNode : ScriptableObject
 {
@@ -11,31 +21,29 @@ public class StoryNode : ScriptableObject
 
     [Space(20)]
     [Header("Configuración del PopUp")]
-    public PopupData popupData; // Aquí guardamos toda la info del popup
+    public PopupData popupData;
 }
 
 [System.Serializable]
 public class PopupData
 {
     public bool showPopup = false;
-
     [Tooltip("Deja en 0 para que no se cierre solo.")]
     public float duration = 0f;
-
     public string title;
     [TextArea(3, 5)]
     public string message;
-
     public Sprite image;
     public AudioClip sound;
-
     public GameObject specificPrefab;
 }
 
 [System.Serializable]
 public class StoryOption
 {
-    public string commandKeyword;
+    public List<string> commandKeywords;
     public StoryNode nextNode;
-    public string specialActionID;
+
+    [Header("Acción Especial")]
+    public StoryAction actionType;
 }

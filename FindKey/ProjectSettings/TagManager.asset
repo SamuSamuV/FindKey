@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MoveAppData
   - AIPlayerInputBox
+  - DeskopCanvas
   layers:
   - Default
   - TransparentFX
