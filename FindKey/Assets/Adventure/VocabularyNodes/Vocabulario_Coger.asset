@@ -13,8 +13,4 @@ MonoBehaviour:
   m_Name: Vocabulario_Coger
   m_EditorClassIdentifier: 
   synonyms:
-  - frente
-  - avanzar
-  - f
-  - continuar
-  - seguir
+  - coger
