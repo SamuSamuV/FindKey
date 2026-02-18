@@ -14,23 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyText: 
   options:
-  - commandKeywords:
-    - frente
-    - f
-    - delante
+  - validInputs: {fileID: 0}
     nextNode: {fileID: 11400000, guid: c025f4fbc0256e6409ad6ae851005ccd, type: 2}
     actionType: 0
-  - commandKeywords: []
+  - validInputs: {fileID: 0}
     nextNode: {fileID: 0}
     actionType: 0
-  - commandKeywords: []
+  - validInputs: {fileID: 0}
     nextNode: {fileID: 11400000, guid: c4de89f37867341488acc433d4adbbc4, type: 2}
     actionType: 0
-  popupData:
-    showPopup: 0
+  popups:
+  - delayBeforeSpawn: 0
     duration: 0
+    position: {x: 0, y: 0}
+    specificPrefab: {fileID: 0}
     title: 
     message: 
     image: {fileID: 0}
     sound: {fileID: 0}
-    specificPrefab: {fileID: 0}
+  masterSound: {fileID: 0}
+  frontSound: {fileID: 0}
+  backSound: {fileID: 0}
+  leftSound: {fileID: 0}
+  rightSound: {fileID: 0}

@@ -14,30 +14,36 @@ public class StoryNode : ScriptableObject
     public List<StoryOption> options;
 
     [Space(20)]
-    [Header("Configuración del PopUp")]
-    public PopupData popupData;
+    [Header("Popups Sequence")]
+    public List<PopupData> popups;
+
+    [Space(20)]
+    [Header("Audio Channels (Empty = Stop)")]
+    public AudioClip masterSound;
+    public AudioClip frontSound;
+    public AudioClip backSound;
+    public AudioClip leftSound;
+    public AudioClip rightSound;
 }
 
 [System.Serializable]
 public class PopupData
 {
-    public bool showPopup = false;
+    public float delayBeforeSpawn = 0f;
     public float duration = 0f;
+    public Vector2 position;
+    public GameObject specificPrefab;
     public string title;
     [TextArea(3, 5)]
     public string message;
     public Sprite image;
     public AudioClip sound;
-    public GameObject specificPrefab;
 }
 
 [System.Serializable]
 public class StoryOption
 {
     public CommandVocabulary validInputs;
-
     public StoryNode nextNode;
-
-    [Header("Acción Especial")]
     public StoryAction actionType;
 }

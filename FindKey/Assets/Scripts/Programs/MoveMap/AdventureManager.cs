@@ -1,33 +1,43 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 
 public class AdventureManager : MonoBehaviour
 {
     public TMP_InputField inputField;
     public StoryLog storyLog;
     public Moves movesScript;
+    public MapViewer mapViewer;
 
-    [Header("UI y Audio References")]
     public Transform popupContainer;
     public GameObject defaultPopupPrefab;
-    public AudioSource audioSource;
 
-    [Header("Estado Actual")]
+    public AudioSource audioMaster;
+    public AudioSource audioFront;
+    public AudioSource audioBack;
+    public AudioSource audioLeft;
+    public AudioSource audioRight;
+
     public StoryNode currentNode;
     public StoryNode nodeAfterCatWin;
 
+    private Coroutine popupSequenceCoroutine;
+
     void Start()
     {
+        if (audioMaster == null) audioMaster = FindAudioSource("Main Camera");
+        if (audioFront == null) audioFront = FindAudioSource("FrontSoundBox");
+        if (audioBack == null) audioBack = FindAudioSource("BackSoundBox");
+        if (audioLeft == null) audioLeft = FindAudioSource("LeftSoundBox");
+        if (audioRight == null) audioRight = FindAudioSource("RightSoundBox");
+
+        if (audioMaster == null) audioMaster = FindObjectOfType<AudioSource>();
+
         if (popupContainer == null)
         {
             GameObject containerObj = GameObject.FindGameObjectWithTag("DeskopCanvas");
-
-            popupContainer = containerObj.transform;
-        }
-
-        if (audioSource == null)
-        {
-            audioSource = FindObjectOfType<AudioSource>();
+            if (containerObj != null) popupContainer = containerObj.transform;
         }
 
         UpdateStoryVisuals();
@@ -35,37 +45,80 @@ public class AdventureManager : MonoBehaviour
         TryUpdateMap();
     }
 
+    AudioSource FindAudioSource(string objectName)
+    {
+        GameObject go = GameObject.Find(objectName);
+        if (go != null) return go.GetComponent<AudioSource>();
+        return null;
+    }
+
     void UpdateStoryVisuals()
     {
         if (currentNode != null)
         {
             storyLog.SetTextAnimated(currentNode.storyText);
-            CheckForEvents();
+
+            if (popupSequenceCoroutine != null) StopCoroutine(popupSequenceCoroutine);
+
+            if (currentNode.popups != null && currentNode.popups.Count > 0)
+            {
+                popupSequenceCoroutine = StartCoroutine(RunPopupSequence(currentNode.popups));
+            }
+
+            UpdateChannelAudio(audioMaster, currentNode.masterSound);
+            UpdateChannelAudio(audioFront, currentNode.frontSound);
+            UpdateChannelAudio(audioBack, currentNode.backSound);
+            UpdateChannelAudio(audioLeft, currentNode.leftSound);
+            UpdateChannelAudio(audioRight, currentNode.rightSound);
         }
     }
 
-    void CheckForEvents()
+    void UpdateChannelAudio(AudioSource source, AudioClip clip)
     {
-        PopupData data = currentNode.popupData;
+        if (source == null) return;
 
-        if (data.showPopup)
+        if (clip == null)
         {
-            GameObject prefabToUse = data.specificPrefab != null ? data.specificPrefab : defaultPopupPrefab;
-
-            if (prefabToUse != null)
+            if (source.isPlaying) source.Stop();
+            source.clip = null;
+        }
+        else
+        {
+            if (source.clip != clip)
             {
-                GameObject newPopup = Instantiate(prefabToUse, popupContainer);
-
-                PopupController controller = newPopup.GetComponent<PopupController>();
-                if (controller != null)
-                {
-                    controller.Setup(data);
-                }
+                source.clip = clip;
+                source.Play();
             }
-
-            if (data.sound != null && audioSource != null)
+            else if (!source.isPlaying)
             {
-                audioSource.PlayOneShot(data.sound);
+                source.Play();
+            }
+        }
+    }
+
+    IEnumerator RunPopupSequence(List<PopupData> popups)
+    {
+        foreach (PopupData data in popups)
+        {
+            if (data.delayBeforeSpawn > 0)
+                yield return new WaitForSeconds(data.delayBeforeSpawn);
+
+            SpawnSinglePopup(data);
+        }
+    }
+
+    void SpawnSinglePopup(PopupData data)
+    {
+        GameObject prefabToUse = data.specificPrefab != null ? data.specificPrefab : defaultPopupPrefab;
+
+        if (prefabToUse != null)
+        {
+            GameObject newPopup = Instantiate(prefabToUse, popupContainer);
+            PopupController controller = newPopup.GetComponent<PopupController>();
+
+            if (controller != null)
+            {
+                controller.Setup(data);
             }
         }
     }
@@ -111,22 +164,6 @@ public class AdventureManager : MonoBehaviour
         }
     }
 
-    void TryUpdateMap()
-    {
-        MapViewer map = FindObjectOfType<MapViewer>();
-
-        if (map != null)
-        {
-            map.UpdateMap(currentNode);
-        }
-    }
-
-    void ShowError()
-    {
-        string previousText = storyLog.lastLoadedText;
-        storyLog.SetTextAnimated($"<color=red>You can't do that here.</color>\n\n{previousText}");
-    }
-
     void ExecuteSpecialAction(StoryAction action)
     {
         if (movesScript == null) return;
@@ -136,23 +173,35 @@ public class AdventureManager : MonoBehaviour
             case StoryAction.TriggerCat:
                 movesScript.GoToCatPosition();
                 break;
-
             case StoryAction.PickAxe:
                 movesScript.PickAxe();
                 break;
-
             case StoryAction.LookPainting:
                 movesScript.LookPainting();
                 break;
-
             case StoryAction.Die:
                 movesScript.GoFirstRightDie();
                 break;
-
             case StoryAction.None:
             default:
                 break;
         }
+    }
+
+    void TryUpdateMap()
+    {
+        if (mapViewer == null) mapViewer = FindObjectOfType<MapViewer>();
+
+        if (mapViewer != null)
+        {
+            mapViewer.UpdateMap(currentNode);
+        }
+    }
+
+    void ShowError()
+    {
+        string previousText = storyLog.lastLoadedText;
+        storyLog.SetTextAnimated($"<color=red>You can't do that here.</color>\n\n{previousText}");
     }
 
     public void ForceLoadNode(StoryNode newNode)

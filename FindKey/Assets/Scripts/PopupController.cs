@@ -3,12 +3,25 @@ using TMPro;
 using UnityEngine.UI;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class PopupController : MonoBehaviour
 {
-    [Header("Referencias UI (Arrastrar en el Prefab)")]
     public TextMeshProUGUI titleText;
     public TextMeshProUGUI bodyText;
     public Image iconImage;
+
+    private AudioSource _audioSource;
+
+    void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+
+        GameObject container = GameObject.FindGameObjectWithTag("DeskopCanvas");
+        if (container != null)
+        {
+            transform.SetParent(container.transform, false);
+        }
+    }
 
     public void Setup(PopupData data)
     {
@@ -17,15 +30,22 @@ public class PopupController : MonoBehaviour
 
         if (iconImage != null)
         {
-            if (data.image != null)
-            {
-                iconImage.sprite = data.image;
-                iconImage.gameObject.SetActive(true);
-            }
-            else
-            {
-                iconImage.gameObject.SetActive(false);
-            }
+            iconImage.sprite = data.image;
+            iconImage.gameObject.SetActive(data.image != null);
+        }
+
+        RectTransform rt = GetComponent<RectTransform>();
+        if (rt != null)
+        {
+            rt.anchorMin = new Vector2(0.5f, 0.5f);
+            rt.anchorMax = new Vector2(0.5f, 0.5f);
+            rt.pivot = new Vector2(0.5f, 0.5f);
+            rt.anchoredPosition = data.position;
+        }
+
+        if (data.sound != null && _audioSource != null)
+        {
+            _audioSource.PlayOneShot(data.sound);
         }
 
         if (data.duration > 0)
@@ -37,7 +57,7 @@ public class PopupController : MonoBehaviour
     IEnumerator AutoCloseRoutine(float time)
     {
         yield return new WaitForSeconds(time);
-        ClosePopup();
+        Destroy(gameObject);
     }
 
     public void ClosePopup()
