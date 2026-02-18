@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: CAT ENCOUNTER
   m_EditorClassIdentifier: 
-  storyText: "Estas en un frondoso bosque \xBFHacia donde vas?\r\n\r\n-right\r\n-left\r\n-straight\r"
+  storyText: "EJECUTAR JUEGO GATO\r"
   options:
   - validInputs: {fileID: 11400000, guid: d611042d84834ba428963a87bb4e7364, type: 2}
     nextNode: {fileID: 11400000, guid: 53d3b5e4d5b5ee541b0d1e0cd7dbfdeb, type: 2}
-    actionType: 0
+    actionType: 1
   popups: []
   masterSound: {fileID: 0}
   frontSound: {fileID: 0}

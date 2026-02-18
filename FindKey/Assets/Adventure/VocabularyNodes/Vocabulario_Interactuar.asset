@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: Vocabulario_Interactuar
   m_EditorClassIdentifier: 
   synonyms:
-  - frente
-  - avanzar
+  - interactuar
+  - tocar
+  - mover
+  - inspeccionar
+  - toquetear
+  - manosear
+  - acercarse
+  - t

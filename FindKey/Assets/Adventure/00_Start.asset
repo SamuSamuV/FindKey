@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: 00_Start
   m_EditorClassIdentifier: 
-  storyText: 
+  storyText: "Despiertas en un bosque en medio de la noche. No sabes como llegaste
+    aqui pero oyes en la lejan\xEDa ALGO, ves a tu izquierda un frondoso bosque,
+    al frente un bosque con un lago y atras tuyo el bosque se vuelve campo. \xBFA
+    d\xF3nde vas?"
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: c025f4fbc0256e6409ad6ae851005ccd, type: 2}
@@ -23,15 +26,7 @@ MonoBehaviour:
   - validInputs: {fileID: 11400000, guid: e9849b6b24f104a428f17cda840099d9, type: 2}
     nextNode: {fileID: 11400000, guid: c4de89f37867341488acc433d4adbbc4, type: 2}
     actionType: 0
-  popups:
-  - delayBeforeSpawn: 0
-    duration: 0
-    position: {x: 0, y: 0}
-    specificPrefab: {fileID: 0}
-    title: 
-    message: 
-    image: {fileID: 0}
-    sound: {fileID: 0}
+  popups: []
   masterSound: {fileID: 0}
   frontSound: {fileID: 0}
   backSound: {fileID: 0}

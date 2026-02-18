@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH DEATH5
   m_EditorClassIdentifier: 
-  storyText: "Estas en un frondoso bosque \xBFHacia donde vas?\r\n\r\n-right\r\n-left\r\n-straight\r"
+  storyText: "TE MUERES 5\r"
   options:
   - validInputs: {fileID: 0}
     nextNode: {fileID: 0}

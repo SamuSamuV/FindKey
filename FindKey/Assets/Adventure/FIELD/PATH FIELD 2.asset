@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH FIELD 2
   m_EditorClassIdentifier: 
-  storyText: "Estas en un frondoso bosque \xBFHacia donde vas?\r\n\r\n-right\r\n-left\r\n-straight\r"
+  storyText: "3\r"
   options:
   - validInputs: {fileID: 11400000, guid: d611042d84834ba428963a87bb4e7364, type: 2}
     nextNode: {fileID: 11400000, guid: 16bafe78214d7de4a9eb57f132106111, type: 2}

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH FOREST LAKE2
   m_EditorClassIdentifier: 
-  storyText: "Estas en un frondoso bosque \xBFHacia donde vas?\r\n\r\n-right\r\n-left\r\n-straight\r"
+  storyText: "DEBES SEGUIR, TE LO DICE EL BODY\r"
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
-    nextNode: {fileID: 11400000, guid: c025f4fbc0256e6409ad6ae851005ccd, type: 2}
+    nextNode: {fileID: 11400000, guid: 121a56b363ff3a04e828cbcc6403ddb5, type: 2}
     actionType: 0
   popups: []
   masterSound: {fileID: 0}

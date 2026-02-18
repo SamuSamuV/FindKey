@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH DF A1 PAIN
   m_EditorClassIdentifier: 
-  storyText: "Estas en un frondoso bosque \xBFHacia donde vas?\r\n\r\n-right\r\n-left\r\n-straight\r"
+  storyText: "PAIN DERECHA O IZQUIERDUS\r"
   options:
   - validInputs: {fileID: 11400000, guid: ab89fec8c2302db45ada034b48d62db3, type: 2}
     nextNode: {fileID: 11400000, guid: c9570251674c5ba44ad71a1f62ca7aac, type: 2}
