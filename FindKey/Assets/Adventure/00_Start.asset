@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyText: 
   options:
-  - validInputs: {fileID: 0}
+  - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: c025f4fbc0256e6409ad6ae851005ccd, type: 2}
     actionType: 0
-  - validInputs: {fileID: 0}
-    nextNode: {fileID: 0}
+  - validInputs: {fileID: 11400000, guid: ac428914eae63c4488c2d718afd0d788, type: 2}
+    nextNode: {fileID: 11400000, guid: aa86f7e7fa1e27d45b71e86a25eeaee3, type: 2}
     actionType: 0
-  - validInputs: {fileID: 0}
+  - validInputs: {fileID: 11400000, guid: e9849b6b24f104a428f17cda840099d9, type: 2}
     nextNode: {fileID: 11400000, guid: c4de89f37867341488acc433d4adbbc4, type: 2}
     actionType: 0
   popups:

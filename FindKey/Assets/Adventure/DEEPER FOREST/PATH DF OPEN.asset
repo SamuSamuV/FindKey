@@ -14,12 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyText: "Estas en un frondoso bosque \xBFHacia donde vas?\r\n\r\n-right\r\n-left\r\n-straight\r"
   options:
-  - commandKeyword: frente
+  - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: 35d2456d035be3f49aab6bc4a8753a8e, type: 2}
-    specialActionID: 
-  - commandKeyword: derecha
+    actionType: 0
+  - validInputs: {fileID: 11400000, guid: ab89fec8c2302db45ada034b48d62db3, type: 2}
     nextNode: {fileID: 11400000, guid: c743f807a0cbc3147b87f289c98b86c3, type: 2}
-    specialActionID: 
-  - commandKeyword: izquierda
+    actionType: 0
+  - validInputs: {fileID: 11400000, guid: ac428914eae63c4488c2d718afd0d788, type: 2}
     nextNode: {fileID: 11400000, guid: 05417086f26636740885e52d2c83916d, type: 2}
-    specialActionID: 
+    actionType: 0
+  popups: []
+  masterSound: {fileID: 0}
+  frontSound: {fileID: 0}
+  backSound: {fileID: 0}
+  leftSound: {fileID: 0}
+  rightSound: {fileID: 0}
