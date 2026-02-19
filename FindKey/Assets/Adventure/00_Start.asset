@@ -27,7 +27,7 @@ MonoBehaviour:
     nextNode: {fileID: 11400000, guid: c4de89f37867341488acc433d4adbbc4, type: 2}
     actionType: 0
   popups: []
-  masterSound: {fileID: 0}
+  masterSound: {fileID: 8300000, guid: fee2f9723c8272d45b5b64383b6850fa, type: 3}
   frontSound: {fileID: 0}
   backSound: {fileID: 0}
   leftSound: {fileID: 0}
