@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH DF SKIP A
   m_EditorClassIdentifier: 
-  storyText: "SALTAS\r"
+  storyText: "El sendero desciende abruptamente, y pronto llegas a un tramo que parece
+    un salto imposible para continuar. La tierra bajo tus pies cruje y se mueve con
+    un sonido traicionero. Antes de que puedas evaluar la mejor manera de cruzarlo,
+    el suelo cede violentamente bajo tu peso, empuj\xE1ndote hacia el vac\xEDo. \nTus
+    pies te piden saltar para intentar caer de la mejor manera posible.\r"
   options:
   - validInputs: {fileID: 11400000, guid: 3e049ed054064764b9faf3596a89ef4d, type: 2}
     nextNode: {fileID: 11400000, guid: b6b40700d9a5cd140b1aad52f9dcdda4, type: 2}

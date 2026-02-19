@@ -12,7 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH DF A PAIN
   m_EditorClassIdentifier: 
-  storyText: "DOLOR PATH A1\r"
+  storyText: "Aterrizas con un golpe sordo, y el dolor estalla en tu pierna: algo
+    cruje dentro de ella y sabes que se ha roto. La sangre brota r\xE1pidamente,
+    empapando tu pantal\xF3n y mezcl\xE1ndose con el barro y las hojas. Pronto comprendes
+    lo que ha amortiguado tu ca\xEDda: un par de cuerpos de animales muertos, pudri\xE9ndose
+    entre la tierra h\xFAmeda. El olor acre y penetrante te hace toser y revolverte
+    un poco, mientras la adrenalina lucha por mantenerte en pie.\n\nEntonces lo escuchas:
+    un crujido sutil a tu izquierda, entre las sombras. No puedes verlo, pero sabes
+    que algo\u2026 alguien est\xE1 all\xED. Cada m\xFAsculo de tu cuerpo se tensa,
+    y comprendes que no est\xE1s solo...\r"
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: 0da51068d5a30494183196958cccef3f, type: 2}
