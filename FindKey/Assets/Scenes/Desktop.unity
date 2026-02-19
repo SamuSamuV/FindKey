@@ -1071,7 +1071,7 @@ MonoBehaviour:
   cursorImage: {fileID: 399139465}
   cursorCanvas: {fileID: 419779722}
   normalCursor: {fileID: 21300000, guid: de14ee5dd7cab9f47ae07af6cb7106ec, type: 3}
-  clickCursor: {fileID: 21300000, guid: 85f97cc9ed2f52c4fb9aa320e89f4e3e, type: 3}
+  clickCursor: {fileID: 21300000, guid: 53b0bd5c133345646adb38941d54bcff, type: 3}
   hotspotOffset: {x: 0, y: 0}
 --- !u!114 &399139465
 MonoBehaviour:
@@ -4442,7 +4442,7 @@ MonoBehaviour:
     isMinimized: 0
     windowInstance: {fileID: 0}
   - label: Enemy Encounter
-    sprite: {fileID: 21300000, guid: b9d81984356bd2d409d588bc3e40df03, type: 3}
+    sprite: {fileID: 21300000, guid: 2473f53372904c64f8ff59e4b3cc587b, type: 3}
     gridPos: {x: -1, y: -1}
     windowApp: {fileID: 2342009986971900181, guid: aa8a1fc0d97ae284f9ba3969ec8b3668, type: 3}
     isOpen: 0
