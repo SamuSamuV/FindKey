@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH DF 7 PAIN
   m_EditorClassIdentifier: 
-  storyText: "DOLOR FRENTE IZQUIERDA O DERECHA\r"
+  storyText: "Arrastras la pierna lesionada mientras corres, sintiendo c\xF3mo la
+    sangre se mezcla con la tierra h\xFAmeda y las hojas podridas. Cada paso es un
+    desaf\xEDo: el bosque parece inclinarse contra ti. Las ramas te golpean la cara,
+    los troncos te obligan a esquivar, y aun as\xED no hay otra opci\xF3n que avanzar.
+    \nPuedes seguir el camino recto creado por el psicopata que te persigue, buscando
+    superarle en su macabro, rezar que el camino de la derecha cubierto de hojas
+    te salve o correr a tu izquierda por una ruta nueva. \r"
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: 9357270e2e1b4d9429c5c68f1c71994c, type: 2}

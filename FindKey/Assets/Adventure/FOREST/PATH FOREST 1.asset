@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH FOREST 1
   m_EditorClassIdentifier: 
-  storyText: FRENTE MIRAR
+  storyText: "Avanzas al frente. El suelo cede ligeramente bajo tus pasos, como si
+    el bosque no terminara de aceptar tu peso. El lago aparece a tu derecha entre
+    los troncos, negro y liso como vidrio ahumado. No hay luna reflejada en su superficie\u2026
+    aunque jurar\xEDas que deber\xEDa haberla.\n\xBFMiras al lago, decides avanzar
+    bordeandolo o vuelves?"
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: c8345c8e7c16c4c4587663b387328af7, type: 2}

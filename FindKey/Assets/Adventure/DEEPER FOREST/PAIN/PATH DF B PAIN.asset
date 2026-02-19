@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH DF B PAIN
   m_EditorClassIdentifier: 
-  storyText: "DOLOR ESTAS EN EL B DEBES SEGUIR\r"
+  storyText: "El chasquido met\xE1lico es instant\xE1neo.\n\nUn dolor insoportable
+    te atraviesa la pierna mientras una trampa de oso se cierra con violencia. El
+    grito muere en tu garganta cuando comprendes que el sonido que o\xEDas antes\u2026
+    eran estas trampas, balance\xE1ndose suavemente al viento. Entre las hojas ves
+    varias m\xE1s, ocultas con precisi\xF3n enfermiza. Oyes pasos corriendo en tu
+    direccion. Debes huir. YA.\r"
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: 78b2a263392caca449c293e7b6e34b15, type: 2}

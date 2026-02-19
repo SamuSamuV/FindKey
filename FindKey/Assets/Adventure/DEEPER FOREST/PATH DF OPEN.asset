@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH DF OPEN
   m_EditorClassIdentifier: 
-  storyText: FRENTEEEEE DERECHA (BARRANCO) O IZQUIERDA(CROSSROAD)
+  storyText: "Decides con todas tus fuerzas usar el hacha para romper la mara\xF1a
+    de madera. Las ramas crujen como huesos viejos al romperse. El paso queda abierto,
+    revelando un sendero m\xE1s estrecho, cubierto de hojas h\xFAmedas. El aire huele
+    distinto\u2026 met\xE1lico. El bosque ya no parece un lugar donde perderse, sino
+    un lugar donde ser encontrado.\nDesde aqu\xED puedes tomar el camino frondoso
+    de la derecha, desviarte hacia una zona menos densa a la izquierda, o seguir
+    de frente hacia."
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: 35d2456d035be3f49aab6bc4a8753a8e, type: 2}

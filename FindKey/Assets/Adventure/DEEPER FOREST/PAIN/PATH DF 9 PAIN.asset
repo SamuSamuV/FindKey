@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH DF 9 PAIN
   m_EditorClassIdentifier: 
-  storyText: "DOLOR CASIIII\r"
+  storyText: "Lo intentas. Debes. Seguir... pero tropiezas de nuevo, caes sobre tu
+    propio cuerpo, arrastrando la sangre que ya empapa la tierra bajo ti. Tu cuerpo
+    apenas registra tanto dolor en tu fr\xE1gil cuerpo: en la ca\xEDda, unos cortaalambres
+    escondidos se clavan en tu brazo. El dolor es agudo, intenso, y te quita el aliento
+    por un instante.\n\nAntes de poder incorporarte, escuchas algo detr\xE1s: ramas
+    crujir, hojas romperse, pasos medidos. El cazador sin rostro te ha encontrado
+    de nuevo. Sigue una vez m\xE1s.\r"
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: e0e267a4362d989498279cec446f75ba, type: 2}

@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH FOREST 2
   m_EditorClassIdentifier: 
-  storyText: DERECHA O IZQUIERDA
+  storyText: "El sendero se curva y el lago queda apenas a unos pasos, visible entre
+    ra\xEDces retorcidas que se hunden en el agua negra. El bosque parece escuchar
+    contigo. A lo lejos, entre los \xE1rboles, distingues una vieja reja oxidada
+    que bloquea un paso angosto del sendero: m\xE1s all\xE1 solo hay oscuridad. El
+    lago permanece a tu lado, inm\xF3vil."
   options:
   - validInputs: {fileID: 11400000, guid: ab89fec8c2302db45ada034b48d62db3, type: 2}
     nextNode: {fileID: 11400000, guid: faa2c9d69e0aecd4faea24696fa98bf1, type: 2}

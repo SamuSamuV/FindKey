@@ -12,7 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH DF WIRECUTER
   m_EditorClassIdentifier: 
-  storyText: "CONSEGUISTE EL WIRECUTER\r"
+  storyText: "Intentas incorporarte y seguir, pero no llegas lejos. La criatura se
+    mueve con una rapidez inhumana. Su mano se posa sobre tu otra pierna, y un dolor
+    insoportable te atraviesa cuando la corta sin compasi\xF3n. Cada fragmento parece
+    desaparecer en ese agujero putrefacto y goteante donde deber\xEDa estar su rostro,
+    acompa\xF1ado de un hedor que te revuelve las entra\xF1as.\n\nAntes de poder
+    reaccionar, la hoja afilada roza tu piel y comienza a arranc\xE1rtela lentamente,
+    cortes finos y punzantes. El dolor es tan intenso que tu mente se nubla; el bosque,
+    el lago, todo desaparece en un torbellino de agon\xEDa. El aire se torna pesado
+    y cada latido se aleja m\xE1s del anterior. La luz se apaga del todo y tu cuerpo
+    cede. Tu vida termina aqu\xED.\r"
   options:
   - validInputs: {fileID: 0}
     nextNode: {fileID: 11400000, guid: c06154369ad25f346973fdc459097d76, type: 2}

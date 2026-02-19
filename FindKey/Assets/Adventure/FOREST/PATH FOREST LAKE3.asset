@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH FOREST LAKE3
   m_EditorClassIdentifier: 
-  storyText: "LAKE 3 COGER\r"
+  storyText: "Te inclinas. El agua, que parec\xEDa inm\xF3vil, se abre sin hacer
+    ruido. De la superficie emerge una mano p\xE1lida, demasiado larga, demasiado
+    delgada. No hay violencia en el gesto: la mano simplemente te ofrece una peque\xF1a
+    caja de madera oscura, h\xFAmeda pero intacta. Luego queda suspendida, esperando.
+    \n\"C\xF3gela.\"\r"
   options:
   - validInputs: {fileID: 11400000, guid: d611042d84834ba428963a87bb4e7364, type: 2}
-    nextNode: {fileID: 11400000, guid: faa2c9d69e0aecd4faea24696fa98bf1, type: 2}
+    nextNode: {fileID: 11400000, guid: 9cd38735f95a4d641a55a5ca0dd9f27b, type: 2}
     actionType: 0
   popups: []
   masterSound: {fileID: 0}

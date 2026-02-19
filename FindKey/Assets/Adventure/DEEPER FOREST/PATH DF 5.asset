@@ -12,7 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH DF 5
   m_EditorClassIdentifier: 
-  storyText: "FRENTE, DERECHA O IZQUIERDA\r"
+  storyText: "Decides avanzar de frente. Mantienes la respiraci\xF3n contenida mientras
+    pasas cerca de la criatura: est\xE1 a tu derecha, inm\xF3vil, pero sabes que
+    ha o\xEDdo algo. Su brazo sostiene un machete de peletero, el metal oscuro reflejando
+    apenas la luz que logra filtrarse entre las ramas. No te mira\u2026 o tal vez
+    s\xED, no hay rostro que pueda demostrarlo. Cada paso hace crujir la hojarasca
+    suavemente, y el olor a carne quemada y hierro te sigue.\nFrente a ti hay opciones
+    claras: puedes adentrarte en la hierba alta de la izquierda, seguir avanzando
+    por el estrecho sendero de tierra cubierto por hojas, o seguir la sangre que
+    mancha el suelo como un rastro oscuro a tu derecha.\r"
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: 396f75ac96415234ea39a365308073ea, type: 2}

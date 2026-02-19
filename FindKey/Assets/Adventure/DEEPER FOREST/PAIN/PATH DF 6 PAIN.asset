@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH DF 6 PAIN
   m_EditorClassIdentifier: 
-  storyText: "DOLOR FRENTE\r"
+  storyText: "Decides seguir de frente, pero el suelo traicionero no perdona. Con
+    un crujido seco bajo tu pie, una trampa de oso se cierra con violencia, aprisionando
+    tu pierna. El dolor te atraviesa el cuerpo, el mundo gira y cada respiraci\xF3n
+    es un jadeo entrecortado. La criatura a tu lado parece percibir tu error: sabe.
+    No esperas\u2026 solo sigues. Rezas..\r"
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: 58969b7285b3d544a8aeb32050c5e500, type: 2}

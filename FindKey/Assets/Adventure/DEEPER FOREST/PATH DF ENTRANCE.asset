@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH DF ENTRANCE
   m_EditorClassIdentifier: 
-  storyText: "ENTRADA FRENTE O VOLVER PORQUE NO TIENES OBJETO\r"
+  storyText: "Te internas hacia la parte m\xE1s oscura del bosque. Aqu\xED los \xE1rboles
+    crecen m\xE1s juntos, sus copas entrelazadas bloqueando cualquier rastro de cielo.
+    Tras unos pasos encuentras el paso obstaculizado: gruesos palos y ramas endurecidas
+    han sido clavados y entrecruzados formando una barrera improvisada. No es obra
+    de la naturaleza. Alguien no quiere que avances. No puedes rodearla; los arbustos
+    espinosos cierran los lados. Con un hacha quiz\xE1s podr\xEDas romperla.\r"
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: 5b2ef7704801a4841bd3d90315933280, type: 2}

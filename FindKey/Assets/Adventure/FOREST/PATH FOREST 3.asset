@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH FOREST 3
   m_EditorClassIdentifier: 
-  storyText: FRENTE AL LAGO IZQUIERDA MAS BOSQUE
+  storyText: "Te acercas m\xE1s a la orilla mientras el sendero se estrecha. El lago
+    ahora est\xE1 tan cerca que podr\xEDas tocarlo con solo extender la mano\u2026
+    aunque no lo haces. El agua no se mueve, pero la sensaci\xF3n de ser observado
+    es tan clara como el crujido de las ramas bajo tu pies descalzos. \nA tu izquierda
+    el bosque se espesa, oscuro y silencioso, a la derecha el sendero contin\xFAa
+    siguiendo la curva del lago."
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: fb5d0fcf620e23c4fb069b27741ca7c7, type: 2}

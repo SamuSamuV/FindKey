@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH DF 2
   m_EditorClassIdentifier: 
-  storyText: "FRENTE O IZQUIERDA\r"
+  storyText: "Al avanzar escuchas ruidos irregulares, como metales chocando suavemente
+    contra el cuero. No es viento. No. El sendero se vuelve traicionero: ra\xEDces
+    ocultas bajo hojas podridas esperan tu descuido. gradualmente te das cuenta de
+    que algo cambia en el ambiente: los p\xE1jaros han dejado de emitir cualquier
+    ruido.\nPuedes seguir avanzando , o ir a la izquierda a una zona menos frondosa.\r"
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: 6426f4a4ba92fe342957e9de4d49fb69, type: 2}

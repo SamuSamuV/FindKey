@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH FOREST 4
   m_EditorClassIdentifier: 
-  storyText: FRENTE HAY GATE IZQUIERDA HAY BOSQUE
+  storyText: "Te apartas del lago y el sonido h\xFAmedo del agua desaparece, reemplazado
+    por el susurro seco de las hojas. Aqu\xED los \xE1rboles crecen m\xE1s juntos,
+    inclin\xE1ndose unos sobre otros como si compartieran secretos. El aire ya no
+    es fr\xEDo\u2026 es denso. Pesado. Tus ojos intentan entender qu\xE9 se encuentra
+    m\xE1s adelante del camino y distinguen una verja.\n\xBFDecides seguir o volver?"
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: 5670fd659d9d1f348927ae46953b13da, type: 2}
     actionType: 0
-  - validInputs: {fileID: 11400000, guid: ac428914eae63c4488c2d718afd0d788, type: 2}
+  - validInputs: {fileID: 11400000, guid: 59921cc1611cd494fa4c5de13ee9b91d, type: 2}
     nextNode: {fileID: 11400000, guid: c8345c8e7c16c4c4587663b387328af7, type: 2}
     actionType: 0
   popups: []

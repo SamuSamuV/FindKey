@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH DF 8 PAIN
   m_EditorClassIdentifier: 
-  storyText: "DOLOR SEGUIR\r"
+  storyText: "Tu cuerpo decide la izquierda, pero arrastrando la pierna herida, tropiezas
+    con ra\xEDces retorcidas que emergen del suelo. Caes entre las plantas altas
+    y h\xFAmedas, el dolor te quema pero la ca\xEDda te protege: el cazador sin rostro
+    pierde tu rastro por un momento. El silencio que queda es pesado, roto solo por
+    tu respiraci\xF3n agitada y el crujido de las hojas bajo tu peso.\ndebes seguir.\r"
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: 586a6f751c9517e4ea942e742bc7a3cd, type: 2}

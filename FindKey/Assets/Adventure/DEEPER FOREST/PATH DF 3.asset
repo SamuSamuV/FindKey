@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH DF 3
   m_EditorClassIdentifier: 
-  storyText: "SIGUE\r"
+  storyText: "El bosque se cierra a tu alrededor. Los troncos son m\xE1s gruesos,
+    la luz inexistente. Tus ojos dejan de percibir el entorno salvo, a la distancia,
+    entre los \xE1rboles: una figura inm\xF3vil. Alta. Delgada. Parece llevar ropa
+    de cuero, pero su postura es antinatural, r\xEDgida. No puedes verle el rostro\u2026
+    no desde aqu\xED.\nTu mente nublada por la presencia de otra persona decide...Avanzar."
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: 14f8195ceb06b944eaabece9964e32b4, type: 2}

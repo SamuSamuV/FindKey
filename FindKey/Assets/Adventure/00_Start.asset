@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: 00_Start
   m_EditorClassIdentifier: 
-  storyText: "Despiertas en un bosque en medio de la noche. No sabes como llegaste
-    aqui pero oyes en la lejan\xEDa ALGO, ves a tu izquierda un frondoso bosque,
-    al frente un bosque con un lago y atras tuyo el bosque se vuelve campo. \xBFA
-    d\xF3nde vas?"
+  storyText: "Despiertas en un bosque en mitad de la noche. El aire es fr\xEDo, espeso,
+    y huele a hojas h\xFAmedas y tierra removida, como si algo hubiera estado escarbando
+    hace poco. No recuerdas c\xF3mo llegaste aqu\xED. A lo lejos, entre los \xE1rboles,
+    oyes ALGO: no es viento\u2026 el viento no respira. A tu izquierda el bosque
+    se vuelve m\xE1s frondoso y oscuro; al frente se abre un claro donde la negrura
+    refleja un lago inm\xF3vil; detr\xE1s de ti, los \xE1rboles adelgazan hasta morir
+    en campo abierto.\n\xBFVas a la izquierda, sigues al frente hacia el lago, o
+    retrocedes atr\xE1s hacia el campo?"
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: c025f4fbc0256e6409ad6ae851005ccd, type: 2}
