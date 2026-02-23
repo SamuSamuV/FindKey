@@ -28,6 +28,6 @@ MonoBehaviour:
   popups: []
   masterSound: {fileID: 0}
   frontSound: {fileID: 0}
-  backSound: {fileID: 0}
+  backSound: {fileID: 8300000, guid: 7bd0bc02ea3d50a49b21ea4c834ca820, type: 3}
   leftSound: {fileID: 0}
   rightSound: {fileID: 0}
