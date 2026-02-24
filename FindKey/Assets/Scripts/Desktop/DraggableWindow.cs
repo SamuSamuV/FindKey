@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler
 {
     public RectTransform windowRoot;
     private Vector2 offset;
@@ -20,6 +20,11 @@ public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public void OnBeginDrag(PointerEventData eventData)
     {
         RectTransformUtility.ScreenPointToLocalPointInRectangle(windowRoot, eventData.position, eventData.pressEventCamera, out offset);
+
+        if (appWindow != null)
+        {
+            appWindow.BringToFront();
+        }
     }
 
     public void OnDrag(PointerEventData eventData)

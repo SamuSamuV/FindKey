@@ -3,22 +3,52 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
 public class BootManager : MonoBehaviour
 {
-    public Image bootImage; // XP boot image
-    public float bootDuration = 4f; // seconds on boot screen
-    private void Start()
+    [Header("Ajustes de Escena")]
+    public float minBootDuration = 2f;
+    public float maxBootDuration = 6f;
+
+    [Header("Audio")]
+    public AudioSource bootSource;
+    public AudioClip bootSound;
+
+    [Header("Animación de Carga")]
+    public RectTransform loadingIndicator;
+    public float startPosX = -150f;
+    public float endPosX = 150f;
+    public float moveSpeed = 150f;
+
+    void Start()
     {
-        if (bootImage) bootImage.gameObject.SetActive(true);
-        StartCoroutine(BootSequence());
+        if (bootSource == null) bootSource = FindAnyObjectByType<AudioSource>();
+
+        if (bootSource != null && bootSound != null)
+        {
+            bootSource.PlayOneShot(bootSound);
+        }
+
+        float randomDuration = Random.Range(minBootDuration, maxBootDuration);
+
+        StartCoroutine(BootSequence(randomDuration));
     }
 
-
-    private IEnumerator BootSequence()
+    void Update()
     {
-        yield return new WaitForSeconds(bootDuration);
-        // after boot -> login scene
+        if (loadingIndicator != null)
+        {
+            loadingIndicator.anchoredPosition += Vector2.right * moveSpeed * Time.deltaTime;
+
+            if (loadingIndicator.anchoredPosition.x > endPosX)
+            {
+                loadingIndicator.anchoredPosition = new Vector2(startPosX, loadingIndicator.anchoredPosition.y);
+            }
+        }
+    }
+
+    private IEnumerator BootSequence(float duration)
+    {
+        yield return new WaitForSeconds(duration);
         SceneManager.LoadScene("Login");
     }
 }

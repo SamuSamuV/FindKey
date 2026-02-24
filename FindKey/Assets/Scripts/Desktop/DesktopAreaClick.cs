@@ -8,5 +8,7 @@ public class DesktopAreaClick : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         manager?.DeselectIcon();
+
+        SoundManager.Instance?.Play("click");
     }
 }

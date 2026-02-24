@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,7 +8,7 @@ using UnityEngine.UI;
 public class LoginManager : MonoBehaviour
 {
     public Button accountButton;
-    public Text welcomeText; // put on the left
+    public TextMeshProUGUI welcomeText;
     public float welcomeDuration = 3f;
 
 

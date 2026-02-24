@@ -6,6 +6,10 @@ public class AppLauncher : MonoBehaviour
     public GameObject appWindowPrefab;
     public Transform windowsParent;
 
+    public Vector2 cascadeOffset = new Vector2(30f, -30f);
+    public int maxCascades = 10;
+    private int windowCount = 0;
+
     private void Awake()
     {
         if (Instance != null && Instance != this) Destroy(gameObject);
@@ -56,7 +60,11 @@ public class AppLauncher : MonoBehaviour
         appGO.transform.SetAsLastSibling();
 
         RectTransform rt = appGO.GetComponent<RectTransform>();
-        rt.anchoredPosition = Vector2.zero;
+
+        rt.anchoredPosition = new Vector2(cascadeOffset.x * windowCount, cascadeOffset.y * windowCount);
+
+        windowCount++;
+        if (windowCount >= maxCascades) windowCount = 0;
 
         TaskbarManager.GetOrFindInstance()?.RegisterWindow(appWindow, appName);
 

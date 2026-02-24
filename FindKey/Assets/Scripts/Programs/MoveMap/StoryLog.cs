@@ -6,21 +6,23 @@ using UnityEngine.UI;
 public class StoryLog : MonoBehaviour
 {
     [Header("Referencias UI")]
-    public TMP_Text storyText; // Asegúrate de que esto es TextMeshProUGUI en el Inspector
+    public TMP_Text storyText;
     public RectTransform contentRect;
     public ScrollRect scrollView;
 
     [Header("Configuración")]
-    public float typingSpeed = 0.03f; // Segundos por letra (más bajo = más rápido)
+    public float typingSpeed = 0.03f;
 
     private Coroutine typingCoroutine;
 
+    private string currentTargetText = "";
+    private System.Action currentCallback = null;
+
     [HideInInspector]
     public string lastLoadedText = "";
-    // Método original (instantáneo)
+
     public void AddLine(string text)
     {
-        // Si estábamos escribiendo algo, lo terminamos de golpe antes de poner lo nuevo
         if (typingCoroutine != null) StopCoroutine(typingCoroutine);
 
         if (storyText.text.Length > 0) storyText.text += "\n";
@@ -39,10 +41,13 @@ public class StoryLog : MonoBehaviour
     public void AddLineAnimated(string text, System.Action onFinished = null)
     {
         if (typingCoroutine != null) StopCoroutine(typingCoroutine);
-        StartCoroutine(TypewriterRoutine(text, onFinished));
+
+        currentTargetText = storyText.text + (storyText.text.Length > 0 ? "\n" : "") + text;
+        currentCallback = onFinished;
+
+        typingCoroutine = StartCoroutine(TypewriterRoutine(text, onFinished));
     }
 
-    // Añadimos "= null" para que si no le pasamos nada, no se queje
     IEnumerator TypewriterRoutine(string lineToAdd, System.Action onFinished = null)
     {
         if (storyText.text.Length > 0) storyText.text += "\n";
@@ -64,16 +69,13 @@ public class StoryLog : MonoBehaviour
         }
 
         typingCoroutine = null;
-
-        // ¡AQUÍ ESTÁ LA CLAVE!
-        // Si nos pasaron una misión final (como "activar input"), la ejecutamos ahora.
+        currentCallback = null;
         onFinished?.Invoke();
     }
+
     void UpdateLayout()
     {
-        // Forzamos actualización de layout para que el scroll funcione
         LayoutRebuilder.ForceRebuildLayoutImmediate(contentRect);
-        // Hacemos scroll al fondo
         if (scrollView != null) scrollView.verticalNormalizedPosition = 0f;
     }
 
@@ -87,6 +89,25 @@ public class StoryLog : MonoBehaviour
         if (typingCoroutine != null) StopCoroutine(typingCoroutine);
 
         storyText.text = "";
+
+        currentTargetText = text;
+        currentCallback = null;
+
         typingCoroutine = StartCoroutine(TypewriterRoutine(text));
+    }
+
+    private void OnDisable()
+    {
+        if (typingCoroutine != null)
+        {
+            StopCoroutine(typingCoroutine);
+            typingCoroutine = null;
+
+            storyText.text = currentTargetText;
+            UpdateLayout();
+
+            currentCallback?.Invoke();
+            currentCallback = null;
+        }
     }
 }

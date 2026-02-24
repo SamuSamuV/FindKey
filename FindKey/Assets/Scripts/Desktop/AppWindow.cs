@@ -53,11 +53,13 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
 
     public virtual void Close()
     {
+        SoundManager.Instance?.Play("close");
         StartCoroutine(AnimateWindow(transform.localScale, Vector3.zero, 1f, 0f, CloseLogic));
     }
 
     public virtual void Minimize()
     {
+        SoundManager.Instance?.Play("minimize");
         StartCoroutine(AnimateWindow(transform.localScale, Vector3.zero, 1f, 0f, MinimizeLogic));
     }
 
@@ -127,17 +129,12 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
         {
             foreach (var data in dm.iconsToSpawn)
             {
-                // Buscamos cuál es la ventana que se está cerrando ahora mismo
                 if (data.windowInstance == gameObject)
                 {
-                    // 1. Marcar como cerrada
                     data.isOpen = false;
                     data.isMinimized = false;
-                    data.windowInstance = null; // Importante: Ya no hay ventana
+                    data.windowInstance = null;
 
-                    // ----------------------------------------------------
-                    // CASO A: SE ESTÁ CERRANDO "ENEMY ENCOUNTER"
-                    // ----------------------------------------------------
                     if (data.label == "Enemy Encounter")
                     {
                         foreach (var otherApp in dm.iconsToSpawn)
@@ -145,10 +142,6 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
                             if (otherApp.label == "FindKey.exe" && otherApp.isOpen && otherApp.windowInstance != null)
                             {
                                 Moves moves = otherApp.windowInstance.GetComponent<Moves>();
-
-                                // --- CORRECCIÓN AQUÍ ---
-                                // Solo actualizamos la app "Move" si el jugador REALMENTE está en la zona del gato.
-                                // Si no hacemos este check, al cerrar la ventana te teletransporta al gato desde cualquier sitio.
                                 if (moves != null && moves.moveAppData.playerIsFrontCat)
                                 {
                                     moves.GoToCatPosition();
@@ -156,11 +149,7 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
                                 break;
                             }
                         }
-                    }                   
-
-                    // ----------------------------------------------------
-                    // CASO B: SE ESTÁ CERRANDO "MOVE"
-                    // ----------------------------------------------------
+                    }
                     else if (data.label == "FindKey.exe")
                     {
                         moveAppData.playerIsFrontCat = false;
@@ -172,24 +161,14 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
                                 BaseEnemyEncounter baseEnemy = otherApp.windowInstance.GetComponent<BaseEnemyEncounter>();
                                 EnemyEncounterData enemyData = otherApp.windowInstance.GetComponent<EnemyEncounterData>();
 
-                                if (baseEnemy != null)
-                                {
-                                    // Ponemos la pantalla de "No Signal"
-                                    baseEnemy.nonEnemyFindedPanel.SetActive(true);
-                                }
-
-                                if (enemyData != null)
-                                {
-                                    // Quitamos el gato de la pantalla
-                                    enemyData.CurrentType = EnemyEncounterData.NPCType.None;
-                                }
+                                if (baseEnemy != null) baseEnemy.nonEnemyFindedPanel.SetActive(true);
+                                if (enemyData != null) enemyData.CurrentType = EnemyEncounterData.NPCType.None;
                                 break;
                             }
                         }
                     }
-                    // ----------------------------------------------------
 
-                    break; // Ya encontramos la ventana que se cierra, salimos del bucle principal
+                    break;
                 }
             }
         }
