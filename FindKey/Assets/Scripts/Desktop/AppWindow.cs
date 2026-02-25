@@ -87,16 +87,13 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
         {
             time += Time.deltaTime;
             float t = time / animationDuration;
-
             transform.localScale = Vector3.Lerp(startScale, endScale, t);
             cg.alpha = Mathf.Lerp(startAlpha, endAlpha, t);
-
             yield return null;
         }
 
         transform.localScale = endScale;
         cg.alpha = endAlpha;
-
         onComplete?.Invoke();
     }
 
@@ -116,13 +113,14 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
             }
         }
 
-        TaskbarManager.GetOrFindInstance()?.UnregisterWindow(this);
         isMinimized = true;
         gameObject.SetActive(false);
     }
 
     private void CloseLogic()
     {
+        TaskbarManager.GetOrFindInstance()?.UnregisterWindow(this);
+
         DesktopManager dm = FindObjectOfType<DesktopManager>();
 
         if (dm != null)

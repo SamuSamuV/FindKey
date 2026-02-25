@@ -92,7 +92,16 @@ MonoBehaviour:
   cursorCanvas: {fileID: 6627765803900137085}
   normalCursor: {fileID: 21300000, guid: de14ee5dd7cab9f47ae07af6cb7106ec, type: 3}
   clickCursor: {fileID: 21300000, guid: 53b0bd5c133345646adb38941d54bcff, type: 3}
+  loadingCursorFrames:
+  - {fileID: 2096449131, guid: 83ad0aa6395fe5d41ad15a6d1ad588e2, type: 3}
+  - {fileID: 1294407885, guid: 83ad0aa6395fe5d41ad15a6d1ad588e2, type: 3}
+  - {fileID: -1283739418, guid: 83ad0aa6395fe5d41ad15a6d1ad588e2, type: 3}
+  - {fileID: 204090528, guid: 83ad0aa6395fe5d41ad15a6d1ad588e2, type: 3}
+  - {fileID: -871282766, guid: 83ad0aa6395fe5d41ad15a6d1ad588e2, type: 3}
+  - {fileID: -556893421, guid: 83ad0aa6395fe5d41ad15a6d1ad588e2, type: 3}
+  loadingAnimationSpeed: 0.1
   hotspotOffset: {x: 0, y: 0}
+  isLoading: 0
 --- !u!1 &2341691596137443408
 GameObject:
   m_ObjectHideFlags: 0

@@ -43,9 +43,10 @@ public class PopupController : MonoBehaviour
             rt.anchoredPosition = data.position;
         }
 
-        if (data.sound != null && _audioSource != null)
+        // --- AQUI APLICAMOS LA NUEVA CLASE DE SONIDO ---
+        if (data.sound != null && data.sound.IsValid() && _audioSource != null)
         {
-            _audioSource.PlayOneShot(data.sound);
+            data.sound.PlayOn(_audioSource, true); // true = PlayOneShot
         }
 
         if (data.duration > 0)

@@ -11,7 +11,7 @@ public class BootManager : MonoBehaviour
 
     [Header("Audio")]
     public AudioSource bootSource;
-    public AudioClip bootSound;
+    public SoundSettings bootSound;
 
     [Header("Animación de Carga")]
     public RectTransform loadingIndicator;
@@ -23,13 +23,12 @@ public class BootManager : MonoBehaviour
     {
         if (bootSource == null) bootSource = FindAnyObjectByType<AudioSource>();
 
-        if (bootSource != null && bootSound != null)
+        if (bootSource != null && bootSound.IsValid())
         {
-            bootSource.PlayOneShot(bootSound);
+            bootSound.PlayOn(bootSource, true);
         }
 
         float randomDuration = Random.Range(minBootDuration, maxBootDuration);
-
         StartCoroutine(BootSequence(randomDuration));
     }
 

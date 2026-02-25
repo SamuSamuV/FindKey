@@ -6,6 +6,32 @@ public enum StoryAction
     None, TriggerCat, PickAxe, LookPainting, Die
 }
 
+public enum AudioChannel
+{
+    Master, Front, Back, Left, Right
+}
+
+[System.Serializable]
+public class NodeSoundAction
+{
+    public AudioChannel channel = AudioChannel.Master;
+    public SoundSettings soundSettings;
+}
+
+[System.Serializable]
+public class RandomNodeSoundAction
+{
+    public AudioChannel channel = AudioChannel.Master;
+    public SoundSettings soundSettings;
+
+    [Header("Intervalo de Tiempo (Segundos)")]
+    public float minInterval = 5f;
+    public float maxInterval = 15f;
+
+    [Header("Probabilidad de sonar (%)")]
+    [Range(0f, 1f)] public float playChance = 0.5f;
+}
+
 [CreateAssetMenu(fileName = "NewStoryNode", menuName = "Adventure/Story Node")]
 public class StoryNode : ScriptableObject
 {
@@ -18,12 +44,12 @@ public class StoryNode : ScriptableObject
     public List<PopupData> popups;
 
     [Space(20)]
-    [Header("Audio Channels (Empty = Stop)")]
-    public AudioClip masterSound;
-    public AudioClip frontSound;
-    public AudioClip backSound;
-    public AudioClip leftSound;
-    public AudioClip rightSound;
+    [Header("Node Sounds")]
+    public List<NodeSoundAction> nodeSounds;
+
+    [Space(20)]
+    [Header("Random Ambient Sounds")]
+    public List<RandomNodeSoundAction> randomSounds;
 }
 
 [System.Serializable]
@@ -37,7 +63,7 @@ public class PopupData
     [TextArea(3, 5)]
     public string message;
     public Sprite image;
-    public AudioClip sound;
+    public SoundSettings sound;
 }
 
 [System.Serializable]

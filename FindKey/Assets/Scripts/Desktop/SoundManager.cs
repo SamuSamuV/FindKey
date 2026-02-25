@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
@@ -9,10 +8,10 @@ public class SoundManager : MonoBehaviour
     public AudioSource sfxSource;
 
     [Header("Clips de Sonido")]
-    public AudioClip failedTo;
-    public AudioClip clickSound;
-    public AudioClip closeSound;
-    public AudioClip minimizeSound;
+    public SoundSettings failedTo;
+    public SoundSettings clickSound;
+    public SoundSettings closeSound;
+    public SoundSettings minimizeSound;
 
     private void Awake()
     {
@@ -27,16 +26,16 @@ public class SoundManager : MonoBehaviour
         switch (name.ToLower())
         {
             case "failedto":
-                if (failedTo != null) sfxSource.PlayOneShot(failedTo);
+                failedTo?.PlayOn(sfxSource, true);
                 break;
             case "click":
-                if (clickSound != null) sfxSource.PlayOneShot(clickSound);
+                clickSound?.PlayOn(sfxSource, true);
                 break;
             case "close":
-                if (closeSound != null) sfxSource.PlayOneShot(closeSound);
+                closeSound?.PlayOn(sfxSource, true);
                 break;
             case "minimize":
-                if (minimizeSound != null) sfxSource.PlayOneShot(minimizeSound);
+                minimizeSound?.PlayOn(sfxSource, true);
                 break;
         }
     }

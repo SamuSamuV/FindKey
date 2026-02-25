@@ -20,6 +20,8 @@ public class AppLauncher : MonoBehaviour
     {
         if (!appWindowPrefab) return;
 
+        Sprite appIconSprite = null;
+
         DesktopManager dm = FindObjectOfType<DesktopManager>();
         if (dm != null)
         {
@@ -27,27 +29,22 @@ public class AppLauncher : MonoBehaviour
             {
                 if (data.label == appName)
                 {
+                    appIconSprite = data.sprite;
+
                     if (data.windowInstance != null)
                     {
                         if (data.isMinimized)
                         {
                             AppWindow existingWindow = data.windowInstance.GetComponent<AppWindow>();
-                            if (existingWindow != null)
-                            {
-                                existingWindow.Restore();
-                            }
-                            else
-                            {
-                                data.windowInstance.SetActive(true);
-                            }
+                            if (existingWindow != null) existingWindow.Restore();
+                            else data.windowInstance.SetActive(true);
+
                             data.isMinimized = false;
                         }
 
                         data.windowInstance.transform.SetAsLastSibling();
-                        Debug.Log($"La app '{appName}' ya estaba abierta. Trayendo al frente.");
                         return;
                     }
-
                     data.isOpen = true;
                     break;
                 }
@@ -58,17 +55,13 @@ public class AppLauncher : MonoBehaviour
         AppWindow appWindow = appGO.GetComponent<AppWindow>();
 
         appGO.transform.SetAsLastSibling();
-
         RectTransform rt = appGO.GetComponent<RectTransform>();
-
         rt.anchoredPosition = new Vector2(cascadeOffset.x * windowCount, cascadeOffset.y * windowCount);
 
         windowCount++;
         if (windowCount >= maxCascades) windowCount = 0;
 
-        TaskbarManager.GetOrFindInstance()?.RegisterWindow(appWindow, appName);
-
-        Debug.Log($"App '{appName}' lanzada correctamente.");
+        TaskbarManager.GetOrFindInstance()?.RegisterWindow(appWindow, appName, appIconSprite);
 
         appWindow.appName = appName;
 

@@ -13,26 +13,34 @@ public class AdventureManager : MonoBehaviour
     public Transform popupContainer;
     public GameObject defaultPopupPrefab;
 
-    public AudioSource audioMaster;
-    public AudioSource audioFront;
-    public AudioSource audioBack;
-    public AudioSource audioLeft;
-    public AudioSource audioRight;
+    [Header("Audio GameObjects (Auto-detected)")]
+    public GameObject audioMasterObj;
+    public GameObject audioFrontObj;
+    public GameObject audioBackObj;
+    public GameObject audioLeftObj;
+    public GameObject audioRightObj;
 
     public StoryNode currentNode;
     public StoryNode nodeAfterCatWin;
 
     private Coroutine popupSequenceCoroutine;
+    private List<AudioSource> activeAudioSources = new List<AudioSource>();
+
+    private List<Coroutine> activeRandomSoundCoroutines = new List<Coroutine>();
 
     void Start()
     {
-        if (audioMaster == null) audioMaster = FindAudioSource("Main Camera");
-        if (audioFront == null) audioFront = FindAudioSource("FrontSoundBox");
-        if (audioBack == null) audioBack = FindAudioSource("BackSoundBox");
-        if (audioLeft == null) audioLeft = FindAudioSource("LeftSoundBox");
-        if (audioRight == null) audioRight = FindAudioSource("RightSoundBox");
+        audioMasterObj = GameObject.Find("Main Camera");
+        audioFrontObj = GameObject.Find("FrontSoundBox");
+        audioBackObj = GameObject.Find("BackSoundBox");
+        audioLeftObj = GameObject.Find("LeftSoundBox");
+        audioRightObj = GameObject.Find("RightSoundBox");
 
-        if (audioMaster == null) audioMaster = FindObjectOfType<AudioSource>();
+        if (audioMasterObj == null) audioMasterObj = gameObject;
+        if (audioFrontObj == null) audioFrontObj = gameObject;
+        if (audioBackObj == null) audioBackObj = gameObject;
+        if (audioLeftObj == null) audioLeftObj = gameObject;
+        if (audioRightObj == null) audioRightObj = gameObject;
 
         if (popupContainer == null)
         {
@@ -43,13 +51,6 @@ public class AdventureManager : MonoBehaviour
         UpdateStoryVisuals();
         inputField.onSubmit.AddListener(ProcessInput);
         TryUpdateMap();
-    }
-
-    AudioSource FindAudioSource(string objectName)
-    {
-        GameObject go = GameObject.Find(objectName);
-        if (go != null) return go.GetComponent<AudioSource>();
-        return null;
     }
 
     void UpdateStoryVisuals()
@@ -65,34 +66,131 @@ public class AdventureManager : MonoBehaviour
                 popupSequenceCoroutine = StartCoroutine(RunPopupSequence(currentNode.popups));
             }
 
-            UpdateChannelAudio(audioMaster, currentNode.masterSound);
-            UpdateChannelAudio(audioFront, currentNode.frontSound);
-            UpdateChannelAudio(audioBack, currentNode.backSound);
-            UpdateChannelAudio(audioLeft, currentNode.leftSound);
-            UpdateChannelAudio(audioRight, currentNode.rightSound);
+            UpdateNodeAudio(currentNode.nodeSounds);
+            UpdateRandomAudio(currentNode.randomSounds);
         }
     }
 
-    void UpdateChannelAudio(AudioSource source, AudioClip clip)
+    void UpdateRandomAudio(List<RandomNodeSoundAction> randomSounds)
     {
-        if (source == null) return;
-
-        if (clip == null)
+        foreach (Coroutine c in activeRandomSoundCoroutines)
         {
-            if (source.isPlaying) source.Stop();
-            source.clip = null;
+            if (c != null) StopCoroutine(c);
         }
+        activeRandomSoundCoroutines.Clear();
+
+        if (randomSounds != null && randomSounds.Count > 0)
+        {
+            foreach (var randomSound in randomSounds)
+            {
+                if (randomSound.soundSettings != null && randomSound.soundSettings.IsValid())
+                {
+                    Coroutine newCoroutine = StartCoroutine(RandomSoundRoutine(randomSound));
+                    activeRandomSoundCoroutines.Add(newCoroutine);
+                }
+            }
+        }
+    }
+
+    IEnumerator RandomSoundRoutine(RandomNodeSoundAction randomData)
+    {
+        float safeMin = Mathf.Max(0f, randomData.minInterval);
+        float safeMax = Mathf.Max(safeMin, randomData.maxInterval);
+
+        float waitTime = Random.Range(safeMin, safeMax);
+        if (waitTime > 0) yield return new WaitForSeconds(waitTime);
+
+        float roll = Random.value;
+        string clipName = randomData.soundSettings.clip.name;
+
+        if (roll <= randomData.playChance)
+        {
+            Debug.Log($"<color=green>[Audio Aleatorio]</color> ¡ÉXITO! Tirada: {roll:F2} <= Probabilidad: {randomData.playChance:F2}. Reproduciendo UNA VEZ: <b>{clipName}</b>");
+
+            GameObject targetObj = GetChannelObject(randomData.channel);
+            AudioSource baseSource = targetObj.GetComponent<AudioSource>();
+            if (baseSource == null) baseSource = targetObj.AddComponent<AudioSource>();
+
+            randomData.soundSettings.PlayOn(baseSource, true);
+        }
+
         else
         {
-            if (source.clip != clip)
+            Debug.Log($"<color=orange>[Audio Aleatorio]</color> FALLO. Tirada: {roll:F2} > Probabilidad: {randomData.playChance:F2}. Omitiendo: <b>{clipName}</b>");
+        }
+    }
+
+    void UpdateNodeAudio(List<NodeSoundAction> newSounds)
+    {
+        if (newSounds == null) newSounds = new List<NodeSoundAction>();
+
+        List<AudioSource> sourcesToKeep = new List<AudioSource>();
+
+        foreach (var action in newSounds)
+        {
+            if (action.soundSettings == null || !action.soundSettings.IsValid()) continue;
+
+            AudioSource existingSource = activeAudioSources.Find(s => s != null && s.clip == action.soundSettings.clip);
+
+            if (existingSource != null)
             {
-                source.clip = clip;
-                source.Play();
+                existingSource.volume = action.soundSettings.volume;
+                existingSource.pitch = action.soundSettings.pitch;
+                existingSource.loop = action.soundSettings.loop;
+
+                AudioFader fader = existingSource.GetComponent<AudioFader>();
+                if (fader != null) fader.storedFadeOutTime = action.soundSettings.fadeOutDuration;
+
+                if (!existingSource.isPlaying) existingSource.Play();
+
+                sourcesToKeep.Add(existingSource);
+                activeAudioSources.Remove(existingSource);
             }
-            else if (!source.isPlaying)
+            else
             {
-                source.Play();
+                GameObject targetObj = GetChannelObject(action.channel);
+                GameObject soundObj = new GameObject("NodeAudio_" + action.soundSettings.clip.name);
+                soundObj.transform.SetParent(targetObj.transform, false);
+
+                AudioSource newSource = soundObj.AddComponent<AudioSource>();
+
+                if (action.channel != AudioChannel.Master)
+                {
+                    newSource.spatialBlend = 1f;
+                }
+
+                action.soundSettings.PlayOn(newSource, false);
+                sourcesToKeep.Add(newSource);
             }
+        }
+
+        foreach (AudioSource oldSource in activeAudioSources)
+        {
+            if (oldSource != null)
+            {
+                AudioFader fader = oldSource.GetComponent<AudioFader>();
+                if (fader != null) fader.FadeOutAndDestroyGameObject();
+                else
+                {
+                    oldSource.Stop();
+                    Destroy(oldSource.gameObject);
+                }
+            }
+        }
+
+        activeAudioSources = sourcesToKeep;
+    }
+
+    GameObject GetChannelObject(AudioChannel channel)
+    {
+        switch (channel)
+        {
+            case AudioChannel.Front: return audioFrontObj;
+            case AudioChannel.Back: return audioBackObj;
+            case AudioChannel.Left: return audioLeftObj;
+            case AudioChannel.Right: return audioRightObj;
+            case AudioChannel.Master:
+            default: return audioMasterObj;
         }
     }
 
@@ -100,9 +198,7 @@ public class AdventureManager : MonoBehaviour
     {
         foreach (PopupData data in popups)
         {
-            if (data.delayBeforeSpawn > 0)
-                yield return new WaitForSeconds(data.delayBeforeSpawn);
-
+            if (data.delayBeforeSpawn > 0) yield return new WaitForSeconds(data.delayBeforeSpawn);
             SpawnSinglePopup(data);
         }
     }
@@ -115,11 +211,7 @@ public class AdventureManager : MonoBehaviour
         {
             GameObject newPopup = Instantiate(prefabToUse, popupContainer);
             PopupController controller = newPopup.GetComponent<PopupController>();
-
-            if (controller != null)
-            {
-                controller.Setup(data);
-            }
+            if (controller != null) controller.Setup(data);
         }
     }
 
@@ -151,10 +243,7 @@ public class AdventureManager : MonoBehaviour
 
     void ExecuteOption(StoryOption option)
     {
-        if (option.actionType != StoryAction.None)
-        {
-            ExecuteSpecialAction(option.actionType);
-        }
+        if (option.actionType != StoryAction.None) ExecuteSpecialAction(option.actionType);
 
         if (option.nextNode != null)
         {
@@ -167,35 +256,20 @@ public class AdventureManager : MonoBehaviour
     void ExecuteSpecialAction(StoryAction action)
     {
         if (movesScript == null) return;
-
         switch (action)
         {
-            case StoryAction.TriggerCat:
-                movesScript.GoToCatPosition();
-                break;
-            case StoryAction.PickAxe:
-                movesScript.PickAxe();
-                break;
-            case StoryAction.LookPainting:
-                movesScript.LookPainting();
-                break;
-            case StoryAction.Die:
-                movesScript.GoFirstRightDie();
-                break;
-            case StoryAction.None:
-            default:
-                break;
+            case StoryAction.TriggerCat: movesScript.GoToCatPosition(); break;
+            case StoryAction.PickAxe: movesScript.PickAxe(); break;
+            case StoryAction.LookPainting: movesScript.LookPainting(); break;
+            case StoryAction.Die: movesScript.GoFirstRightDie(); break;
+            case StoryAction.None: default: break;
         }
     }
 
     void TryUpdateMap()
     {
         if (mapViewer == null) mapViewer = FindObjectOfType<MapViewer>();
-
-        if (mapViewer != null)
-        {
-            mapViewer.UpdateMap(currentNode);
-        }
+        if (mapViewer != null) mapViewer.UpdateMap(currentNode);
     }
 
     void ShowError()
