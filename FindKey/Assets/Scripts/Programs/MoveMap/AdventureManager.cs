@@ -27,6 +27,7 @@ public class AdventureManager : MonoBehaviour
     private List<AudioSource> activeAudioSources = new List<AudioSource>();
 
     private List<Coroutine> activeRandomSoundCoroutines = new List<Coroutine>();
+    private List<GameObject> activeRandomSoundObjects = new List<GameObject>();
 
     void Start()
     {
@@ -79,6 +80,8 @@ public class AdventureManager : MonoBehaviour
         }
         activeRandomSoundCoroutines.Clear();
 
+        activeRandomSoundObjects.RemoveAll(item => item == null);
+
         if (randomSounds != null && randomSounds.Count > 0)
         {
             foreach (var randomSound in randomSounds)
@@ -105,15 +108,28 @@ public class AdventureManager : MonoBehaviour
 
         if (roll <= randomData.playChance)
         {
-            Debug.Log($"<color=green>[Audio Aleatorio]</color> ¡ÉXITO! Tirada: {roll:F2} <= Probabilidad: {randomData.playChance:F2}. Reproduciendo UNA VEZ: <b>{clipName}</b>");
+            Debug.Log($"<color=green>[Audio Aleatorio]</color> ¡ÉXITO! Tirada: {roll:F2} <= Probabilidad: {randomData.playChance:F2}. Reproduciendo: <b>{clipName}</b>");
 
             GameObject targetObj = GetChannelObject(randomData.channel);
-            AudioSource baseSource = targetObj.GetComponent<AudioSource>();
-            if (baseSource == null) baseSource = targetObj.AddComponent<AudioSource>();
 
-            randomData.soundSettings.PlayOn(baseSource, true);
+            GameObject randomSoundObj = new GameObject("RandomAudio_" + clipName);
+            randomSoundObj.transform.SetParent(targetObj.transform, false);
+
+            AudioSource newSource = randomSoundObj.AddComponent<AudioSource>();
+            if (randomData.channel != AudioChannel.Master)
+            {
+                newSource.spatialBlend = 1f;
+            }
+
+            randomData.soundSettings.PlayOn(newSource, false);
+            newSource.loop = false;
+
+            activeRandomSoundObjects.Add(randomSoundObj);
+
+            float duration = randomData.soundSettings.clip.length / Mathf.Max(randomData.soundSettings.pitch, 0.01f);
+            float totalTime = duration + randomData.soundSettings.fadeInDuration + randomData.soundSettings.fadeOutDuration + 0.5f;
+            Destroy(randomSoundObj, totalTime);
         }
-
         else
         {
             Debug.Log($"<color=orange>[Audio Aleatorio]</color> FALLO. Tirada: {roll:F2} > Probabilidad: {randomData.playChance:F2}. Omitiendo: <b>{clipName}</b>");
@@ -284,5 +300,40 @@ public class AdventureManager : MonoBehaviour
         currentNode = newNode;
         UpdateStoryVisuals();
         TryUpdateMap();
+    }
+
+    private void OnDestroy()
+    {
+        foreach (Coroutine c in activeRandomSoundCoroutines)
+        {
+            if (c != null) StopCoroutine(c);
+        }
+        activeRandomSoundCoroutines.Clear();
+
+        foreach (AudioSource oldSource in activeAudioSources)
+        {
+            if (oldSource != null)
+            {
+                AudioFader fader = oldSource.GetComponent<AudioFader>();
+                if (fader != null) fader.FadeOutAndDestroyGameObject();
+                else
+                {
+                    oldSource.Stop();
+                    Destroy(oldSource.gameObject);
+                }
+            }
+        }
+        activeAudioSources.Clear();
+
+        foreach (GameObject randomObj in activeRandomSoundObjects)
+        {
+            if (randomObj != null)
+            {
+                AudioFader fader = randomObj.GetComponent<AudioFader>();
+                if (fader != null) fader.FadeOutAndDestroyGameObject();
+                else Destroy(randomObj);
+            }
+        }
+        activeRandomSoundObjects.Clear();
     }
 }
