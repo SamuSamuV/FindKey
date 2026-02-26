@@ -737,6 +737,7 @@ MonoBehaviour:
   chatOutput: {fileID: 7573727150173417693}
   storyLog: {fileID: 0}
   moveAppData: {fileID: 0}
+  visualController: {fileID: 0}
   npcName: Chica perdida
   password: Hacha
   personalityPrompt: "[IDENTITY]\r\nEres la \"Asistente Virtual\" del juego FindKey.\r\nApariencia:
@@ -1395,6 +1396,7 @@ GameObject:
   - component: {fileID: 6040872524077164479}
   - component: {fileID: 7573727150173417693}
   - component: {fileID: 8388143329314794252}
+  - component: {fileID: 620403309057566}
   m_Layer: 5
   m_Name: AIText
   m_TagString: Untagged
@@ -1536,7 +1538,137 @@ MonoBehaviour:
   contentRect: {fileID: 3863506334871692437}
   scrollView: {fileID: 6362242956658737369}
   typingSpeed: 0.03
+  typingAudioSource: {fileID: 620403309057566}
+  defaultTypingSound:
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    fadeInDuration: 0
+    fadeOutDuration: 0
+  specificCharacterSounds:
+  - characters: 
+    sound:
+      clip: {fileID: 0}
+      volume: 1
+      pitch: 1
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: 
+    sound:
+      clip: {fileID: 0}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: 
+    sound:
+      clip: {fileID: 0}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
   lastLoadedText: 
+--- !u!82 &620403309057566
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5984653088461304903}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6236982935313505989
 GameObject:
   m_ObjectHideFlags: 0
@@ -1675,6 +1807,7 @@ GameObject:
   - component: {fileID: 7936488842602186297}
   - component: {fileID: 6878236907925614881}
   - component: {fileID: 3971599734831098494}
+  - component: {fileID: 2025021153131215422}
   m_Layer: 5
   m_Name: RedGirl
   m_TagString: Untagged
@@ -1739,6 +1872,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2025021153131215422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6701958471936156602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3671ec55f8866245ac8f2526c61fdc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcImage: {fileID: 3971599734831098494}
+  idleSprite: {fileID: 21300000, guid: b1b13d60e6dd4dc4091c3d3aa48f4fed, type: 3}
+  thinkingSprite: {fileID: 0}
+  blinkSprite: {fileID: 0}
+  talkingSprites: []
+  talkAnimationSpeed: 0.15
+  blinkDuration: 0.15
+  blinkCheckInterval: 3
+  blinkChance: 0.2
 --- !u!1 &7232062042058386805
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,4 +7,5 @@ public class AI_References : MonoBehaviour
     public TMP_InputField inputField;
     public TextMeshProUGUI chatOutput;
     public StoryLog storyLog;
+    public NPCVisualController visualController;
 }

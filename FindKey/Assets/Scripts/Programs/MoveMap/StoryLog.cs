@@ -1,7 +1,16 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+
+[System.Serializable]
+public class CharSoundMapping
+{
+    [Header("Escribe las letras juntas sin espacios. Ej: aeiou")]
+    public string characters;
+    public SoundSettings sound;
+}
 
 public class StoryLog : MonoBehaviour
 {
@@ -12,6 +21,11 @@ public class StoryLog : MonoBehaviour
 
     [Header("Configuración")]
     public float typingSpeed = 0.03f;
+
+    [Header("Sonidos de Tipeo")]
+    public AudioSource typingAudioSource;
+    public SoundSettings defaultTypingSound;
+    public List<CharSoundMapping> specificCharacterSounds;
 
     private Coroutine typingCoroutine;
 
@@ -57,12 +71,14 @@ public class StoryLog : MonoBehaviour
         for (int i = 0; i < lineToAdd.Length; i++)
         {
             char c = lineToAdd[i];
+
             if (c == '<') isInsideTag = true;
             storyText.text += c;
             if (c == '>') isInsideTag = false;
 
             if (!isInsideTag)
             {
+                PlayTypingSound(c);
                 UpdateLayout();
                 yield return new WaitForSeconds(typingSpeed);
             }
@@ -71,6 +87,35 @@ public class StoryLog : MonoBehaviour
         typingCoroutine = null;
         currentCallback = null;
         onFinished?.Invoke();
+    }
+
+    void PlayTypingSound(char c)
+    {
+        if (typingAudioSource == null) return;
+
+        if (char.IsWhiteSpace(c)) return;
+
+        string charStr = c.ToString().ToLowerInvariant();
+
+        if (specificCharacterSounds != null)
+        {
+            foreach (var mapping in specificCharacterSounds)
+            {
+                if (!string.IsNullOrEmpty(mapping.characters) && mapping.characters.ToLowerInvariant().Contains(charStr))
+                {
+                    if (mapping.sound != null && mapping.sound.IsValid())
+                    {
+                        mapping.sound.PlayOn(typingAudioSource, true);
+                        return;
+                    }
+                }
+            }
+        }
+
+        if (defaultTypingSound != null && defaultTypingSound.IsValid())
+        {
+            defaultTypingSound.PlayOn(typingAudioSource, true);
+        }
     }
 
     void UpdateLayout()

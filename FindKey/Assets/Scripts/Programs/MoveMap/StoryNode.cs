@@ -50,6 +50,15 @@ public class StoryNode : ScriptableObject
     [Space(20)]
     [Header("Random Ambient Sounds")]
     public List<RandomNodeSoundAction> randomSounds;
+
+    [Space(20)]
+    [Header("Actualización de Memoria IA (Fases)")]
+    [Tooltip("Nivel de esta memoria. La IA solo actualizará si este número es MAYOR al que ya tiene.")]
+    public int aiMemoryLevel = 0;
+
+    [TextArea(3, 5)]
+    [Tooltip("La IA aprenderá esto permanentemente al llegar a este nodo. Ej: 'Fase 2: El gato ha muerto'.")]
+    public string aiMemoryUpdate;
 }
 
 [System.Serializable]

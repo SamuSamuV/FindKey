@@ -12,6 +12,7 @@ public abstract class BaseAIScript : MonoBehaviour
     public TextMeshProUGUI chatOutput;
     public StoryLog storyLog;
     public MoveAppData moveAppData;
+    public NPCVisualController visualController;
 
     [Header("Configuración General")]
     public string npcName;
@@ -20,10 +21,12 @@ public abstract class BaseAIScript : MonoBehaviour
     [TextArea(3, 5)] public string firstMessage;
     [TextArea(5, 10)] public string systemInstruction;
 
-    // ESTADO INTERNO
     protected bool unlocked = false;
     protected string lastPlayerText = "";
     protected string conversationHistory = "";
+
+    protected string permanentInjectedMemory = "";
+    protected int currentMemoryLevel = -1;
 
     [Serializable]
     public class AIResponse
@@ -36,7 +39,6 @@ public abstract class BaseAIScript : MonoBehaviour
 
     protected virtual void Awake()
     {
-        // 1. Configuramos al NPC específico (Gato/Perro)
         InitNPC();
 
         AI_References refs = GetComponent<AI_References>();
@@ -46,6 +48,7 @@ public abstract class BaseAIScript : MonoBehaviour
             this.chatOutput = refs.chatOutput;
             this.ollamaClient = refs.ollamaClient;
             this.storyLog = refs.storyLog;
+            this.visualController = refs.visualController;
         }
         else
         {
@@ -53,6 +56,7 @@ public abstract class BaseAIScript : MonoBehaviour
             if (chatOutput == null) chatOutput = GetComponentInChildren<TextMeshProUGUI>(true);
             if (ollamaClient == null) ollamaClient = GetComponentInChildren<OllamaClient>(true);
             if (storyLog == null) storyLog = GetComponentInChildren<StoryLog>(true);
+            if (visualController == null) visualController = GetComponentInChildren<NPCVisualController>(true);
         }
     }
 
@@ -60,7 +64,6 @@ public abstract class BaseAIScript : MonoBehaviour
     {
         if (inputField != null) inputField.onSubmit.AddListener(OnInputSubmit);
 
-        // Mensaje inicial en log e historial
         if (!string.IsNullOrEmpty(firstMessage))
         {
             AddLog(npcName, firstMessage);
@@ -76,6 +79,22 @@ public abstract class BaseAIScript : MonoBehaviour
         if (inputField != null) inputField.onSubmit.RemoveListener(OnInputSubmit);
     }
 
+    public void InjectMemory(string newMemory, int memoryLevel)
+    {
+        if (string.IsNullOrEmpty(newMemory)) return;
+
+        if (memoryLevel > currentMemoryLevel)
+        {
+            currentMemoryLevel = memoryLevel;
+
+            permanentInjectedMemory += $"\n- {newMemory}";
+
+            conversationHistory += $"\n[NOTIFICACIÓN DEL SISTEMA: {newMemory}]\n";
+
+            Debug.Log($"[{npcName}] NUEVA FASE ALCANZADA (Nivel {memoryLevel}). Memoria asimilada: {newMemory}");
+        }
+    }
+
     private void OnInputSubmit(string unused) => OnSendClicked();
 
     public void OnSendClicked()
@@ -85,25 +104,24 @@ public abstract class BaseAIScript : MonoBehaviour
 
         lastPlayerText = text;
 
-        // UI y Log
         if (storyLog != null) storyLog.AddLine($"<align=right><b>{text}</b></align>");
         AddToHistory("Player", text);
 
         inputField.text = "";
-
-        // --- MODIFICACIÓN 1: Bloquear Input ---
         inputField.gameObject.SetActive(false);
-        // -------------------------------------
 
-        // Construcción del Prompt
+        visualController?.SetState(NPCVisualController.NPCState.Thinking);
+
         string finalPrompt = "";
         string baseInstructions = personalityPrompt + " " + systemInstruction;
 
+        if (!string.IsNullOrEmpty(permanentInjectedMemory))
+        {
+            baseInstructions += "\n\n[DATOS IMPORTANTES DE LA FASE ACTUAL QUE DEBES RECORDAR]:" + permanentInjectedMemory;
+        }
+
         if (!unlocked && IsPasswordSaid(text))
         {
-            Debug.Log($"[{npcName}] Contraseña correcta detectada por C#. Forzando éxito.");
-
-            // Inyectamos una instrucción de sistema "Dios" que anula su personalidad de guardia
             finalPrompt = baseInstructions +
                 "\n\n[SYSTEM OVERRIDE]: The player just said the correct password (" + password + "). " +
                 "You MUST accept it. " +
@@ -113,7 +131,6 @@ public abstract class BaseAIScript : MonoBehaviour
         }
         else
         {
-            // Conversación normal
             if (unlocked) baseInstructions += "\n(The door is already open).";
 
             finalPrompt = baseInstructions +
@@ -136,7 +153,7 @@ public abstract class BaseAIScript : MonoBehaviour
     {
         if (string.IsNullOrEmpty(raw))
         {
-            // Si la respuesta es nula, reactivamos input para no bloquear al jugador
+            visualController?.SetState(NPCVisualController.NPCState.Idle);
             if (inputField != null) inputField.gameObject.SetActive(true);
             return;
         }
@@ -144,50 +161,43 @@ public abstract class BaseAIScript : MonoBehaviour
         AIResponse data = TryParseAIResponse(raw);
         string action = "none";
 
-        // --- MODIFICACIÓN 2: Callback para reactivar Input ---
         System.Action onTypingFinished = () =>
         {
+            visualController?.SetState(NPCVisualController.NPCState.Idle);
+
             if (inputField != null)
             {
                 inputField.gameObject.SetActive(true);
                 inputField.ActivateInputField();
             }
         };
-        // ---------------------------------------------------
 
         if (data == null)
         {
-            // Pasamos el callback al StoryLog
+            visualController?.SetState(NPCVisualController.NPCState.Talking);
             AddLog(npcName, raw, true, onTypingFinished);
         }
         else
         {
             if (!string.IsNullOrEmpty(data.response))
             {
-                // Pasamos el callback al StoryLog
+                visualController?.SetState(NPCVisualController.NPCState.Talking);
                 AddLog(npcName, data.response, true, onTypingFinished);
             }
             else
             {
-                // Si hay JSON pero no hay texto, reactivamos manualmente
                 onTypingFinished.Invoke();
             }
             action = (data.action ?? "none").Trim().ToLowerInvariant();
         }
 
-        // Lógica de Override de Contraseña (Siempre se ejecuta)
-        if (!unlocked && IsPasswordSaid(lastPlayerText))
-        {
-            Debug.Log("C# detectó contraseña correcta. Ignorando posible error de la IA y abriendo puerta.");
-            action = "open_door";
-        }
+        if (!unlocked && IsPasswordSaid(lastPlayerText)) action = "open_door";
 
         if (action == "open_door")
         {
             if (!unlocked)
             {
                 unlocked = true;
-                Debug.Log(">> PUERTA DESBLOQUEADA <<");
                 OpenDoor();
             }
         }
@@ -195,10 +205,9 @@ public abstract class BaseAIScript : MonoBehaviour
 
     protected void OnAIError(string err)
     {
-        if (storyLog != null) storyLog.AddLine($"<color=red>Error: {err}</color>");
+        visualController?.SetState(NPCVisualController.NPCState.Idle);
 
-        // --- MODIFICACIÓN 3: Seguridad ---
-        // Si hay error, reactivamos el input o el juego muere
+        if (storyLog != null) storyLog.AddLine($"<color=red>Error: {err}</color>");
         if (inputField != null)
         {
             inputField.gameObject.SetActive(true);
@@ -206,7 +215,6 @@ public abstract class BaseAIScript : MonoBehaviour
         }
     }
 
-    // Firma actualizada para aceptar el callback
     protected void AddLog(string speaker, string message, bool animate = false, System.Action onFinished = null)
     {
         if (string.IsNullOrEmpty(message))
@@ -219,11 +227,7 @@ public abstract class BaseAIScript : MonoBehaviour
 
         if (storyLog != null)
         {
-            if (animate)
-            {
-                // Importante: StoryLog.cs debe tener este método modificado
-                storyLog.AddLineAnimated(formattedMessage, onFinished);
-            }
+            if (animate) storyLog.AddLineAnimated(formattedMessage, onFinished);
             else
             {
                 storyLog.AddLine(formattedMessage);
@@ -238,26 +242,15 @@ public abstract class BaseAIScript : MonoBehaviour
     {
         conversationHistory += $"{speaker}: {message}\n";
 
-        // OPTIMIZACIÓN: Límite de 2000 caracteres
         if (conversationHistory.Length > 2000)
         {
             int cutIndex = conversationHistory.IndexOf('\n', conversationHistory.Length - 2000);
-
-            if (cutIndex != -1)
-            {
-                conversationHistory = conversationHistory.Substring(cutIndex + 1);
-            }
-            else
-            {
-                conversationHistory = conversationHistory.Substring(conversationHistory.Length - 2000);
-            }
+            if (cutIndex != -1) conversationHistory = conversationHistory.Substring(cutIndex + 1);
+            else conversationHistory = conversationHistory.Substring(conversationHistory.Length - 2000);
         }
     }
 
-    protected virtual void OpenDoor()
-    {
-        Debug.Log("La puerta se abre genéricamente.");
-    }
+    protected virtual void OpenDoor() { }
 
     private AIResponse TryParseAIResponse(string raw)
     {
@@ -279,19 +272,10 @@ public abstract class BaseAIScript : MonoBehaviour
     public void LoadProfile(NPCProfile profile)
     {
         if (profile == null) return;
-
         this.npcName = profile.npcName;
         this.personalityPrompt = profile.personalityPrompt;
         this.firstMessage = profile.firstMessage;
-
-        if (!string.IsNullOrEmpty(profile.password))
-        {
-            this.password = profile.password;
-        }
-
-        if (!string.IsNullOrEmpty(profile.systemInstruction))
-        {
-            this.systemInstruction = profile.systemInstruction;
-        }
+        if (!string.IsNullOrEmpty(profile.password)) this.password = profile.password;
+        if (!string.IsNullOrEmpty(profile.systemInstruction)) this.systemInstruction = profile.systemInstruction;
     }
 }

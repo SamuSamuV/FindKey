@@ -69,6 +69,19 @@ public class AdventureManager : MonoBehaviour
 
             UpdateNodeAudio(currentNode.nodeSounds);
             UpdateRandomAudio(currentNode.randomSounds);
+
+            UpdateAIMemory(currentNode.aiMemoryUpdate, currentNode.aiMemoryLevel);
+        }
+    }
+
+    void UpdateAIMemory(string newMemory, int memoryLevel)
+    {
+        if (string.IsNullOrEmpty(newMemory)) return;
+
+        ExampleAIScript[] redGirlAIs = FindObjectsOfType<ExampleAIScript>(true);
+        foreach (ExampleAIScript ai in redGirlAIs)
+        {
+            ai.InjectMemory(newMemory, memoryLevel);
         }
     }
 
@@ -108,8 +121,6 @@ public class AdventureManager : MonoBehaviour
 
         if (roll <= randomData.playChance)
         {
-            Debug.Log($"<color=green>[Audio Aleatorio]</color> ¡ÉXITO! Tirada: {roll:F2} <= Probabilidad: {randomData.playChance:F2}. Reproduciendo: <b>{clipName}</b>");
-
             GameObject targetObj = GetChannelObject(randomData.channel);
 
             GameObject randomSoundObj = new GameObject("RandomAudio_" + clipName);
@@ -129,10 +140,6 @@ public class AdventureManager : MonoBehaviour
             float duration = randomData.soundSettings.clip.length / Mathf.Max(randomData.soundSettings.pitch, 0.01f);
             float totalTime = duration + randomData.soundSettings.fadeInDuration + randomData.soundSettings.fadeOutDuration + 0.5f;
             Destroy(randomSoundObj, totalTime);
-        }
-        else
-        {
-            Debug.Log($"<color=orange>[Audio Aleatorio]</color> FALLO. Tirada: {roll:F2} > Probabilidad: {randomData.playChance:F2}. Omitiendo: <b>{clipName}</b>");
         }
     }
 
