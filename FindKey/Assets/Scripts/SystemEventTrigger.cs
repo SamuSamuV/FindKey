@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum TriggerCondition
@@ -7,62 +8,74 @@ public enum TriggerCondition
     OnAppClosed
 }
 
-public class SystemEventTrigger : MonoBehaviour
+[System.Serializable]
+public class EventTriggerEntry
 {
-    [Header("¿Cuándo se dispara el evento?")]
+    [Header("¿Cuándo se dispara?")]
     public TriggerCondition condition;
 
-    [Header("Parámetros Condición")]
-    [Tooltip("El nombre de la app. Ej: FindKey.exe (Solo necesario si eliges OnAppOpened u OnAppClosed)")]
+    [Tooltip("Nombre de la app (Ej: FindKey.exe). Déjalo vacío si usas OnGameStart.")]
     public string targetAppName;
 
-    [Header("El Evento a disparar")]
+    [Header("Evento a ejecutar")]
     public GameEvent gameEventToTrigger;
+}
+
+public class SystemEventTrigger : MonoBehaviour
+{
+    [Header("Lista de Eventos del Sistema")]
+    public List<EventTriggerEntry> triggers = new List<EventTriggerEntry>();
 
     private void Start()
     {
-        // Si el diseñador marcó que salte al empezar el juego (o al cargar la pantalla)
-        if (condition == TriggerCondition.OnGameStart)
+        foreach (var entry in triggers)
         {
-            TriggerNow();
+            if (entry.condition == TriggerCondition.OnGameStart)
+            {
+                TriggerNow(entry.gameEventToTrigger);
+            }
         }
     }
 
     private void OnEnable()
     {
-        // Enchufamos la antena a la radio
         EventManager.OnAppOpened += HandleAppOpened;
         EventManager.OnAppClosed += HandleAppClosed;
     }
 
     private void OnDisable()
     {
-        // Desenchufamos la antena si este objeto se destruye (vital para evitar errores)
         EventManager.OnAppOpened -= HandleAppOpened;
         EventManager.OnAppClosed -= HandleAppClosed;
     }
 
     private void HandleAppOpened(string appName)
     {
-        if (condition == TriggerCondition.OnAppOpened && appName == targetAppName)
+        foreach (var entry in triggers)
         {
-            TriggerNow();
+            if (entry.condition == TriggerCondition.OnAppOpened && entry.targetAppName == appName)
+            {
+                TriggerNow(entry.gameEventToTrigger);
+            }
         }
     }
 
     private void HandleAppClosed(string appName)
     {
-        if (condition == TriggerCondition.OnAppClosed && appName == targetAppName)
+        foreach (var entry in triggers)
         {
-            TriggerNow();
+            if (entry.condition == TriggerCondition.OnAppClosed && entry.targetAppName == appName)
+            {
+                TriggerNow(entry.gameEventToTrigger);
+            }
         }
     }
 
-    private void TriggerNow()
+    private void TriggerNow(GameEvent eventToTrigger)
     {
-        if (gameEventToTrigger != null && EventManager.Instance != null)
+        if (eventToTrigger != null && EventManager.Instance != null)
         {
-            EventManager.Instance.TriggerEvent(gameEventToTrigger);
+            EventManager.Instance.TriggerEvent(eventToTrigger);
         }
     }
 }

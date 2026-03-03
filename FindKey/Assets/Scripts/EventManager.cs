@@ -1,19 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System; // <--- NECESARIO PARA LOS EVENTOS
+using System;
 
 public class EventManager : MonoBehaviour
 {
     public static EventManager Instance { get; private set; }
 
-    // --- LA EMISORA DE RADIO (Eventos Globales) ---
     public static event Action<string> OnAppOpened;
     public static event Action<string> OnAppClosed;
 
     public static void NotifyAppOpened(string appName) => OnAppOpened?.Invoke(appName);
     public static void NotifyAppClosed(string appName) => OnAppClosed?.Invoke(appName);
-    // ----------------------------------------------
 
     [Header("Configuración UI")]
     public Transform popupContainer;
