@@ -76,5 +76,7 @@ public class AppLauncher : MonoBehaviour
                 }
             }
         }
+
+        EventManager.NotifyAppOpened(appName);
     }
 }

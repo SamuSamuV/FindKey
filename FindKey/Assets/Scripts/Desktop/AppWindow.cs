@@ -171,6 +171,8 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
             }
         }
 
+        EventManager.NotifyAppClosed(appName);
+
         Destroy(gameObject);
     }
 
