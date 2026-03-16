@@ -31,7 +31,23 @@ MonoBehaviour:
     nextNode: {fileID: 11400000, guid: c4de89f37867341488acc433d4adbbc4, type: 2}
     actionType: 0
   popups: []
-  nodeSounds: []
+  nodeSounds:
+  - channel: 0
+    soundSettings:
+      clip: {fileID: 8300000, guid: eac5b6f12197048429fc6ae8d3c7ea84, type: 3}
+      volume: 0.145
+      pitch: 2.11
+      loop: 0
+      fadeInDuration: 0.7
+      fadeOutDuration: 0
+  - channel: 0
+    soundSettings:
+      clip: {fileID: 8300000, guid: b9780792227bb6b47a18b6e4d8c57649, type: 3}
+      volume: 0.786
+      pitch: 0.92
+      loop: 1
+      fadeInDuration: 0.7
+      fadeOutDuration: 0
   randomSounds:
   - channel: 3
     soundSettings:
@@ -43,6 +59,6 @@ MonoBehaviour:
       fadeOutDuration: 2
     minInterval: 0
     maxInterval: 0
-    playChance: 0.202
+    playChance: 0.191
   aiMemoryLevel: 0
   aiMemoryUpdate: 
