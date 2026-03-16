@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyText: "Te inclinas. El agua, que parec\xEDa inm\xF3vil, se abre sin hacer
     ruido. De la superficie emerge una mano p\xE1lida, demasiado larga, demasiado
-    delgada. No hay violencia en el gesto: la mano simplemente te ofrece una peque\xF1a
-    caja de madera oscura, h\xFAmeda pero intacta. Luego queda suspendida, esperando.
+    delgada, sus dedos torcidos como si hubieran pasado demasiado tiempo sumergidos.
+    No hay violencia en el gesto: la mano simplemente te ofrece una peque\xF1a caja
+    de madera oscura, h\xFAmeda pero intacta. Luego queda suspendida, esperando.
     \n\"C\xF3gela.\"\r"
   options:
   - validInputs: {fileID: 11400000, guid: d611042d84834ba428963a87bb4e7364, type: 2}
     nextNode: {fileID: 11400000, guid: 9cd38735f95a4d641a55a5ca0dd9f27b, type: 2}
     actionType: 0
   popups: []
-  masterSound: {fileID: 0}
-  frontSound: {fileID: 0}
-  backSound: {fileID: 0}
-  leftSound: {fileID: 0}
-  rightSound: {fileID: 0}
+  nodeSounds: []
+  randomSounds: []
+  aiMemoryLevel: 0
+  aiMemoryUpdate: 

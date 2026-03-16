@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH DF 7
   m_EditorClassIdentifier: 
-  storyText: DERECHA, FRENTE O IZQUIERDA
+  storyText: "El aire est\xE1 quieto, demasiado quieto, y el olor met\xE1lico se
+    mezcla con algo que recuerda a carne abandonada demasiado tiempo.\n\nFrente a
+    ti el camino se divide claramente entre los \xE1rboles. A la izquierda, el sendero
+    se adentra en una zona donde el bosque vuelve a cerrarse con fuerza; a la derecha,
+    la tierra parece m\xE1s pisada, como si algo pesado hubiera pasado por all\xED
+    muchas veces; el camino de frente huele a putrefacci\xF3n: ese olor es incofundible.\n"
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: b177aa1c32b05f343973b145bcec2f70, type: 2}
@@ -24,8 +29,7 @@ MonoBehaviour:
     nextNode: {fileID: 11400000, guid: f97d57fe333335b4e871d0fa61d76d62, type: 2}
     actionType: 0
   popups: []
-  masterSound: {fileID: 0}
-  frontSound: {fileID: 0}
-  backSound: {fileID: 0}
-  leftSound: {fileID: 0}
-  rightSound: {fileID: 0}
+  nodeSounds: []
+  randomSounds: []
+  aiMemoryLevel: 0
+  aiMemoryUpdate: 

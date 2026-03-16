@@ -12,14 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH DF 9
   m_EditorClassIdentifier: 
-  storyText: "CERCAAAAAA\r"
+  storyText: "Lo intentas\u2026 pero tropiezas de nuevo. Caes de bruces sobre la
+    tierra h\xFAmeda, hojas y barro peg\xE1ndose a tu ropa mientras intentas recuperar
+    el aire. Tu cuerpo apenas procesa el golpe cuando algo met\xE1lico aparece bajo
+    tu peso: unos cortalambres ocultos entre la maleza se clavan en tu brazo.\n\nEl
+    dolor es agudo y repentino, suficiente para hacerte jadear mientras los arrancas
+    con torpeza.\n\nAntes de poder incorporarte del todo, escuchas algo detr\xE1s:
+    ramas crujir, hojas romperse, pasos medidos. Algo se mueve entre los \xE1rboles.
+    El cazador sin rostro te ha encontrado de nuevo.\n\nDebes seguir una vez m\xE1s.\r"
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
-    nextNode: {fileID: 11400000, guid: e0e267a4362d989498279cec446f75ba, type: 2}
+    nextNode: {fileID: 11400000, guid: 589decb06ef83dc4bb208f525f97b161, type: 2}
     actionType: 0
   popups: []
-  masterSound: {fileID: 0}
-  frontSound: {fileID: 0}
-  backSound: {fileID: 0}
-  leftSound: {fileID: 0}
-  rightSound: {fileID: 0}
+  nodeSounds: []
+  randomSounds: []
+  aiMemoryLevel: 0
+  aiMemoryUpdate: 

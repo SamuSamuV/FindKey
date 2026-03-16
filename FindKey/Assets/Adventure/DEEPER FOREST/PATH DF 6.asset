@@ -12,14 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH DF 6
   m_EditorClassIdentifier: 
-  storyText: "SIGUE\r"
+  storyText: "El bosque se vuelve m\xE1s silencioso con cada paso, como si incluso
+    los insectos hubieran decidido marcharse de este lugar. Las ramas se inclinan
+    sobre ti formando un techo oscuro, y el olor met\xE1lico que antes flotaba en
+    el aire ahora es m\xE1s fuerte, m\xE1s <b>fresco.</b>\n\nEl camino se estrecha
+    hasta casi desaparecer entre ra\xEDces retorcidas. Bajo tus botas notas algo
+    duro enterrado en la tierra: fragmentos de hueso blanqueados por el tiempo. No
+    parecen de animales. Algunos est\xE1n partidos limpiamente, como si alguien los
+    hubiera cortado con paciencia.\n\nA lo lejos escuchas un golpe seco. Luego otro.
+    Algo pesado movi\xE9ndose entre los \xE1rboles\u2026 El camino sigue de frente.\r"
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: 87b09012273fdba4097ba16cdcf757e4, type: 2}
     actionType: 0
   popups: []
-  masterSound: {fileID: 0}
-  frontSound: {fileID: 0}
-  backSound: {fileID: 0}
-  leftSound: {fileID: 0}
-  rightSound: {fileID: 0}
+  nodeSounds: []
+  randomSounds: []
+  aiMemoryLevel: 0
+  aiMemoryUpdate: 

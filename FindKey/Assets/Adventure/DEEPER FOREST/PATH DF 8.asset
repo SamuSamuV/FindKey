@@ -12,14 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH DF 8
   m_EditorClassIdentifier: 
-  storyText: "FRENTEEEE\r"
+  storyText: "Tu cuerpo decide la izquierda, pero el terreno no ayuda. Tropiezas
+    con ra\xEDces retorcidas que emergen del suelo y caes entre plantas altas y h\xFAmedas
+    que cubren el suelo del bosque. Las hojas amortiguan el golpe y te quedas quieto
+    un momento, escuchando.\n\nEl silencio que queda es pesado, roto solo por tu
+    respiraci\xF3n agitada y el leve crujido de las hojas movi\xE9ndose bajo tu peso.
+    Entre la maleza el mundo parece distinto, m\xE1s cerrado, como si el bosque intentara
+    ocultarte\u2026 o esconder algo m\xE1s cerca de lo que crees.\n\nNo puedes quedarte
+    aqu\xED mucho tiempo.\n\nDebes seguir avanzando.\r"
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: 8d4d07c44afb1314f94da71390ceed53, type: 2}
     actionType: 0
   popups: []
-  masterSound: {fileID: 0}
-  frontSound: {fileID: 0}
-  backSound: {fileID: 0}
-  leftSound: {fileID: 0}
-  rightSound: {fileID: 0}
+  nodeSounds: []
+  randomSounds: []
+  aiMemoryLevel: 0
+  aiMemoryUpdate: 

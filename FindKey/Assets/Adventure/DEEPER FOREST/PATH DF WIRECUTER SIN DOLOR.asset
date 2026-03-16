@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
+  m_Name: PATH DF WIRECUTER SIN DOLOR
+  m_EditorClassIdentifier: 
+  storyText: "Intentas incorporarte y seguir, pero no llegas lejos. La criatura se
+    mueve con una rapidez inhumana. Su mano se posa sobre tu pierna y el machete
+    de peletero desciende sin dudar. El dolor es inmediato, brutal, y te derriba
+    antes de que puedas siquiera gritar.\n\nLos trozos de carne desaparecen uno a
+    uno dentro del agujero putrefacto y goteante donde deber\xEDa estar su rostro,
+    acompa\xF1ados de un hedor insoportable que te revuelve el est\xF3mago.\n\nAntes
+    de que puedas pensar, la hoja ya est\xE1 rasg\xE1ndote. Cortes fr\xEDos y veloces
+    abren tu piel, arranc\xE1ndola en tiras mientras el aire se mezcla con el olor
+    met\xE1lico de la sangre. Tratas de luchar, de ara\xF1ar con las u\xF1as, y sientes
+    c\xF3mo se hunden en la carne blanda del monstruo: ceden, se hunden m\xE1s, y
+    causan que las larvas que anidaban bajo su piel putrefacta en un caldo oscuro
+    y pestilente salpiquen en todas las direcciones, incluso llegando a alcanzar
+    tu boca. Gritas, tu voz se quiebra entre el dolor, el miedo y el asco, mientras
+    la cuchilla vuelve a bajar, ara\xF1ando el hueso. La sangre te escurre por los
+    dedos, tibia, lenta, empapando la tierra. Todo se distorsiona a tu alrededor:
+    el aire, el sonido, la vida... antes de que el mundo se vuelva blanco otra vez.\n\nLa
+    luz se apaga por completo.\n\nTu vida termina aqu\xED.\r"
+  options:
+  - validInputs: {fileID: 0}
+    nextNode: {fileID: 11400000, guid: c06154369ad25f346973fdc459097d76, type: 2}
+    actionType: 4
+  popups: []
+  nodeSounds: []
+  randomSounds: []
+  aiMemoryLevel: 0
+  aiMemoryUpdate: 

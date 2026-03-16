@@ -32,6 +32,17 @@ MonoBehaviour:
     actionType: 0
   popups: []
   nodeSounds: []
-  randomSounds: []
+  randomSounds:
+  - channel: 3
+    soundSettings:
+      clip: {fileID: 8300000, guid: a9d6997ce92297b4ab5d5040dd83d159, type: 3}
+      volume: 0.029
+      pitch: 0.79
+      loop: 0
+      fadeInDuration: 1
+      fadeOutDuration: 2
+    minInterval: 0
+    maxInterval: 0
+    playChance: 0.202
   aiMemoryLevel: 0
   aiMemoryUpdate: 

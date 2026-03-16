@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: PATH FOREST LAKE2
   m_EditorClassIdentifier: 
   storyText: "Das un paso m\xE1s y la ves. Una sombra bajo el agua. No es un pez.
-    No se mueve como algo vivo\u2026 pero est\xE1 ah\xED. Alarga una forma que podr\xEDa
-    ser un brazo o una rama, y por un instante tienes la certeza de que te est\xE1
-    mirando desde abajo. No escuchas palabras, pero sientes una invitaci\xF3n insistente,
-    dulce y peligrosa, pidi\xE9ndote que te acerques m\xE1s.\nDe alguna extra\xF1a
-    forma tu cuerpo solo puede... seguir.\r"
+    No parece ser un efecto del agua tampoco\u2026 pero est\xE1 ah\xED. La sombra
+    empieza a agrandarse y alarga una forma que podr\xEDa ser un brazo o una rama:
+    no sabes c\xF3mo, pero tienes la certeza de que te est\xE1 mirando desde abajo.
+    No escuchas palabras, pero sientes una invitaci\xF3n insistente, dulce y peligrosa,
+    pidi\xE9ndote que te acerques m\xE1s.\nDe alguna extra\xF1a forma tu cuerpo solo
+    puede... seguir.\r"
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: 121a56b363ff3a04e828cbcc6403ddb5, type: 2}
     actionType: 0
   popups: []
-  masterSound: {fileID: 0}
-  frontSound: {fileID: 0}
-  backSound: {fileID: 0}
-  leftSound: {fileID: 0}
-  rightSound: {fileID: 0}
+  nodeSounds: []
+  randomSounds: []
+  aiMemoryLevel: 0
+  aiMemoryUpdate: 

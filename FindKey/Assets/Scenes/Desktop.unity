@@ -1645,15 +1645,15 @@ MonoBehaviour:
   sfxSource: {fileID: 0}
   baseFanSound:
     clip: {fileID: 8300000, guid: a6ffdc5c637f63a459fdc61aff6cbf33, type: 3}
-    volume: 1
+    volume: 0.022
     pitch: 1
     loop: 1
     fadeInDuration: 1
     fadeOutDuration: 0
   heavyLoadSounds:
   - clip: {fileID: 8300000, guid: b2648964014ba9e4fa5285266979c998, type: 3}
-    volume: 1
-    pitch: 1
+    volume: 0.318
+    pitch: 0.72
     loop: 1
     fadeInDuration: 1
     fadeOutDuration: 0

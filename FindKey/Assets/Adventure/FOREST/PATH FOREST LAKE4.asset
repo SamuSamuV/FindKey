@@ -12,18 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH FOREST LAKE4
   m_EditorClassIdentifier: 
-  storyText: "La mano desaparece sin salpicar cuando aceptas la caja. Ahora la sostienes
+  storyText: "La mano desaparece en la profundidad sin salpicar. Ahora la sostienes
     entre tus dedos: es peque\xF1a, antigua, tallada con un detalle enfermizamente
     preciso. En la tapa hay un ojo grabado, abierto, atento\u2026 y a los lados,
     delicadas flores grabadas. Intentas abrirla pero... est\xE1 cerrada.\nTus piernas
     empiezan a temblar inexplicablemente, quieren volver al camino.\r"
   options:
   - validInputs: {fileID: 11400000, guid: 59921cc1611cd494fa4c5de13ee9b91d, type: 2}
-    nextNode: {fileID: 11400000, guid: faa2c9d69e0aecd4faea24696fa98bf1, type: 2}
+    nextNode: {fileID: 11400000, guid: 2b316db5c10e0db43ba135f387616580, type: 2}
     actionType: 0
   popups: []
-  masterSound: {fileID: 0}
-  frontSound: {fileID: 0}
-  backSound: {fileID: 0}
-  leftSound: {fileID: 0}
-  rightSound: {fileID: 0}
+  nodeSounds: []
+  randomSounds: []
+  aiMemoryLevel: 0
+  aiMemoryUpdate: 
