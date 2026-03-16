@@ -12,17 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH FIELD CROSSROAD
   m_EditorClassIdentifier: 
-  storyText: "CROSSROAD\r"
+  storyText: "No.\nNo puedes. \nVes el camino y le ves.\n<br>Te ve.</br>\n\nVuelve.\r"
   options:
-  - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
-    nextNode: {fileID: 11400000, guid: 5bbbabb28a9048b489ac3b9acb498e0d, type: 2}
-    actionType: 0
   - validInputs: {fileID: 11400000, guid: 59921cc1611cd494fa4c5de13ee9b91d, type: 2}
-    nextNode: {fileID: 11400000, guid: c4de89f37867341488acc433d4adbbc4, type: 2}
+    nextNode: {fileID: 11400000, guid: 5b2ef7704801a4841bd3d90315933280, type: 2}
     actionType: 0
   popups: []
-  masterSound: {fileID: 0}
-  frontSound: {fileID: 0}
-  backSound: {fileID: 0}
-  leftSound: {fileID: 0}
-  rightSound: {fileID: 0}
+  nodeSounds: []
+  randomSounds: []
+  aiMemoryLevel: 0
+  aiMemoryUpdate: 

@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH FIELD CANYON
   m_EditorClassIdentifier: 
-  storyText: "BARRANCO\r"
+  storyText: "El terreno cambia poco a poco hasta que la hierba desaparece y la tierra
+    se vuelve quebradiza. Frente a ti se abre un barranco oscuro, una ca\xEDda abrupta
+    donde el terreno se rompe y desaparece en sombras. El viento sopla desde abajo
+    con un silbido largo y fr\xEDo. No parece haber forma segura de bajar. Al menos
+    sin morir.\nPero puedes seguir de frente bordeando el barranco.\r"
   options:
   - validInputs: {fileID: 11400000, guid: 3e049ed054064764b9faf3596a89ef4d, type: 2}
     nextNode: {fileID: 11400000, guid: 9ba91b5ebac09d64e96de9ab93c2451f, type: 2}
@@ -21,8 +25,7 @@ MonoBehaviour:
     nextNode: {fileID: 11400000, guid: 032ecc5e629ba1e4eba6f70404d15062, type: 2}
     actionType: 0
   popups: []
-  masterSound: {fileID: 0}
-  frontSound: {fileID: 0}
-  backSound: {fileID: 0}
-  leftSound: {fileID: 0}
-  rightSound: {fileID: 0}
+  nodeSounds: []
+  randomSounds: []
+  aiMemoryLevel: 0
+  aiMemoryUpdate: 

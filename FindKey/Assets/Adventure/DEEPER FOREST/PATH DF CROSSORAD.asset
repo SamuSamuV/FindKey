@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH DF CROSSORAD
   m_EditorClassIdentifier: 
-  storyText: "SEGUIR O VOLVER CROSSROAD\r"
+  storyText: "El sendero se ensancha ligeramente hasta convertirse en un cruce irregular
+    donde la tierra ha sido pisoteada muchas veces\u2026 aunque no recuerdas haber
+    visto a nadie m\xE1s en este lugar. Puedes ver c\xF3mo el bosque se abre poco
+    a poco hasta desaparecer en la llanura. El campo est\xE1 all\xED, silencioso,
+    como si nada hubiera ocurrido.\n\nPuedes intentar avanzar de frente al campo
+    o volver.\r"
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: 8b90951a96ef10945bc825b69a94a646, type: 2}
@@ -21,8 +26,7 @@ MonoBehaviour:
     nextNode: {fileID: 11400000, guid: 35d2456d035be3f49aab6bc4a8753a8e, type: 2}
     actionType: 0
   popups: []
-  masterSound: {fileID: 0}
-  frontSound: {fileID: 0}
-  backSound: {fileID: 0}
-  leftSound: {fileID: 0}
-  rightSound: {fileID: 0}
+  nodeSounds: []
+  randomSounds: []
+  aiMemoryLevel: 0
+  aiMemoryUpdate: 

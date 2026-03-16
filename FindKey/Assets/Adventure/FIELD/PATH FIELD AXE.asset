@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH FIELD AXE
   m_EditorClassIdentifier: 
-  storyText: "CUIDADO\r"
+  storyText: "Sigues avanzando, dejando el barranco atr\xE1s. Entre unas piedras
+    encuentras un hacha vieja clavada en el suelo, como si alguien la hubiera dejado
+    olvidada hace mucho tiempo. Cuando la tomas, el metal fr\xEDo pesa en tu mano\u2026
+    y en ese mismo instante notas algo.\n\n<b>Justo detr\xE1s de ti.\n\nNo lo ves
+    todav\xEDa, pero est\xE1 ah\xED.</b>\n\nPuedes volverte, o seguir caminando sin
+    mirar atr\xE1s.\r"
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: 9f813bc5d82f476458ee0890d0868b23, type: 2}
@@ -21,8 +26,7 @@ MonoBehaviour:
     nextNode: {fileID: 11400000, guid: 10c73d0a49123f64bb0d6bb82977e050, type: 2}
     actionType: 0
   popups: []
-  masterSound: {fileID: 0}
-  frontSound: {fileID: 0}
-  backSound: {fileID: 0}
-  leftSound: {fileID: 0}
-  rightSound: {fileID: 0}
+  nodeSounds: []
+  randomSounds: []
+  aiMemoryLevel: 0
+  aiMemoryUpdate: 

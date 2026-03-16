@@ -12,14 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH FIELD RETURN 4
   m_EditorClassIdentifier: 
-  storyText: "MAS\r"
+  storyText: "Mientras sigues corriendo te atreves a mirar un instante.\n\nLa criatura
+    te persigue. Es alta, cerca de dos metros y medio, con el cuerpo encorvado y
+    patas que recuerdan a las de una cabra monstruosa. Sus pezu\xF1as golpean el
+    suelo con fuerza brutal mientras emite un sonido profundo y desgarrado, una mezcla
+    de balido y gru\xF1ido que no deber\xEDa salir de ning\xFAn animal conocido.
+    Cada vez que respiras, la sientes m\xE1s cerca.\n\nNo hay otra opci\xF3n salvo
+    correr hasta que colapses."
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: 49a07b524c7e1e74aa88795f4f41239d, type: 2}
     actionType: 0
   popups: []
-  masterSound: {fileID: 0}
-  frontSound: {fileID: 0}
-  backSound: {fileID: 0}
-  leftSound: {fileID: 0}
-  rightSound: {fileID: 0}
+  nodeSounds: []
+  randomSounds: []
+  aiMemoryLevel: 0
+  aiMemoryUpdate: 

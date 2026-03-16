@@ -12,14 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH FIELD EXIT 2
   m_EditorClassIdentifier: 
-  storyText: "SIGUE PARA LLEGAR AL INICIO\r"
+  storyText: "Saltas.\n\nTu cuerpo se desliza por la ladera de tierra suelta, rodando
+    entre piedras y ra\xEDces. El descenso es brutal, pero sigues cayendo hasta que
+    finalmente el terreno se estabiliza y logras detenerte entre la maleza baja.
+    Arriba, en lo alto de la pendiente, ves por un momento la silueta de la criatura.
+    La cabra monstruosa se detiene al borde, emitiendo un gru\xF1ido furioso\u2026
+    pero no baja.\n\nTras unos segundos desaparece entre la oscuridad.\n\nPoco a
+    poco recuperas el aliento. Tus manos tiemblan y el hacha sigue en ellas. No sabes
+    qu\xE9 era esa cosa\u2026 pero sabes que existe.\n\nCuando finalmente te pones
+    en pie, el bosque vuelve a rodearte. Justo en frente tuyo. Respiras. Vives. Sigues.\r"
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
-    nextNode: {fileID: 11400000, guid: aa6b58bff5bb47e4083ccd4e46187acc, type: 2}
+    nextNode: {fileID: 11400000, guid: ba54b81d0b5593d49992da20a700936c, type: 2}
     actionType: 0
   popups: []
-  masterSound: {fileID: 0}
-  frontSound: {fileID: 0}
-  backSound: {fileID: 0}
-  leftSound: {fileID: 0}
-  rightSound: {fileID: 0}
+  nodeSounds: []
+  randomSounds: []
+  aiMemoryLevel: 0
+  aiMemoryUpdate: 

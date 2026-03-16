@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
+  m_Name: PATH DF ENTRANCE FIELD COMPLETE
+  m_EditorClassIdentifier: 
+  storyText: "El viento del campo sopla a tu espalda y la oscuridad del bosque se
+    extiende frente a ti como una boca abierta. Durante un instante dudas. El lago,
+    el campo\u2026 todo parece m\xE1s seguro que volver a entrar ah\xED.\n\nPero
+    entonces recuerdas el sonido de las pezu\xF1as golpeando la tierra, la respiraci\xF3n
+    de la criatura detr\xE1s de ti, y entiendes algo que antes no sab\xEDas: no hay
+    lugares seguros aqu\xED.\n\nAprietas el hacha con m\xE1s fuerza. Si algo vuelve
+    a aparecer, esta vez no estar\xE1s completamente indefenso. El bosque oscuro
+    a tu izquierda parece observarte, esperando.\n\nSin pensarlo m\xE1s, decides
+    adentrarte entre los \xE1rboles. Las ramas se cierran detr\xE1s de ti y el campo
+    desaparece de tu vista. El aire vuelve a oler a tierra h\xFAmeda y hojas podridas,
+    y el silencio del bosque es espeso\u2026 Debes usar el hacha para avanzar\r"
+  options:
+  - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
+    nextNode: {fileID: 11400000, guid: 5b2ef7704801a4841bd3d90315933280, type: 2}
+    actionType: 0
+  popups: []
+  nodeSounds: []
+  randomSounds: []
+  aiMemoryLevel: 0
+  aiMemoryUpdate: 
