@@ -33,9 +33,23 @@ public class AppLauncher : MonoBehaviour
 
                     if (data.windowInstance != null)
                     {
-                        if (data.isMinimized)
+                        AppWindow existingWindow = data.windowInstance.GetComponent<AppWindow>();
+
+                        if (!data.isOpen)
                         {
-                            AppWindow existingWindow = data.windowInstance.GetComponent<AppWindow>();
+                            data.isOpen = true;
+                            if (existingWindow != null)
+                            {
+                                existingWindow.Reopen();
+                                TaskbarManager.GetOrFindInstance()?.RegisterWindow(existingWindow, appName, appIconSprite);
+                            }
+                            else
+                            {
+                                data.windowInstance.SetActive(true);
+                            }
+                        }
+                        else if (data.isMinimized)
+                        {
                             if (existingWindow != null) existingWindow.Restore();
                             else data.windowInstance.SetActive(true);
 

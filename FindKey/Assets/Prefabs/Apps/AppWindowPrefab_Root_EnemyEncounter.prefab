@@ -501,6 +501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d33d1b48faaeab4890d67f35ddcb931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  keepAliveOnClose: 0
   titleText: {fileID: 5511757479028437172}
   closeButton:
   - {fileID: 5164196516228535632}
@@ -524,6 +525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nonEnemyFindedPanel: {fileID: 1067991120403699259}
+  enemyVisuals: {fileID: 6970075757801559232}
   moveAppData: {fileID: 0}
 --- !u!1 &3591361015423859269
 GameObject:

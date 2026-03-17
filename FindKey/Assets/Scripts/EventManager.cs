@@ -104,7 +104,18 @@ public class EventManager : MonoBehaviour
                 break;
 
             case EventActionType.CloseApp:
-                CloseAppByName(action.appName);
+                AppWindow windowToClose = GetAppWindowByName(action.appName);
+                if (windowToClose != null)
+                    CloseAppByName(action.appName);
+
+                break;
+
+            case EventActionType.ShakeWindow:
+                AppWindow windowToShake = GetAppWindowByName(action.appName);
+                if (windowToShake != null)
+                {
+                    windowToShake.ShakeWindow(action.shakeDuration, action.shakeMagnitude);
+                }
                 break;
 
             case EventActionType.ShowPopup:
@@ -115,7 +126,31 @@ public class EventManager : MonoBehaviour
                 WallpapersScript ws = FindObjectOfType<WallpapersScript>();
                 if (ws != null && action.newWallpaper != null) ws.ChangeBackground(action.newWallpaper);
                 break;
+
+            case EventActionType.MinimizeApp:
+                AppWindow windowToMin = GetAppWindowByName(action.appName);
+                if (windowToMin != null)
+                {
+                    windowToMin.Minimize();
+                }
+
+                break;
         }
+    }
+
+    private AppWindow GetAppWindowByName(string appNameToFind)
+    {
+        if (string.IsNullOrEmpty(appNameToFind)) return null;
+
+        AppWindow[] openWindows = FindObjectsOfType<AppWindow>(false);
+        foreach (AppWindow window in openWindows)
+        {
+            if (window.appName == appNameToFind)
+            {
+                return window;
+            }
+        }
+        return null;
     }
 
     private void SpawnEventPopup(PopupData data)

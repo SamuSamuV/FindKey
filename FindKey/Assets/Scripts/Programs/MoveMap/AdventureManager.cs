@@ -24,10 +24,15 @@ public class AdventureManager : MonoBehaviour
     public StoryNode nodeAfterCatWin;
 
     private Coroutine popupSequenceCoroutine;
-    private List<AudioSource> activeAudioSources = new List<AudioSource>();
 
+    private List<AudioSource> activeAudioSources = new List<AudioSource>();
     private List<Coroutine> activeRandomSoundCoroutines = new List<Coroutine>();
     private List<GameObject> activeRandomSoundObjects = new List<GameObject>();
+
+    private Dictionary<string, AudioSource> activeAmbientSources = new Dictionary<string, AudioSource>();
+    private Dictionary<string, AmbientSoundAction> persistentAmbientsData = new Dictionary<string, AmbientSoundAction>();
+
+    private bool isInitialized = false;
 
     void Start()
     {
@@ -49,9 +54,77 @@ public class AdventureManager : MonoBehaviour
             if (containerObj != null) popupContainer = containerObj.transform;
         }
 
+        isInitialized = true;
+
         UpdateStoryVisuals();
         inputField.onSubmit.AddListener(ProcessInput);
         TryUpdateMap();
+    }
+
+    void OnEnable()
+    {
+        if (isInitialized)
+        {
+            List<AmbientSoundAction> ambientsToRestore = new List<AmbientSoundAction>(persistentAmbientsData.Values);
+            persistentAmbientsData.Clear();
+
+            foreach (var ambient in ambientsToRestore)
+            {
+                StartAmbientSound(ambient);
+            }
+
+            if (currentNode != null)
+            {
+                UpdateNodeAudio(currentNode.nodeSounds);
+                UpdateRandomAudio(currentNode.randomSounds);
+            }
+        }
+    }
+
+    void OnDisable()
+    {
+        foreach (Coroutine c in activeRandomSoundCoroutines)
+        {
+            if (c != null) StopCoroutine(c);
+        }
+        activeRandomSoundCoroutines.Clear();
+
+        foreach (AudioSource oldSource in activeAudioSources)
+        {
+            if (oldSource != null)
+            {
+                AudioFader fader = oldSource.GetComponent<AudioFader>();
+                if (fader != null) fader.FadeOutAndDestroyGameObject();
+                else
+                {
+                    oldSource.Stop();
+                    Destroy(oldSource.gameObject);
+                }
+            }
+        }
+        activeAudioSources.Clear();
+
+        foreach (GameObject randomObj in activeRandomSoundObjects)
+        {
+            if (randomObj != null)
+            {
+                AudioFader fader = randomObj.GetComponent<AudioFader>();
+                if (fader != null) fader.FadeOutAndDestroyGameObject();
+                else Destroy(randomObj);
+            }
+        }
+        activeRandomSoundObjects.Clear();
+
+        foreach (var kvp in activeAmbientSources)
+        {
+            if (kvp.Value != null)
+            {
+                AudioFader fader = kvp.Value.GetComponent<AudioFader>();
+                if (fader != null) fader.FadeOutAndDestroyGameObject();
+                else Destroy(kvp.Value.gameObject);
+            }
+        }
+        activeAmbientSources.Clear();
     }
 
     void UpdateStoryVisuals()
@@ -70,19 +143,76 @@ public class AdventureManager : MonoBehaviour
             UpdateNodeAudio(currentNode.nodeSounds);
             UpdateRandomAudio(currentNode.randomSounds);
 
+            UpdateAmbientAudio(currentNode.ambientSounds);
+
             UpdateAIMemory(currentNode.aiMemoryUpdate, currentNode.aiMemoryLevel);
         }
     }
 
-    void UpdateAIMemory(string newMemory, int memoryLevel)
+    void UpdateAmbientAudio(List<AmbientSoundAction> newAmbients)
     {
-        if (string.IsNullOrEmpty(newMemory)) return;
+        if (newAmbients == null) return;
 
-        ExampleAIScript[] redGirlAIs = FindObjectsOfType<ExampleAIScript>(true);
-        foreach (ExampleAIScript ai in redGirlAIs)
+        foreach (var ambient in newAmbients)
         {
-            ai.InjectMemory(newMemory, memoryLevel);
+            if (string.IsNullOrEmpty(ambient.ambientTag)) continue;
+
+            if (ambient.stopAmbient)
+            {
+                StopAmbientSound(ambient.ambientTag);
+                continue;
+            }
+
+            if (ambient.soundSettings == null || !ambient.soundSettings.IsValid()) continue;
+
+            if (activeAmbientSources.TryGetValue(ambient.ambientTag, out AudioSource existingSource))
+            {
+                if (existingSource != null && existingSource.clip == ambient.soundSettings.clip)
+                {
+                    existingSource.volume = ambient.soundSettings.volume;
+                    existingSource.pitch = ambient.soundSettings.pitch;
+                    persistentAmbientsData[ambient.ambientTag] = ambient;
+                    continue;
+                }
+
+                else
+                {
+                    StopAmbientSound(ambient.ambientTag);
+                }
+            }
+
+            StartAmbientSound(ambient);
         }
+    }
+
+    void StartAmbientSound(AmbientSoundAction ambient)
+    {
+        GameObject targetObj = GetChannelObject(ambient.channel);
+        GameObject soundObj = new GameObject("AmbientAudio_" + ambient.ambientTag);
+        soundObj.transform.SetParent(targetObj.transform, false);
+
+        AudioSource newSource = soundObj.AddComponent<AudioSource>();
+        if (ambient.channel != AudioChannel.Master) newSource.spatialBlend = 1f;
+
+        ambient.soundSettings.PlayOn(newSource, false);
+
+        activeAmbientSources[ambient.ambientTag] = newSource;
+        persistentAmbientsData[ambient.ambientTag] = ambient;
+    }
+
+    void StopAmbientSound(string tag)
+    {
+        if (activeAmbientSources.TryGetValue(tag, out AudioSource source))
+        {
+            if (source != null)
+            {
+                AudioFader fader = source.GetComponent<AudioFader>();
+                if (fader != null) fader.FadeOutAndDestroyGameObject();
+                else Destroy(source.gameObject);
+            }
+            activeAmbientSources.Remove(tag);
+        }
+        persistentAmbientsData.Remove(tag);
     }
 
     void UpdateRandomAudio(List<RandomNodeSoundAction> randomSounds)
@@ -202,6 +332,17 @@ public class AdventureManager : MonoBehaviour
         }
 
         activeAudioSources = sourcesToKeep;
+    }
+
+    void UpdateAIMemory(string newMemory, int memoryLevel)
+    {
+        if (string.IsNullOrEmpty(newMemory)) return;
+
+        ExampleAIScript[] redGirlAIs = FindObjectsOfType<ExampleAIScript>(true);
+        foreach (ExampleAIScript ai in redGirlAIs)
+        {
+            ai.InjectMemory(newMemory, memoryLevel);
+        }
     }
 
     GameObject GetChannelObject(AudioChannel channel)
@@ -342,5 +483,16 @@ public class AdventureManager : MonoBehaviour
             }
         }
         activeRandomSoundObjects.Clear();
+
+        foreach (var kvp in activeAmbientSources)
+        {
+            if (kvp.Value != null)
+            {
+                AudioFader fader = kvp.Value.GetComponent<AudioFader>();
+                if (fader != null) fader.FadeOutAndDestroyGameObject();
+                else Destroy(kvp.Value.gameObject);
+            }
+        }
+        activeAmbientSources.Clear();
     }
 }

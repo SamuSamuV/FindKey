@@ -710,11 +710,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d33d1b48faaeab4890d67f35ddcb931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  keepAliveOnClose: 1
   titleText: {fileID: 5511757479028437172}
-  closeButton: []
+  closeButton:
+  - {fileID: 4609665893668180505}
   minimizeButton:
   - {fileID: 7539350518092721196}
-  - {fileID: 4609665893668180505}
   isOpen: 0
   appName: 
   moveAppData: {fileID: 0}

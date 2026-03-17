@@ -4,6 +4,10 @@ using static EnemyEncounterData;
 public class BaseEnemyEncounter : MonoBehaviour
 {
     public GameObject nonEnemyFindedPanel;
+
+    [Tooltip("Arrastra aquí el objeto de la imagen del enemigo que quieres ocultar.")]
+    public GameObject enemyVisuals;
+
     public MoveAppData moveAppData;
 
     void Start()
@@ -34,6 +38,17 @@ public class BaseEnemyEncounter : MonoBehaviour
                     }
                     break;
                 }
+            }
+        }
+    }
+
+    void Update()
+    {
+        if (enemyVisuals != null && nonEnemyFindedPanel != null)
+        {
+            if (enemyVisuals.activeSelf == nonEnemyFindedPanel.activeSelf)
+            {
+                enemyVisuals.SetActive(!nonEnemyFindedPanel.activeSelf);
             }
         }
     }

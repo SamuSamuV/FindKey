@@ -105,7 +105,7 @@ public class StoryLog : MonoBehaviour
                 {
                     if (mapping.sound != null && mapping.sound.IsValid())
                     {
-                        mapping.sound.PlayOn(typingAudioSource, true);
+                        PlayCleanTypingSound(mapping.sound);
                         return;
                     }
                 }
@@ -114,8 +114,16 @@ public class StoryLog : MonoBehaviour
 
         if (defaultTypingSound != null && defaultTypingSound.IsValid())
         {
-            defaultTypingSound.PlayOn(typingAudioSource, true);
+            PlayCleanTypingSound(defaultTypingSound);
         }
+    }
+
+    void PlayCleanTypingSound(SoundSettings sound)
+    {
+        typingAudioSource.clip = sound.clip;
+        typingAudioSource.volume = sound.volume;
+        typingAudioSource.pitch = sound.pitch;
+        typingAudioSource.Play();
     }
 
     void UpdateLayout()

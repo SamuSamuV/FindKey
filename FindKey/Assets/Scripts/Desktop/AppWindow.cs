@@ -7,6 +7,11 @@ using UnityEngine.UI;
 
 public class AppWindow : MonoBehaviour, IPointerDownHandler
 {
+    private Coroutine shakeCoroutine;
+
+    [Tooltip("Si se marca, al cerrar la app no se destruirá, conservando su contenido. Solo se ocultará.")]
+    public bool keepAliveOnClose = false;
+
     public TextMeshProUGUI titleText;
     public Button[] closeButton;
     public Button[] minimizeButton;
@@ -74,6 +79,13 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
         StartCoroutine(AnimateWindow(Vector3.zero, Vector3.one, 0f, 1f, null));
     }
 
+    public void Reopen()
+    {
+        gameObject.SetActive(true);
+        transform.SetAsLastSibling();
+        StartCoroutine(AnimateWindow(Vector3.zero, Vector3.one, 0f, 1f, null));
+    }
+
     private IEnumerator AnimateWindow(Vector3 startScale, Vector3 endScale, float startAlpha, float endAlpha, Action onComplete)
     {
         CanvasGroup cg = GetComponent<CanvasGroup>();
@@ -131,7 +143,11 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
                 {
                     data.isOpen = false;
                     data.isMinimized = false;
-                    data.windowInstance = null;
+
+                    if (!keepAliveOnClose)
+                    {
+                        data.windowInstance = null;
+                    }
 
                     if (data.label == "Enemy Encounter")
                     {
@@ -171,9 +187,15 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
             }
         }
 
-        EventManager.NotifyAppClosed(appName);
+        if (keepAliveOnClose)
+        {
+            gameObject.SetActive(false);
+        }
 
-        Destroy(gameObject);
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void ToggleMinimizeRestore()
@@ -190,5 +212,30 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         BringToFront();
+    }
+
+    public void ShakeWindow(float duration, float magnitude)
+    {
+        if (shakeCoroutine != null) StopCoroutine(shakeCoroutine);
+        shakeCoroutine = StartCoroutine(ShakeRoutine(duration, magnitude));
+    }
+
+    private IEnumerator ShakeRoutine(float duration, float magnitude)
+    {
+        Vector3 originalPos = transform.localPosition;
+        float elapsed = 0.0f;
+
+        while (elapsed < duration)
+        {
+            float x = originalPos.x + UnityEngine.Random.Range(-1f, 1f) * magnitude;
+            float y = originalPos.y + UnityEngine.Random.Range(-1f, 1f) * magnitude;
+
+            transform.localPosition = new Vector3(x, y, originalPos.z);
+            elapsed += Time.deltaTime;
+
+            yield return null;
+        }
+
+        transform.localPosition = originalPos;
     }
 }

@@ -14,4 +14,91 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventDescription: 
   playOnlyOnce: 1
-  actions: []
+  actions:
+  - actionType: 0
+    delayBeforeExecute: 0
+    waitTime: 2
+    appName: 
+    shakeMagnitude: 0
+    shakeDuration: 0
+    sound:
+      clip: {fileID: 0}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+    popupData:
+      delayBeforeSpawn: 0
+      duration: 0
+      position: {x: 0, y: 0}
+      specificPrefab: {fileID: 0}
+      title: 
+      message: 
+      image: {fileID: 0}
+      sound:
+        clip: {fileID: 0}
+        volume: 0
+        pitch: 0
+        loop: 0
+        fadeInDuration: 0
+        fadeOutDuration: 0
+    newWallpaper: {fileID: 0}
+  - actionType: 7
+    delayBeforeExecute: 0
+    waitTime: 0
+    appName: Map
+    shakeMagnitude: 0
+    shakeDuration: 0
+    sound:
+      clip: {fileID: 0}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+    popupData:
+      delayBeforeSpawn: 0
+      duration: 0
+      position: {x: 0, y: 0}
+      specificPrefab: {fileID: 0}
+      title: 
+      message: 
+      image: {fileID: 0}
+      sound:
+        clip: {fileID: 0}
+        volume: 0
+        pitch: 0
+        loop: 0
+        fadeInDuration: 0
+        fadeOutDuration: 0
+    newWallpaper: {fileID: 0}
+  - actionType: 2
+    delayBeforeExecute: 2
+    waitTime: 0
+    appName: Map
+    shakeMagnitude: 0
+    shakeDuration: 0
+    sound:
+      clip: {fileID: 0}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+    popupData:
+      delayBeforeSpawn: 0
+      duration: 0
+      position: {x: 0, y: 0}
+      specificPrefab: {fileID: 0}
+      title: 
+      message: 
+      image: {fileID: 0}
+      sound:
+        clip: {fileID: 0}
+        volume: 0
+        pitch: 0
+        loop: 0
+        fadeInDuration: 0
+        fadeOutDuration: 0
+    newWallpaper: {fileID: 0}

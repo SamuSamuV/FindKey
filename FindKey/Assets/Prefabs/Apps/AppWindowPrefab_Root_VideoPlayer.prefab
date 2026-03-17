@@ -304,12 +304,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d33d1b48faaeab4890d67f35ddcb931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  keepAliveOnClose: 0
   titleText: {fileID: 5511757479028437172}
   closeButton:
   - {fileID: 1534395916567784770}
-  - {fileID: 1534395916567784770}
   minimizeButton:
-  - {fileID: 0}
+  - {fileID: 3978369104962207738}
   isOpen: 0
   appName: 
   moveAppData: {fileID: 0}

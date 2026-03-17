@@ -32,6 +32,20 @@ public class RandomNodeSoundAction
     [Range(0f, 1f)] public float playChance = 0.5f;
 }
 
+// --- NUEVA CLASE: SONIDOS PERSISTENTES ---
+[System.Serializable]
+public class AmbientSoundAction
+{
+    [Tooltip("Etiqueta única. Ej: 'Lluvia' o 'MusicaFondo'.")]
+    public string ambientTag;
+
+    public AudioChannel channel = AudioChannel.Master;
+    public SoundSettings soundSettings;
+
+    [Tooltip("Marca esto para DETENER el sonido que tenga este Tag sin poner uno nuevo.")]
+    public bool stopAmbient = false;
+}
+
 [CreateAssetMenu(fileName = "NewStoryNode", menuName = "Adventure/Story Node")]
 public class StoryNode : ScriptableObject
 {
@@ -44,12 +58,16 @@ public class StoryNode : ScriptableObject
     public List<PopupData> popups;
 
     [Space(20)]
-    [Header("Node Sounds")]
+    [Header("Node Sounds (Mueren al cambiar de nodo)")]
     public List<NodeSoundAction> nodeSounds;
 
     [Space(20)]
     [Header("Random Ambient Sounds")]
     public List<RandomNodeSoundAction> randomSounds;
+
+    [Space(20)]
+    [Header("Persistent Ambient Sounds (Sobreviven entre nodos)")]
+    public List<AmbientSoundAction> ambientSounds;
 
     [Space(20)]
     [Header("Actualización de Memoria IA (Fases)")]
