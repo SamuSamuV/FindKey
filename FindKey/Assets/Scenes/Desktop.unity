@@ -496,8 +496,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.052}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 14.350098, y: -12.7153015}
-  m_SizeDelta: {x: 28.699755, y: 25.429632}
+  m_AnchoredPosition: {x: 0.00012207031, y: -4.5859375}
+  m_SizeDelta: {x: -0.00024414, y: 9.1707}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &124445288
 MonoBehaviour:
@@ -1648,8 +1648,8 @@ MonoBehaviour:
     volume: 0.053
     pitch: 1.1
     loop: 1
-    fadeInDuration: 1
-    fadeOutDuration: 1
+    fadeInDuration: 0
+    fadeOutDuration: 0
   heavyLoadSounds:
   - clip: {fileID: 8300000, guid: b2648964014ba9e4fa5285266979c998, type: 3}
     volume: 0.187

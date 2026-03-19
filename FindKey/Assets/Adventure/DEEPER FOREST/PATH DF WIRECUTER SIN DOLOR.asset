@@ -15,26 +15,142 @@ MonoBehaviour:
   storyText: "Intentas incorporarte y seguir, pero no llegas lejos. La criatura se
     mueve con una rapidez inhumana. Su mano se posa sobre tu pierna y el machete
     de peletero desciende sin dudar. El dolor es inmediato, brutal, y te derriba
-    antes de que puedas siquiera gritar.\n\nLos trozos de carne desaparecen uno a
-    uno dentro del agujero putrefacto y goteante donde deber\xEDa estar su rostro,
-    acompa\xF1ados de un hedor insoportable que te revuelve el est\xF3mago.\n\nAntes
-    de que puedas pensar, la hoja ya est\xE1 rasg\xE1ndote. Cortes fr\xEDos y veloces
-    abren tu piel, arranc\xE1ndola en tiras mientras el aire se mezcla con el olor
-    met\xE1lico de la sangre. Tratas de luchar, de ara\xF1ar con las u\xF1as, y sientes
-    c\xF3mo se hunden en la carne blanda del monstruo: ceden, se hunden m\xE1s, y
-    causan que las larvas que anidaban bajo su piel putrefacta en un caldo oscuro
-    y pestilente salpiquen en todas las direcciones, incluso llegando a alcanzar
-    tu boca. Gritas, tu voz se quiebra entre el dolor, el miedo y el asco, mientras
-    la cuchilla vuelve a bajar, ara\xF1ando el hueso. La sangre te escurre por los
-    dedos, tibia, lenta, empapando la tierra. Todo se distorsiona a tu alrededor:
+    antes de que puedas siquiera gritar.\n\nLos trozos de carne que corta de tu cuerpo
+    desaparecen uno a uno dentro del agujero putrefacto y goteante donde deber\xEDa
+    estar su rostro, acompa\xF1ados de un hedor insoportable que te revuelve el est\xF3mago.\n\nAntes
+    de que puedas pensar, la hoja ya est\xE1 rasg\xE1ndote de nuevo. Cortes fr\xEDos
+    y veloces abren tu piel, arranc\xE1ndola en tiras mientras el aire se mezcla
+    con el olor met\xE1lico de la sangre. Tratas de luchar, de ara\xF1ar con las
+    u\xF1as, y sientes c\xF3mo se hunden en la carne blanda del monstruo: ceden,
+    se hunden m\xE1s, y causan que las larvas que anidaban bajo su piel putrefacta
+    en un caldo oscuro y pestilente salpiquen en todas las direcciones, incluso llegando
+    a alcanzar tu boca. Gritas, tu voz se quiebra entre el dolor, el miedo y el asco,
+    mientras la cuchilla vuelve a bajar, ara\xF1ando el hueso. La sangre te escurre
+    por los dedos, tibia, lenta, empapando la tierra. Todo se distorsiona a tu alrededor:
     el aire, el sonido, la vida... antes de que el mundo se vuelva blanco otra vez.\n\nLa
     luz se apaga por completo.\n\nTu vida termina aqu\xED.\r"
   options:
   - validInputs: {fileID: 0}
-    nextNode: {fileID: 11400000, guid: c06154369ad25f346973fdc459097d76, type: 2}
+    nextNode: {fileID: 0}
     actionType: 4
   popups: []
-  nodeSounds: []
-  randomSounds: []
+  nodeSounds:
+  - channel: 0
+    soundSettings:
+      clip: {fileID: 8300000, guid: afd07df1c9fd1064395bcaf9b0827769, type: 3}
+      volume: 0.098
+      pitch: 0.8
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - channel: 0
+    soundSettings:
+      clip: {fileID: 8300000, guid: 5e5a6e8a247b3ef40b700da2ce956523, type: 3}
+      volume: 0.136
+      pitch: 0.93
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  randomSounds:
+  - channel: 0
+    soundSettings:
+      clip: {fileID: 8300000, guid: 8ae0f07447a9ad24b87125d6691574be, type: 3}
+      volume: 0.131
+      pitch: 0.86
+      loop: 0
+      fadeInDuration: 1
+      fadeOutDuration: 0
+    minInterval: 1
+    maxInterval: 0
+    playChance: 1
+  - channel: 0
+    soundSettings:
+      clip: {fileID: 8300000, guid: 31b118aee8e5b2a40a33c12086c5bce2, type: 3}
+      volume: 0.03
+      pitch: 0.26
+      loop: 0
+      fadeInDuration: 1
+      fadeOutDuration: 1
+    minInterval: 7
+    maxInterval: 0
+    playChance: 1
+  - channel: 0
+    soundSettings:
+      clip: {fileID: 8300000, guid: 6ebd453ec8400a54b8a1a4e6ca9f2590, type: 3}
+      volume: 0.131
+      pitch: 0.86
+      loop: 0
+      fadeInDuration: 1
+      fadeOutDuration: 1
+    minInterval: 7
+    maxInterval: 0
+    playChance: 1
+  - channel: 0
+    soundSettings:
+      clip: {fileID: 8300000, guid: 390f058e8cd4e60408442cb88624d544, type: 3}
+      volume: 0.373
+      pitch: 0.58
+      loop: 0
+      fadeInDuration: 1
+      fadeOutDuration: 1
+    minInterval: 9
+    maxInterval: 0
+    playChance: 1
+  - channel: 0
+    soundSettings:
+      clip: {fileID: 8300000, guid: 7a824220350e0454096989878400b701, type: 3}
+      volume: 0.373
+      pitch: 0.58
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+    minInterval: 0
+    maxInterval: 0
+    playChance: 1
+  - channel: 0
+    soundSettings:
+      clip: {fileID: 8300000, guid: 7ac34f4a2345de04083c288277213cdf, type: 3}
+      volume: 0.373
+      pitch: 0.58
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+    minInterval: 0
+    maxInterval: 0
+    playChance: 1
+  - channel: 0
+    soundSettings:
+      clip: {fileID: 8300000, guid: 571042ad8d5794d46b9719efed07eee7, type: 3}
+      volume: 0.532
+      pitch: 0.58
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+    minInterval: 9
+    maxInterval: 0
+    playChance: 1
+  - channel: 0
+    soundSettings:
+      clip: {fileID: 8300000, guid: 81e1bccafbe8e244fa6cf5546f5b3946, type: 3}
+      volume: 0.333
+      pitch: 0.49
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+    minInterval: 7
+    maxInterval: 0
+    playChance: 1
+  - channel: 0
+    soundSettings:
+      clip: {fileID: 8300000, guid: d5d130fc197935f4ea9122535a3c4860, type: 3}
+      volume: 1.17
+      pitch: 0.28
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 1
+    minInterval: 7
+    maxInterval: 0
+    playChance: 1
+  ambientSounds: []
   aiMemoryLevel: 0
   aiMemoryUpdate: 

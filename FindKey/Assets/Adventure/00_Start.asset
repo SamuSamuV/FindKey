@@ -30,6 +30,9 @@ MonoBehaviour:
   - validInputs: {fileID: 11400000, guid: 59921cc1611cd494fa4c5de13ee9b91d, type: 2}
     nextNode: {fileID: 11400000, guid: c4de89f37867341488acc433d4adbbc4, type: 2}
     actionType: 0
+  - validInputs: {fileID: 11400000, guid: d39a7c7997f8e6345bc05edb52e1f0be, type: 2}
+    nextNode: {fileID: 11400000, guid: 589decb06ef83dc4bb208f525f97b161, type: 2}
+    actionType: 0
   popups: []
   nodeSounds:
   - channel: 0
@@ -61,7 +64,7 @@ MonoBehaviour:
     maxInterval: 0
     playChance: 0.191
   ambientSounds:
-  - ambientTag: 
+  - ambientTag: Bosque
     channel: 0
     soundSettings:
       clip: {fileID: 0}

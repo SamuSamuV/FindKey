@@ -21,8 +21,19 @@ MonoBehaviour:
     nextNode: {fileID: 11400000, guid: c025f4fbc0256e6409ad6ae851005ccd, type: 2}
     actionType: 0
   popups: []
-  masterSound: {fileID: 0}
-  frontSound: {fileID: 0}
-  backSound: {fileID: 0}
-  leftSound: {fileID: 0}
-  rightSound: {fileID: 0}
+  nodeSounds: []
+  randomSounds:
+  - channel: 0
+    soundSettings:
+      clip: {fileID: 8300000, guid: 639e74610feb4634f8f50c97a6593baf, type: 3}
+      volume: 0.35
+      pitch: 0.49
+      loop: 0
+      fadeInDuration: 1
+      fadeOutDuration: 1
+    minInterval: 3
+    maxInterval: 0
+    playChance: 1
+  ambientSounds: []
+  aiMemoryLevel: 0
+  aiMemoryUpdate: 

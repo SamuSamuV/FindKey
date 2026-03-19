@@ -29,5 +29,16 @@ MonoBehaviour:
   popups: []
   nodeSounds: []
   randomSounds: []
+  ambientSounds:
+  - ambientTag: 
+    channel: 0
+    soundSettings:
+      clip: {fileID: 0}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+    stopAmbient: 0
   aiMemoryLevel: 0
   aiMemoryUpdate: 

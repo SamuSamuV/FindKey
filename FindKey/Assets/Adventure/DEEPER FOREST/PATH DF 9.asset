@@ -25,7 +25,40 @@ MonoBehaviour:
     nextNode: {fileID: 11400000, guid: 589decb06ef83dc4bb208f525f97b161, type: 2}
     actionType: 0
   popups: []
-  nodeSounds: []
+  nodeSounds:
+  - channel: 0
+    soundSettings:
+      clip: {fileID: 0}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - channel: 0
+    soundSettings:
+      clip: {fileID: 0}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - channel: 0
+    soundSettings:
+      clip: {fileID: 0}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - channel: 0
+    soundSettings:
+      clip: {fileID: 0}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
   randomSounds: []
+  ambientSounds: []
   aiMemoryLevel: 0
   aiMemoryUpdate: 
