@@ -28,7 +28,7 @@ MonoBehaviour:
     mientras la cuchilla vuelve a bajar, ara\xF1ando el hueso. La sangre te escurre
     por los dedos, tibia, lenta, empapando la tierra. Todo se distorsiona a tu alrededor:
     el aire, el sonido, la vida... antes de que el mundo se vuelva blanco otra vez.\n\nLa
-    luz se apaga por completo.\n\nTu vida termina aqu\xED.\r"
+    luz se apaga por completo. Tu vida termina aqu\xED.\r"
   options:
   - validInputs: {fileID: 0}
     nextNode: {fileID: 0}
@@ -46,8 +46,8 @@ MonoBehaviour:
   - channel: 0
     soundSettings:
       clip: {fileID: 8300000, guid: 5e5a6e8a247b3ef40b700da2ce956523, type: 3}
-      volume: 0.136
-      pitch: 0.93
+      volume: 0.042
+      pitch: 1.48
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
@@ -132,8 +132,8 @@ MonoBehaviour:
   - channel: 0
     soundSettings:
       clip: {fileID: 8300000, guid: 81e1bccafbe8e244fa6cf5546f5b3946, type: 3}
-      volume: 0.333
-      pitch: 0.49
+      volume: 0.062
+      pitch: 0.19
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0

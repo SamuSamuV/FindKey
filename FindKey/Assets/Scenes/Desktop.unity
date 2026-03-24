@@ -1645,21 +1645,21 @@ MonoBehaviour:
   sfxSource: {fileID: 0}
   baseFanSound:
     clip: {fileID: 8300000, guid: a6ffdc5c637f63a459fdc61aff6cbf33, type: 3}
-    volume: 0.053
-    pitch: 1.1
+    volume: 0.037
+    pitch: 0.99
     loop: 1
     fadeInDuration: 0
     fadeOutDuration: 0
   heavyLoadSounds:
   - clip: {fileID: 8300000, guid: b2648964014ba9e4fa5285266979c998, type: 3}
-    volume: 0.187
-    pitch: 1.45
+    volume: 0.109
+    pitch: 0.6
     loop: 1
     fadeInDuration: 2
     fadeOutDuration: 2
   maxWindowsForStress: 7
-  minCheckInterval: 4
-  maxCheckInterval: 8
+  minCheckInterval: 5
+  maxCheckInterval: 10
 --- !u!82 &665239588
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3729,6 +3729,22 @@ PrefabInstance:
     - target: {fileID: 2341691596137443408, guid: 886c8296032330c429dc82d31a294852, type: 3}
       propertyPath: m_Name
       value: CursorCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856590653022036730, guid: 886c8296032330c429dc82d31a294852, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 16.5557
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856590653022036730, guid: 886c8296032330c429dc82d31a294852, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 16.5557
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856590653022036730, guid: 886c8296032330c429dc82d31a294852, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 23.411
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856590653022036730, guid: 886c8296032330c429dc82d31a294852, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -3.4443
       objectReference: {fileID: 0}
     - target: {fileID: 9117008410888345160, guid: 886c8296032330c429dc82d31a294852, type: 3}
       propertyPath: m_Pivot.x
@@ -7336,6 +7352,54 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3647240764382206070, guid: cfa0ccc31ad1fd9459a0d0b585bd071a, type: 3}
+      propertyPath: failedTo.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 515d853210c2b394c8e9c7eeffe26f66, type: 3}
+    - target: {fileID: 3647240764382206070, guid: cfa0ccc31ad1fd9459a0d0b585bd071a, type: 3}
+      propertyPath: clickSound.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4f45aaee4e201f948bd934039c7919d1, type: 3}
+    - target: {fileID: 3647240764382206070, guid: cfa0ccc31ad1fd9459a0d0b585bd071a, type: 3}
+      propertyPath: closeSound.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8e4e952f6fa68bf478889bc81b0db93c, type: 3}
+    - target: {fileID: 3647240764382206070, guid: cfa0ccc31ad1fd9459a0d0b585bd071a, type: 3}
+      propertyPath: failedTo.volume
+      value: 0.041
+      objectReference: {fileID: 0}
+    - target: {fileID: 3647240764382206070, guid: cfa0ccc31ad1fd9459a0d0b585bd071a, type: 3}
+      propertyPath: clickSound.volume
+      value: 0.115
+      objectReference: {fileID: 0}
+    - target: {fileID: 3647240764382206070, guid: cfa0ccc31ad1fd9459a0d0b585bd071a, type: 3}
+      propertyPath: closeSound.volume
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 3647240764382206070, guid: cfa0ccc31ad1fd9459a0d0b585bd071a, type: 3}
+      propertyPath: minimizeSound.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 95ba4caedd481014a8c99f27b183c918, type: 3}
+    - target: {fileID: 3647240764382206070, guid: cfa0ccc31ad1fd9459a0d0b585bd071a, type: 3}
+      propertyPath: minimizeSound.volume
+      value: 0.098
+      objectReference: {fileID: 0}
+    - target: {fileID: 3647240764382206070, guid: cfa0ccc31ad1fd9459a0d0b585bd071a, type: 3}
+      propertyPath: failedTo.fadeOutDuration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3647240764382206070, guid: cfa0ccc31ad1fd9459a0d0b585bd071a, type: 3}
+      propertyPath: clickSound.fadeOutDuration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3647240764382206070, guid: cfa0ccc31ad1fd9459a0d0b585bd071a, type: 3}
+      propertyPath: closeSound.fadeOutDuration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3647240764382206070, guid: cfa0ccc31ad1fd9459a0d0b585bd071a, type: 3}
+      propertyPath: minimizeSound.fadeOutDuration
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4969346731173974800, guid: cfa0ccc31ad1fd9459a0d0b585bd071a, type: 3}
       propertyPath: m_Name
       value: SoundManager

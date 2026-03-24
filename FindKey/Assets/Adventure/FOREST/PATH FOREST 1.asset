@@ -49,8 +49,8 @@ MonoBehaviour:
       volume: 0.038
       pitch: 1.06
       loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
+      fadeInDuration: 1
+      fadeOutDuration: 1
     minInterval: 0
     maxInterval: 0
     playChance: 0.769
