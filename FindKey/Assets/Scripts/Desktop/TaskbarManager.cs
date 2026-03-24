@@ -8,7 +8,7 @@ public class TaskbarManager : MonoBehaviour
 {
     public static TaskbarManager Instance { get; private set; }
 
-    [Header("Menú de Inicio (Start Menu)")]
+    [Header("Menu de Inicio (Start Menu)")]
     public Button menuButton;
     public GameObject menuPanel;
     public Button shutDownButton;
@@ -19,7 +19,7 @@ public class TaskbarManager : MonoBehaviour
     public GameObject volumePanel;
     public Slider volumeSlider;
 
-    [Header("Fondos de Pantalla (En el menú)")]
+    [Header("Fondos de Pantalla (En el menu)")]
     public Transform wallpaperGrid;
     public GameObject wallpaperButtonPrefab;
     public WallpapersScript wallpapersScript;
@@ -92,7 +92,6 @@ public class TaskbarManager : MonoBehaviour
     public void ToggleMenu()
     {
         if (menuPanel == null) return;
-        if (SoundManager.Instance != null) SoundManager.Instance.Play("click");
 
         isMenuOpen = !isMenuOpen;
 
@@ -105,7 +104,6 @@ public class TaskbarManager : MonoBehaviour
     public void ToggleVolumeMenu()
     {
         if (volumePanel == null) return;
-        if (SoundManager.Instance != null) SoundManager.Instance.Play("click");
 
         isVolumeOpen = !isVolumeOpen;
 
@@ -169,7 +167,6 @@ public class TaskbarManager : MonoBehaviour
                 btn.onClick.AddListener(() =>
                 {
                     wallpapersScript.ChangeBackground(wallpaperToApply);
-                    if (SoundManager.Instance != null) SoundManager.Instance.Play("click");
                     ToggleMenu();
                 });
             }

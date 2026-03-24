@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class TextOnlyScroll : MonoBehaviour
 {
@@ -11,7 +12,18 @@ public class TextOnlyScroll : MonoBehaviour
     {
         tmpText.text += newText + "\n";
 
+        StartCoroutine(ScrollToBottom());
+    }
+
+    private IEnumerator ScrollToBottom()
+    {
         Canvas.ForceUpdateCanvases();
-        scrollRect.verticalNormalizedPosition = 0f;
+
+        yield return new WaitForEndOfFrame();
+
+        if (scrollRect != null)
+        {
+            scrollRect.verticalNormalizedPosition = 0f;
+        }
     }
 }

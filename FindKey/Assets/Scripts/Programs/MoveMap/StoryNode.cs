@@ -32,7 +32,6 @@ public class RandomNodeSoundAction
     [Range(0f, 1f)] public float playChance = 0.5f;
 }
 
-// --- NUEVA CLASE: SONIDOS PERSISTENTES ---
 [System.Serializable]
 public class AmbientSoundAction
 {
@@ -68,6 +67,11 @@ public class StoryNode : ScriptableObject
     [Space(20)]
     [Header("Persistent Ambient Sounds (Sobreviven entre nodos)")]
     public List<AmbientSoundAction> ambientSounds;
+
+    [Space(20)]
+    [Header("System OS Event")]
+    [Tooltip("Arrastra aquí un GameEvent. Se disparará automáticamente en cuanto el jugador llegue a este nodo.")]
+    public GameEvent onEnterEvent;
 
     [Space(20)]
     [Header("Actualización de Memoria IA (Fases)")]

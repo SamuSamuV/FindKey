@@ -146,6 +146,11 @@ public class AdventureManager : MonoBehaviour
             UpdateAmbientAudio(currentNode.ambientSounds);
 
             UpdateAIMemory(currentNode.aiMemoryUpdate, currentNode.aiMemoryLevel);
+
+            if (currentNode.onEnterEvent != null && EventManager.Instance != null)
+            {
+                EventManager.Instance.TriggerEvent(currentNode.onEnterEvent);
+            }
         }
     }
 

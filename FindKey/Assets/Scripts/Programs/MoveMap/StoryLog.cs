@@ -70,6 +70,23 @@ public class StoryLog : MonoBehaviour
 
         for (int i = 0; i < lineToAdd.Length; i++)
         {
+            if (lineToAdd[i] == '[')
+            {
+                int endIndex = lineToAdd.IndexOf("s]", i);
+                if (endIndex != -1)
+                {
+                    string possibleNumber = lineToAdd.Substring(i + 1, endIndex - (i + 1));
+
+                    if (float.TryParse(possibleNumber, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float pauseDuration))
+                    {
+                        yield return new WaitForSeconds(pauseDuration);
+
+                        i = endIndex + 1;
+                        continue;
+                    }
+                }
+            }
+
             char c = lineToAdd[i];
 
             if (c == '<') isInsideTag = true;
@@ -129,7 +146,17 @@ public class StoryLog : MonoBehaviour
     void UpdateLayout()
     {
         LayoutRebuilder.ForceRebuildLayoutImmediate(contentRect);
-        if (scrollView != null) scrollView.verticalNormalizedPosition = 0f;
+        StartCoroutine(ScrollToBottom());
+    }
+
+    private IEnumerator ScrollToBottom()
+    {
+        yield return new WaitForEndOfFrame();
+
+        if (scrollView != null)
+        {
+            scrollView.verticalNormalizedPosition = 0f;
+        }
     }
 
     public void SetTextAnimated(string text)

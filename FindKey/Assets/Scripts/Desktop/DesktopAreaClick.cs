@@ -9,7 +9,6 @@ public class DesktopAreaClick : MonoBehaviour, IPointerClickHandler
     {
         manager?.DeselectIcon();
 
-        SoundManager.Instance?.Play("click");
         TaskbarManager.GetOrFindInstance()?.CloseAllMenus();
     }
 }

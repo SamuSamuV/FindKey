@@ -26,8 +26,6 @@ public class TaskbarButton : MonoBehaviour
     {
         if (linkedWindow == null) return;
 
-        if (SoundManager.Instance != null) SoundManager.Instance.Play("click");
-
         linkedWindow.ToggleMinimizeRestore();
     }
 }
