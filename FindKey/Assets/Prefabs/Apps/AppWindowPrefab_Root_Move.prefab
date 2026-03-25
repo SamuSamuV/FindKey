@@ -2837,7 +2837,7 @@ MonoBehaviour:
   storyText: {fileID: 9028823120018757798}
   contentRect: {fileID: 5047089826580164884}
   scrollView: {fileID: 7764877742649569461}
-  typingSpeed: 0
+  typingSpeed: 0.023
   typingAudioSource: {fileID: 0}
   defaultTypingSound:
     clip: {fileID: 0}
