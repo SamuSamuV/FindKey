@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: 00_Start
   m_EditorClassIdentifier: 
-  storyText: "Despiertas en un bosque en mitad de la noche.  [1s]<br> El aire es
-    fr\xEDo, espeso, y huele a hojas h\xFAmedas y tierra removida, como si algo hubiera
-    estado escarbando hace poco.  [1s]No recuerdas c\xF3mo llegaste aqu\xED. A lo
-    lejos, entre los \xE1rboles, oyes ALGO: no es viento\u2026 el viento no respira.
-    A tu izquierda el bosque se vuelve m\xE1s frondoso y oscuro; al frente se abre
-    un claro donde la negrura refleja un lago inm\xF3vil; detr\xE1s de ti, los \xE1rboles
+  storyText: "Despiertas en un bosque en mitad de la noche.  [1s]<br>El aire es fr\xEDo,
+    espeso, y huele a hojas h\xFAmedas y tierra removida, como si algo hubiera estado
+    escarbando hace poco.  [1s]No recuerdas c\xF3mo llegaste aqu\xED. A lo lejos,
+    entre los \xE1rboles, oyes ALGO: no es viento\u2026 el viento no respira. A tu
+    izquierda el bosque se vuelve m\xE1s frondoso y oscuro; al frente se abre un
+    claro donde la negrura refleja un lago inm\xF3vil; detr\xE1s de ti, los \xE1rboles
     adelgazan hasta morir en campo abierto.\n\xBFVas a la izquierda, sigues al frente
     hacia el lago, o retrocedes atr\xE1s hacia el campo?"
   options:
@@ -26,7 +26,7 @@ MonoBehaviour:
     actionType: 0
   - validInputs: {fileID: 11400000, guid: ac428914eae63c4488c2d718afd0d788, type: 2}
     nextNode: {fileID: 11400000, guid: aa86f7e7fa1e27d45b71e86a25eeaee3, type: 2}
-    actionType: 0
+    actionType: 1
   - validInputs: {fileID: 11400000, guid: 59921cc1611cd494fa4c5de13ee9b91d, type: 2}
     nextNode: {fileID: 11400000, guid: c4de89f37867341488acc433d4adbbc4, type: 2}
     actionType: 0
