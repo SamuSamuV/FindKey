@@ -1634,32 +1634,216 @@ MonoBehaviour:
   defaultTypingSound:
     clip: {fileID: 0}
     volume: 1
-    pitch: 1
+    pitch: 1.12
     loop: 0
     fadeInDuration: 0
     fadeOutDuration: 0
   specificCharacterSounds:
-  - characters: 
+  - characters: aA
     sound:
-      clip: {fileID: 0}
+      clip: {fileID: 8300000, guid: 26097f06e1ea47a4fb47556e80a11d4e, type: 3}
       volume: 1
       pitch: 1
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
-  - characters: 
+  - characters: bB
     sound:
-      clip: {fileID: 0}
+      clip: {fileID: 8300000, guid: 9a1209679c9033d4ca4a88d7e83e19dc, type: 3}
       volume: 0
       pitch: 0
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
-  - characters: 
+  - characters: cC
     sound:
-      clip: {fileID: 0}
+      clip: {fileID: 8300000, guid: d99df51c97f64744791ae80751e780d2, type: 3}
       volume: 0
       pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: dD
+    sound:
+      clip: {fileID: 8300000, guid: 033ff793b099a28438027394ae0cc2cf, type: 3}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: eE
+    sound:
+      clip: {fileID: 8300000, guid: d1335d60bae561c4e9952f9f622faa93, type: 3}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: fF
+    sound:
+      clip: {fileID: 8300000, guid: e571e3c5ad08a1744b6d831ecb1471f6, type: 3}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: gG
+    sound:
+      clip: {fileID: 8300000, guid: 1d76ce1a5e7139745adaa75934c49354, type: 3}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: hH
+    sound:
+      clip: {fileID: 8300000, guid: 5bb09e0af753b614d816599ae967fb16, type: 3}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: iI
+    sound:
+      clip: {fileID: 8300000, guid: 24853b91dee0f234494b150712316cf8, type: 3}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: jJ
+    sound:
+      clip: {fileID: 8300000, guid: b323cee5e4f9e99429cb3c3063d6c3ab, type: 3}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: kK
+    sound:
+      clip: {fileID: 8300000, guid: 9a3a0eabced720344af0e6ff1d139767, type: 3}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: mM
+    sound:
+      clip: {fileID: 8300000, guid: 0a936fde2eebb7e45b665b020ac70a9e, type: 3}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: nN
+    sound:
+      clip: {fileID: 8300000, guid: d0d96a2b287d5e04db9d73da7ec07ff2, type: 3}
+      volume: 0
+      pitch: 0.1
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: "\xF1\xD1"
+    sound:
+      clip: {fileID: 8300000, guid: 1df873437da450d44bf7b42aa83e68a6, type: 3}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: oO
+    sound:
+      clip: {fileID: 8300000, guid: 149b513d03af7c7459575b0c8c8844a5, type: 3}
+      volume: 0
+      pitch: 0.1
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: pP
+    sound:
+      clip: {fileID: 8300000, guid: 114b61f3b2616884d94b9b21d8923eac, type: 3}
+      volume: 0
+      pitch: 0.1
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: qQ
+    sound:
+      clip: {fileID: 8300000, guid: 5d3b587bdb18cf44385892c25bee1a8d, type: 3}
+      volume: 0
+      pitch: 0.1
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: rR
+    sound:
+      clip: {fileID: 8300000, guid: 3cd5d373de341224abe4fc51dd702c03, type: 3}
+      volume: 0
+      pitch: 0.1
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: sS
+    sound:
+      clip: {fileID: 8300000, guid: 4e86738ae8612144f97007a2c3cbaceb, type: 3}
+      volume: 0
+      pitch: 0.1
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: tT
+    sound:
+      clip: {fileID: 8300000, guid: e3c2967e1622a47499af1dd3403a660c, type: 3}
+      volume: 0
+      pitch: 0.1
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: uU
+    sound:
+      clip: {fileID: 8300000, guid: 98c5b956b0fb3d84b9093c42f54f38cc, type: 3}
+      volume: 0
+      pitch: 0.1
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: wW
+    sound:
+      clip: {fileID: 8300000, guid: 1bdff91989a6f70459f805c3c89dcea9, type: 3}
+      volume: 0
+      pitch: 0.1
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: xX
+    sound:
+      clip: {fileID: 8300000, guid: 5728037296783ff4bac17882642865ca, type: 3}
+      volume: 0
+      pitch: 0.1
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: yY
+    sound:
+      clip: {fileID: 8300000, guid: ff7cef68ee9bff84c91117ad9a6f4ce5, type: 3}
+      volume: 0
+      pitch: 0.1
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: zZ
+    sound:
+      clip: {fileID: 8300000, guid: 11f5aff6a7b1bed48a39a0a48e297f78, type: 3}
+      volume: 0
+      pitch: 0.1
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: .,-:()
+    sound:
+      clip: {fileID: 8300000, guid: b15dd21171c0c6545b12244b606e148f, type: 3}
+      volume: 0
+      pitch: 0.1
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
