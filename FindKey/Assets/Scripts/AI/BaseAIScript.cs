@@ -18,7 +18,7 @@ public abstract class BaseAIScript : MonoBehaviour
     public string npcName;
     public string password;
     [TextArea(3, 5)] public string personalityPrompt;
-    [TextArea(3, 5)] public string firstMessage; // Ahora actúa como "Sugerencia" o fallback
+    [TextArea(3, 5)] public string firstMessage;
     [TextArea(5, 10)] public string systemInstruction;
 
     protected bool unlocked = false;
