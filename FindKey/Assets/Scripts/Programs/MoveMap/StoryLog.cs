@@ -193,7 +193,10 @@ public class StoryLog : MonoBehaviour
             StopCoroutine(typingCoroutine);
             typingCoroutine = null;
 
-            storyText.text = currentTargetText;
+            string cleanedText = System.Text.RegularExpressions.Regex.Replace(currentTargetText, @"\[\d+(\.\d+)?s\]", "");
+
+            storyText.text = cleanedText;
+
             UpdateLayout();
 
             currentCallback?.Invoke();
