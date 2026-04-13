@@ -16,8 +16,15 @@ public class SystemLoadManager : MonoBehaviour
     [Header("Configuración de Carga")]
     public int maxWindowsForStress = 7;
 
-    public float minCheckInterval = 3f;
-    public float maxCheckInterval = 8f;
+    public float minCheckInterval = 15f;
+    public float maxCheckInterval = 30f;
+
+    [Range(0f, 1f)]
+    public float maxStruggleChance = 0.4f;
+
+    public float cooldownAfterStruggle = 20f;
+
+    private bool isOnCooldown = false;
 
     private void Start()
     {
@@ -38,15 +45,20 @@ public class SystemLoadManager : MonoBehaviour
         {
             yield return new WaitForSeconds(Random.Range(minCheckInterval, maxCheckInterval));
 
+            if (isOnCooldown) continue;
+
             int openWindows = TaskbarManager.GetOrFindInstance() != null ? TaskbarManager.GetOrFindInstance().OpenAppCount : 0;
 
-            float loadPercentage = Mathf.Clamp01((float)openWindows / maxWindowsForStress);
-
-            float chanceOfStruggle = loadPercentage * 0.85f;
-
-            if (openWindows > 0 && Random.value < chanceOfStruggle)
+            if (openWindows > 0)
             {
-                TriggerSystemStruggle();
+                float loadPercentage = Mathf.Clamp01((float)openWindows / maxWindowsForStress);
+
+                float chanceOfStruggle = loadPercentage * maxStruggleChance;
+
+                if (Random.value < chanceOfStruggle)
+                {
+                    TriggerSystemStruggle();
+                }
             }
         }
     }
@@ -62,7 +74,10 @@ public class SystemLoadManager : MonoBehaviour
                 randomStruggleSound.PlayOn(sfxSource, true);
 
                 float duration = randomStruggleSound.clip.length / Mathf.Max(randomStruggleSound.pitch, 0.01f);
+
                 StartCoroutine(CursorLoadingRoutine(duration));
+
+                StartCoroutine(CooldownRoutine(duration + cooldownAfterStruggle));
             }
         }
     }
@@ -75,5 +90,12 @@ public class SystemLoadManager : MonoBehaviour
             yield return new WaitForSeconds(duration);
             CustomCursorManager.Instance.isLoading = false;
         }
+    }
+
+    private IEnumerator CooldownRoutine(float time)
+    {
+        isOnCooldown = true;
+        yield return new WaitForSeconds(time);
+        isOnCooldown = false;
     }
 }

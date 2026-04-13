@@ -2939,7 +2939,35 @@ MonoBehaviour:
     fadeInDuration: 0
     fadeOutDuration: 0
   specificCharacterSounds: []
+  narrativeSounds:
+  - clip: {fileID: 8300000, guid: 26097f06e1ea47a4fb47556e80a11d4e, type: 3}
+    volume: 0.051
+    pitch: 1
+    loop: 0
+    fadeInDuration: 0
+    fadeOutDuration: 0
+  - clip: {fileID: 8300000, guid: 149b513d03af7c7459575b0c8c8844a5, type: 3}
+    volume: 0.051
+    pitch: 1
+    loop: 0
+    fadeInDuration: 0
+    fadeOutDuration: 0
+  - clip: {fileID: 8300000, guid: b323cee5e4f9e99429cb3c3063d6c3ab, type: 3}
+    volume: 0.051
+    pitch: 0
+    loop: 0
+    fadeInDuration: 0
+    fadeOutDuration: 0
+  pitchVariation: 0.1
+  volumeVariation: 0.05
   lastLoadedText: 
+  parametrosGlobales:
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    fadeInDuration: 0
+    fadeOutDuration: 0
 --- !u!82 &8499642519515981860
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3386,7 +3414,17 @@ MonoBehaviour:
     fadeInDuration: 0
     fadeOutDuration: 0
   specificCharacterSounds: []
+  narrativeSounds: []
+  pitchVariation: 0.1
+  volumeVariation: 0.05
   lastLoadedText: 
+  parametrosGlobales:
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    fadeInDuration: 0
+    fadeOutDuration: 0
 --- !u!82 &6898757739325018627
 AudioSource:
   m_ObjectHideFlags: 0

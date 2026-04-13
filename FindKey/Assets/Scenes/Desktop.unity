@@ -1660,6 +1660,8 @@ MonoBehaviour:
   maxWindowsForStress: 7
   minCheckInterval: 5
   maxCheckInterval: 10
+  maxStruggleChance: 0.4
+  cooldownAfterStruggle: 20
 --- !u!82 &665239588
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4989,10 +4991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92b37fc53153e7c468713a594531423e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggers:
-  - condition: 1
-    targetAppName: Map
-    gameEventToTrigger: {fileID: 11400000, guid: 3449b38bb08488746a357d1eba2c2a2c, type: 2}
+  triggers: []
 --- !u!1 &1543119396
 GameObject:
   m_ObjectHideFlags: 0

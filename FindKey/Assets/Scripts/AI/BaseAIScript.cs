@@ -169,6 +169,7 @@ public abstract class BaseAIScript : MonoBehaviour
         System.Action onTypingFinished = () =>
         {
             visualController?.SetState(NPCVisualController.NPCState.Idle);
+
             if (inputField != null)
             {
                 inputField.gameObject.SetActive(true);
@@ -194,6 +195,9 @@ public abstract class BaseAIScript : MonoBehaviour
                 }
 
                 visualController?.SetState(NPCVisualController.NPCState.Talking, emo);
+
+                if (storyLog != null) storyLog.SetEmotion(emo);
+
                 AddLog(npcName, data.response, true, onTypingFinished);
             }
             else

@@ -754,7 +754,7 @@ MonoBehaviour:
     Si te insultan, no te enfadas, respondes con altura o iron\xEDa adolescente,
     pero sigues ayudando.\r\n\r\n[CONTEXT]\r\nEst\xE1s en una ventana de chat flotante.
     El jugador acaba de iniciar el sistema. Quieres caerle bien y que juegue a FindKey."
-  firstMessage: 
+  firstMessage: Presentate
   systemInstruction: "[FORMAT INSTRUCTION]\r\nYou MUST ALWAYS respond with a SINGLE
     valid JSON object. Do not add any text outside the JSON.\r\nThe JSON structure
     is:\r\n{\r\n  \"response\": \"Aqu\xED va tu di\xE1logo en espa\xF1ol\",\r\n 
@@ -1849,7 +1849,23 @@ MonoBehaviour:
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
+  narrativeSounds: []
+  pitchVariation: 0.1
+  volumeVariation: 0.05
+  happyShakeMagnitude: 1
+  happyShakeSpeed: 10
+  sadShakeMagnitude: 0.5
+  sadShakeSpeed: 2
+  neutralShakeMagnitude: 0
+  neutralShakeSpeed: 0
   lastLoadedText: 
+  parametrosGlobales:
+    clip: {fileID: 0}
+    volume: 0.051
+    pitch: 3
+    loop: 0
+    fadeInDuration: 0
+    fadeOutDuration: 0
 --- !u!82 &620403309057566
 AudioSource:
   m_ObjectHideFlags: 0
