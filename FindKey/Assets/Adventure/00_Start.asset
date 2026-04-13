@@ -34,21 +34,7 @@ MonoBehaviour:
   - validInputs: {fileID: 11400000, guid: d39a7c7997f8e6345bc05edb52e1f0be, type: 2}
     nextNode: {fileID: 11400000, guid: 589decb06ef83dc4bb208f525f97b161, type: 2}
     actionType: 0
-  popups:
-  - delayBeforeSpawn: 0
-    duration: 0
-    position: {x: 0, y: 0}
-    specificPrefab: {fileID: 0}
-    title: 
-    message: 
-    image: {fileID: 0}
-    sound:
-      clip: {fileID: 0}
-      volume: 0
-      pitch: 0
-      loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
+  popups: []
   nodeSounds:
   - channel: 0
     soundSettings:
