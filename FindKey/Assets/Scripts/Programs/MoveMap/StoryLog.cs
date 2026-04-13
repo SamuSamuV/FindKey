@@ -7,7 +7,6 @@ using UnityEngine.UI;
 [System.Serializable]
 public class CharSoundMapping
 {
-    [Header("Escribe las letras juntas sin espacios. Ej: aeiou")]
     public string characters;
     public SoundSettings sound;
 }
@@ -44,7 +43,9 @@ public class StoryLog : MonoBehaviour
 
     private float currentShakeMagnitude = 0f;
     private float currentShakeSpeed = 0f;
+
     private int wobbleStartIndex = 0;
+    private int wobbleEndIndex = -1;
 
     private Coroutine typingCoroutine;
     private string currentTargetText = "";
@@ -60,7 +61,10 @@ public class StoryLog : MonoBehaviour
         storyText.ForceMeshUpdate();
         TMP_TextInfo textInfo = storyText.textInfo;
 
-        for (int i = wobbleStartIndex; i < textInfo.characterCount; i++)
+        int endIndex = wobbleEndIndex == -1 ? textInfo.characterCount : wobbleEndIndex;
+        endIndex = Mathf.Min(endIndex, textInfo.characterCount);
+
+        for (int i = wobbleStartIndex; i < endIndex; i++)
         {
             TMP_CharacterInfo charInfo = textInfo.characterInfo[i];
             if (!charInfo.isVisible) continue;
@@ -71,9 +75,7 @@ public class StoryLog : MonoBehaviour
             Vector3[] sourceVertices = textInfo.meshInfo[materialIndex].vertices;
 
             float offsetX = 0f;
-
             float offsetY = Mathf.Sin(Time.time * currentShakeSpeed + (i * 12.3f)) * currentShakeMagnitude;
-
             Vector3 offset = new Vector3(offsetX, offsetY, 0);
 
             sourceVertices[vertexIndex + 0] += offset;
@@ -119,6 +121,13 @@ public class StoryLog : MonoBehaviour
     public void AddLine(string text)
     {
         if (typingCoroutine != null) StopCoroutine(typingCoroutine);
+
+        storyText.ForceMeshUpdate();
+        if (wobbleEndIndex == -1)
+        {
+            wobbleEndIndex = storyText.textInfo.characterCount;
+        }
+
         if (storyText.text.Length > 0) storyText.text += "\n";
         storyText.text += text;
         UpdateLayout();
@@ -127,6 +136,10 @@ public class StoryLog : MonoBehaviour
     public void SetText(string text)
     {
         if (typingCoroutine != null) StopCoroutine(typingCoroutine);
+
+        wobbleStartIndex = 0;
+        wobbleEndIndex = text.Length;
+
         storyText.text = text;
         UpdateLayout();
     }
@@ -139,6 +152,7 @@ public class StoryLog : MonoBehaviour
 
         storyText.ForceMeshUpdate();
         wobbleStartIndex = storyText.textInfo.characterCount;
+        wobbleEndIndex = -1;
 
         currentTargetText = storyText.text + (storyText.text.Length > 0 ? "\n" : "") + text;
         currentCallback = onFinished;
@@ -154,6 +168,7 @@ public class StoryLog : MonoBehaviour
         storyText.text = "";
 
         wobbleStartIndex = 0;
+        wobbleEndIndex = -1;
 
         currentTargetText = text;
         currentCallback = null;
@@ -170,14 +185,14 @@ public class StoryLog : MonoBehaviour
         {
             if (lineToAdd[i] == '[')
             {
-                int endIndex = lineToAdd.IndexOf("s]", i);
-                if (endIndex != -1)
+                int endIndexTag = lineToAdd.IndexOf("s]", i);
+                if (endIndexTag != -1)
                 {
-                    string possibleNumber = lineToAdd.Substring(i + 1, endIndex - (i + 1));
+                    string possibleNumber = lineToAdd.Substring(i + 1, endIndexTag - (i + 1));
                     if (float.TryParse(possibleNumber, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float pauseDuration))
                     {
                         yield return new WaitForSeconds(pauseDuration);
-                        i = endIndex + 1;
+                        i = endIndexTag + 1;
                         continue;
                     }
                 }
