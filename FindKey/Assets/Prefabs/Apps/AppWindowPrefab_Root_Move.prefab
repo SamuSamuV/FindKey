@@ -2929,7 +2929,7 @@ MonoBehaviour:
   storyText: {fileID: 9028823120018757798}
   contentRect: {fileID: 5047089826580164884}
   scrollView: {fileID: 7764877742649569461}
-  typingSpeed: 0
+  typingSpeed: 0.018
   typingAudioSource: {fileID: 8499642519515981860}
   defaultTypingSound:
     clip: {fileID: 0}
