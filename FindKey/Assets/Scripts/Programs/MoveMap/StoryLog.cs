@@ -54,19 +54,48 @@ public class StoryLog : MonoBehaviour
 
     public void AddLineAnimated(string text, System.Action onFinished = null)
     {
+        AddLineAnimated(text, 0f, onFinished);
+    }
+
+    public void AddLineAnimated(string text, float customSpeed, System.Action onFinished = null)
+    {
         if (typingCoroutine != null) StopCoroutine(typingCoroutine);
 
         currentTargetText = storyText.text + (storyText.text.Length > 0 ? "\n" : "") + text;
         currentCallback = onFinished;
 
-        typingCoroutine = StartCoroutine(TypewriterRoutine(text, onFinished));
+        typingCoroutine = StartCoroutine(TypewriterRoutine(text, customSpeed, onFinished));
     }
 
-    IEnumerator TypewriterRoutine(string lineToAdd, System.Action onFinished = null)
+    public void SetTextAnimated(string text)
+    {
+        SetTextAnimated(text, 0f);
+    }
+
+    public void SetTextAnimated(string text, float customSpeed)
+    {
+        if (!text.Contains("You can't do that here."))
+        {
+            lastLoadedText = text;
+        }
+
+        if (typingCoroutine != null) StopCoroutine(typingCoroutine);
+
+        storyText.text = "";
+
+        currentTargetText = text;
+        currentCallback = null;
+
+        typingCoroutine = StartCoroutine(TypewriterRoutine(text, customSpeed));
+    }
+
+    IEnumerator TypewriterRoutine(string lineToAdd, float customSpeed, System.Action onFinished = null)
     {
         if (storyText.text.Length > 0) storyText.text += "\n";
 
         bool isInsideTag = false;
+
+        float activeSpeed = customSpeed > 0f ? customSpeed : typingSpeed;
 
         for (int i = 0; i < lineToAdd.Length; i++)
         {
@@ -97,7 +126,7 @@ public class StoryLog : MonoBehaviour
             {
                 PlayTypingSound(c);
                 UpdateLayout();
-                yield return new WaitForSeconds(typingSpeed);
+                yield return new WaitForSeconds(activeSpeed);
             }
         }
 
@@ -137,10 +166,8 @@ public class StoryLog : MonoBehaviour
 
     void PlayCleanTypingSound(SoundSettings sound)
     {
-        typingAudioSource.clip = sound.clip;
-        typingAudioSource.volume = sound.volume;
         typingAudioSource.pitch = sound.pitch;
-        typingAudioSource.Play();
+        typingAudioSource.PlayOneShot(sound.clip, sound.volume);
     }
 
     void UpdateLayout()
@@ -157,23 +184,6 @@ public class StoryLog : MonoBehaviour
         {
             scrollView.verticalNormalizedPosition = 0f;
         }
-    }
-
-    public void SetTextAnimated(string text)
-    {
-        if (!text.Contains("You can't do that here."))
-        {
-            lastLoadedText = text;
-        }
-
-        if (typingCoroutine != null) StopCoroutine(typingCoroutine);
-
-        storyText.text = "";
-
-        currentTargetText = text;
-        currentCallback = null;
-
-        typingCoroutine = StartCoroutine(TypewriterRoutine(text));
     }
 
     private void OnDisable()

@@ -6,25 +6,37 @@ public class NPCVisualController : MonoBehaviour
 {
     public Image npcImage;
 
-    [Header("Sprites de Estado")]
-    public Sprite idleSprite;
-    public Sprite thinkingSprite;
-    public Sprite blinkSprite;
+    [Header("Configuración General")]
+    public float animationSpeed = 0.1f;
 
-    [Header("Animación Hablando")]
-    public Sprite[] talkingSprites;
-    public float talkAnimationSpeed = 0.15f;
+    [Header("Animaciones: Idle & Pensando")]
+    public Sprite[] idleSprites;
+    public Sprite[] idleBlinkSprites;
+    public Sprite[] thinkingSprites;
+
+    [Header("Animaciones: Hablando (Neutral)")]
+    public Sprite[] neutralTalkSprites;
+    public Sprite[] neutralTalkBlinkSprites;
+
+    [Header("Animaciones: Hablando (Happy)")]
+    public Sprite[] happyTalkSprites;
+    public Sprite[] happyTalkBlinkSprites;
+
+    [Header("Animaciones: Hablando (Sad)")]
+    public Sprite[] sadTalkSprites;
+    public Sprite[] sadTalkBlinkSprites;
 
     [Header("Configuración Parpadeo")]
-    public float blinkDuration = 0.15f;
     public float blinkCheckInterval = 3f;
-    [Range(0f, 1f)] public float blinkChance = 0.2f;
+    [Range(0f, 1f)] public float blinkChance = 0.3f;
 
     public enum NPCState { Idle, Thinking, Talking }
-    private NPCState currentState = NPCState.Idle;
+    public enum NPCEmotion { Neutral, Happy, Sad }
 
-    private Coroutine talkCoroutine;
-    private Coroutine blinkCoroutine;
+    private NPCState currentState = NPCState.Idle;
+    private NPCEmotion currentEmotion = NPCEmotion.Neutral;
+
+    private Coroutine animationCoroutine;
 
     private void Start()
     {
@@ -32,64 +44,82 @@ public class NPCVisualController : MonoBehaviour
         SetState(NPCState.Idle);
     }
 
-    public void SetState(NPCState newState)
+    public void SetState(NPCState newState, NPCEmotion newEmotion = NPCEmotion.Neutral)
     {
         currentState = newState;
+        currentEmotion = newEmotion;
 
-        if (talkCoroutine != null) StopCoroutine(talkCoroutine);
-        if (blinkCoroutine != null) StopCoroutine(blinkCoroutine);
-
-        switch (newState)
-        {
-            case NPCState.Idle:
-                if (idleSprite) npcImage.sprite = idleSprite;
-                blinkCoroutine = StartCoroutine(IdleBlinkRoutine());
-                break;
-
-            case NPCState.Thinking:
-                if (thinkingSprite) npcImage.sprite = thinkingSprite;
-                break;
-
-            case NPCState.Talking:
-                if (talkingSprites != null && talkingSprites.Length > 0)
-                {
-                    talkCoroutine = StartCoroutine(TalkRoutine());
-                }
-
-                else
-                {
-                    if (idleSprite) npcImage.sprite = idleSprite;
-                }
-
-                break;
-        }
+        if (animationCoroutine != null) StopCoroutine(animationCoroutine);
+        animationCoroutine = StartCoroutine(AnimationRoutine());
     }
 
-    private IEnumerator TalkRoutine()
+    private IEnumerator AnimationRoutine()
     {
-        int index = 0;
+        int frameIndex = 0;
+        float timeSinceLastBlink = 0f;
+
         while (true)
         {
-            npcImage.sprite = talkingSprites[index];
-            index++;
-            if (index >= talkingSprites.Length) index = 0;
+            Sprite[] currentAnim = GetCurrentAnimation(out Sprite[] currentBlink);
 
-            yield return new WaitForSeconds(talkAnimationSpeed);
-        }
-    }
-
-    private IEnumerator IdleBlinkRoutine()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(blinkCheckInterval);
-
-            if (Random.value <= blinkChance && blinkSprite != null)
+            if (currentAnim == null || currentAnim.Length == 0)
             {
-                npcImage.sprite = blinkSprite;
-                yield return new WaitForSeconds(blinkDuration);
+                yield return null;
+                continue;
+            }
 
-                npcImage.sprite = idleSprite;
+            timeSinceLastBlink += animationSpeed;
+            if (timeSinceLastBlink >= blinkCheckInterval)
+            {
+                timeSinceLastBlink = 0f;
+                if (Random.value <= blinkChance && currentBlink != null && currentBlink.Length > 0)
+                {
+                    for (int i = 0; i < currentBlink.Length; i++)
+                    {
+                        npcImage.sprite = currentBlink[i];
+                        yield return new WaitForSeconds(animationSpeed);
+                    }
+                    continue;
+                }
+            }
+
+            if (frameIndex >= currentAnim.Length) frameIndex = 0;
+            npcImage.sprite = currentAnim[frameIndex];
+            frameIndex++;
+
+            yield return new WaitForSeconds(animationSpeed);
+        }
+    }
+
+    private Sprite[] GetCurrentAnimation(out Sprite[] blinkAnim)
+    {
+        blinkAnim = null;
+
+        if (currentState == NPCState.Idle)
+        {
+            blinkAnim = idleBlinkSprites;
+            return idleSprites;
+        }
+
+        else if (currentState == NPCState.Thinking)
+        {
+            return thinkingSprites;
+        }
+
+        else
+        {
+            switch (currentEmotion)
+            {
+                case NPCEmotion.Happy:
+                    blinkAnim = happyTalkBlinkSprites;
+                    return happyTalkSprites;
+                case NPCEmotion.Sad:
+                    blinkAnim = sadTalkBlinkSprites;
+                    return sadTalkSprites;
+                case NPCEmotion.Neutral:
+                default:
+                    blinkAnim = neutralTalkBlinkSprites;
+                    return neutralTalkSprites;
             }
         }
     }

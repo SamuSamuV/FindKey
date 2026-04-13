@@ -48,10 +48,15 @@ public class AmbientSoundAction
 [CreateAssetMenu(fileName = "NewStoryNode", menuName = "Adventure/Story Node")]
 public class StoryNode : ScriptableObject
 {
-    [TextArea(5, 10)]
+[TextArea(5, 10)]
     public string storyText;
-    public List<StoryOption> options;
 
+    [Space(10)]
+    [Header("Text Settings")]
+    [Tooltip("Velocidad de escritura para este nodo. Si dejas 0, usará la velocidad normal del StoryLog.")]
+    public float customTypingSpeed = 0f;
+
+    public List<StoryOption> options;
     [Space(20)]
     [Header("Popups Sequence")]
     public List<PopupData> popups;

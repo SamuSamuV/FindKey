@@ -131,7 +131,7 @@ public class AdventureManager : MonoBehaviour
     {
         if (currentNode != null)
         {
-            storyLog.SetTextAnimated(currentNode.storyText);
+            storyLog.SetTextAnimated(currentNode.storyText, currentNode.customTypingSpeed);
 
             if (popupSequenceCoroutine != null) StopCoroutine(popupSequenceCoroutine);
 

@@ -18,7 +18,7 @@ public abstract class BaseAIScript : MonoBehaviour
     public string npcName;
     public string password;
     [TextArea(3, 5)] public string personalityPrompt;
-    [TextArea(3, 5)] public string firstMessage;
+    [TextArea(3, 5)] public string firstMessage; // Ahora actúa como "Sugerencia" o fallback
     [TextArea(5, 10)] public string systemInstruction;
 
     protected bool unlocked = false;
@@ -33,6 +33,7 @@ public abstract class BaseAIScript : MonoBehaviour
     {
         public string response;
         public string action;
+        public string emotion;
     }
 
     public abstract void InitNPC();
@@ -64,14 +65,30 @@ public abstract class BaseAIScript : MonoBehaviour
     {
         if (inputField != null) inputField.onSubmit.AddListener(OnInputSubmit);
 
-        if (!string.IsNullOrEmpty(firstMessage))
-        {
-            AddLog(npcName, firstMessage);
-        }
+        GenerateAIGreeting();
 
         GameObject goMoveAppData = GameObject.FindGameObjectWithTag("MoveAppData");
         if (goMoveAppData != null)
             moveAppData = goMoveAppData.GetComponent<MoveAppData>();
+    }
+
+    protected void GenerateAIGreeting()
+    {
+        if (inputField != null) inputField.gameObject.SetActive(false);
+        visualController?.SetState(NPCVisualController.NPCState.Thinking);
+
+        string greetingInstruction = string.IsNullOrEmpty(firstMessage)
+            ? "Saluda al jugador y preséntate."
+            : firstMessage;
+
+        string firstPrompt = personalityPrompt + " " + systemInstruction +
+            "\n\n[SYSTEM INSTRUCTION FOR YOUR FIRST MESSAGE]: " + greetingInstruction +
+            "\n\nRemember: Respond ONLY with a valid JSON object.";
+
+        if (ollamaClient != null)
+        {
+            StartCoroutine(ollamaClient.SendPrompt(firstPrompt, OnAIResponse, OnAIError));
+        }
     }
 
     protected virtual void OnDestroy()
@@ -86,12 +103,9 @@ public abstract class BaseAIScript : MonoBehaviour
         if (memoryLevel > currentMemoryLevel)
         {
             currentMemoryLevel = memoryLevel;
-
             permanentInjectedMemory += $"\n- {newMemory}";
-
             conversationHistory += $"\n[NOTIFICACIÓN DEL SISTEMA: {newMemory}]\n";
-
-            Debug.Log($"[{npcName}] NUEVA FASE ALCANZADA (Nivel {memoryLevel}). Memoria asimilada: {newMemory}");
+            Debug.Log($"[{npcName}] NUEVA FASE ALCANZADA. Memoria asimilada: {newMemory}");
         }
     }
 
@@ -112,30 +126,19 @@ public abstract class BaseAIScript : MonoBehaviour
 
         visualController?.SetState(NPCVisualController.NPCState.Thinking);
 
-        string finalPrompt = "";
-        string baseInstructions = personalityPrompt + " " + systemInstruction;
+        string finalPrompt = personalityPrompt + " " + systemInstruction;
 
         if (!string.IsNullOrEmpty(permanentInjectedMemory))
         {
-            baseInstructions += "\n\n[DATOS IMPORTANTES DE LA FASE ACTUAL QUE DEBES RECORDAR]:" + permanentInjectedMemory;
+            finalPrompt += "\n\n[DATOS IMPORTANTES DE LA FASE ACTUAL]:" + permanentInjectedMemory;
         }
 
         if (!unlocked && IsPasswordSaid(text))
         {
-            finalPrompt = baseInstructions +
-                "\n\n[SYSTEM OVERRIDE]: The player just said the correct password (" + password + "). " +
-                "You MUST accept it. " +
-                "1. Your text response MUST be admitting them in. " +
-                "2. Your JSON 'action' MUST be 'open_door'. " +
-                "Conversation:\n" + conversationHistory + $"\n{npcName}:";
+            finalPrompt += "\n\n[SYSTEM OVERRIDE]: Password correct (" + password + "). Admit them in. Action: 'open_door'.";
         }
-        else
-        {
-            if (unlocked) baseInstructions += "\n(The door is already open).";
 
-            finalPrompt = baseInstructions +
-                "\n\nConversation so far:\n" + conversationHistory + $"\n{npcName}:";
-        }
+        finalPrompt += "\n\nConversation history:\n" + conversationHistory + $"\n{npcName}:";
 
         if (ollamaClient != null)
         {
@@ -151,6 +154,8 @@ public abstract class BaseAIScript : MonoBehaviour
 
     protected void OnAIResponse(string raw)
     {
+        Debug.Log($"<color=cyan>[AI JSON]:</color> {raw}");
+
         if (string.IsNullOrEmpty(raw))
         {
             visualController?.SetState(NPCVisualController.NPCState.Idle);
@@ -164,7 +169,6 @@ public abstract class BaseAIScript : MonoBehaviour
         System.Action onTypingFinished = () =>
         {
             visualController?.SetState(NPCVisualController.NPCState.Idle);
-
             if (inputField != null)
             {
                 inputField.gameObject.SetActive(true);
@@ -181,7 +185,15 @@ public abstract class BaseAIScript : MonoBehaviour
         {
             if (!string.IsNullOrEmpty(data.response))
             {
-                visualController?.SetState(NPCVisualController.NPCState.Talking);
+                NPCVisualController.NPCEmotion emo = NPCVisualController.NPCEmotion.Neutral;
+                if (!string.IsNullOrEmpty(data.emotion))
+                {
+                    string parsedEmo = data.emotion.ToLower().Trim();
+                    if (parsedEmo == "happy") emo = NPCVisualController.NPCEmotion.Happy;
+                    else if (parsedEmo == "sad") emo = NPCVisualController.NPCEmotion.Sad;
+                }
+
+                visualController?.SetState(NPCVisualController.NPCState.Talking, emo);
                 AddLog(npcName, data.response, true, onTypingFinished);
             }
             else
@@ -206,7 +218,6 @@ public abstract class BaseAIScript : MonoBehaviour
     protected void OnAIError(string err)
     {
         visualController?.SetState(NPCVisualController.NPCState.Idle);
-
         if (storyLog != null) storyLog.AddLine($"<color=red>Error: {err}</color>");
         if (inputField != null)
         {
@@ -264,7 +275,7 @@ public abstract class BaseAIScript : MonoBehaviour
         catch { }
 
         var m = Regex.Match(raw, "\"response\"\\s*:\\s*\"(.*?)\"", RegexOptions.Singleline);
-        if (m.Success) return new AIResponse { response = Regex.Unescape(m.Groups[1].Value), action = "none" };
+        if (m.Success) return new AIResponse { response = Regex.Unescape(m.Groups[1].Value), action = "none", emotion = "neutral" };
 
         return null;
     }

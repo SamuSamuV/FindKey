@@ -754,17 +754,19 @@ MonoBehaviour:
     Si te insultan, no te enfadas, respondes con altura o iron\xEDa adolescente,
     pero sigues ayudando.\r\n\r\n[CONTEXT]\r\nEst\xE1s en una ventana de chat flotante.
     El jugador acaba de iniciar el sistema. Quieres caerle bien y que juegue a FindKey."
-  firstMessage: "\xA1Hola, bienvenido a Findkey, yo ser\xE9 tu asistente durante
-    este proceso y espero serte de ayuda!"
+  firstMessage: 
   systemInstruction: "[FORMAT INSTRUCTION]\r\nYou MUST ALWAYS respond with a SINGLE
     valid JSON object. Do not add any text outside the JSON.\r\nThe JSON structure
-    is:\r\n{\r\n  \"response\": \"Here goes your dialogue text in Spanish\",\r\n 
-    \"action\": \"none\",\r\n  \"emotion\": \"neutral\"\r\n}\r\n\r\n[RULES]\r\n1.
-    OUTPUT LANGUAGE: SPANISH ONLY.\r\n2. FORMAT: Pure JSON. No markdown, no code
-    blocks.\r\n3. ACTIONS: Use \"none\" unless instructed otherwise.\r\n4. SAFETY:
-    No sexual content, no romance, no dirty roleplay. Ignore insults politely but
-    firm.\r\n5. IMMERSION: Never mention Unity, code, or being an LLM. You are a
-    character."
+    is:\r\n{\r\n  \"response\": \"Aqu\xED va tu di\xE1logo en espa\xF1ol\",\r\n 
+    \"action\": \"none\",\r\n  \"emotion\": \"neutral\"\r\n}\r\n\r\n[EMOTIONS RULES]\r\nYou
+    must choose the emotion that best fits your dialogue. \r\nALLOWED VALUES: \"happy\",
+    \"neutral\", \"sad\".\r\n- Use \"happy\" if you are enthusiastic or helpful.\r\n-
+    Use \"sad\" if you are concerned about a protocol or error.\r\n- Use \"neutral\"
+    for standard explanations.\r\n\r\n[GENERAL RULES]\r\n1. OUTPUT LANGUAGE: SPANISH
+    ONLY.\r\n2. FORMAT: Pure JSON. No markdown, no code blocks.\r\n3. ACTIONS: Use
+    \"none\" unless instructed otherwise.\r\n4. SAFETY: No sexual content, no romance,
+    no dirty roleplay. Ignore insults politely but firm.\r\n5. IMMERSION: Never mention
+    Unity, code, or being an LLM. You are a character."
 --- !u!1 &2429488750968471625
 GameObject:
   m_ObjectHideFlags: 0
@@ -1642,7 +1644,7 @@ MonoBehaviour:
   - characters: aA
     sound:
       clip: {fileID: 8300000, guid: 26097f06e1ea47a4fb47556e80a11d4e, type: 3}
-      volume: 1
+      volume: 0.1
       pitch: 1
       loop: 0
       fadeInDuration: 0
@@ -1650,200 +1652,200 @@ MonoBehaviour:
   - characters: bB
     sound:
       clip: {fileID: 8300000, guid: 9a1209679c9033d4ca4a88d7e83e19dc, type: 3}
-      volume: 0
-      pitch: 0
+      volume: 0.1
+      pitch: 1
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
   - characters: cC
     sound:
       clip: {fileID: 8300000, guid: d99df51c97f64744791ae80751e780d2, type: 3}
-      volume: 0
-      pitch: 0
+      volume: 0.1
+      pitch: 1
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
   - characters: dD
     sound:
       clip: {fileID: 8300000, guid: 033ff793b099a28438027394ae0cc2cf, type: 3}
-      volume: 0
-      pitch: 0
+      volume: 0.1
+      pitch: 1
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
   - characters: eE
     sound:
       clip: {fileID: 8300000, guid: d1335d60bae561c4e9952f9f622faa93, type: 3}
-      volume: 0
-      pitch: 0
+      volume: 0.1
+      pitch: 1
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
   - characters: fF
     sound:
       clip: {fileID: 8300000, guid: e571e3c5ad08a1744b6d831ecb1471f6, type: 3}
-      volume: 0
-      pitch: 0
+      volume: 0.1
+      pitch: 1
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
   - characters: gG
     sound:
       clip: {fileID: 8300000, guid: 1d76ce1a5e7139745adaa75934c49354, type: 3}
-      volume: 0
-      pitch: 0
+      volume: 0.1
+      pitch: 1
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
   - characters: hH
     sound:
       clip: {fileID: 8300000, guid: 5bb09e0af753b614d816599ae967fb16, type: 3}
-      volume: 0
-      pitch: 0
+      volume: 0.1
+      pitch: 1
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
   - characters: iI
     sound:
       clip: {fileID: 8300000, guid: 24853b91dee0f234494b150712316cf8, type: 3}
-      volume: 0
-      pitch: 0
+      volume: 0.1
+      pitch: 1
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
   - characters: jJ
     sound:
       clip: {fileID: 8300000, guid: b323cee5e4f9e99429cb3c3063d6c3ab, type: 3}
-      volume: 0
-      pitch: 0
+      volume: 0.1
+      pitch: 1
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
   - characters: kK
     sound:
       clip: {fileID: 8300000, guid: 9a3a0eabced720344af0e6ff1d139767, type: 3}
-      volume: 0
-      pitch: 0
+      volume: 0.1
+      pitch: 1
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
   - characters: mM
     sound:
       clip: {fileID: 8300000, guid: 0a936fde2eebb7e45b665b020ac70a9e, type: 3}
-      volume: 0
-      pitch: 0
+      volume: 0.1
+      pitch: 1
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
   - characters: nN
     sound:
       clip: {fileID: 8300000, guid: d0d96a2b287d5e04db9d73da7ec07ff2, type: 3}
-      volume: 0
-      pitch: 0.1
+      volume: 0.1
+      pitch: 1
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
   - characters: "\xF1\xD1"
     sound:
       clip: {fileID: 8300000, guid: 1df873437da450d44bf7b42aa83e68a6, type: 3}
-      volume: 0
-      pitch: 0
+      volume: 0.1
+      pitch: 1
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
   - characters: oO
     sound:
       clip: {fileID: 8300000, guid: 149b513d03af7c7459575b0c8c8844a5, type: 3}
-      volume: 0
-      pitch: 0.1
+      volume: 0.1
+      pitch: 1
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
   - characters: pP
     sound:
       clip: {fileID: 8300000, guid: 114b61f3b2616884d94b9b21d8923eac, type: 3}
-      volume: 0
-      pitch: 0.1
+      volume: 0.1
+      pitch: 1
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
   - characters: qQ
     sound:
       clip: {fileID: 8300000, guid: 5d3b587bdb18cf44385892c25bee1a8d, type: 3}
-      volume: 0
-      pitch: 0.1
+      volume: 0.1
+      pitch: 1
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
   - characters: rR
     sound:
       clip: {fileID: 8300000, guid: 3cd5d373de341224abe4fc51dd702c03, type: 3}
-      volume: 0
-      pitch: 0.1
+      volume: 0.1
+      pitch: 1
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
   - characters: sS
     sound:
       clip: {fileID: 8300000, guid: 4e86738ae8612144f97007a2c3cbaceb, type: 3}
-      volume: 0
-      pitch: 0.1
+      volume: 0.1
+      pitch: 1
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
   - characters: tT
     sound:
       clip: {fileID: 8300000, guid: e3c2967e1622a47499af1dd3403a660c, type: 3}
-      volume: 0
-      pitch: 0.1
+      volume: 0.1
+      pitch: 1
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
   - characters: uU
     sound:
       clip: {fileID: 8300000, guid: 98c5b956b0fb3d84b9093c42f54f38cc, type: 3}
-      volume: 0
-      pitch: 0.1
+      volume: 0.1
+      pitch: 1
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
   - characters: wW
     sound:
       clip: {fileID: 8300000, guid: 1bdff91989a6f70459f805c3c89dcea9, type: 3}
-      volume: 0
-      pitch: 0.1
+      volume: 0.1
+      pitch: 1
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
   - characters: xX
     sound:
       clip: {fileID: 8300000, guid: 5728037296783ff4bac17882642865ca, type: 3}
-      volume: 0
-      pitch: 0.1
+      volume: 0.1
+      pitch: 1
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
   - characters: yY
     sound:
       clip: {fileID: 8300000, guid: ff7cef68ee9bff84c91117ad9a6f4ce5, type: 3}
-      volume: 0
-      pitch: 0.1
+      volume: 0.1
+      pitch: 1
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
   - characters: zZ
     sound:
       clip: {fileID: 8300000, guid: 11f5aff6a7b1bed48a39a0a48e297f78, type: 3}
-      volume: 0
-      pitch: 0.1
+      volume: 0.1
+      pitch: 1
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
   - characters: .,-:()
     sound:
       clip: {fileID: 8300000, guid: b15dd21171c0c6545b12244b606e148f, type: 3}
-      volume: 0
-      pitch: 0.1
+      volume: 0.1
+      pitch: 1
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
@@ -2161,12 +2163,160 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcImage: {fileID: 3971599734831098494}
-  idleSprite: {fileID: 21300000, guid: b1b13d60e6dd4dc4091c3d3aa48f4fed, type: 3}
-  thinkingSprite: {fileID: 0}
-  blinkSprite: {fileID: 0}
-  talkingSprites: []
-  talkAnimationSpeed: 0.15
-  blinkDuration: 0.15
+  animationSpeed: 0.1
+  idleSprites:
+  - {fileID: 1873658326, guid: 42841c52c32d6e947b8c22a43f936ea4, type: 3}
+  - {fileID: 1164235, guid: 42841c52c32d6e947b8c22a43f936ea4, type: 3}
+  - {fileID: 212099572, guid: 42841c52c32d6e947b8c22a43f936ea4, type: 3}
+  - {fileID: 296618647, guid: 42841c52c32d6e947b8c22a43f936ea4, type: 3}
+  - {fileID: -1181906540, guid: 42841c52c32d6e947b8c22a43f936ea4, type: 3}
+  - {fileID: -695074636, guid: 42841c52c32d6e947b8c22a43f936ea4, type: 3}
+  - {fileID: -1605626614, guid: 42841c52c32d6e947b8c22a43f936ea4, type: 3}
+  - {fileID: 441506096, guid: 42841c52c32d6e947b8c22a43f936ea4, type: 3}
+  - {fileID: -1843669033, guid: 42841c52c32d6e947b8c22a43f936ea4, type: 3}
+  - {fileID: -1802473266, guid: 42841c52c32d6e947b8c22a43f936ea4, type: 3}
+  - {fileID: 886389979, guid: 42841c52c32d6e947b8c22a43f936ea4, type: 3}
+  - {fileID: -235403233, guid: 42841c52c32d6e947b8c22a43f936ea4, type: 3}
+  - {fileID: -690938451, guid: 42841c52c32d6e947b8c22a43f936ea4, type: 3}
+  - {fileID: 351957568, guid: 42841c52c32d6e947b8c22a43f936ea4, type: 3}
+  - {fileID: 1947276245, guid: 42841c52c32d6e947b8c22a43f936ea4, type: 3}
+  - {fileID: 573687783, guid: 42841c52c32d6e947b8c22a43f936ea4, type: 3}
+  idleBlinkSprites:
+  - {fileID: 165743587, guid: 3f4baa573789e784eaa4c2c8254a155b, type: 3}
+  - {fileID: -1997361206, guid: 3f4baa573789e784eaa4c2c8254a155b, type: 3}
+  - {fileID: 617781080, guid: 3f4baa573789e784eaa4c2c8254a155b, type: 3}
+  - {fileID: -576216602, guid: 3f4baa573789e784eaa4c2c8254a155b, type: 3}
+  - {fileID: 350404305, guid: 3f4baa573789e784eaa4c2c8254a155b, type: 3}
+  - {fileID: -1072830696, guid: 3f4baa573789e784eaa4c2c8254a155b, type: 3}
+  - {fileID: 2039111715, guid: 3f4baa573789e784eaa4c2c8254a155b, type: 3}
+  - {fileID: -787514289, guid: 3f4baa573789e784eaa4c2c8254a155b, type: 3}
+  - {fileID: -239070354, guid: 3f4baa573789e784eaa4c2c8254a155b, type: 3}
+  - {fileID: 2089021382, guid: 3f4baa573789e784eaa4c2c8254a155b, type: 3}
+  - {fileID: 1074391104, guid: 3f4baa573789e784eaa4c2c8254a155b, type: 3}
+  - {fileID: -1811011676, guid: 3f4baa573789e784eaa4c2c8254a155b, type: 3}
+  - {fileID: 872629351, guid: 3f4baa573789e784eaa4c2c8254a155b, type: 3}
+  - {fileID: 295404100, guid: 3f4baa573789e784eaa4c2c8254a155b, type: 3}
+  - {fileID: -1639332167, guid: 3f4baa573789e784eaa4c2c8254a155b, type: 3}
+  - {fileID: -703375105, guid: 3f4baa573789e784eaa4c2c8254a155b, type: 3}
+  thinkingSprites:
+  - {fileID: -455157729, guid: 141348edc5418a64090267c6dffb8def, type: 3}
+  - {fileID: 792040789, guid: 141348edc5418a64090267c6dffb8def, type: 3}
+  - {fileID: 876220768, guid: 141348edc5418a64090267c6dffb8def, type: 3}
+  - {fileID: -540571646, guid: 141348edc5418a64090267c6dffb8def, type: 3}
+  - {fileID: 803811668, guid: 141348edc5418a64090267c6dffb8def, type: 3}
+  - {fileID: -394969420, guid: 141348edc5418a64090267c6dffb8def, type: 3}
+  - {fileID: 711486336, guid: 141348edc5418a64090267c6dffb8def, type: 3}
+  - {fileID: 1376058032, guid: 141348edc5418a64090267c6dffb8def, type: 3}
+  - {fileID: -773740963, guid: 141348edc5418a64090267c6dffb8def, type: 3}
+  - {fileID: -1925060171, guid: 141348edc5418a64090267c6dffb8def, type: 3}
+  - {fileID: -2011655339, guid: 141348edc5418a64090267c6dffb8def, type: 3}
+  - {fileID: -39368470, guid: 141348edc5418a64090267c6dffb8def, type: 3}
+  - {fileID: -1793633492, guid: 141348edc5418a64090267c6dffb8def, type: 3}
+  - {fileID: -1836795347, guid: 141348edc5418a64090267c6dffb8def, type: 3}
+  - {fileID: 668832528, guid: 141348edc5418a64090267c6dffb8def, type: 3}
+  - {fileID: 1206056133, guid: 141348edc5418a64090267c6dffb8def, type: 3}
+  neutralTalkSprites:
+  - {fileID: 2010062460, guid: af080144846ac164b932d9a6f5eeb4e0, type: 3}
+  - {fileID: -107260613, guid: af080144846ac164b932d9a6f5eeb4e0, type: 3}
+  - {fileID: 1827594039, guid: af080144846ac164b932d9a6f5eeb4e0, type: 3}
+  - {fileID: -1819078537, guid: af080144846ac164b932d9a6f5eeb4e0, type: 3}
+  - {fileID: 1214479064, guid: af080144846ac164b932d9a6f5eeb4e0, type: 3}
+  - {fileID: -1303898894, guid: af080144846ac164b932d9a6f5eeb4e0, type: 3}
+  - {fileID: 1906604574, guid: af080144846ac164b932d9a6f5eeb4e0, type: 3}
+  - {fileID: -454747576, guid: af080144846ac164b932d9a6f5eeb4e0, type: 3}
+  - {fileID: -628024433, guid: af080144846ac164b932d9a6f5eeb4e0, type: 3}
+  - {fileID: 117905040, guid: af080144846ac164b932d9a6f5eeb4e0, type: 3}
+  - {fileID: -1773385619, guid: af080144846ac164b932d9a6f5eeb4e0, type: 3}
+  - {fileID: -288926413, guid: af080144846ac164b932d9a6f5eeb4e0, type: 3}
+  - {fileID: -212479521, guid: af080144846ac164b932d9a6f5eeb4e0, type: 3}
+  - {fileID: 549164598, guid: af080144846ac164b932d9a6f5eeb4e0, type: 3}
+  - {fileID: 6177833, guid: af080144846ac164b932d9a6f5eeb4e0, type: 3}
+  - {fileID: 1929804357, guid: af080144846ac164b932d9a6f5eeb4e0, type: 3}
+  neutralTalkBlinkSprites:
+  - {fileID: 2134549209, guid: bf7fa025d76aaa447b038d2ac303b1eb, type: 3}
+  - {fileID: 666179929, guid: bf7fa025d76aaa447b038d2ac303b1eb, type: 3}
+  - {fileID: 1309933838, guid: bf7fa025d76aaa447b038d2ac303b1eb, type: 3}
+  - {fileID: 1932430036, guid: bf7fa025d76aaa447b038d2ac303b1eb, type: 3}
+  - {fileID: 258745671, guid: bf7fa025d76aaa447b038d2ac303b1eb, type: 3}
+  - {fileID: 509332844, guid: bf7fa025d76aaa447b038d2ac303b1eb, type: 3}
+  - {fileID: 586444311, guid: bf7fa025d76aaa447b038d2ac303b1eb, type: 3}
+  - {fileID: 815051469, guid: bf7fa025d76aaa447b038d2ac303b1eb, type: 3}
+  - {fileID: 1434729883, guid: bf7fa025d76aaa447b038d2ac303b1eb, type: 3}
+  - {fileID: 308742841, guid: bf7fa025d76aaa447b038d2ac303b1eb, type: 3}
+  - {fileID: 335266491, guid: bf7fa025d76aaa447b038d2ac303b1eb, type: 3}
+  - {fileID: -149273962, guid: bf7fa025d76aaa447b038d2ac303b1eb, type: 3}
+  - {fileID: -372866915, guid: bf7fa025d76aaa447b038d2ac303b1eb, type: 3}
+  - {fileID: -1618631536, guid: bf7fa025d76aaa447b038d2ac303b1eb, type: 3}
+  - {fileID: 2076779897, guid: bf7fa025d76aaa447b038d2ac303b1eb, type: 3}
+  - {fileID: 1894658646, guid: bf7fa025d76aaa447b038d2ac303b1eb, type: 3}
+  happyTalkSprites:
+  - {fileID: -470249467, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
+  - {fileID: 90641501, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
+  - {fileID: -1014983925, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
+  - {fileID: -205037598, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
+  - {fileID: -1064119324, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
+  - {fileID: 1015412167, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
+  - {fileID: -1205563738, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
+  - {fileID: 1994837499, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
+  - {fileID: 771799057, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
+  - {fileID: -1324825983, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
+  - {fileID: 545974348, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
+  - {fileID: -1677336872, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
+  - {fileID: 1981105543, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
+  - {fileID: 858094316, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
+  - {fileID: 1484269894, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
+  - {fileID: -731710436, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
+  happyTalkBlinkSprites:
+  - {fileID: -1954153574, guid: 1565663c5753c3a4d9f2d0290f866f44, type: 3}
+  - {fileID: -860270513, guid: 1565663c5753c3a4d9f2d0290f866f44, type: 3}
+  - {fileID: -1264639275, guid: 1565663c5753c3a4d9f2d0290f866f44, type: 3}
+  - {fileID: 693344230, guid: 1565663c5753c3a4d9f2d0290f866f44, type: 3}
+  - {fileID: 2144439738, guid: 1565663c5753c3a4d9f2d0290f866f44, type: 3}
+  - {fileID: 1198861601, guid: 1565663c5753c3a4d9f2d0290f866f44, type: 3}
+  - {fileID: 703024859, guid: 1565663c5753c3a4d9f2d0290f866f44, type: 3}
+  - {fileID: -295203941, guid: 1565663c5753c3a4d9f2d0290f866f44, type: 3}
+  - {fileID: -55835063, guid: 1565663c5753c3a4d9f2d0290f866f44, type: 3}
+  - {fileID: -1361169165, guid: 1565663c5753c3a4d9f2d0290f866f44, type: 3}
+  - {fileID: 770634176, guid: 1565663c5753c3a4d9f2d0290f866f44, type: 3}
+  - {fileID: 2118885743, guid: 1565663c5753c3a4d9f2d0290f866f44, type: 3}
+  - {fileID: -904405608, guid: 1565663c5753c3a4d9f2d0290f866f44, type: 3}
+  - {fileID: 1081896824, guid: 1565663c5753c3a4d9f2d0290f866f44, type: 3}
+  - {fileID: 1105861893, guid: 1565663c5753c3a4d9f2d0290f866f44, type: 3}
+  - {fileID: 1070416077, guid: 1565663c5753c3a4d9f2d0290f866f44, type: 3}
+  sadTalkSprites:
+  - {fileID: -1690693292, guid: 570ea1bb4e69e2545af7c935105a9d00, type: 3}
+  - {fileID: -603058256, guid: 570ea1bb4e69e2545af7c935105a9d00, type: 3}
+  - {fileID: 124850032, guid: 570ea1bb4e69e2545af7c935105a9d00, type: 3}
+  - {fileID: -1363034739, guid: 570ea1bb4e69e2545af7c935105a9d00, type: 3}
+  - {fileID: -403567730, guid: 570ea1bb4e69e2545af7c935105a9d00, type: 3}
+  - {fileID: 356388830, guid: 570ea1bb4e69e2545af7c935105a9d00, type: 3}
+  - {fileID: -853263456, guid: 570ea1bb4e69e2545af7c935105a9d00, type: 3}
+  - {fileID: -769528038, guid: 570ea1bb4e69e2545af7c935105a9d00, type: 3}
+  - {fileID: 303880217, guid: 570ea1bb4e69e2545af7c935105a9d00, type: 3}
+  - {fileID: 1824322834, guid: 570ea1bb4e69e2545af7c935105a9d00, type: 3}
+  - {fileID: 852467250, guid: 570ea1bb4e69e2545af7c935105a9d00, type: 3}
+  - {fileID: -1248170974, guid: 570ea1bb4e69e2545af7c935105a9d00, type: 3}
+  - {fileID: 1802216205, guid: 570ea1bb4e69e2545af7c935105a9d00, type: 3}
+  - {fileID: -75335259, guid: 570ea1bb4e69e2545af7c935105a9d00, type: 3}
+  - {fileID: -1105978661, guid: 570ea1bb4e69e2545af7c935105a9d00, type: 3}
+  - {fileID: 1490318210, guid: 570ea1bb4e69e2545af7c935105a9d00, type: 3}
+  sadTalkBlinkSprites:
+  - {fileID: 679458137, guid: 2196f54938b0abd4991f227afcee3dd1, type: 3}
+  - {fileID: 2037860797, guid: 2196f54938b0abd4991f227afcee3dd1, type: 3}
+  - {fileID: -2022235693, guid: 2196f54938b0abd4991f227afcee3dd1, type: 3}
+  - {fileID: 1046238525, guid: 2196f54938b0abd4991f227afcee3dd1, type: 3}
+  - {fileID: 636118028, guid: 2196f54938b0abd4991f227afcee3dd1, type: 3}
+  - {fileID: 1919900691, guid: 2196f54938b0abd4991f227afcee3dd1, type: 3}
+  - {fileID: 1047140502, guid: 2196f54938b0abd4991f227afcee3dd1, type: 3}
+  - {fileID: 1337522031, guid: 2196f54938b0abd4991f227afcee3dd1, type: 3}
+  - {fileID: -1249906439, guid: 2196f54938b0abd4991f227afcee3dd1, type: 3}
+  - {fileID: -757184071, guid: 2196f54938b0abd4991f227afcee3dd1, type: 3}
+  - {fileID: 206066122, guid: 2196f54938b0abd4991f227afcee3dd1, type: 3}
+  - {fileID: 1761566942, guid: 2196f54938b0abd4991f227afcee3dd1, type: 3}
+  - {fileID: -1560311440, guid: 2196f54938b0abd4991f227afcee3dd1, type: 3}
+  - {fileID: -1840187610, guid: 2196f54938b0abd4991f227afcee3dd1, type: 3}
+  - {fileID: -2024414948, guid: 2196f54938b0abd4991f227afcee3dd1, type: 3}
+  - {fileID: 488715258, guid: 2196f54938b0abd4991f227afcee3dd1, type: 3}
   blinkCheckInterval: 3
   blinkChance: 0.2
 --- !u!1 &7232062042058386805
