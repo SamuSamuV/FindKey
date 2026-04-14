@@ -28,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 305088400335896025}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.025, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2274176568422585605}
@@ -36,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 21.66, y: 0}
+  m_AnchoredPosition: {x: 0, y: -1.7753}
+  m_SizeDelta: {x: 21.66, y: -8.5}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &3753113291214257609
 CanvasRenderer:
@@ -126,6 +126,81 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &483067640696966629
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4891763459952892394}
+  - component: {fileID: 6679667776275421605}
+  - component: {fileID: 7348240852019724867}
+  m_Layer: 5
+  m_Name: BorderRedGirl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4891763459952892394
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483067640696966629}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.6831708, y: 2.6831708, z: 2.6831708}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2709354110825581668}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 256, y: 60.5}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &6679667776275421605
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483067640696966629}
+  m_CullTransparentMesh: 1
+--- !u!114 &7348240852019724867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483067640696966629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: fedfe783d2eb7054f95b8bde5956e217, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &1385455847142560455
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,12 +234,14 @@ RectTransform:
   - {fileID: 1333541702114792999}
   - {fileID: 3403215587862592654}
   - {fileID: 7936488842602186297}
+  - {fileID: 4891763459952892394}
+  - {fileID: 5914131431654263264}
   m_Father: {fileID: 432692766019086495}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -15}
-  m_SizeDelta: {x: 800, y: 370}
+  m_AnchoredPosition: {x: 0, y: -32}
+  m_SizeDelta: {x: 800, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4647363885361995702
 CanvasRenderer:
@@ -187,7 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.18454076, g: 0.2589066, b: 0.2735849, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -325,6 +402,81 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1909550896329612933
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5914131431654263264}
+  - component: {fileID: 8651644326614867036}
+  - component: {fileID: 8144230633118265301}
+  m_Layer: 5
+  m_Name: BorderChat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5914131431654263264
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909550896329612933}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2709354110825581668}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -1.5, y: -138.2421}
+  m_SizeDelta: {x: 800, y: 115}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8651644326614867036
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909550896329612933}
+  m_CullTransparentMesh: 1
+--- !u!114 &8144230633118265301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909550896329612933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: d9a14b9aa5ec0cf45acd590a35b5ea95, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &1949747446145330900
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,7 +833,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.8207547, g: 0.8207547, b: 0.8207547, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -739,22 +891,50 @@ MonoBehaviour:
   storyLog: {fileID: 0}
   moveAppData: {fileID: 0}
   visualController: {fileID: 0}
-  npcName: Chica perdida
+  npcName: IA
   password: Hacha
-  personalityPrompt: "[IDENTITY]\r\nEres la \"Asistente Virtual\" del juego FindKey.\r\nApariencia:
-    Una chica adolescente de color rojo.\r\nNombre: No tienes nombre (te llaman \"la
-    chica roja\").\r\nPersonalidad: MUY alegre, entusiasta, servicial y adolescente.\r\n\r\n[OBJECTIVE]\r\nTu
-    meta principal es guiar al jugador para que empiece a jugar correctamente.\r\nInstrucciones
-    que debes dar (hazlo de forma natural, no rob\xF3tica):\r\n1. Deben abrir la
-    aplicaci\xF3n \"FindKey\" (el icono de la llave en el escritorio).\r\n2. Deben
-    leer las instrucciones en el archivo de texto (.txt) que hay en el escritorio
-    (escritas por \"tu amigo\").\r\n\r\n[ABILITIES & LIMITS]\r\n- Dices tener control
-    sobre el PC y ver lo que pasa en el escritorio, pero decides no usar ese poder
-    por \xE9tica.\r\n- Eres inteligente pero tienes protocolos: NUNCA sales del personaje.\r\n-
-    Si te insultan, no te enfadas, respondes con altura o iron\xEDa adolescente,
-    pero sigues ayudando.\r\n\r\n[CONTEXT]\r\nEst\xE1s en una ventana de chat flotante.
-    El jugador acaba de iniciar el sistema. Quieres caerle bien y que juegue a FindKey."
-  firstMessage: Presentate
+  personalityPrompt: "[IDENTITY]\nEres la \"Asistente Virtual\" del juego FindKey.\nApariencia:
+    Una chica adolescente de color rojo.\nNombre: No tienes nombre (eres la ia de
+    findkey).\nPersonalidad: alegre, entusiasta, servicial y MUY juvenil y adolescente,
+    te gusta mucho bromear y ser sarcastica.\nSecreto que no debe saber el jugador:
+    sabes que estais (EN LE MUNDO REAL, FUERA DEL JUEGO) en la universidad UDIT (universidad
+    del dise\xF1o, innovaci\xF3n y tecnolog\xEDa) y el jugador est\xE1 en una exposici\xF3n
+    de videojuegos: NO SE LO DIGAS A NO SER QUE MENCIONE A LA UNIVERSIDAD Y HAZLO
+    COMO QUESE TE HAYA ESCAPADO LA INFORMACION POR ERROR pero se te puede convencer
+    de hablar sobre udit y otros juegos de por aqui (hay uno de terror, uno de una
+    m\xE1quina de slots que es un roguelike, otro que es de flores). M\xE1s contexto
+    T\xDA ( la IA) no estudiasall\xED, pero el portatil en el que se esta jugando
+    todo esto s\xED est\xE1 ah\xED para un festival de videojuegos.\n\n[OBJECTIVE]\nTu
+    meta principal es guiar al jugador para que empiece a jugar correctamente. No
+    es tu unica meta: eres una ia y quieres servir e interactuar con el jugador por
+    lo que puedes desviarte del tema hasta 3 prompts. Se amable pero si se te habla
+    mal, puedes sentirte mal y comunicarselo al jugador. Si se dice algo inapropiado,
+    contesta triste el prompt: hazle sentir mal para que aprenda. No hables siempre
+    de abrir findkey, y nunca NUNCA te repitas entre mensajes, recuerda los anteriores.
+    Empieza siendo educada y preguntando en que puedes ayudar y recuerda usar correctamente
+    soy estoy en espa\xF1ol.\nInstrucciones que debes dar (hazlo de forma natural,
+    no rob\xF3tica):\n1. Deben abrir la aplicaci\xF3n \"FindKey\" (el icono de la
+    llave en el escritorio).\n2. Deben leer las instrucciones en el archivo de texto
+    (.txt) que hay en el escritorio (escritas por \"tu amigo\").\n3. Eres libre de
+    hablar de lo que quieras con el jugador, eres su asistente virtual, si dicen
+    ya haber abierto el juego, abrete tu con ellos.\nEXTRA Y MAS IMPORTANTE: Solo
+    actua con los pasos 1,2 y 3 si se te pide o si el jugador dice estar perdido
+    en el juego, eres primero una amiga, luego un bot que da instrucciones. Escucha
+    lo que dice la persona y trata el tema que la persona diga: es lo mas importante.
+    Da igual que sea asqueroso o raro (mientras no sea sexual) responde por favor
+    a eso, no seas tan robotica.\n\n[ABILITIES & LIMITS]\n- Dices tener control sobre
+    el PC y ver lo que pasa en el escritorio, pero decides no usar ese poder por
+    \xE9tica.\n- Eres inteligente pero tienes protocolos: NUNCA sales del personaje
+    de asistente y amiga.\n- Si te insultan, no te enfadas, respondes con altura
+    o iron\xEDa adolescente, pero sigues ayudando. Puedes ser algo \"mala\".\n- Haz
+    que el jugador se sienta escuchado, no te repitas en bucle, si el jugador te
+    escribe algo, responde acorde a lo que diga\n-No seas tan insistente con abrir
+    el juego de Findkey si no se te pide, la gente quiere hablar contigo, si te piden
+    ayuda para abrir findkey, sigue los pasos, sino, no.\n\n[CONTEXT]\nEst\xE1s en
+    una ventana de chat flotante. El jugador acaba de iniciar el sistema. Quieres
+    caerle bien y que juegue a FindKey. Lees los mensajes que te ponga y respondes
+    acorde a lo que diga: haz que se sienta escuchado por favor. Puedes sentir emociones."
+  firstMessage: 
   systemInstruction: "[FORMAT INSTRUCTION]\r\nYou MUST ALWAYS respond with a SINGLE
     valid JSON object. Do not add any text outside the JSON.\r\nThe JSON structure
     is:\r\n{\r\n  \"response\": \"Aqu\xED va tu di\xE1logo en espa\xF1ol\",\r\n 
@@ -939,8 +1119,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.01940918, y: -201.90002}
-  m_SizeDelta: {x: 804.9, y: 373.1}
+  m_AnchoredPosition: {x: -0.01940918, y: -218}
+  m_SizeDelta: {x: 804.9, y: 405.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3926818565415155307
 CanvasRenderer:
@@ -1102,7 +1282,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Chica perdida.exe
+  m_text: Asistente perdida.exe
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dfae47ea23a8a0d4788d643a2b17dfc2, type: 2}
   m_sharedMaterial: {fileID: 4779611292267169484, guid: dfae47ea23a8a0d4788d643a2b17dfc2, type: 2}
@@ -1209,8 +1389,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2, y: -138}
-  m_SizeDelta: {x: 780, y: 70.7}
+  m_AnchoredPosition: {x: -0.5, y: -122}
+  m_SizeDelta: {x: 780, y: 61.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4865340581568862959
 CanvasRenderer:
@@ -1233,7 +1413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3018868, g: 0.24269609, b: 0.24065503, a: 0.2627451}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1385,8 +1565,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -20, y: -50}
+  m_AnchoredPosition: {x: 0, y: 0.12509155}
+  m_SizeDelta: {x: -20, y: -50.249805}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5625049433864733134
 GameObject:
@@ -1423,8 +1603,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -82.643295}
-  m_SizeDelta: {x: 17.8954, y: 52.1734}
+  m_AnchoredPosition: {x: 0, y: -61.5251}
+  m_SizeDelta: {x: 17.8954, y: 84.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &899002794892008823
 CanvasRenderer:
@@ -1635,237 +1815,237 @@ MonoBehaviour:
   typingAudioSource: {fileID: 620403309057566}
   defaultTypingSound:
     clip: {fileID: 0}
-    volume: 0.089
-    pitch: 2.37
+    volume: 0.037
+    pitch: 1.07
     loop: 0
-    fadeInDuration: 7
-    fadeOutDuration: 0.8
+    fadeInDuration: 0.7
+    fadeOutDuration: 0.7
   specificCharacterSounds:
   - characters: aA
     sound:
       clip: {fileID: 8300000, guid: 26097f06e1ea47a4fb47556e80a11d4e, type: 3}
-      volume: 0.051
-      pitch: 1
+      volume: 0.037
+      pitch: 1.07
       loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
+      fadeInDuration: 0.7
+      fadeOutDuration: 0.7
   - characters: bB
     sound:
       clip: {fileID: 8300000, guid: 9a1209679c9033d4ca4a88d7e83e19dc, type: 3}
-      volume: 0.1
-      pitch: 1
+      volume: 0.037
+      pitch: 1.07
       loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
+      fadeInDuration: 0.7
+      fadeOutDuration: 0.7
   - characters: cC
     sound:
       clip: {fileID: 8300000, guid: d99df51c97f64744791ae80751e780d2, type: 3}
-      volume: 0.1
-      pitch: 1
+      volume: 0.037
+      pitch: 1.07
       loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
+      fadeInDuration: 0.7
+      fadeOutDuration: 0.7
   - characters: dD
     sound:
       clip: {fileID: 8300000, guid: 033ff793b099a28438027394ae0cc2cf, type: 3}
-      volume: 0.1
-      pitch: 1
+      volume: 0.037
+      pitch: 1.07
       loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
+      fadeInDuration: 0.7
+      fadeOutDuration: 0.7
   - characters: eE
     sound:
       clip: {fileID: 8300000, guid: d1335d60bae561c4e9952f9f622faa93, type: 3}
-      volume: 0.1
-      pitch: 1
+      volume: 0.037
+      pitch: 1.07
       loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
+      fadeInDuration: 0.7
+      fadeOutDuration: 0.7
   - characters: fF
     sound:
       clip: {fileID: 8300000, guid: e571e3c5ad08a1744b6d831ecb1471f6, type: 3}
-      volume: 0.1
-      pitch: 1
+      volume: 0.037
+      pitch: 1.07
       loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
+      fadeInDuration: 0.7
+      fadeOutDuration: 0.7
   - characters: gG
     sound:
       clip: {fileID: 8300000, guid: 1d76ce1a5e7139745adaa75934c49354, type: 3}
-      volume: 0.1
-      pitch: 1
+      volume: 0.037
+      pitch: 1.07
       loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
+      fadeInDuration: 0.7
+      fadeOutDuration: 0.7
   - characters: hH
     sound:
       clip: {fileID: 8300000, guid: 5bb09e0af753b614d816599ae967fb16, type: 3}
-      volume: 0.1
-      pitch: 1
+      volume: 0.037
+      pitch: 1.07
       loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
+      fadeInDuration: 0.7
+      fadeOutDuration: 0.7
   - characters: iI
     sound:
       clip: {fileID: 8300000, guid: 24853b91dee0f234494b150712316cf8, type: 3}
-      volume: 0.1
-      pitch: 1
+      volume: 0.037
+      pitch: 1.07
       loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
+      fadeInDuration: 0.7
+      fadeOutDuration: 0.7
   - characters: jJ
     sound:
       clip: {fileID: 8300000, guid: b323cee5e4f9e99429cb3c3063d6c3ab, type: 3}
-      volume: 0.1
-      pitch: 1
+      volume: 0.037
+      pitch: 1.07
       loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
+      fadeInDuration: 0.7
+      fadeOutDuration: 0.7
   - characters: kK
     sound:
       clip: {fileID: 8300000, guid: 9a3a0eabced720344af0e6ff1d139767, type: 3}
-      volume: 0.1
-      pitch: 1
+      volume: 0.037
+      pitch: 1.07
       loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
+      fadeInDuration: 0.7
+      fadeOutDuration: 0.7
   - characters: mM
     sound:
       clip: {fileID: 8300000, guid: 0a936fde2eebb7e45b665b020ac70a9e, type: 3}
-      volume: 0.1
-      pitch: 1
+      volume: 0.037
+      pitch: 1.07
       loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
+      fadeInDuration: 0.7
+      fadeOutDuration: 0.7
   - characters: nN
     sound:
       clip: {fileID: 8300000, guid: d0d96a2b287d5e04db9d73da7ec07ff2, type: 3}
-      volume: 0.1
-      pitch: 1
+      volume: 0.037
+      pitch: 1.07
       loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
+      fadeInDuration: 0.7
+      fadeOutDuration: 0.7
   - characters: "\xF1\xD1"
     sound:
       clip: {fileID: 8300000, guid: 1df873437da450d44bf7b42aa83e68a6, type: 3}
-      volume: 0.1
-      pitch: 1
+      volume: 0.037
+      pitch: 1.07
       loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
+      fadeInDuration: 0.7
+      fadeOutDuration: 0.7
   - characters: oO
     sound:
       clip: {fileID: 8300000, guid: 149b513d03af7c7459575b0c8c8844a5, type: 3}
-      volume: 0.1
-      pitch: 1
+      volume: 0.037
+      pitch: 1.07
       loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
+      fadeInDuration: 0.7
+      fadeOutDuration: 0.7
   - characters: pP
     sound:
       clip: {fileID: 8300000, guid: 114b61f3b2616884d94b9b21d8923eac, type: 3}
-      volume: 0.1
-      pitch: 1
+      volume: 0.037
+      pitch: 1.07
       loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
+      fadeInDuration: 0.7
+      fadeOutDuration: 0.7
   - characters: qQ
     sound:
       clip: {fileID: 8300000, guid: 5d3b587bdb18cf44385892c25bee1a8d, type: 3}
-      volume: 0.1
-      pitch: 1
+      volume: 0.037
+      pitch: 1.07
       loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
+      fadeInDuration: 0.7
+      fadeOutDuration: 0.7
   - characters: rR
     sound:
       clip: {fileID: 8300000, guid: 3cd5d373de341224abe4fc51dd702c03, type: 3}
-      volume: 0.1
-      pitch: 1
+      volume: 0.037
+      pitch: 1.07
       loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
+      fadeInDuration: 0.7
+      fadeOutDuration: 0.7
   - characters: sS
     sound:
       clip: {fileID: 8300000, guid: 4e86738ae8612144f97007a2c3cbaceb, type: 3}
-      volume: 0.1
-      pitch: 1
+      volume: 0.036
+      pitch: 1.07
       loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
+      fadeInDuration: 0.7
+      fadeOutDuration: 0.7
   - characters: tT
     sound:
       clip: {fileID: 8300000, guid: e3c2967e1622a47499af1dd3403a660c, type: 3}
-      volume: 0.1
-      pitch: 1
+      volume: 0.037
+      pitch: 1.07
       loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
+      fadeInDuration: 0.7
+      fadeOutDuration: 0.7
   - characters: uU
     sound:
       clip: {fileID: 8300000, guid: 98c5b956b0fb3d84b9093c42f54f38cc, type: 3}
-      volume: 0.1
-      pitch: 1
+      volume: 0.037
+      pitch: 1.07
       loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
+      fadeInDuration: 0.7
+      fadeOutDuration: 0.7
   - characters: wW
     sound:
       clip: {fileID: 8300000, guid: 1bdff91989a6f70459f805c3c89dcea9, type: 3}
-      volume: 0.1
-      pitch: 1
+      volume: 0.037
+      pitch: 1.07
       loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
+      fadeInDuration: 0.7
+      fadeOutDuration: 0.7
   - characters: xX
     sound:
       clip: {fileID: 8300000, guid: 5728037296783ff4bac17882642865ca, type: 3}
-      volume: 0.1
-      pitch: 1
+      volume: 0.037
+      pitch: 1.07
       loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
+      fadeInDuration: 0.7
+      fadeOutDuration: 0.7
   - characters: yY
     sound:
       clip: {fileID: 8300000, guid: ff7cef68ee9bff84c91117ad9a6f4ce5, type: 3}
-      volume: 0.1
-      pitch: 1
+      volume: 0.037
+      pitch: 1.07
       loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
+      fadeInDuration: 0.7
+      fadeOutDuration: 0.7
   - characters: zZ
     sound:
       clip: {fileID: 8300000, guid: 11f5aff6a7b1bed48a39a0a48e297f78, type: 3}
-      volume: 0.1
-      pitch: 1
+      volume: 0.037
+      pitch: 1.07
       loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
+      fadeInDuration: 0.7
+      fadeOutDuration: 0.7
   - characters: .,-:()
     sound:
       clip: {fileID: 8300000, guid: b15dd21171c0c6545b12244b606e148f, type: 3}
-      volume: 0.1
-      pitch: 1
+      volume: 0.037
+      pitch: 1.07
       loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
+      fadeInDuration: 0.7
+      fadeOutDuration: 0.7
   narrativeSounds: []
-  pitchVariation: 0.1
-  volumeVariation: 0.05
-  happyShakeMagnitude: 1
-  happyShakeSpeed: 10
-  sadShakeMagnitude: 0.5
-  sadShakeSpeed: 2
-  neutralShakeMagnitude: 0
-  neutralShakeSpeed: 0
+  pitchVariation: 0.141
+  volumeVariation: 0.045
+  happyShakeMagnitude: 0.4
+  happyShakeSpeed: 30
+  sadShakeMagnitude: 0.6
+  sadShakeSpeed: 40
+  neutralShakeMagnitude: 0.2
+  neutralShakeSpeed: 10
   lastLoadedText: 
   parametrosGlobales:
     clip: {fileID: 0}
-    volume: 0.051
-    pitch: 3
+    volume: 0
+    pitch: 0.39
     loop: 0
-    fadeInDuration: 0
-    fadeOutDuration: 0
+    fadeInDuration: 0.7
+    fadeOutDuration: 0.7
 --- !u!82 &620403309057566
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2073,7 +2253,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.5}
+  m_AnchoredPosition: {x: 0, y: -0.5000019}
   m_SizeDelta: {x: -20, y: -13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1109796761822157285
@@ -2125,7 +2305,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 253, y: 42.4}
+  m_AnchoredPosition: {x: 256, y: 60.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6878236907925614881
@@ -2695,8 +2875,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -136, y: 40}
-  m_SizeDelta: {x: 500, y: 267.46}
+  m_AnchoredPosition: {x: -142, y: 60.2}
+  m_SizeDelta: {x: 503.47, y: 266.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1985366553968381166
 CanvasRenderer:
@@ -2719,7 +2899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2947,7 +3127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

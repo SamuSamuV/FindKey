@@ -2938,7 +2938,39 @@ MonoBehaviour:
     loop: 0
     fadeInDuration: 0
     fadeOutDuration: 0
-  specificCharacterSounds: []
+  specificCharacterSounds:
+  - characters: 'qwertyuiop '
+    sound:
+      clip: {fileID: 8300000, guid: eacd9ad5173f4ef4f8d8ba5a6156355c, type: 3}
+      volume: 0.08
+      pitch: 1
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: "asdfghjkl\xF1"
+    sound:
+      clip: {fileID: 8300000, guid: 15e41715e347ce94db7b4f173b0328cb, type: 3}
+      volume: 0.08
+      pitch: 1
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: "zxcvbnm\xE1\xF3\xED\xFA\xE9"
+    sound:
+      clip: {fileID: 8300000, guid: 25fefbfe855379f4f85d16b91840325a, type: 3}
+      volume: 0.08
+      pitch: 1
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: "1234567890?\xBF^*\xA8\xC7_:;-.,\xB4\xE7+`'\xA1"
+    sound:
+      clip: {fileID: 8300000, guid: a4855dafba2e5ca4a95e8717a2294c0e, type: 3}
+      volume: 0.08
+      pitch: 1
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
   narrativeSounds:
   - clip: {fileID: 8300000, guid: 26097f06e1ea47a4fb47556e80a11d4e, type: 3}
     volume: 0.051
@@ -2958,8 +2990,14 @@ MonoBehaviour:
     loop: 0
     fadeInDuration: 0
     fadeOutDuration: 0
-  pitchVariation: 0.1
+  pitchVariation: 0.241
   volumeVariation: 0.05
+  happyShakeMagnitude: 1
+  happyShakeSpeed: 10
+  sadShakeMagnitude: 0.5
+  sadShakeSpeed: 2
+  neutralShakeMagnitude: 0
+  neutralShakeSpeed: 0
   lastLoadedText: 
   parametrosGlobales:
     clip: {fileID: 0}
@@ -3413,10 +3451,48 @@ MonoBehaviour:
     loop: 0
     fadeInDuration: 0
     fadeOutDuration: 0
-  specificCharacterSounds: []
+  specificCharacterSounds:
+  - characters: qwertyuiop
+    sound:
+      clip: {fileID: 0}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: 
+    sound:
+      clip: {fileID: 0}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: 
+    sound:
+      clip: {fileID: 0}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - characters: 
+    sound:
+      clip: {fileID: 0}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
   narrativeSounds: []
   pitchVariation: 0.1
   volumeVariation: 0.05
+  happyShakeMagnitude: 1
+  happyShakeSpeed: 10
+  sadShakeMagnitude: 0.5
+  sadShakeSpeed: 2
+  neutralShakeMagnitude: 0
+  neutralShakeSpeed: 0
   lastLoadedText: 
   parametrosGlobales:
     clip: {fileID: 0}
