@@ -312,6 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d33d1b48faaeab4890d67f35ddcb931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  keepAliveOnClose: 0
   titleText: {fileID: 5511757479028437172}
   closeButton:
   - {fileID: 5969091765433152351}
@@ -1017,7 +1018,6 @@ GameObject:
   - component: {fileID: 9040168119344333255}
   - component: {fileID: 4555774257412632960}
   - component: {fileID: 7339657477624056915}
-  - component: {fileID: 4898433399911496759}
   m_Layer: 5
   m_Name: Borders
   m_TagString: Untagged
@@ -1126,16 +1126,3 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4898433399911496759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8731528829317444860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce220dcdadb214e48ab0d6e5317d0f8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  windowRoot: {fileID: 432692766019086495}

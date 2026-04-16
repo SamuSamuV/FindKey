@@ -12,6 +12,7 @@ public class SoundManager : MonoBehaviour
     public SoundSettings clickSound;
     public SoundSettings closeSound;
     public SoundSettings minimizeSound;
+    public SoundSettings sendText;
 
     private void Awake()
     {
@@ -36,6 +37,9 @@ public class SoundManager : MonoBehaviour
                 break;
             case "minimize":
                 minimizeSound?.PlayOn(sfxSource, true);
+                break;
+            case "send_text":
+                sendText?.PlayOn(sfxSource, true);
                 break;
         }
     }

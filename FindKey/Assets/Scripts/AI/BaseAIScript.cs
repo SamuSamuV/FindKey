@@ -118,11 +118,17 @@ public abstract class BaseAIScript : MonoBehaviour
 
         lastPlayerText = text;
 
-        if (storyLog != null) storyLog.AddLine($"<align=right><b>{text}</b></align>");
+        if (storyLog != null)
+        {
+            storyLog.AddLine($"<align=right><size=-2><i>>>> {text}</i></size></align>");
+        }
+
         AddToHistory("Player", text);
 
         inputField.text = "";
         inputField.gameObject.SetActive(false);
+
+        SoundManager.Instance?.Play("send_text");
 
         visualController?.SetState(NPCVisualController.NPCState.Thinking);
 

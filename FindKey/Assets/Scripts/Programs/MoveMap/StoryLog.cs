@@ -41,8 +41,20 @@ public class StoryLog : MonoBehaviour
     public float neutralShakeMagnitude = 0f;
     public float neutralShakeSpeed = 0f;
 
+    [Header("Modificadores de Sonido/Velocidad por Emoción")]
+    public float happyPitchMultiplier = 1.1f;
+    public float happySpeedMultiplier = 1.1f;
+
+    public float sadPitchMultiplier = 1.2f;
+    public float sadSpeedMultiplier = 0.8f;
+
+    public float neutralPitchMultiplier = 1.0f;
+    public float neutralSpeedMultiplier = 1.0f;
+
     private float currentShakeMagnitude = 0f;
     private float currentShakeSpeed = 0f;
+    private float currentPitchMultiplier = 1.0f;
+    private float currentSpeedMultiplier = 1.0f;
 
     private int wobbleStartIndex = 0;
     private int wobbleEndIndex = -1;
@@ -98,15 +110,21 @@ public class StoryLog : MonoBehaviour
             case NPCVisualController.NPCEmotion.Happy:
                 currentShakeMagnitude = happyShakeMagnitude;
                 currentShakeSpeed = happyShakeSpeed;
+                currentPitchMultiplier = happyPitchMultiplier;
+                currentSpeedMultiplier = happySpeedMultiplier;
                 break;
             case NPCVisualController.NPCEmotion.Sad:
                 currentShakeMagnitude = sadShakeMagnitude;
                 currentShakeSpeed = sadShakeSpeed;
+                currentPitchMultiplier = sadPitchMultiplier;
+                currentSpeedMultiplier = sadSpeedMultiplier;
                 break;
             case NPCVisualController.NPCEmotion.Neutral:
             default:
                 currentShakeMagnitude = neutralShakeMagnitude;
                 currentShakeSpeed = neutralShakeSpeed;
+                currentPitchMultiplier = neutralPitchMultiplier;
+                currentSpeedMultiplier = neutralSpeedMultiplier;
                 break;
         }
     }
@@ -115,6 +133,8 @@ public class StoryLog : MonoBehaviour
     {
         currentShakeMagnitude = 0f;
         currentShakeSpeed = 0f;
+        currentPitchMultiplier = 1.0f;
+        currentSpeedMultiplier = 1.0f;
         if (storyText != null) storyText.ForceMeshUpdate();
     }
 
@@ -179,7 +199,9 @@ public class StoryLog : MonoBehaviour
     {
         if (storyText.text.Length > 0) storyText.text += "\n";
         bool isInsideTag = false;
+
         float activeSpeed = customSpeed > 0f ? customSpeed : typingSpeed;
+        float currentDelay = activeSpeed / Mathf.Max(0.01f, currentSpeedMultiplier);
 
         for (int i = 0; i < lineToAdd.Length; i++)
         {
@@ -207,7 +229,7 @@ public class StoryLog : MonoBehaviour
             {
                 PlayTypingSound(c);
                 UpdateLayout();
-                yield return new WaitForSeconds(activeSpeed);
+                yield return new WaitForSeconds(currentDelay);
             }
         }
 
@@ -252,7 +274,8 @@ public class StoryLog : MonoBehaviour
     void PlayCleanTypingSound(SoundSettings sound)
     {
         float randomPitch = Random.Range(-pitchVariation, pitchVariation);
-        typingAudioSource.pitch = sound.pitch + randomPitch;
+
+        typingAudioSource.pitch = (sound.pitch + randomPitch) * currentPitchMultiplier;
 
         float randomVol = Random.Range(-volumeVariation, volumeVariation);
         float finalVol = Mathf.Clamp01(sound.volume + randomVol);
