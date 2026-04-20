@@ -17,12 +17,16 @@ MonoBehaviour:
     contigo. A lo lejos, entre los \xE1rboles, distingues una vieja reja oxidada
     que bloquea un paso angosto del sendero: m\xE1s all\xE1 solo hay oscuridad. El
     lago permanece a tu lado, inm\xF3vil."
+  customTypingSpeed: 0
   options:
   - validInputs: {fileID: 11400000, guid: ab89fec8c2302db45ada034b48d62db3, type: 2}
     nextNode: {fileID: 11400000, guid: faa2c9d69e0aecd4faea24696fa98bf1, type: 2}
     actionType: 0
   - validInputs: {fileID: 11400000, guid: ac428914eae63c4488c2d718afd0d788, type: 2}
     nextNode: {fileID: 11400000, guid: b5710367915c50346bdd3ce2920e4946, type: 2}
+    actionType: 0
+  - validInputs: {fileID: 11400000, guid: ac428914eae63c4488c2d718afd0d788, type: 2}
+    nextNode: {fileID: 11400000, guid: c025f4fbc0256e6409ad6ae851005ccd, type: 2}
     actionType: 0
   popups: []
   nodeSounds:
@@ -44,5 +48,6 @@ MonoBehaviour:
       fadeOutDuration: 0
   randomSounds: []
   ambientSounds: []
+  onEnterEvent: {fileID: 0}
   aiMemoryLevel: 0
   aiMemoryUpdate: 

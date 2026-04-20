@@ -18,12 +18,16 @@ MonoBehaviour:
     es tan clara como el crujido de las ramas bajo tu pies descalzos. \nA tu izquierda
     el bosque se espesa, oscuro y silencioso, de frente el sendero contin\xFAa siguiendo
     la curva del lago."
+  customTypingSpeed: 0
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: fb5d0fcf620e23c4fb069b27741ca7c7, type: 2}
     actionType: 0
   - validInputs: {fileID: 11400000, guid: ac428914eae63c4488c2d718afd0d788, type: 2}
     nextNode: {fileID: 11400000, guid: b5710367915c50346bdd3ce2920e4946, type: 2}
+    actionType: 0
+  - validInputs: {fileID: 11400000, guid: ac428914eae63c4488c2d718afd0d788, type: 2}
+    nextNode: {fileID: 11400000, guid: c8345c8e7c16c4c4587663b387328af7, type: 2}
     actionType: 0
   popups: []
   nodeSounds:
@@ -45,5 +49,6 @@ MonoBehaviour:
       fadeOutDuration: 0
   randomSounds: []
   ambientSounds: []
+  onEnterEvent: {fileID: 0}
   aiMemoryLevel: 0
   aiMemoryUpdate: 
