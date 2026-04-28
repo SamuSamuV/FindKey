@@ -96,16 +96,16 @@ public abstract class BaseAIScript : MonoBehaviour
         if (inputField != null) inputField.onSubmit.RemoveListener(OnInputSubmit);
     }
 
-    public void InjectMemory(string newMemory, int memoryLevel)
+    public void InjectMemory(string newMemory, int memoryLevel, bool forceUpdate = false)
     {
         if (string.IsNullOrEmpty(newMemory)) return;
 
-        if (memoryLevel > currentMemoryLevel)
+        if (memoryLevel > currentMemoryLevel || forceUpdate)
         {
             currentMemoryLevel = memoryLevel;
             permanentInjectedMemory += $"\n- {newMemory}";
             conversationHistory += $"\n[NOTIFICACIÓN DEL SISTEMA: {newMemory}]\n";
-            Debug.Log($"[{npcName}] NUEVA FASE ALCANZADA. Memoria asimilada: {newMemory}");
+            Debug.Log($"[{npcName}] NUEVA FASE ALCANZADA (Forzado: {forceUpdate}). Memoria asimilada: {newMemory}");
         }
     }
 

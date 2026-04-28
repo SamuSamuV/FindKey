@@ -86,6 +86,9 @@ public class StoryNode : ScriptableObject
     [TextArea(3, 5)]
     [Tooltip("La IA aprenderá esto permanentemente al llegar a este nodo. Ej: 'Fase 2: El gato ha muerto'.")]
     public string aiMemoryUpdate;
+
+    [Tooltip("Fuerza a la IA a asimilar esta memoria y adaptar su nivel aunque sea inferior al actual (util para saltos en el arbol).")]
+    public bool forceMemoryUpdate = false;
 }
 
 [System.Serializable]

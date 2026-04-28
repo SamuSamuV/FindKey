@@ -203,6 +203,10 @@ public class StoryLog : MonoBehaviour
         float activeSpeed = customSpeed > 0f ? customSpeed : typingSpeed;
         float currentDelay = activeSpeed / Mathf.Max(0.01f, currentSpeedMultiplier);
 
+        // Limpiamos un posible "_" residual antes de empezar
+        if (storyText.text.EndsWith("_"))
+            storyText.text = storyText.text.Substring(0, storyText.text.Length - 1);
+
         for (int i = 0; i < lineToAdd.Length; i++)
         {
             if (lineToAdd[i] == '[')
@@ -222,16 +226,25 @@ public class StoryLog : MonoBehaviour
 
             char c = lineToAdd[i];
             if (c == '<') isInsideTag = true;
+
+            if (storyText.text.EndsWith("_"))
+                storyText.text = storyText.text.Substring(0, storyText.text.Length - 1);
+
             storyText.text += c;
+
             if (c == '>') isInsideTag = false;
 
             if (!isInsideTag)
             {
+                storyText.text += "_";
                 PlayTypingSound(c);
                 UpdateLayout();
                 yield return new WaitForSeconds(currentDelay);
             }
         }
+
+        if (storyText.text.EndsWith("_"))
+            storyText.text = storyText.text.Substring(0, storyText.text.Length - 1);
 
         typingCoroutine = null;
         currentCallback = null;

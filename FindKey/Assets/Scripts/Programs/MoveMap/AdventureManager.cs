@@ -145,7 +145,7 @@ public class AdventureManager : MonoBehaviour
 
             UpdateAmbientAudio(currentNode.ambientSounds);
 
-            UpdateAIMemory(currentNode.aiMemoryUpdate, currentNode.aiMemoryLevel);
+            UpdateAIMemory(currentNode.aiMemoryUpdate, currentNode.aiMemoryLevel, currentNode.forceMemoryUpdate);
 
             if (currentNode.onEnterEvent != null && EventManager.Instance != null)
             {
@@ -339,14 +339,14 @@ public class AdventureManager : MonoBehaviour
         activeAudioSources = sourcesToKeep;
     }
 
-    void UpdateAIMemory(string newMemory, int memoryLevel)
+    void UpdateAIMemory(string newMemory, int memoryLevel, bool forceUpdate)
     {
         if (string.IsNullOrEmpty(newMemory)) return;
 
-        ExampleAIScript[] redGirlAIs = FindObjectsOfType<ExampleAIScript>(true);
-        foreach (ExampleAIScript ai in redGirlAIs)
+        BaseAIScript[] allAIs = FindObjectsOfType<BaseAIScript>(true);
+        foreach (BaseAIScript ai in allAIs)
         {
-            ai.InjectMemory(newMemory, memoryLevel);
+            ai.InjectMemory(newMemory, memoryLevel, forceUpdate);
         }
     }
 
