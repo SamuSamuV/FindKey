@@ -34,6 +34,8 @@ public class AdventureManager : MonoBehaviour
 
     private bool isInitialized = false;
 
+    private List<StoryNode> visitedNodes = new List<StoryNode>();
+
     void Start()
     {
         audioMasterObj = GameObject.Find("Main Camera");
@@ -131,7 +133,20 @@ public class AdventureManager : MonoBehaviour
     {
         if (currentNode != null)
         {
-            storyLog.SetTextAnimated(currentNode.storyText, currentNode.customTypingSpeed);
+            storyLog.canSkipCurrentText = !currentNode.canNotBeSkipped;
+
+            float speedToUse = currentNode.customTypingSpeed;
+
+            if (visitedNodes.Contains(currentNode))
+            {
+                speedToUse = 0.001f;
+            }
+            else
+            {
+                visitedNodes.Add(currentNode);
+            }
+
+            storyLog.SetTextAnimated(currentNode.storyText, speedToUse);
 
             if (popupSequenceCoroutine != null) StopCoroutine(popupSequenceCoroutine);
 
@@ -146,6 +161,8 @@ public class AdventureManager : MonoBehaviour
             UpdateAmbientAudio(currentNode.ambientSounds);
 
             UpdateAIMemory(currentNode.aiMemoryUpdate, currentNode.aiMemoryLevel, currentNode.forceMemoryUpdate);
+
+            UpdateAISituationContext(currentNode.storyText);
 
             if (currentNode.onEnterEvent != null && EventManager.Instance != null)
             {
@@ -386,7 +403,15 @@ public class AdventureManager : MonoBehaviour
 
     void ProcessInput(string input)
     {
-        if (string.IsNullOrEmpty(input) || currentNode == null) return;
+        if (storyLog.IsTyping && string.IsNullOrEmpty(input.Trim()))
+        {
+            storyLog.TrySkipTyping();
+            inputField.text = "";
+            inputField.ActivateInputField();
+            return;
+        }
+
+        if (string.IsNullOrEmpty(input.Trim()) || currentNode == null) return;
 
         input = input.ToLower().Trim();
         inputField.text = "";
@@ -499,5 +524,16 @@ public class AdventureManager : MonoBehaviour
             }
         }
         activeAmbientSources.Clear();
+    }
+
+    void UpdateAISituationContext(string contextText)
+    {
+        if (string.IsNullOrEmpty(contextText)) return;
+
+        BaseAIScript[] allAIs = FindObjectsOfType<BaseAIScript>(true);
+        foreach (BaseAIScript ai in allAIs)
+        {
+            ai.SetSituationContext(contextText);
+        }
     }
 }

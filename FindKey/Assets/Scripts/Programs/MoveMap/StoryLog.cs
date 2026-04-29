@@ -66,6 +66,11 @@ public class StoryLog : MonoBehaviour
     [HideInInspector]
     public string lastLoadedText = "";
 
+    [HideInInspector] public bool canSkipCurrentText = true;
+    private bool isSkipping = false;
+
+    public bool IsTyping => typingCoroutine != null;
+
     void Update()
     {
         if (currentShakeMagnitude <= 0f || storyText == null) return;
@@ -100,6 +105,14 @@ public class StoryLog : MonoBehaviour
         {
             textInfo.meshInfo[i].mesh.vertices = textInfo.meshInfo[i].vertices;
             storyText.UpdateGeometry(textInfo.meshInfo[i].mesh, i);
+        }
+    }
+
+    public void TrySkipTyping()
+    {
+        if (typingCoroutine != null && canSkipCurrentText)
+        {
+            isSkipping = true;
         }
     }
 
@@ -197,13 +210,13 @@ public class StoryLog : MonoBehaviour
 
     IEnumerator TypewriterRoutine(string lineToAdd, float customSpeed, System.Action onFinished = null)
     {
+        isSkipping = false;
         if (storyText.text.Length > 0) storyText.text += "\n";
         bool isInsideTag = false;
 
         float activeSpeed = customSpeed > 0f ? customSpeed : typingSpeed;
         float currentDelay = activeSpeed / Mathf.Max(0.01f, currentSpeedMultiplier);
 
-        // Limpiamos un posible "_" residual antes de empezar
         if (storyText.text.EndsWith("_"))
             storyText.text = storyText.text.Substring(0, storyText.text.Length - 1);
 
@@ -217,7 +230,11 @@ public class StoryLog : MonoBehaviour
                     string possibleNumber = lineToAdd.Substring(i + 1, endIndexTag - (i + 1));
                     if (float.TryParse(possibleNumber, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float pauseDuration))
                     {
-                        yield return new WaitForSeconds(pauseDuration);
+                        if (!isSkipping && activeSpeed > 0.001f)
+                        {
+                            yield return new WaitForSeconds(pauseDuration);
+                        }
+
                         i = endIndexTag + 1;
                         continue;
                     }
@@ -237,14 +254,20 @@ public class StoryLog : MonoBehaviour
             if (!isInsideTag)
             {
                 storyText.text += "_";
-                PlayTypingSound(c);
-                UpdateLayout();
-                yield return new WaitForSeconds(currentDelay);
+
+                if (!isSkipping)
+                {
+                    PlayTypingSound(c);
+                    UpdateLayout();
+                    yield return new WaitForSeconds(currentDelay);
+                }
             }
         }
 
         if (storyText.text.EndsWith("_"))
             storyText.text = storyText.text.Substring(0, storyText.text.Length - 1);
+
+        if (isSkipping) UpdateLayout();
 
         typingCoroutine = null;
         currentCallback = null;
@@ -287,13 +310,20 @@ public class StoryLog : MonoBehaviour
     void PlayCleanTypingSound(SoundSettings sound)
     {
         float randomPitch = Random.Range(-pitchVariation, pitchVariation);
-
-        typingAudioSource.pitch = (sound.pitch + randomPitch) * currentPitchMultiplier;
+        float finalPitch = (sound.pitch + randomPitch) * currentPitchMultiplier;
 
         float randomVol = Random.Range(-volumeVariation, volumeVariation);
         float finalVol = Mathf.Clamp01(sound.volume + randomVol);
 
-        typingAudioSource.PlayOneShot(sound.clip, finalVol);
+        AudioSource tempSource = typingAudioSource.gameObject.AddComponent<AudioSource>();
+        tempSource.spatialBlend = typingAudioSource.spatialBlend;
+        tempSource.outputAudioMixerGroup = typingAudioSource.outputAudioMixerGroup;
+        tempSource.clip = sound.clip;
+        tempSource.pitch = finalPitch;
+        tempSource.loop = false;
+
+        AudioFader fader = tempSource.gameObject.AddComponent<AudioFader>();
+        fader.StartFade(tempSource, finalVol, sound.fadeInDuration, sound.fadeOutDuration, true);
     }
 
     void UpdateLayout()

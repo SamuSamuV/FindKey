@@ -28,6 +28,9 @@ public abstract class BaseAIScript : MonoBehaviour
     protected string permanentInjectedMemory = "";
     protected int currentMemoryLevel = -1;
 
+    public GameObject thinkingPanel;
+    protected string currentSituationContext = "";
+
     [Serializable]
     public class AIResponse
     {
@@ -50,7 +53,9 @@ public abstract class BaseAIScript : MonoBehaviour
             this.ollamaClient = refs.ollamaClient;
             this.storyLog = refs.storyLog;
             this.visualController = refs.visualController;
+            this.thinkingPanel = refs.thinkingPanel;
         }
+
         else
         {
             if (inputField == null) inputField = GetComponentInChildren<TMP_InputField>(true);
@@ -60,7 +65,6 @@ public abstract class BaseAIScript : MonoBehaviour
             if (visualController == null) visualController = GetComponentInChildren<NPCVisualController>(true);
         }
     }
-
     protected virtual void Start()
     {
         if (inputField != null) inputField.onSubmit.AddListener(OnInputSubmit);
@@ -76,6 +80,8 @@ public abstract class BaseAIScript : MonoBehaviour
     {
         if (inputField != null) inputField.gameObject.SetActive(false);
         visualController?.SetState(NPCVisualController.NPCState.Thinking);
+
+        thinkingPanel.SetActive(true);
 
         string greetingInstruction = string.IsNullOrEmpty(firstMessage)
             ? "Saluda al jugador y preséntate."
@@ -109,6 +115,17 @@ public abstract class BaseAIScript : MonoBehaviour
         }
     }
 
+    public void SetSituationContext(string rawStoryText)
+    {
+        if (string.IsNullOrEmpty(rawStoryText)) return;
+
+        string cleanText = Regex.Replace(rawStoryText, @"\[\d+(\.\d+)?s\]", "");
+
+        cleanText = Regex.Replace(cleanText, "<.*?>", "");
+
+        currentSituationContext = cleanText.Trim();
+    }
+
     private void OnInputSubmit(string unused) => OnSendClicked();
 
     public void OnSendClicked()
@@ -132,11 +149,18 @@ public abstract class BaseAIScript : MonoBehaviour
 
         visualController?.SetState(NPCVisualController.NPCState.Thinking);
 
+        thinkingPanel.SetActive(true);
+
         string finalPrompt = personalityPrompt + " " + systemInstruction;
 
         if (!string.IsNullOrEmpty(permanentInjectedMemory))
         {
             finalPrompt += "\n\n[DATOS IMPORTANTES DE LA FASE ACTUAL]:" + permanentInjectedMemory;
+        }
+
+        if (!string.IsNullOrEmpty(currentSituationContext))
+        {
+            finalPrompt += "\n\n[SITUACIÓN ACTUAL DEL JUEGO / CONTEXTO DEL JUGADOR]:\n" + currentSituationContext;
         }
 
         if (!unlocked && IsPasswordSaid(text))
@@ -164,6 +188,7 @@ public abstract class BaseAIScript : MonoBehaviour
 
         if (string.IsNullOrEmpty(raw))
         {
+            if (thinkingPanel != null) thinkingPanel.SetActive(false);
             visualController?.SetState(NPCVisualController.NPCState.Idle);
             if (inputField != null) inputField.gameObject.SetActive(true);
             return;
@@ -174,7 +199,10 @@ public abstract class BaseAIScript : MonoBehaviour
 
         System.Action onTypingFinished = () =>
         {
+            if (thinkingPanel != null) thinkingPanel.SetActive(false);
+
             visualController?.SetState(NPCVisualController.NPCState.Idle);
+            if (storyLog != null) storyLog.StopEmotion();
 
             if (inputField != null)
             {
@@ -201,11 +229,11 @@ public abstract class BaseAIScript : MonoBehaviour
                 }
 
                 visualController?.SetState(NPCVisualController.NPCState.Talking, emo);
-
                 if (storyLog != null) storyLog.SetEmotion(emo);
 
                 AddLog(npcName, data.response, true, onTypingFinished);
             }
+
             else
             {
                 onTypingFinished.Invoke();
@@ -227,6 +255,8 @@ public abstract class BaseAIScript : MonoBehaviour
 
     protected void OnAIError(string err)
     {
+        thinkingPanel.SetActive(false);
+
         visualController?.SetState(NPCVisualController.NPCState.Idle);
         if (storyLog != null) storyLog.AddLine($"<color=red>Error: {err}</color>");
         if (inputField != null)

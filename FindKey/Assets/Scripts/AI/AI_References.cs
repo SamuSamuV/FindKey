@@ -8,4 +8,7 @@ public class AI_References : MonoBehaviour
     public TextMeshProUGUI chatOutput;
     public StoryLog storyLog;
     public NPCVisualController visualController;
+
+    [Header("UI Adicional")]
+    public GameObject thinkingPanel;
 }

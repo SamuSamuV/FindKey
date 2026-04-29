@@ -56,6 +56,9 @@ public class StoryNode : ScriptableObject
     [Tooltip("Velocidad de escritura para este nodo. Si dejas 0, usará la velocidad normal del StoryLog.")]
     public float customTypingSpeed = 0f;
 
+    [Tooltip("Si se marca, el jugador NO podrá saltar ni acelerar este texto pulsando Enter.")]
+    public bool canNotBeSkipped = false;
+
     public List<StoryOption> options;
     [Space(20)]
     [Header("Popups Sequence")]
