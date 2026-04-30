@@ -18,12 +18,17 @@ MonoBehaviour:
     No hay violencia en el gesto: la mano simplemente te ofrece una peque\xF1a caja
     de madera oscura, h\xFAmeda pero intacta. Luego queda suspendida, esperando.
     \n\"C\xF3gela.\"\r"
+  customTypingSpeed: 0
+  canNotBeSkipped: 0
   options:
   - validInputs: {fileID: 11400000, guid: d611042d84834ba428963a87bb4e7364, type: 2}
     nextNode: {fileID: 11400000, guid: 9cd38735f95a4d641a55a5ca0dd9f27b, type: 2}
-    actionType: 0
+    actionType: 5
   popups: []
   nodeSounds: []
   randomSounds: []
+  ambientSounds: []
+  onEnterEvent: {fileID: 0}
   aiMemoryLevel: 0
   aiMemoryUpdate: 
+  forceMemoryUpdate: 0

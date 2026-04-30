@@ -5,6 +5,7 @@ public class MoveAppData : MonoBehaviour
 {
     public bool playerHasAlreadySeeThis;
     public bool hasAxe;
+    public bool hasChest;
     public bool playerIsFrontCat;
     public bool catIsDead;
     public bool playerIsChattingWithCat;

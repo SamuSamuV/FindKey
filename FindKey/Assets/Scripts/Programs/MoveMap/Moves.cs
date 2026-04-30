@@ -172,6 +172,39 @@ public class Moves : MonoBehaviour
         }
     }
 
+    public void PickUpCorruptedChest()
+    {
+        if (!moveAppData.hasChest)
+        {
+            moveAppData.hasChest = true;
+
+            DesktopManager dm = FindObjectOfType<DesktopManager>();
+
+            foreach (var data in dm.iconsToSpawn)
+            {
+                if (data.label == "Inventory")
+                {
+                    if (data.isOpen)
+                    {
+                        InventoryManager inventoryManager = data.windowInstance.GetComponent<InventoryManager>();
+
+                        if (inventoryManager != null)
+                        {
+                            inventoryManager.AddCorruptedChestToInventary();
+                        }
+                    }
+
+                    break;
+                }
+            }
+        }
+
+        else
+        {
+            storyLog.SetTextAnimated(hasAlreadyPickAxeText);
+        }
+    }
+
     public void FirstGoStraight()
     {
         storyLog.SetTextAnimated(goFirstStraightText);

@@ -10,6 +10,8 @@ public class InventoryManager : MonoBehaviour
     public GameObject inventoryItemPrefab;
 
     public Sprite axeSprite;
+    public Sprite corruptedChestSprite;
+    public Sprite chestSprite;
 
     void Start()
     {
@@ -31,5 +33,15 @@ public class InventoryManager : MonoBehaviour
     public void AddAxeToInventary()
     {
         AddItemToInventory(axeSprite, "Axe");
+    }
+
+    public void AddCorruptedChestToInventary()
+    {
+        AddItemToInventory(corruptedChestSprite, "Caja Corrupta");
+    }
+
+    public void AddChestToInventary()
+    {
+        AddItemToInventory(chestSprite, "Caja");
     }
 }

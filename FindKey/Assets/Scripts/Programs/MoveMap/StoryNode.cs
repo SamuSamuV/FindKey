@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public enum StoryAction
 {
-    None, TriggerCat, PickAxe, LookPainting, Die
+    None, TriggerCat, PickAxe, LookPainting, Die, PickUpChest
 }
 
 public enum AudioChannel
