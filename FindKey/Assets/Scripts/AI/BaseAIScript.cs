@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
@@ -38,6 +39,18 @@ public abstract class BaseAIScript : MonoBehaviour
         public string action;
         public string emotion;
     }
+
+    [Serializable]
+    public class AIActionMapping
+    {
+        [Tooltip("La palabra exacta que la IA devolverá en el JSON. Ej: 'RepairChest'")]
+        public string aiActionName;
+        [Tooltip("El evento de Unity que se disparará cuando la IA use esa acción.")]
+        public GameEvent eventToTrigger;
+    }
+
+    [Header("Eventos Personalizados de IA")]
+    public List<AIActionMapping> customAIActions = new List<AIActionMapping>();
 
     public abstract void InitNPC();
 
@@ -241,6 +254,21 @@ public abstract class BaseAIScript : MonoBehaviour
             action = (data.action ?? "none").Trim().ToLowerInvariant();
         }
 
+        if (customAIActions != null && customAIActions.Count > 0)
+        {
+            foreach (var customAction in customAIActions)
+            {
+                if (!string.IsNullOrEmpty(customAction.aiActionName) && customAction.aiActionName.ToLowerInvariant() == action)
+                {
+                    if (customAction.eventToTrigger != null && EventManager.Instance != null)
+                    {
+                        EventManager.Instance.TriggerEvent(customAction.eventToTrigger);
+                        Debug.Log($"<color=green>[IA ACTION]</color> Evento disparado por la IA: {action}");
+                    }
+                }
+            }
+        }
+
         if (!unlocked && IsPasswordSaid(lastPlayerText)) action = "open_door";
 
         if (action == "open_door")
@@ -328,5 +356,34 @@ public abstract class BaseAIScript : MonoBehaviour
         this.firstMessage = profile.firstMessage;
         if (!string.IsNullOrEmpty(profile.password)) this.password = profile.password;
         if (!string.IsNullOrEmpty(profile.systemInstruction)) this.systemInstruction = profile.systemInstruction;
+    }
+
+    public void ForceProactiveMessage(string urgentInstruction)
+    {
+        if (string.IsNullOrEmpty(urgentInstruction)) return;
+
+        SoundManager.Instance?.Play("send_text");
+        visualController?.SetState(NPCVisualController.NPCState.Thinking);
+        if (thinkingPanel != null) thinkingPanel.SetActive(true);
+
+        string finalPrompt = personalityPrompt + " " + systemInstruction;
+
+        if (!string.IsNullOrEmpty(permanentInjectedMemory))
+        {
+            finalPrompt += "\n\n[DATOS IMPORTANTES DE LA FASE ACTUAL]:" + permanentInjectedMemory;
+        }
+
+        if (!string.IsNullOrEmpty(currentSituationContext))
+        {
+            finalPrompt += "\n\n[SITUACIÓN ACTUAL DEL JUEGO]:\n" + currentSituationContext;
+        }
+
+        finalPrompt += "\n\n[INSTRUCCIÓN URGENTE DEL SISTEMA PARA TU SIGUIENTE MENSAJE]:\n" + urgentInstruction;
+        finalPrompt += "\n\nConversation history:\n" + conversationHistory + $"\n{npcName}:";
+
+        if (ollamaClient != null)
+        {
+            StartCoroutine(ollamaClient.SendPrompt(finalPrompt, OnAIResponse, OnAIError));
+        }
     }
 }

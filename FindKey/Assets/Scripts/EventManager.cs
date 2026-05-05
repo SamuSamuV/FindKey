@@ -16,6 +16,7 @@ public class EventManager : MonoBehaviour
     [Header("Configuración UI")]
     public Transform popupContainer;
     public GameObject defaultPopupPrefab;
+    public GameObject blackScreenPanel;
 
     [Header("Backlog (Eventos ya ocurridos)")]
     public List<GameEvent> executedEvents = new List<GameEvent>();
@@ -104,17 +105,32 @@ public class EventManager : MonoBehaviour
                 break;
 
             case EventActionType.CloseApp:
-                AppWindow windowToClose = GetAppWindowByName(action.appName);
-                if (windowToClose != null)
-                    CloseAppByName(action.appName);
-
+                if (string.IsNullOrEmpty(action.appName) || action.appName.ToLowerInvariant() == "all")
+                {
+                    AppWindow[] allWindows = FindObjectsOfType<AppWindow>(false);
+                    foreach (AppWindow win in allWindows)
+                    {
+                        win.Close();
+                    }
+                }
+                else
+                {
+                    AppWindow windowToClose = GetAppWindowByName(action.appName);
+                    if (windowToClose != null)
+                        CloseAppByName(action.appName);
+                }
                 break;
 
             case EventActionType.ShakeWindow:
-                AppWindow windowToShake = GetAppWindowByName(action.appName);
-                if (windowToShake != null)
+                if (string.IsNullOrEmpty(action.appName) || action.appName.ToLowerInvariant() == "all")
                 {
-                    windowToShake.ShakeWindow(action.shakeDuration, action.shakeMagnitude);
+                    AppWindow[] allWindows = FindObjectsOfType<AppWindow>(false);
+                    foreach (AppWindow win in allWindows) win.ShakeWindow(action.shakeDuration, action.shakeMagnitude);
+                }
+                else
+                {
+                    AppWindow windowToShake = GetAppWindowByName(action.appName);
+                    if (windowToShake != null) windowToShake.ShakeWindow(action.shakeDuration, action.shakeMagnitude);
                 }
                 break;
 
@@ -129,11 +145,26 @@ public class EventManager : MonoBehaviour
 
             case EventActionType.MinimizeApp:
                 AppWindow windowToMin = GetAppWindowByName(action.appName);
-                if (windowToMin != null)
-                {
-                    windowToMin.Minimize();
-                }
+                if (windowToMin != null) windowToMin.Minimize();
+                break;
 
+            case EventActionType.ToggleBlackScreen:
+                if (blackScreenPanel != null) blackScreenPanel.SetActive(action.toggleState);
+                break;
+
+            case EventActionType.BringTaskbarToFront:
+                if (TaskbarManager.Instance != null)
+                    TaskbarManager.Instance.transform.SetAsLastSibling();
+                break;
+
+            case EventActionType.ForceAIMessage:
+                BaseAIScript[] ais = FindObjectsOfType<BaseAIScript>(true);
+                foreach (BaseAIScript ai in ais) ai.ForceProactiveMessage(action.aiPromptMessage);
+                break;
+
+            case EventActionType.AddInventoryItem:
+                InventoryManager invManager = FindObjectOfType<InventoryManager>();
+                if (invManager != null) invManager.AddItemToInventory(action.itemSprite, action.itemName);
                 break;
         }
     }

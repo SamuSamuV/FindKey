@@ -21,19 +21,28 @@ MonoBehaviour:
     adelgazan hasta morir en campo abierto.\n\xBFVas a la izquierda, sigues al frente
     hacia el lago, o retrocedes atr\xE1s hacia el campo?"
   customTypingSpeed: 0
+  canNotBeSkipped: 0
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: c025f4fbc0256e6409ad6ae851005ccd, type: 2}
     actionType: 0
+    disableIfVisited: 0
+    alternateNodeIfBlocked: {fileID: 0}
   - validInputs: {fileID: 11400000, guid: ac428914eae63c4488c2d718afd0d788, type: 2}
     nextNode: {fileID: 11400000, guid: aa86f7e7fa1e27d45b71e86a25eeaee3, type: 2}
     actionType: 0
+    disableIfVisited: 0
+    alternateNodeIfBlocked: {fileID: 0}
   - validInputs: {fileID: 11400000, guid: 59921cc1611cd494fa4c5de13ee9b91d, type: 2}
     nextNode: {fileID: 11400000, guid: c4de89f37867341488acc433d4adbbc4, type: 2}
     actionType: 0
+    disableIfVisited: 0
+    alternateNodeIfBlocked: {fileID: 0}
   - validInputs: {fileID: 11400000, guid: d39a7c7997f8e6345bc05edb52e1f0be, type: 2}
     nextNode: {fileID: 11400000, guid: 589decb06ef83dc4bb208f525f97b161, type: 2}
     actionType: 0
+    disableIfVisited: 0
+    alternateNodeIfBlocked: {fileID: 0}
   popups: []
   nodeSounds:
   - channel: 0
@@ -106,3 +115,5 @@ MonoBehaviour:
     sigue los pasos, si no, no.\n\n[CONTEXT]\nEst\xE1s en una ventana de chat flotante.
     El jugador ha abierto findkey. Lees los mensajes que te ponga y respondes acorde
     a lo que diga: haz que se sienta escuchado por favor. Puedes sentir emociones."
+  aiProactivePrompt: 
+  forceMemoryUpdate: 0

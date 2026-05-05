@@ -90,6 +90,11 @@ public class StoryNode : ScriptableObject
     [Tooltip("La IA aprenderá esto permanentemente al llegar a este nodo. Ej: 'Fase 2: El gato ha muerto'.")]
     public string aiMemoryUpdate;
 
+    [Space(10)]
+    [TextArea(3, 5)]
+    [Tooltip("Si escribes algo aquí, la IA tomará la iniciativa y hablará sola al entrar a este nodo.")]
+    public string aiProactivePrompt;
+
     [Tooltip("Fuerza a la IA a asimilar esta memoria y adaptar su nivel aunque sea inferior al actual (util para saltos en el arbol).")]
     public bool forceMemoryUpdate = false;
 }
@@ -114,4 +119,12 @@ public class StoryOption
     public CommandVocabulary validInputs;
     public StoryNode nextNode;
     public StoryAction actionType;
+
+    [Space(10)]
+    [Header("Bloquear nodo")]
+    [Tooltip("Si marcas esto, el jugador no podra volver a pasar por este nodo.")]
+    public bool disableIfVisited = false;
+
+    [Tooltip("Opcional: Si el jugador intenta usar esta opción pero está bloqueada, lo enviará a este nodo alternativo en su lugar (Ej: 'Ya has explorado esa zona').")]
+    public StoryNode alternateNodeIfBlocked;
 }

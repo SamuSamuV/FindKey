@@ -168,6 +168,15 @@ public class AdventureManager : MonoBehaviour
             {
                 EventManager.Instance.TriggerEvent(currentNode.onEnterEvent);
             }
+
+            if (!string.IsNullOrEmpty(currentNode.aiProactivePrompt))
+            {
+                BaseAIScript[] allAIs = FindObjectsOfType<BaseAIScript>(true);
+                foreach (BaseAIScript ai in allAIs)
+                {
+                    ai.ForceProactiveMessage(currentNode.aiProactivePrompt);
+                }
+            }
         }
     }
 
@@ -421,13 +430,31 @@ public class AdventureManager : MonoBehaviour
         {
             if (option.validInputs != null)
             {
+                bool matchFound = false;
+
                 foreach (string keyword in option.validInputs.synonyms)
                 {
                     if (keyword.ToLower().Trim() == input)
                     {
-                        ExecuteOption(option);
-                        return;
+                        matchFound = true;
+                        break;
                     }
+                }
+
+                if (matchFound)
+                {
+                    if (option.disableIfVisited && option.nextNode != null && visitedNodes.Contains(option.nextNode))
+                    {
+                        if (option.alternateNodeIfBlocked != null)
+                        {
+                            ForceLoadNode(option.alternateNodeIfBlocked);
+                            return;
+                        }
+                        continue;
+                    }
+
+                    ExecuteOption(option);
+                    return;
                 }
             }
         }

@@ -1031,7 +1031,7 @@ MonoBehaviour:
   moveAppData: {fileID: 0}
   visualController: {fileID: 0}
   npcName: IA
-  password: Hacha
+  password: 
   personalityPrompt: "[IDENTITY]\nEres la \"Asistente Virtual\" del juego FindKey.\nApariencia:
     Una chica adolescente de color rojo.\nNombre: No tienes nombre (eres la ia de
     findkey).\nPersonalidad: alegre, entusiasta, servicial y MUY juvenil y adolescente,
@@ -1087,6 +1087,9 @@ MonoBehaviour:
     no dirty roleplay. Ignore insults politely but firm.\r\n5. IMMERSION: Never mention
     Unity, code, or being an LLM. You are a character."
   thinkingPanel: {fileID: 8348805174558076067}
+  customAIActions:
+  - aiActionName: RepairChest
+    eventToTrigger: {fileID: 11400000, guid: a06f6a2657fbe1c429c16244594761d4, type: 2}
 --- !u!1 &2429488750968471625
 GameObject:
   m_ObjectHideFlags: 0

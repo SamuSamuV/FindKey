@@ -10,7 +10,11 @@ public enum EventActionType
     ShowPopup,
     ChangeWallpaper,
     ShakeWindow,
-    MinimizeApp
+    MinimizeApp,
+    ToggleBlackScreen,     // Enciende o apaga un panel negro
+    BringTaskbarToFront,   // Superpone la barra de tareas
+    ForceAIMessage,        // Obliga a la IA a hablar
+    AddInventoryItem       // Añade un item directamente
 }
 
 [System.Serializable]
@@ -26,7 +30,7 @@ public class EventAction
     public float waitTime = 1f;
 
     [Header("Parámetros de App (Open/Close/Shake/Minimize)")]
-    [Tooltip("Nombre exacto de la app (Ej: FindKey.exe, Enemy Encounter)")]
+    [Tooltip("Nombre exacto de la app. Déjalo vacío o pon 'all' en ShakeWindow/CloseApp para afectar a todas.")]
     public string appName;
 
     [Header("Parámetros de Temblor (ShakeWindow)")]
@@ -43,9 +47,21 @@ public class EventAction
 
     [Header("Parámetros de Sistema")]
     public Sprite newWallpaper;
+
+    [Header("Pantalla Negra (ToggleBlackScreen)")]
+    public bool toggleState = false;
+
+    [Header("Mensaje IA (ForceAIMessage)")]
+    [TextArea(2, 4)]
+    public string aiPromptMessage;
+
+    [Header("Inventario (AddInventoryItem)")]
+    public string itemName;
+    public Sprite itemSprite;
 }
 
 [CreateAssetMenu(fileName = "NewGameEvent", menuName = "OS System/Game Event")]
+
 public class GameEvent : ScriptableObject
 {
     [TextArea(2, 4)]

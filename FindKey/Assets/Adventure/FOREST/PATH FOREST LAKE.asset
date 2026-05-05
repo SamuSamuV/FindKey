@@ -17,13 +17,19 @@ MonoBehaviour:
     No refleja el cielo\u2026 solo profundidad. Algo en el centro rompe apenas la
     superficie, como una ondulaci\xF3n que no genera ondas.\nPuedes avanzar por la
     orilla o volver al sendero.\r"
+  customTypingSpeed: 0
+  canNotBeSkipped: 0
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: 4b43d04eb8d1e794998b3af67c72862f, type: 2}
     actionType: 0
+    disableIfVisited: 1
+    alternateNodeIfBlocked: {fileID: 0}
   - validInputs: {fileID: 11400000, guid: 59921cc1611cd494fa4c5de13ee9b91d, type: 2}
     nextNode: {fileID: 11400000, guid: faa2c9d69e0aecd4faea24696fa98bf1, type: 2}
     actionType: 0
+    disableIfVisited: 0
+    alternateNodeIfBlocked: {fileID: 0}
   popups: []
   nodeSounds:
   - channel: 1
@@ -44,5 +50,8 @@ MonoBehaviour:
       fadeOutDuration: 0
   randomSounds: []
   ambientSounds: []
+  onEnterEvent: {fileID: 0}
   aiMemoryLevel: 0
   aiMemoryUpdate: 
+  aiProactivePrompt: 
+  forceMemoryUpdate: 0
