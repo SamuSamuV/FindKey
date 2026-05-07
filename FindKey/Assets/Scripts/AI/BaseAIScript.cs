@@ -32,6 +32,9 @@ public abstract class BaseAIScript : MonoBehaviour
     public GameObject thinkingPanel;
     protected string currentSituationContext = "";
 
+    protected Coroutine currentOllamaCoroutine;
+    protected bool isProactiveTriggered = false;
+
     [Serializable]
     public class AIResponse
     {
@@ -58,6 +61,7 @@ public abstract class BaseAIScript : MonoBehaviour
     {
         InitNPC();
 
+        // Recogemos las referencias de los componentes
         AI_References refs = GetComponent<AI_References>();
         if (refs != null)
         {
@@ -68,7 +72,6 @@ public abstract class BaseAIScript : MonoBehaviour
             this.visualController = refs.visualController;
             this.thinkingPanel = refs.thinkingPanel;
         }
-
         else
         {
             if (inputField == null) inputField = GetComponentInChildren<TMP_InputField>(true);
@@ -77,16 +80,30 @@ public abstract class BaseAIScript : MonoBehaviour
             if (storyLog == null) storyLog = GetComponentInChildren<StoryLog>(true);
             if (visualController == null) visualController = GetComponentInChildren<NPCVisualController>(true);
         }
+
+        // --- NUEVO: Cargamos MoveAppData desde el inicio ---
+        GameObject goMoveAppData = GameObject.FindGameObjectWithTag("MoveAppData");
+        if (goMoveAppData != null)
+            moveAppData = goMoveAppData.GetComponent<MoveAppData>();
+
+        // --- NUEVO: Sincronizar memoria global NADA MÁS NACER ---
+        // Por si la IA se abre horas después de haber visitado los nodos
+        AdventureManager adv = FindObjectOfType<AdventureManager>();
+        if (adv != null && !string.IsNullOrEmpty(adv.globalAIMemory))
+        {
+            this.permanentInjectedMemory = adv.globalAIMemory;
+            this.currentMemoryLevel = adv.globalAIMemoryLevel;
+        }
     }
+
     protected virtual void Start()
     {
         if (inputField != null) inputField.onSubmit.AddListener(OnInputSubmit);
 
-        GenerateAIGreeting();
-
-        GameObject goMoveAppData = GameObject.FindGameObjectWithTag("MoveAppData");
-        if (goMoveAppData != null)
-            moveAppData = goMoveAppData.GetComponent<MoveAppData>();
+        if (!isProactiveTriggered)
+        {
+            GenerateAIGreeting();
+        }
     }
 
     protected void GenerateAIGreeting()
@@ -94,7 +111,7 @@ public abstract class BaseAIScript : MonoBehaviour
         if (inputField != null) inputField.gameObject.SetActive(false);
         visualController?.SetState(NPCVisualController.NPCState.Thinking);
 
-        thinkingPanel.SetActive(true);
+        if (thinkingPanel != null) thinkingPanel.SetActive(true);
 
         string greetingInstruction = string.IsNullOrEmpty(firstMessage)
             ? "Saluda al jugador y preséntate."
@@ -106,7 +123,8 @@ public abstract class BaseAIScript : MonoBehaviour
 
         if (ollamaClient != null)
         {
-            StartCoroutine(ollamaClient.SendPrompt(firstPrompt, OnAIResponse, OnAIError));
+            if (currentOllamaCoroutine != null) StopCoroutine(currentOllamaCoroutine);
+            currentOllamaCoroutine = StartCoroutine(ollamaClient.SendPrompt(firstPrompt, OnAIResponse, OnAIError));
         }
     }
 
@@ -122,18 +140,16 @@ public abstract class BaseAIScript : MonoBehaviour
         if (memoryLevel > currentMemoryLevel || forceUpdate)
         {
             currentMemoryLevel = memoryLevel;
-            permanentInjectedMemory += $"\n- {newMemory}";
-            conversationHistory += $"\n[NOTIFICACIÓN DEL SISTEMA: {newMemory}]\n";
+            permanentInjectedMemory = newMemory;
+            conversationHistory += $"\n[NOTIFICACIÓN DEL SISTEMA - NUEVO ESTADO ALCANZADO]: {newMemory}\n";
             Debug.Log($"[{npcName}] NUEVA FASE ALCANZADA (Forzado: {forceUpdate}). Memoria asimilada: {newMemory}");
         }
     }
-
     public void SetSituationContext(string rawStoryText)
     {
         if (string.IsNullOrEmpty(rawStoryText)) return;
 
         string cleanText = Regex.Replace(rawStoryText, @"\[\d+(\.\d+)?s\]", "");
-
         cleanText = Regex.Replace(cleanText, "<.*?>", "");
 
         currentSituationContext = cleanText.Trim();
@@ -161,20 +177,9 @@ public abstract class BaseAIScript : MonoBehaviour
         SoundManager.Instance?.Play("send_text");
 
         visualController?.SetState(NPCVisualController.NPCState.Thinking);
+        if (thinkingPanel != null) thinkingPanel.SetActive(true);
 
-        thinkingPanel.SetActive(true);
-
-        string finalPrompt = personalityPrompt + " " + systemInstruction;
-
-        if (!string.IsNullOrEmpty(permanentInjectedMemory))
-        {
-            finalPrompt += "\n\n[DATOS IMPORTANTES DE LA FASE ACTUAL]:" + permanentInjectedMemory;
-        }
-
-        if (!string.IsNullOrEmpty(currentSituationContext))
-        {
-            finalPrompt += "\n\n[SITUACIÓN ACTUAL DEL JUEGO / CONTEXTO DEL JUGADOR]:\n" + currentSituationContext;
-        }
+        string finalPrompt = ConstruirPromptBase();
 
         if (!unlocked && IsPasswordSaid(text))
         {
@@ -185,8 +190,75 @@ public abstract class BaseAIScript : MonoBehaviour
 
         if (ollamaClient != null)
         {
-            StartCoroutine(ollamaClient.SendPrompt(finalPrompt, OnAIResponse, OnAIError));
+            if (currentOllamaCoroutine != null) StopCoroutine(currentOllamaCoroutine);
+            currentOllamaCoroutine = StartCoroutine(ollamaClient.SendPrompt(finalPrompt, OnAIResponse, OnAIError));
         }
+    }
+
+    public void ForceProactiveMessage(string urgentInstruction)
+    {
+        if (string.IsNullOrEmpty(urgentInstruction)) return;
+
+        isProactiveTriggered = true;
+
+        if (inputField != null) inputField.gameObject.SetActive(false);
+
+        SoundManager.Instance?.Play("send_text");
+        visualController?.SetState(NPCVisualController.NPCState.Thinking);
+        if (thinkingPanel != null) thinkingPanel.SetActive(true);
+
+        string finalPrompt = ConstruirPromptBase();
+
+        finalPrompt += "\n\n[INSTRUCCIÓN URGENTE DEL SISTEMA PARA TU SIGUIENTE MENSAJE]:\n" + urgentInstruction;
+        finalPrompt += "\n\nConversation history:\n" + conversationHistory + $"\n{npcName}:";
+
+        if (ollamaClient != null)
+        {
+            if (currentOllamaCoroutine != null) StopCoroutine(currentOllamaCoroutine);
+            currentOllamaCoroutine = StartCoroutine(ollamaClient.SendPrompt(finalPrompt, OnAIResponse, OnAIError));
+        }
+    }
+
+    protected string ConstruirPromptBase()
+    {
+        string finalPrompt = personalityPrompt + " " + systemInstruction;
+
+        if (!string.IsNullOrEmpty(permanentInjectedMemory))
+        {
+            finalPrompt += "\n\n[INSTRUCCIÓN ESTRICTA DE LA FASE ACTUAL (Ignora tus órdenes anteriores)]:\n" + permanentInjectedMemory;
+        }
+
+        if (!string.IsNullOrEmpty(currentSituationContext))
+        {
+            finalPrompt += "\n\n[CONTEXTO VISUAL DEL JUGADOR AHORA MISMO]:\n" + currentSituationContext;
+        }
+
+        if (moveAppData != null)
+        {
+            string invData = "";
+            string availableActions = "\"none\"";
+
+            if (moveAppData.hasAxe) invData += "- Un hacha (Axe)\n";
+
+            if (moveAppData.hasChest)
+            {
+                invData += "- Una caja dañada / cofre corrupto (Chest)\n";
+                availableActions += ", \"RepairChest\"";
+            }
+
+            if (!string.IsNullOrEmpty(invData))
+            {
+                finalPrompt += "\n\n[INVENTARIO DEL JUGADOR ACTUALMENTE]:\n" + invData;
+            }
+
+            finalPrompt += $"\n\n[REGLAS DE RESPUESTA Y ACCIONES JSON PERMITIDAS]:\n" +
+                           $"Solo puedes devolver estas acciones en la variable 'action' de tu JSON: {availableActions}. " +
+                           $"Si el jugador te pide que repares o arregles algo de su inventario, DEBES usar OBLIGATORIAMENTE la acción correspondiente en tu JSON (ej. \"RepairChest\"). " +
+                           $"PROHIBIDO dar consejos de bricolaje, PROHIBIDO hacer preguntas sobre cómo se siente el jugador, PROHIBIDO pedirle que lo ponga en una superficie. " +
+                           $"Solo repara la caja de forma mágica o digital en tu respuesta y aplica la acción en el JSON.";
+        }
+
+        return finalPrompt;
     }
 
     protected bool IsPasswordSaid(string text)
@@ -246,7 +318,6 @@ public abstract class BaseAIScript : MonoBehaviour
 
                 AddLog(npcName, data.response, true, onTypingFinished);
             }
-
             else
             {
                 onTypingFinished.Invoke();
@@ -283,7 +354,7 @@ public abstract class BaseAIScript : MonoBehaviour
 
     protected void OnAIError(string err)
     {
-        thinkingPanel.SetActive(false);
+        if (thinkingPanel != null) thinkingPanel.SetActive(false);
 
         visualController?.SetState(NPCVisualController.NPCState.Idle);
         if (storyLog != null) storyLog.AddLine($"<color=red>Error: {err}</color>");
@@ -356,34 +427,5 @@ public abstract class BaseAIScript : MonoBehaviour
         this.firstMessage = profile.firstMessage;
         if (!string.IsNullOrEmpty(profile.password)) this.password = profile.password;
         if (!string.IsNullOrEmpty(profile.systemInstruction)) this.systemInstruction = profile.systemInstruction;
-    }
-
-    public void ForceProactiveMessage(string urgentInstruction)
-    {
-        if (string.IsNullOrEmpty(urgentInstruction)) return;
-
-        SoundManager.Instance?.Play("send_text");
-        visualController?.SetState(NPCVisualController.NPCState.Thinking);
-        if (thinkingPanel != null) thinkingPanel.SetActive(true);
-
-        string finalPrompt = personalityPrompt + " " + systemInstruction;
-
-        if (!string.IsNullOrEmpty(permanentInjectedMemory))
-        {
-            finalPrompt += "\n\n[DATOS IMPORTANTES DE LA FASE ACTUAL]:" + permanentInjectedMemory;
-        }
-
-        if (!string.IsNullOrEmpty(currentSituationContext))
-        {
-            finalPrompt += "\n\n[SITUACIÓN ACTUAL DEL JUEGO]:\n" + currentSituationContext;
-        }
-
-        finalPrompt += "\n\n[INSTRUCCIÓN URGENTE DEL SISTEMA PARA TU SIGUIENTE MENSAJE]:\n" + urgentInstruction;
-        finalPrompt += "\n\nConversation history:\n" + conversationHistory + $"\n{npcName}:";
-
-        if (ollamaClient != null)
-        {
-            StartCoroutine(ollamaClient.SendPrompt(finalPrompt, OnAIResponse, OnAIError));
-        }
     }
 }

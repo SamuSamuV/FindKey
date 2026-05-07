@@ -1622,7 +1622,7 @@ MonoBehaviour:
   audioBackObj: {fileID: 0}
   audioLeftObj: {fileID: 0}
   audioRightObj: {fileID: 0}
-  currentNode: {fileID: 11400000, guid: aa6b58bff5bb47e4083ccd4e46187acc, type: 2}
+  currentNode: {fileID: 11400000, guid: 121a56b363ff3a04e828cbcc6403ddb5, type: 2}
   nodeAfterCatWin: {fileID: 11400000, guid: 1c7489dad791aa6488d33b5bb9032d23, type: 2}
 --- !u!82 &8916219043748113361
 AudioSource:

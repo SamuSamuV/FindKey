@@ -3,6 +3,8 @@ using UnityEngine;
 public class AppLauncher : MonoBehaviour
 {
     public static AppLauncher Instance { get; private set; }
+
+    [Tooltip("Prefab por defecto por si falla la búsqueda. Ya no es estrictamente necesario.")]
     public GameObject appWindowPrefab;
     public Transform windowsParent;
 
@@ -18,9 +20,8 @@ public class AppLauncher : MonoBehaviour
 
     public void LaunchApp(string appName, Vector2 launchPosition)
     {
-        if (!appWindowPrefab) return;
-
         Sprite appIconSprite = null;
+        GameObject prefabToSpawn = appWindowPrefab;
 
         DesktopManager dm = FindObjectOfType<DesktopManager>();
         if (dm != null)
@@ -30,6 +31,11 @@ public class AppLauncher : MonoBehaviour
                 if (data.label == appName)
                 {
                     appIconSprite = data.sprite;
+
+                    if (data.windowApp != null)
+                    {
+                        prefabToSpawn = data.windowApp;
+                    }
 
                     if (data.windowInstance != null)
                     {
@@ -65,7 +71,13 @@ public class AppLauncher : MonoBehaviour
             }
         }
 
-        GameObject appGO = Instantiate(appWindowPrefab, windowsParent);
+        if (prefabToSpawn == null)
+        {
+            Debug.LogError($"[AppLauncher] No se pudo encontrar un prefab para abrir la app '{appName}'.");
+            return;
+        }
+
+        GameObject appGO = Instantiate(prefabToSpawn, windowsParent);
         AppWindow appWindow = appGO.GetComponent<AppWindow>();
 
         appGO.transform.SetAsLastSibling();

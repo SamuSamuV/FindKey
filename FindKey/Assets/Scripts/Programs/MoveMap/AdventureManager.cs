@@ -36,6 +36,9 @@ public class AdventureManager : MonoBehaviour
 
     private List<StoryNode> visitedNodes = new List<StoryNode>();
 
+    [HideInInspector] public string globalAIMemory = "";
+    [HideInInspector] public int globalAIMemoryLevel = -1;
+
     void Start()
     {
         audioMasterObj = GameObject.Find("Main Camera");
@@ -369,10 +372,16 @@ public class AdventureManager : MonoBehaviour
     {
         if (string.IsNullOrEmpty(newMemory)) return;
 
-        BaseAIScript[] allAIs = FindObjectsOfType<BaseAIScript>(true);
-        foreach (BaseAIScript ai in allAIs)
+        if (memoryLevel > globalAIMemoryLevel || forceUpdate)
         {
-            ai.InjectMemory(newMemory, memoryLevel, forceUpdate);
+            globalAIMemoryLevel = memoryLevel;
+            globalAIMemory = newMemory;
+
+            BaseAIScript[] allAIs = FindObjectsOfType<BaseAIScript>(true);
+            foreach (BaseAIScript ai in allAIs)
+            {
+                ai.InjectMemory(newMemory, memoryLevel, forceUpdate);
+            }
         }
     }
 
