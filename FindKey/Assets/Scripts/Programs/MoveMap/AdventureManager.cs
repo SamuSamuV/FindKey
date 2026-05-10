@@ -490,7 +490,6 @@ public class AdventureManager : MonoBehaviour
         {
             case StoryAction.TriggerCat: movesScript.GoToCatPosition(); break;
             case StoryAction.PickAxe: movesScript.PickAxe(); break;
-            case StoryAction.PickUpChest: movesScript.PickUpCorruptedChest(); break;
             case StoryAction.LookPainting: movesScript.LookPainting(); break;
             case StoryAction.Die: movesScript.GoFirstRightDie(); break;
             case StoryAction.None: default: break;

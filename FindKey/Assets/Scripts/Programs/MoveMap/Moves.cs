@@ -151,7 +151,7 @@ public class Moves : MonoBehaviour
             
             foreach (var data in dm.iconsToSpawn)
             {
-                if (data.label == "Inventory")
+                if (data.label == "Inventario")
                 {
                     if (data.isOpen)
                     {
@@ -159,7 +159,7 @@ public class Moves : MonoBehaviour
 
                         if (inventoryManager != null)
                         {
-                            inventoryManager.AddAxeToInventary();
+                            //inventoryManager.AddAxeToInventary();
                         }
                     }
                     break;
@@ -182,15 +182,16 @@ public class Moves : MonoBehaviour
 
             foreach (var data in dm.iconsToSpawn)
             {
-                if (data.label == "Inventory")
+                if (data.label == "Inventario")
                 {
                     if (data.isOpen)
                     {
+                        Debug.Log("Agregando cofre corrupto al inventario...");
                         InventoryManager inventoryManager = data.windowInstance.GetComponent<InventoryManager>();
 
                         if (inventoryManager != null)
                         {
-                            inventoryManager.AddCorruptedChestToInventary();
+                            //inventoryManager.AddCorruptedChestToInventary();
                         }
                     }
 
@@ -223,7 +224,7 @@ public class Moves : MonoBehaviour
             {
                 foreach (var data in dm.iconsToSpawn)
                 {
-                    if (data.label == "Enemy Encounter")
+                    if (data.label == "Buscador Enemigos")
                     {
                         if (data.isOpen)
                         {

@@ -23,7 +23,9 @@ MonoBehaviour:
   options:
   - validInputs: {fileID: 11400000, guid: d611042d84834ba428963a87bb4e7364, type: 2}
     nextNode: {fileID: 11400000, guid: 9cd38735f95a4d641a55a5ca0dd9f27b, type: 2}
-    actionType: 5
+    actionType: 0
+    disableIfVisited: 0
+    alternateNodeIfBlocked: {fileID: 0}
   popups: []
   nodeSounds: []
   randomSounds: []
@@ -31,4 +33,5 @@ MonoBehaviour:
   onEnterEvent: {fileID: 0}
   aiMemoryLevel: 0
   aiMemoryUpdate: 
+  aiProactivePrompt: 
   forceMemoryUpdate: 0

@@ -35,6 +35,11 @@ public abstract class BaseAIScript : MonoBehaviour
     protected Coroutine currentOllamaCoroutine;
     protected bool isProactiveTriggered = false;
 
+    // --- NUEVO: Memoria a corto plazo para retomar pensamientos interrumpidos ---
+    protected string lastSentPrompt = "";
+    protected bool isThinking = false;
+    // -------------------------------------------------------------------------
+
     [Serializable]
     public class AIResponse
     {
@@ -46,9 +51,8 @@ public abstract class BaseAIScript : MonoBehaviour
     [Serializable]
     public class AIActionMapping
     {
-        [Tooltip("La palabra exacta que la IA devolverá en el JSON. Ej: 'RepairChest'")]
         public string aiActionName;
-        [Tooltip("El evento de Unity que se disparará cuando la IA use esa acción.")]
+        public List<string> overrideKeywords;
         public GameEvent eventToTrigger;
     }
 
@@ -61,7 +65,6 @@ public abstract class BaseAIScript : MonoBehaviour
     {
         InitNPC();
 
-        // Recogemos las referencias de los componentes
         AI_References refs = GetComponent<AI_References>();
         if (refs != null)
         {
@@ -81,18 +84,32 @@ public abstract class BaseAIScript : MonoBehaviour
             if (visualController == null) visualController = GetComponentInChildren<NPCVisualController>(true);
         }
 
-        // --- NUEVO: Cargamos MoveAppData desde el inicio ---
         GameObject goMoveAppData = GameObject.FindGameObjectWithTag("MoveAppData");
         if (goMoveAppData != null)
             moveAppData = goMoveAppData.GetComponent<MoveAppData>();
 
-        // --- NUEVO: Sincronizar memoria global NADA MÁS NACER ---
-        // Por si la IA se abre horas después de haber visitado los nodos
         AdventureManager adv = FindObjectOfType<AdventureManager>();
         if (adv != null && !string.IsNullOrEmpty(adv.globalAIMemory))
         {
             this.permanentInjectedMemory = adv.globalAIMemory;
             this.currentMemoryLevel = adv.globalAIMemoryLevel;
+        }
+    }
+
+    // --- NUEVO: Se ejecuta cada vez que la ventana de la IA se ABRE ---
+    protected virtual void OnEnable()
+    {
+        // Si el jugador cerró la app mientras la IA pensaba, reanudamos el proceso
+        if (isThinking && !string.IsNullOrEmpty(lastSentPrompt))
+        {
+            if (inputField != null) inputField.gameObject.SetActive(false);
+            visualController?.SetState(NPCVisualController.NPCState.Thinking);
+            if (thinkingPanel != null) thinkingPanel.SetActive(true);
+
+            if (ollamaClient != null)
+            {
+                currentOllamaCoroutine = StartCoroutine(ollamaClient.SendPrompt(lastSentPrompt, OnAIResponse, OnAIError));
+            }
         }
     }
 
@@ -121,11 +138,32 @@ public abstract class BaseAIScript : MonoBehaviour
             "\n\n[SYSTEM INSTRUCTION FOR YOUR FIRST MESSAGE]: " + greetingInstruction +
             "\n\nRemember: Respond ONLY with a valid JSON object.";
 
+        // GUARDAMOS EN MEMORIA EL PENSAMIENTO
+        lastSentPrompt = firstPrompt;
+        isThinking = true;
+
         if (ollamaClient != null)
         {
             if (currentOllamaCoroutine != null) StopCoroutine(currentOllamaCoroutine);
             currentOllamaCoroutine = StartCoroutine(ollamaClient.SendPrompt(firstPrompt, OnAIResponse, OnAIError));
         }
+    }
+
+    // --- NUEVO: Se ejecuta justo cuando la ventana de la IA se CIERRA ---
+    protected virtual void OnDisable()
+    {
+        if (currentOllamaCoroutine != null)
+        {
+            StopCoroutine(currentOllamaCoroutine);
+            currentOllamaCoroutine = null;
+        }
+
+        if (thinkingPanel != null) thinkingPanel.SetActive(false);
+        visualController?.SetState(NPCVisualController.NPCState.Idle);
+        if (inputField != null) inputField.gameObject.SetActive(true);
+
+        // ¡OJO! NO ponemos isThinking = false aquí. 
+        // Queremos que la IA recuerde que estaba pensando para retomarlo en el OnEnable.
     }
 
     protected virtual void OnDestroy()
@@ -145,6 +183,7 @@ public abstract class BaseAIScript : MonoBehaviour
             Debug.Log($"[{npcName}] NUEVA FASE ALCANZADA (Forzado: {forceUpdate}). Memoria asimilada: {newMemory}");
         }
     }
+
     public void SetSituationContext(string rawStoryText)
     {
         if (string.IsNullOrEmpty(rawStoryText)) return;
@@ -153,6 +192,32 @@ public abstract class BaseAIScript : MonoBehaviour
         cleanText = Regex.Replace(cleanText, "<.*?>", "");
 
         currentSituationContext = cleanText.Trim();
+    }
+
+    protected bool HasKeyword(string text, List<string> keywords)
+    {
+        if (string.IsNullOrEmpty(text) || keywords == null || keywords.Count == 0) return false;
+
+        string lowerText = text.ToLowerInvariant();
+        foreach (string kw in keywords)
+        {
+            if (string.IsNullOrEmpty(kw)) continue;
+            if (lowerText.Contains(kw.ToLowerInvariant())) return true;
+        }
+        return false;
+    }
+
+    protected bool IsActionAllowed(string actionName)
+    {
+        if (string.IsNullOrEmpty(actionName)) return false;
+
+        if (actionName.Equals("RepairChest", StringComparison.OrdinalIgnoreCase))
+        {
+            if (moveAppData != null && moveAppData.hasChest && !moveAppData.isChestRepaired) return true;
+            return false;
+        }
+
+        return true;
     }
 
     private void OnInputSubmit(string unused) => OnSendClicked();
@@ -164,10 +229,7 @@ public abstract class BaseAIScript : MonoBehaviour
 
         lastPlayerText = text;
 
-        if (storyLog != null)
-        {
-            storyLog.AddLine($"<align=right><size=-2><i>>>> {text}</i></size></align>");
-        }
+        if (storyLog != null) storyLog.AddLine($"<align=right><size=-2><i>>>> {text}</i></size></align>");
 
         AddToHistory("Player", text);
 
@@ -181,12 +243,38 @@ public abstract class BaseAIScript : MonoBehaviour
 
         string finalPrompt = ConstruirPromptBase();
 
-        if (!unlocked && IsPasswordSaid(text))
+        //if (!unlocked && IsPasswordSaid(text))
+        //{
+        //    finalPrompt += "\n\n[SYSTEM OVERRIDE]: Password correct (" + password + "). Admit them in. Action: 'open_door'.";
+        //}
+
+        if (customAIActions != null)
         {
-            finalPrompt += "\n\n[SYSTEM OVERRIDE]: Password correct (" + password + "). Admit them in. Action: 'open_door'.";
+            foreach (var customAction in customAIActions)
+            {
+                if (HasKeyword(text, customAction.overrideKeywords))
+                {
+                    if (IsActionAllowed(customAction.aiActionName))
+                    {
+                        finalPrompt += $"\n\n[SYSTEM OVERRIDE URGENTE]: El jugador ha solicitado explícitamente ejecutar '{customAction.aiActionName}'. " +
+                                       $"DEBES poner OBLIGATORIAMENTE \"action\": \"{customAction.aiActionName}\" en tu JSON y responderle de forma amable que ya lo has hecho.";
+                    }
+                    else
+                    {
+                        finalPrompt += $"\n\n[SYSTEM OVERRIDE]: El jugador te está pidiendo arreglar algo o ejecutar '{customAction.aiActionName}', " +
+                                       $"PERO lógicamente es imposible ahora mismo (porque no tiene el objeto, o ya está arreglado). " +
+                                       $"Dile educadamente que no sabes de qué habla, o que no hay nada que arreglar en este momento. PON \"action\": \"none\" en tu JSON.";
+                    }
+                    break;
+                }
+            }
         }
 
         finalPrompt += "\n\nConversation history:\n" + conversationHistory + $"\n{npcName}:";
+
+        // GUARDAMOS EN MEMORIA EL PENSAMIENTO
+        lastSentPrompt = finalPrompt;
+        isThinking = true;
 
         if (ollamaClient != null)
         {
@@ -201,6 +289,8 @@ public abstract class BaseAIScript : MonoBehaviour
 
         isProactiveTriggered = true;
 
+        lastPlayerText = "";
+
         if (inputField != null) inputField.gameObject.SetActive(false);
 
         SoundManager.Instance?.Play("send_text");
@@ -211,6 +301,10 @@ public abstract class BaseAIScript : MonoBehaviour
 
         finalPrompt += "\n\n[INSTRUCCIÓN URGENTE DEL SISTEMA PARA TU SIGUIENTE MENSAJE]:\n" + urgentInstruction;
         finalPrompt += "\n\nConversation history:\n" + conversationHistory + $"\n{npcName}:";
+
+        // GUARDAMOS EN MEMORIA EL PENSAMIENTO
+        lastSentPrompt = finalPrompt;
+        isThinking = true;
 
         if (ollamaClient != null)
         {
@@ -242,8 +336,15 @@ public abstract class BaseAIScript : MonoBehaviour
 
             if (moveAppData.hasChest)
             {
-                invData += "- Una caja dañada / cofre corrupto (Chest)\n";
-                availableActions += ", \"RepairChest\"";
+                if (moveAppData.isChestRepaired)
+                {
+                    invData += "- El cofre de madera (ESTÁ REPARADO Y FUNCIONAL)\n";
+                }
+                else
+                {
+                    invData += "- Una caja dañada / cofre corrupto (NECESITA REPARACIÓN)\n";
+                    availableActions += ", \"RepairChest\"";
+                }
             }
 
             if (!string.IsNullOrEmpty(invData))
@@ -253,22 +354,18 @@ public abstract class BaseAIScript : MonoBehaviour
 
             finalPrompt += $"\n\n[REGLAS DE RESPUESTA Y ACCIONES JSON PERMITIDAS]:\n" +
                            $"Solo puedes devolver estas acciones en la variable 'action' de tu JSON: {availableActions}. " +
-                           $"Si el jugador te pide que repares o arregles algo de su inventario, DEBES usar OBLIGATORIAMENTE la acción correspondiente en tu JSON (ej. \"RepairChest\"). " +
-                           $"PROHIBIDO dar consejos de bricolaje, PROHIBIDO hacer preguntas sobre cómo se siente el jugador, PROHIBIDO pedirle que lo ponga en una superficie. " +
-                           $"Solo repara la caja de forma mágica o digital en tu respuesta y aplica la acción en el JSON.";
+                           $"REGLA VITAL: Tu acción por defecto es SIEMPRE \"none\". " +
+                           $"TIENES PROHIBIDO usar la acción \"RepairChest\" a menos que el jugador te haya PEDIDO EXPLÍCITAMENTE que arregles o repares la caja en su último mensaje. " +
+                           $"Si el jugador solo está hablando de otra cosa o simplemente acaba de encontrar la caja, mantén la acción como \"none\". " +
+                           $"PROHIBIDO dar consejos de bricolaje y PROHIBIDO hacer preguntas sobre cómo se siente el jugador. Si te piden repararla, solo acéptalo mágicamente y aplica la acción.";
         }
 
         return finalPrompt;
     }
 
-    protected bool IsPasswordSaid(string text)
-    {
-        if (string.IsNullOrEmpty(text) || string.IsNullOrEmpty(password)) return false;
-        return Regex.IsMatch(text, $@"\b{Regex.Escape(password)}\b", RegexOptions.IgnoreCase);
-    }
-
     protected void OnAIResponse(string raw)
     {
+        isThinking = false; // Ya terminó de pensar
         Debug.Log($"<color=cyan>[AI JSON]:</color> {raw}");
 
         if (string.IsNullOrEmpty(raw))
@@ -285,10 +382,8 @@ public abstract class BaseAIScript : MonoBehaviour
         System.Action onTypingFinished = () =>
         {
             if (thinkingPanel != null) thinkingPanel.SetActive(false);
-
             visualController?.SetState(NPCVisualController.NPCState.Idle);
             if (storyLog != null) storyLog.StopEmotion();
-
             if (inputField != null)
             {
                 inputField.gameObject.SetActive(true);
@@ -329,18 +424,28 @@ public abstract class BaseAIScript : MonoBehaviour
         {
             foreach (var customAction in customAIActions)
             {
-                if (!string.IsNullOrEmpty(customAction.aiActionName) && customAction.aiActionName.ToLowerInvariant() == action)
+                bool aiSaidIt = (!string.IsNullOrEmpty(customAction.aiActionName) && customAction.aiActionName.ToLowerInvariant() == action);
+                bool playerForcedIt = HasKeyword(lastPlayerText, customAction.overrideKeywords);
+
+                if (aiSaidIt || playerForcedIt)
                 {
-                    if (customAction.eventToTrigger != null && EventManager.Instance != null)
+                    if (IsActionAllowed(customAction.aiActionName))
                     {
-                        EventManager.Instance.TriggerEvent(customAction.eventToTrigger);
-                        Debug.Log($"<color=green>[IA ACTION]</color> Evento disparado por la IA: {action}");
+                        if (customAction.eventToTrigger != null && EventManager.Instance != null)
+                        {
+                            EventManager.Instance.TriggerEvent(customAction.eventToTrigger);
+                            Debug.Log($"<color=green>[IA ACTION]</color> Evento disparado: {customAction.aiActionName}");
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log($"<color=orange>[IA BLOCKED]</color> Intento de ejecutar '{customAction.aiActionName}' bloqueado porque el jugador aún no tiene el objeto o ya está completado.");
                     }
                 }
             }
         }
 
-        if (!unlocked && IsPasswordSaid(lastPlayerText)) action = "open_door";
+        //if (!unlocked && IsPasswordSaid(lastPlayerText)) action = "open_door";
 
         if (action == "open_door")
         {
@@ -350,10 +455,13 @@ public abstract class BaseAIScript : MonoBehaviour
                 OpenDoor();
             }
         }
+
+        lastPlayerText = "";
     }
 
     protected void OnAIError(string err)
     {
+        isThinking = false; // Hubo un error, dejó de pensar
         if (thinkingPanel != null) thinkingPanel.SetActive(false);
 
         visualController?.SetState(NPCVisualController.NPCState.Idle);
@@ -365,6 +473,7 @@ public abstract class BaseAIScript : MonoBehaviour
         }
     }
 
+    // ... (El resto de funciones AddLog, TryParse, LoadProfile, etc. se mantienen igual) ...
     protected void AddLog(string speaker, string message, bool animate = false, System.Action onFinished = null)
     {
         if (string.IsNullOrEmpty(message))

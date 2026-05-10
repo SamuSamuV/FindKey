@@ -149,7 +149,7 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
                         data.windowInstance = null;
                     }
 
-                    if (data.label == "Enemy Encounter")
+                    if (data.label == "Buscador Enemigos")
                     {
                         foreach (var otherApp in dm.iconsToSpawn)
                         {
@@ -170,7 +170,7 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
 
                         foreach (var otherApp in dm.iconsToSpawn)
                         {
-                            if (otherApp.label == "Enemy Encounter" && otherApp.isOpen && otherApp.windowInstance != null)
+                            if (otherApp.label == "Buscador Enemigos" && otherApp.isOpen && otherApp.windowInstance != null)
                             {
                                 BaseEnemyEncounter baseEnemy = otherApp.windowInstance.GetComponent<BaseEnemyEncounter>();
                                 EnemyEncounterData enemyData = otherApp.windowInstance.GetComponent<EnemyEncounterData>();

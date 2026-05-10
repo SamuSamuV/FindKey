@@ -149,12 +149,40 @@ public class EventManager : MonoBehaviour
                 break;
 
             case EventActionType.ToggleBlackScreen:
-                if (blackScreenPanel != null) blackScreenPanel.SetActive(action.toggleState);
+                if (blackScreenPanel != null)
+                {
+                    blackScreenPanel.SetActive(action.toggleState);
+
+                    if (action.toggleState)
+                    {
+                        Canvas panelCanvas = blackScreenPanel.GetComponent<Canvas>();
+                        if (panelCanvas == null)
+                        {
+                            panelCanvas = blackScreenPanel.AddComponent<Canvas>();
+                            blackScreenPanel.AddComponent<UnityEngine.UI.GraphicRaycaster>();
+                        }
+
+                        panelCanvas.overrideSorting = true;
+                        panelCanvas.sortingOrder = 50;
+                    }
+                }
                 break;
 
             case EventActionType.BringTaskbarToFront:
-                if (TaskbarManager.Instance != null)
-                    TaskbarManager.Instance.transform.SetAsLastSibling();
+                TaskbarManager taskbar = FindObjectOfType<TaskbarManager>(true);
+
+                if (taskbar != null)
+                {
+                    Canvas taskbarCanvas = taskbar.GetComponent<Canvas>();
+                    if (taskbarCanvas == null)
+                    {
+                        taskbarCanvas = taskbar.gameObject.AddComponent<Canvas>();
+                        taskbar.gameObject.AddComponent<UnityEngine.UI.GraphicRaycaster>(); 
+                    }
+
+                    taskbarCanvas.overrideSorting = true;
+                    taskbarCanvas.sortingOrder = 100;
+                }
                 break;
 
             case EventActionType.ForceAIMessage:
@@ -163,8 +191,46 @@ public class EventManager : MonoBehaviour
                 break;
 
             case EventActionType.AddInventoryItem:
-                InventoryManager invManager = FindObjectOfType<InventoryManager>();
-                if (invManager != null) invManager.AddItemToInventory(action.itemSprite, action.itemName);
+                MoveAppData moveData = FindObjectOfType<MoveAppData>();
+
+                if (moveData != null)
+                {
+                    string nameLower = action.itemName.ToLowerInvariant();
+
+                    if (nameLower.Contains("reparada") || nameLower.Contains("repaired") || nameLower == "caja")
+                    {
+                        moveData.isChestRepaired = true;
+
+                        int removedCount = moveData.savedItems.RemoveAll(item =>
+                            item.itemName.ToLowerInvariant().Contains("corrupta") ||
+                            item.itemName.ToLowerInvariant().Contains("rota"));
+
+                        if (removedCount > 0)
+                        {
+                            Debug.Log("<color=yellow>[INVENTARIO]</color> Caja corrupta destruida y eliminada de la mochila.");
+                        }
+                    }
+                    else if (nameLower.Contains("caja") || nameLower.Contains("chest"))
+                    {
+                        moveData.hasChest = true;
+                    }
+                    else if (nameLower.Contains("hacha") || nameLower.Contains("axe"))
+                    {
+                        moveData.hasAxe = true;
+                    }
+
+                    if (!moveData.savedItems.Exists(item => item.itemName == action.itemName))
+                    {
+                        moveData.savedItems.Add(new SavedInventoryItem { itemName = action.itemName, itemSprite = action.itemSprite });
+                        Debug.Log($"<color=green>[INVENTARIO]</color> Nuevo objeto añadido: {action.itemName}");
+                    }
+                }
+
+                InventoryManager invManager = FindObjectOfType<InventoryManager>(true);
+                if (invManager != null)
+                {
+                    invManager.RefreshInventory();
+                }
                 break;
         }
     }

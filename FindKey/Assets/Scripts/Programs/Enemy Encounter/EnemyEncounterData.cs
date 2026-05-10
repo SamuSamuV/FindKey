@@ -83,7 +83,7 @@ public class EnemyEncounterData : MonoBehaviour
         {
             foreach (var data in dm.iconsToSpawn)
             {
-                if (data.label == "Enemy Encounter")
+                if (data.label == "Buscador Enemigos")
                 {
                     if (data.isOpen)
                     {

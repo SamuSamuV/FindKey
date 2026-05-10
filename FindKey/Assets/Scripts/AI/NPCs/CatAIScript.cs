@@ -67,7 +67,7 @@ public class CatAIScript : BaseAIScript
                     }
                 }
 
-                if (data.label == "Enemy Encounter")
+                if (data.label == "Buscador Enemigos")
                 {
                     if (data.isOpen)
                     {

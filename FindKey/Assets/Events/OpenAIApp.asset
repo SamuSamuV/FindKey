@@ -15,6 +15,39 @@ MonoBehaviour:
   eventDescription: Se abre la IA
   playOnlyOnce: 0
   actions:
+  - actionType: 11
+    delayBeforeExecute: 0
+    waitTime: 0
+    appName: 
+    shakeMagnitude: 0
+    shakeDuration: 0
+    sound:
+      clip: {fileID: 0}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+    popupData:
+      delayBeforeSpawn: 0
+      duration: 0
+      position: {x: 0, y: 0}
+      specificPrefab: {fileID: 0}
+      title: 
+      message: 
+      image: {fileID: 0}
+      sound:
+        clip: {fileID: 0}
+        volume: 0
+        pitch: 0
+        loop: 0
+        fadeInDuration: 0
+        fadeOutDuration: 0
+    newWallpaper: {fileID: 0}
+    toggleState: 0
+    aiPromptMessage: 
+    itemName: Caja Corrupta
+    itemSprite: {fileID: -470249467, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
   - actionType: 2
     delayBeforeExecute: 1
     waitTime: 0

@@ -1089,6 +1089,9 @@ MonoBehaviour:
   thinkingPanel: {fileID: 8348805174558076067}
   customAIActions:
   - aiActionName: RepairChest
+    overrideKeywords:
+    - reparar
+    - arregla
     eventToTrigger: {fileID: 11400000, guid: a06f6a2657fbe1c429c16244594761d4, type: 2}
 --- !u!1 &2429488750968471625
 GameObject:

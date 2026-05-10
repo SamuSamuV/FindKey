@@ -1,25 +1,38 @@
 using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
-    public MoveAppData moveAppData;
-
     public Transform inventoryGrid;
     public GameObject inventoryItemPrefab;
 
-    public Sprite axeSprite;
-    public Sprite corruptedChestSprite;
-    public Sprite chestSprite;
-
     void Start()
     {
-        GameObject goMoveAppData = GameObject.FindGameObjectWithTag("MoveAppData");
-        moveAppData = goMoveAppData.GetComponent<MoveAppData>();
+        RefreshInventory();
+    }
 
-        if (moveAppData.hasAxe)
-            AddItemToInventory(axeSprite, "Axe");
+    // Esta función borra lo viejo y dibuja lo que haya en MoveAppData
+    public void RefreshInventory()
+    {
+        // 1. Limpiamos la cuadrícula (por si había iconos viejos)
+        foreach (Transform child in inventoryGrid)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // 2. Buscamos la memoria global
+        GameObject goMoveAppData = GameObject.FindGameObjectWithTag("MoveAppData");
+        if (goMoveAppData != null)
+        {
+            MoveAppData moveAppData = goMoveAppData.GetComponent<MoveAppData>();
+            if (moveAppData != null)
+            {
+                // 3. Dibujamos todos los objetos guardados
+                foreach (var savedItem in moveAppData.savedItems)
+                {
+                    AddItemToInventory(savedItem.itemSprite, savedItem.itemName);
+                }
+            }
+        }
     }
 
     public void AddItemToInventory(Sprite itemSprite, string itemName)
@@ -28,20 +41,5 @@ public class InventoryManager : MonoBehaviour
         InventoryItem item = newItem.GetComponent<InventoryItem>();
         if (item != null)
             item.SetItem(itemSprite, itemName);
-    }
-
-    public void AddAxeToInventary()
-    {
-        AddItemToInventory(axeSprite, "Axe");
-    }
-
-    public void AddCorruptedChestToInventary()
-    {
-        AddItemToInventory(corruptedChestSprite, "Caja Corrupta");
-    }
-
-    public void AddChestToInventary()
-    {
-        AddItemToInventory(chestSprite, "Caja");
     }
 }
