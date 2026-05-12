@@ -245,7 +245,7 @@ public abstract class BaseAIScript : MonoBehaviour
 
         //if (!unlocked && IsPasswordSaid(text))
         //{
-        //    finalPrompt += "\n\n[SYSTEM OVERRIDE]: Password correct (" + password + "). Admit them in. Action: 'open_door'.";
+        //    finalPrompt += $"\n\n[SYSTEM OVERRIDE]: Password correct ({password}). You MUST set \"action\": \"open_door\" in your JSON response.";
         //}
 
         if (customAIActions != null)
@@ -256,14 +256,15 @@ public abstract class BaseAIScript : MonoBehaviour
                 {
                     if (IsActionAllowed(customAction.aiActionName))
                     {
-                        finalPrompt += $"\n\n[SYSTEM OVERRIDE URGENTE]: El jugador ha solicitado explícitamente ejecutar '{customAction.aiActionName}'. " +
-                                       $"DEBES poner OBLIGATORIAMENTE \"action\": \"{customAction.aiActionName}\" en tu JSON y responderle de forma amable que ya lo has hecho.";
+                        finalPrompt += $"\n\n[SYSTEM OVERRIDE]: The player has explicitly requested the action '{customAction.aiActionName}'. " +
+                                       $"You MUST set \"action\": \"{customAction.aiActionName}\" in your JSON response. " +
+                                       $"Reply politely IN SPANISH that you have completed the request magically.";
                     }
                     else
                     {
-                        finalPrompt += $"\n\n[SYSTEM OVERRIDE]: El jugador te está pidiendo arreglar algo o ejecutar '{customAction.aiActionName}', " +
-                                       $"PERO lógicamente es imposible ahora mismo (porque no tiene el objeto, o ya está arreglado). " +
-                                       $"Dile educadamente que no sabes de qué habla, o que no hay nada que arreglar en este momento. PON \"action\": \"none\" en tu JSON.";
+                        finalPrompt += $"\n\n[SYSTEM OVERRIDE]: The player is asking you to do something related to '{customAction.aiActionName}', " +
+                                       $"BUT it is logically impossible right now (they don't have the item, or it is already done). " +
+                                       $"Politely tell them IN SPANISH that you don't know what they mean or there is nothing to fix. Keep \"action\": \"none\" in your JSON.";
                     }
                     break;
                 }
@@ -272,7 +273,6 @@ public abstract class BaseAIScript : MonoBehaviour
 
         finalPrompt += "\n\nConversation history:\n" + conversationHistory + $"\n{npcName}:";
 
-        // GUARDAMOS EN MEMORIA EL PENSAMIENTO
         lastSentPrompt = finalPrompt;
         isThinking = true;
 
