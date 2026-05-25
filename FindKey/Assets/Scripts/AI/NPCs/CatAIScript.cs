@@ -35,7 +35,7 @@ public class CatAIScript : BaseAIScript
     protected override void OpenDoor()
     {
         moveAppData.catIsDead = true;
-        Debug.Log(moveAppData.catIsDead);
+        Debug.Log("Gato derrotado/superado.");
 
         DesktopManager dm = FindObjectOfType<DesktopManager>();
 
@@ -43,57 +43,40 @@ public class CatAIScript : BaseAIScript
         {
             foreach (var data in dm.iconsToSpawn)
             {
-                if (data.label == "FindKey.exe")
+                if (data.label == "FindKey.exe" && data.isOpen && data.windowInstance != null)
                 {
-                    if (data.isOpen)
-                    {
+                    AppWindow findKeyWindow = data.windowInstance.GetComponent<AppWindow>();
+                    if (findKeyWindow != null) findKeyWindow.SetCloseAndMinimizeInteractable(true);
 
-                        //////////////////////////////////////////////////////
+                    Moves moves = data.windowInstance.GetComponent<Moves>();
+                    moves.IAPanel.SetActive(false);
+                    moves.MovePanel.SetActive(true);
+                    moves.playerInputField.SetActive(true);
 
-                        //Implementar animación del FadeOut del gato proximamente con una corrutina y hacer todo lo de ocultar los paneles y demas al final de la corrutina/animación al irse
-
-                        //////////////////////////////////////////////////////
-
-                        Moves moves = data.windowInstance.GetComponent<Moves>();
-
-                        moves.IAPanel.SetActive(false);
-                        moves.MovePanel.SetActive(true);
-                        moves.playerInputField.SetActive(true);
-
-                        moves.selectMove.AddMovement(Direction.Straight);
-                        moves.GoToNextStageAfterCat();
-
-                        Debug.Log("Cat has been killed. Move app is now open with the next stage available.");
-                    }
+                    moves.selectMove.AddMovement(Direction.Straight);
+                    moves.GoToNextStageAfterCat();
                 }
 
-                if (data.label == "Buscador Enemigos")
+                if (data.label == "Enemy Encounter" && data.isOpen && data.windowInstance != null)
                 {
-                    if (data.isOpen)
-                    {
-                        EnemyEncounterData enemyEncounterData = GetComponent<EnemyEncounterData>();
-                        BaseEnemyEncounter baseEnemyEncounter = data.windowInstance.GetComponent<BaseEnemyEncounter>();
+                    AppWindow enemyWindow = data.windowInstance.GetComponent<AppWindow>();
+                    if (enemyWindow != null) enemyWindow.SetCloseAndMinimizeInteractable(true);
 
-                        baseEnemyEncounter.nonEnemyFindedPanel.SetActive(true);
+                    EnemyEncounterData enemyEncounterData = data.windowInstance.GetComponent<EnemyEncounterData>();
+                    BaseEnemyEncounter baseEnemyEncounter = data.windowInstance.GetComponent<BaseEnemyEncounter>();
 
-                        enemyEncounterData.CurrentType = EnemyEncounterData.NPCType.None;
-                    }
+                    baseEnemyEncounter.enemyVisuals.SetActive(false);
+                    baseEnemyEncounter.nonEnemyFindedPanel.SetActive(true);
+
+                    enemyEncounterData.CurrentType = EnemyEncounterData.NPCType.None;
                 }
             }
         }
 
         AdventureManager adventure = FindObjectOfType<AdventureManager>();
-
-        if (adventure != null)
+        if (adventure != null && adventure.nodeAfterCatWin != null)
         {
-            if (adventure.nodeAfterCatWin != null)
-            {
-                adventure.ForceLoadNode(adventure.nodeAfterCatWin);
-            }
-            else
-            {
-                Debug.LogError("ERROR: No has arrastrado el nodo 'After Cat' en el Inspector del AdventureManager.");
-            }
+            adventure.ForceLoadNode(adventure.nodeAfterCatWin);
         }
     }
 }

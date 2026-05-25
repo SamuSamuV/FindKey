@@ -682,7 +682,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Chat...
+  m_text: '
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3095b864b49990e448916514c3c7e96f, type: 2}
   m_sharedMaterial: {fileID: -6891712174442297813, guid: 3095b864b49990e448916514c3c7e96f, type: 2}

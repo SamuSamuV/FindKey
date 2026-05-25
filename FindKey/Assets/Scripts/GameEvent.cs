@@ -14,7 +14,9 @@ public enum EventActionType
     ToggleBlackScreen,     // Enciende o apaga un panel negro
     BringTaskbarToFront,   // Superpone la barra de tareas
     ForceAIMessage,        // Obliga a la IA a hablar
-    AddInventoryItem       // Añade un item directamente
+    AddInventoryItem,   // Añade un item directamente
+    RemoveDesktopIcon,
+    ChangeAdventureNode,
 }
 
 [System.Serializable]
@@ -58,6 +60,9 @@ public class EventAction
     [Header("Inventario (AddInventoryItem)")]
     public string itemName;
     public Sprite itemSprite;
+
+    [Header("Aventura (ChangeAdventureNode)")]
+    public StoryNode newStoryNode;
 }
 
 [CreateAssetMenu(fileName = "NewGameEvent", menuName = "OS System/Game Event")]

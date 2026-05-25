@@ -59,8 +59,8 @@ public class SelectMove : MonoBehaviour
         // 2. Creamos el mensaje: Error en Rojo + Salto de línea + Texto original
         // Si no había texto previo, solo mostramos el error.
         string message = string.IsNullOrEmpty(previousText)
-            ? "<color=red>You can't do that here.</color>"
-            : $"<color=red>You can't do that here.</color>\n\n{previousText}";
+            ? "<color=red>Acción no válida.</color>"
+            : $"<color=red>Acción no válida.</color>\n\n{previousText}";
 
         // 3. Lo mostramos animado
         storyLog.SetTextAnimated(message);

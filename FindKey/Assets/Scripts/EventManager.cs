@@ -231,6 +231,54 @@ public class EventManager : MonoBehaviour
                 {
                     invManager.RefreshInventory();
                 }
+            break;
+
+            case EventActionType.RemoveDesktopIcon:
+                DesktopManager desktopMgr = FindObjectOfType<DesktopManager>();
+                if (desktopMgr != null)
+                {
+                    GameObject iconToDestroy = null;
+
+                    // Recorremos los iconos físicos instalados en el escritorio
+                    for (int i = 0; i < desktopMgr.icons.Count; i++)
+                    {
+                        GameObject iconGO = desktopMgr.icons[i];
+                        if (iconGO != null)
+                        {
+                            DesktopIcon iconScript = iconGO.GetComponent<DesktopIcon>();
+                            // Si el texto del icono coincide con el nombre de la app (ej: "Enemy Encounter")
+                            if (iconScript != null && iconScript.labelText != null && iconScript.labelText.text == action.appName)
+                            {
+                                iconToDestroy = iconGO;
+                                break;
+                            }
+                        }
+                    }
+
+                    // Si lo encuentra, lo borramos del sistema y lo destruimos de la pantalla
+                    if (iconToDestroy != null)
+                    {
+                        desktopMgr.icons.Remove(iconToDestroy);
+                        Destroy(iconToDestroy);
+                        Debug.Log($"<color=red>[SISTEMA]</color> La aplicación '{action.appName}' ha sido desinstalada y borrada para siempre.");
+                    }
+                }
+            break;
+
+            case EventActionType.ChangeAdventureNode:
+                // Buscamos el gestor de la aventura en la escena
+                AdventureManager advManager = FindObjectOfType<AdventureManager>();
+
+                if (advManager != null && action.newStoryNode != null)
+                {
+                    // Forzamos el nuevo nodo usando el método que ya tienes programado
+                    advManager.ForceLoadNode(action.newStoryNode);
+                    Debug.Log($"<color=green>[SISTEMA]</color> El juego FindKey.exe ha sido forzado al nodo: {action.newStoryNode.name}");
+                }
+                else if (action.newStoryNode == null)
+                {
+                    Debug.LogError("<color=red>[EVENT ERROR]</color> No has asignado ningún 'New Story Node' en la acción ChangeAdventureNode.");
+                }
                 break;
         }
     }

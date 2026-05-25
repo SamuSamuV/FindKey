@@ -196,7 +196,7 @@ public class StoryLog : MonoBehaviour
 
     public void SetTextAnimated(string text, float customSpeed)
     {
-        if (!text.Contains("You can't do that here.")) lastLoadedText = text;
+        if (!text.Contains("Acción no válida.")) lastLoadedText = text;
         if (typingCoroutine != null) StopCoroutine(typingCoroutine);
         storyText.text = "";
 

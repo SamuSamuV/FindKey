@@ -96,10 +96,8 @@ public abstract class BaseAIScript : MonoBehaviour
         }
     }
 
-    // --- NUEVO: Se ejecuta cada vez que la ventana de la IA se ABRE ---
     protected virtual void OnEnable()
     {
-        // Si el jugador cerró la app mientras la IA pensaba, reanudamos el proceso
         if (isThinking && !string.IsNullOrEmpty(lastSentPrompt))
         {
             if (inputField != null) inputField.gameObject.SetActive(false);
@@ -109,6 +107,10 @@ public abstract class BaseAIScript : MonoBehaviour
             if (ollamaClient != null)
             {
                 currentOllamaCoroutine = StartCoroutine(ollamaClient.SendPrompt(lastSentPrompt, OnAIResponse, OnAIError));
+            }
+            else
+            {
+                OnAIError("OllamaClient no encontrado al reanudar.");
             }
         }
     }
@@ -138,7 +140,6 @@ public abstract class BaseAIScript : MonoBehaviour
             "\n\n[SYSTEM INSTRUCTION FOR YOUR FIRST MESSAGE]: " + greetingInstruction +
             "\n\nRemember: Respond ONLY with a valid JSON object.";
 
-        // GUARDAMOS EN MEMORIA EL PENSAMIENTO
         lastSentPrompt = firstPrompt;
         isThinking = true;
 
@@ -147,9 +148,12 @@ public abstract class BaseAIScript : MonoBehaviour
             if (currentOllamaCoroutine != null) StopCoroutine(currentOllamaCoroutine);
             currentOllamaCoroutine = StartCoroutine(ollamaClient.SendPrompt(firstPrompt, OnAIResponse, OnAIError));
         }
+        else
+        {
+            OnAIError("Falta asignar OllamaClient en AI_References.");
+        }
     }
 
-    // --- NUEVO: Se ejecuta justo cuando la ventana de la IA se CIERRA ---
     protected virtual void OnDisable()
     {
         if (currentOllamaCoroutine != null)
@@ -243,11 +247,6 @@ public abstract class BaseAIScript : MonoBehaviour
 
         string finalPrompt = ConstruirPromptBase();
 
-        //if (!unlocked && IsPasswordSaid(text))
-        //{
-        //    finalPrompt += $"\n\n[SYSTEM OVERRIDE]: Password correct ({password}). You MUST set \"action\": \"open_door\" in your JSON response.";
-        //}
-
         if (customAIActions != null)
         {
             foreach (var customAction in customAIActions)
@@ -281,6 +280,10 @@ public abstract class BaseAIScript : MonoBehaviour
             if (currentOllamaCoroutine != null) StopCoroutine(currentOllamaCoroutine);
             currentOllamaCoroutine = StartCoroutine(ollamaClient.SendPrompt(finalPrompt, OnAIResponse, OnAIError));
         }
+        else
+        {
+            OnAIError("Falta asignar OllamaClient en AI_References.");
+        }
     }
 
     public void ForceProactiveMessage(string urgentInstruction)
@@ -288,7 +291,6 @@ public abstract class BaseAIScript : MonoBehaviour
         if (string.IsNullOrEmpty(urgentInstruction)) return;
 
         isProactiveTriggered = true;
-
         lastPlayerText = "";
 
         if (inputField != null) inputField.gameObject.SetActive(false);
@@ -302,7 +304,6 @@ public abstract class BaseAIScript : MonoBehaviour
         finalPrompt += "\n\n[INSTRUCCIÓN URGENTE DEL SISTEMA PARA TU SIGUIENTE MENSAJE]:\n" + urgentInstruction;
         finalPrompt += "\n\nConversation history:\n" + conversationHistory + $"\n{npcName}:";
 
-        // GUARDAMOS EN MEMORIA EL PENSAMIENTO
         lastSentPrompt = finalPrompt;
         isThinking = true;
 
@@ -310,6 +311,10 @@ public abstract class BaseAIScript : MonoBehaviour
         {
             if (currentOllamaCoroutine != null) StopCoroutine(currentOllamaCoroutine);
             currentOllamaCoroutine = StartCoroutine(ollamaClient.SendPrompt(finalPrompt, OnAIResponse, OnAIError));
+        }
+        else
+        {
+            OnAIError("Falta asignar OllamaClient en AI_References.");
         }
     }
 
@@ -427,6 +432,15 @@ public abstract class BaseAIScript : MonoBehaviour
                 bool aiSaidIt = (!string.IsNullOrEmpty(customAction.aiActionName) && customAction.aiActionName.ToLowerInvariant() == action);
                 bool playerForcedIt = HasKeyword(lastPlayerText, customAction.overrideKeywords);
 
+                if (customAction.overrideKeywords != null && customAction.overrideKeywords.Count > 0)
+                {
+                    if (aiSaidIt && !playerForcedIt)
+                    {
+                        Debug.Log($"<color=red>[CANDADO ACTIVO]</color> La IA intentó lanzar '{customAction.aiActionName}' por su cuenta al coger la caja. Ha sido bloqueada por seguridad.");
+                        aiSaidIt = false;
+                    }
+                }
+
                 if (aiSaidIt || playerForcedIt)
                 {
                     if (IsActionAllowed(customAction.aiActionName))
@@ -439,7 +453,7 @@ public abstract class BaseAIScript : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log($"<color=orange>[IA BLOCKED]</color> Intento de ejecutar '{customAction.aiActionName}' bloqueado porque el jugador aún no tiene el objeto o ya está completado.");
+                        Debug.Log($"<color=orange>[IA BLOCKED]</color> Intento de ejecutar '{customAction.aiActionName}' bloqueado lógicamente.");
                     }
                 }
             }

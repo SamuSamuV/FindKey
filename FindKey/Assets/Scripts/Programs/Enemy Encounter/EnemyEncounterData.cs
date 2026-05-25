@@ -1,5 +1,4 @@
 using System;
-using System.Xml.Linq;
 using UnityEngine;
 
 public class EnemyEncounterData : MonoBehaviour
@@ -7,7 +6,6 @@ public class EnemyEncounterData : MonoBehaviour
     public MoveAppData moveAppData;
     public StoryLog myAppStoryLog;
 
-    // Tus perfiles de datos
     public NPCProfile catProfile;
     public NPCProfile dogProfile;
 
@@ -15,64 +13,117 @@ public class EnemyEncounterData : MonoBehaviour
 
     [SerializeField]
     [Tooltip("Cambia esto en tiempo real y la IA cambiará sola.")]
-    private NPCType selectedType;
+    private NPCType selectedType = NPCType.None;
 
     public NPCType CurrentType
     {
         get { return selectedType; }
         set
         {
-            if (selectedType != value)
+            if (selectedType != value || currentAI == null)
             {
                 selectedType = value;
-                ApplyAI();
+                if (selectedType != NPCType.None)
+                    ApplyAI();
             }
         }
     }
+
     private BaseAIScript currentAI;
+
+    void Awake()
+    {
+        InitCheck();
+    }
+
+    void OnEnable()
+    {
+        InitCheck();
+    }
 
     void Start()
     {
-        GameObject goMoveAppData = GameObject.FindGameObjectWithTag("MoveAppData");
-        moveAppData = goMoveAppData.GetComponent<MoveAppData>();
+        InitCheck();
+    }
 
-        if (moveAppData.playerIsFrontCat)
+    // --- EL GUARDIÁN ABSOLUTO ---
+    // Da igual cuándo se abra la app, si estamos frente al gato, se fuerza el tipo Gato.
+    void Update()
+    {
+        if (moveAppData != null && moveAppData.playerIsFrontCat && selectedType != NPCType.Cat)
         {
             CurrentType = NPCType.Cat;
         }
-
-        if (currentAI == null)
-        {
-            ApplyAI();
-        }
     }
 
-    void OnValidate()
+    private void InitCheck()
     {
-        if (Application.isPlaying)
+        if (moveAppData == null)
+        {
+            GameObject goMoveAppData = GameObject.FindGameObjectWithTag("MoveAppData");
+            if (goMoveAppData != null) moveAppData = goMoveAppData.GetComponent<MoveAppData>();
+        }
+
+        if (moveAppData != null && moveAppData.playerIsFrontCat)
+        {
+            CurrentType = NPCType.Cat;
+        }
+        else if (currentAI == null && selectedType != NPCType.None)
         {
             ApplyAI();
         }
     }
+
+    // ¡HEMOS BORRADO ONVALIDATE() PARA EVITAR QUE UNITY SOBREESCRIBA EL TIPO A "NONE"!
 
     private void ApplyAI()
     {
+        if (currentAI != null) Destroy(currentAI);
+
         switch (selectedType)
         {
             case NPCType.Cat:
                 var cat = gameObject.AddComponent<CatAIScript>();
-                cat.storyLog = myAppStoryLog;
-                cat.LoadProfile(catProfile);
+                SetupAIReferences(cat, catProfile);
                 currentAI = cat;
                 break;
 
             case NPCType.Dog:
                 var dog = gameObject.AddComponent<DogAIScript>();
-                dog.storyLog = myAppStoryLog;
-                dog.LoadProfile(dogProfile);
+                SetupAIReferences(dog, dogProfile);
                 currentAI = dog;
                 break;
         }
+    }
+
+    private void SetupAIReferences(BaseAIScript newAI, NPCProfile profile)
+    {
+        newAI.LoadProfile(profile);
+        newAI.visualController = GetComponentInChildren<NPCVisualController>(true);
+
+        DesktopManager dm = FindObjectOfType<DesktopManager>();
+        if (dm != null)
+        {
+            foreach (var data in dm.iconsToSpawn)
+            {
+                if ((data.label.Contains("FindKey") || data.label.Contains("Move")) && data.isOpen && data.windowInstance != null)
+                {
+                    AI_References refs = data.windowInstance.GetComponentInChildren<AI_References>(true);
+                    if (refs != null)
+                    {
+                        newAI.inputField = refs.inputField;
+                        newAI.chatOutput = refs.chatOutput;
+                        newAI.ollamaClient = refs.ollamaClient;
+                        newAI.storyLog = refs.storyLog;
+                        newAI.thinkingPanel = refs.thinkingPanel;
+                    }
+                    break;
+                }
+            }
+        }
+
+        if (newAI.ollamaClient == null) newAI.ollamaClient = FindObjectOfType<OllamaClient>(true);
+        if (newAI.storyLog == null) newAI.storyLog = FindObjectOfType<StoryLog>(true);
     }
 
     public void ResetNPC()
@@ -83,26 +134,22 @@ public class EnemyEncounterData : MonoBehaviour
         {
             foreach (var data in dm.iconsToSpawn)
             {
-                if (data.label == "Buscador Enemigos")
+                if ((data.label == "Buscador Enemigos" || data.label == "Enemy Encounter") && data.isOpen && data.windowInstance != null)
                 {
-                    if (data.isOpen)
-                    {
-                        BaseEnemyEncounter baseEnemyEncounter = data.windowInstance.GetComponent<BaseEnemyEncounter>();
-
-                        baseEnemyEncounter.nonEnemyFindedPanel.SetActive(true);
-                    }
-
+                    BaseEnemyEncounter baseEnemyEncounter = data.windowInstance.GetComponent<BaseEnemyEncounter>();
+                    if (baseEnemyEncounter != null) baseEnemyEncounter.nonEnemyFindedPanel.SetActive(true);
                     break;
                 }
-
             }
         }
 
-        CurrentType = NPCType.None;
+        if (currentAI != null) Destroy(currentAI);
+        currentAI = null;
+        selectedType = NPCType.None;
     }
 }
 
-    [Serializable]
+[Serializable]
 public class NPCProfile
 {
     public string npcName;

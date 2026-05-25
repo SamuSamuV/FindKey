@@ -211,60 +211,73 @@ public class Moves : MonoBehaviour
         storyLog.SetTextAnimated(goFirstStraightText);
     }
 
+    // --- NUEVA FUNCIÓN SECUNDARIA: Activa la UI sin llamar a la otra app (Evita bucles) ---
+    public void ActivateCatUI()
+    {
+        IAPanel.SetActive(true);
+        MovePanel.SetActive(false);
+
+        AppWindow myApp = GetComponent<AppWindow>();
+        if (myApp != null) myApp.SetCloseAndMinimizeInteractable(false);
+    }
+
     public void GoToCatPosition()
     {
+        Debug.Log("Intentando ir a la posición del gato...");
         if (moveAppData == null) return;
 
         if (!moveAppData.catIsDead)
         {
             moveAppData.playerIsFrontCat = true;
             DesktopManager dm = FindObjectOfType<DesktopManager>();
+            bool enemyAppOpen = false;
 
             if (dm != null && dm.iconsToSpawn != null)
             {
                 foreach (var data in dm.iconsToSpawn)
                 {
-                    if (data.label == "Buscador Enemigos")
+                    if (data.label == "Enemy Encounter")
                     {
-                        if (data.isOpen)
+                        if (data.isOpen && data.windowInstance != null)
                         {
-                            EnemyEncounterData enemyEncounterData = GetComponent<EnemyEncounterData>();
+                            Debug.Log("UAJFBALFGUA");
+
+                            enemyAppOpen = true;
+
+                            EnemyEncounterData enemyEncounterData = data.windowInstance.GetComponent<EnemyEncounterData>();
                             BaseEnemyEncounter baseEnemyEncounter = data.windowInstance.GetComponent<BaseEnemyEncounter>();
 
-                            enemyEncounterData.CurrentType = EnemyEncounterData.NPCType.Cat;
-                            baseEnemyEncounter.nonEnemyFindedPanel.SetActive(false);
+                            if (enemyEncounterData != null) enemyEncounterData.CurrentType = EnemyEncounterData.NPCType.Cat;
 
-                            IAPanel.SetActive(true);
-                            MovePanel.SetActive(false);
+                            // Usamos la nueva función segura para bloquear nuestra ventana
+                            ActivateCatUI();
 
-                        }
-
-                        else
-                        {
-                            IAPanel.SetActive(false);
-                            MovePanel.SetActive(true);
-
-                            storyLog.SetTextAnimated(goToAliveCatText);
-
-                            if (playerInputField) playerInputField.SetActive(false);
+                            // Avisamos a la otra app de que haga el FadeIn y se bloquee
+                            if (baseEnemyEncounter != null) baseEnemyEncounter.CheckCatEncounter();
                         }
                         break;
                     }
                 }
             }
 
-            else
+            // Si la app NO está abierta
+            if (!enemyAppOpen)
             {
-                Debug.LogWarning("Moves: No se encontró el DesktopManager.");
+                IAPanel.SetActive(false);
+                MovePanel.SetActive(true);
+                // YA NO HAY TEXTO HARDCODEADO: El nodo CAT ENCOUNTER pondrá su propio texto.
+
+                // Escondemos el input para obligarle a abrir la app del escáner
+                if (playerInputField) playerInputField.SetActive(false);
             }
         }
-
         else
         {
+            // Si el gato ya está muerto (pasas por ahí de nuevo)
             IAPanel.SetActive(false);
             MovePanel.SetActive(true);
             moveAppData.playerIsFrontCat = false;
-            storyLog.SetTextAnimated(goToDeadCatText);
+            // YA NO HAY TEXTO HARDCODEADO: El nodo alternativo pondrá su texto
             if (playerInputField) playerInputField.SetActive(true);
         }
     }
@@ -272,7 +285,7 @@ public class Moves : MonoBehaviour
     public void GoToNextStageAfterCat()
     {
         moveAppData.playerIsFrontCat = false;
-        storyLog.SetTextAnimated(nextStageNextToCatText);
+        // YA NO HAY TEXTO HARDCODEADO. El AdventureManager leerá el nodo 'After Cat Win' automáticamente.
     }
 }
 

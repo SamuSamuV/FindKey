@@ -1,55 +1,117 @@
+using System.Collections;
 using UnityEngine;
-using static EnemyEncounterData;
+using UnityEngine.UI;
 
 public class BaseEnemyEncounter : MonoBehaviour
 {
     public GameObject nonEnemyFindedPanel;
-
-    [Tooltip("Arrastra aquí el objeto de la imagen del enemigo que quieres ocultar.")]
     public GameObject enemyVisuals;
 
+    [Tooltip("Tiempo que tarda en aparecer el gato de la oscuridad.")]
+    public float fadeDuration = 1.5f;
+
     public MoveAppData moveAppData;
+    private AppWindow myAppWindow;
+    private CanvasGroup enemyCanvasGroup;
+
+    private bool isEncounterActive = false;
+
+    void Awake()
+    {
+        InitReferences();
+    }
+
+    void OnEnable()
+    {
+        InitReferences();
+        CheckCatEncounter();
+    }
 
     void Start()
     {
-        GameObject goMoveAppData = GameObject.FindGameObjectWithTag("MoveAppData");
-        moveAppData = goMoveAppData.GetComponent<MoveAppData>();
+        InitReferences();
+        CheckCatEncounter();
+    }
 
-        if (moveAppData.playerIsFrontCat)
+    // --- EL GUARDIÁN VISUAL ---
+    void Update()
+    {
+        if (moveAppData != null && moveAppData.playerIsFrontCat && !isEncounterActive)
         {
-            nonEnemyFindedPanel.SetActive(false);
+            CheckCatEncounter();
+        }
+    }
+
+    private void InitReferences()
+    {
+        if (myAppWindow == null) myAppWindow = GetComponent<AppWindow>();
+        if (moveAppData == null)
+        {
+            GameObject goMoveAppData = GameObject.FindGameObjectWithTag("MoveAppData");
+            if (goMoveAppData != null) moveAppData = goMoveAppData.GetComponent<MoveAppData>();
         }
 
-        DesktopManager dm = FindObjectOfType<DesktopManager>();
-
-        if (dm != null && dm.iconsToSpawn != null)
+        if (enemyVisuals != null && enemyCanvasGroup == null)
         {
-            foreach (var data in dm.iconsToSpawn)
+            enemyCanvasGroup = enemyVisuals.GetComponent<CanvasGroup>();
+            if (enemyCanvasGroup == null) enemyCanvasGroup = enemyVisuals.AddComponent<CanvasGroup>();
+        }
+    }
+
+    public void CheckCatEncounter()
+    {
+        if (isEncounterActive) return;
+
+        if (moveAppData != null && moveAppData.playerIsFrontCat)
+        {
+            isEncounterActive = true;
+
+            EnemyEncounterData encounterData = GetComponent<EnemyEncounterData>();
+            if (encounterData != null) encounterData.CurrentType = EnemyEncounterData.NPCType.Cat;
+
+            nonEnemyFindedPanel.SetActive(false);
+            enemyVisuals.SetActive(true);
+
+            StartCoroutine(FadeInEnemy());
+
+            if (myAppWindow != null) myAppWindow.SetCloseAndMinimizeInteractable(false);
+
+            DesktopManager dm = FindObjectOfType<DesktopManager>();
+            if (dm != null)
             {
-                if (data.label == "FindKey.exe")
+                foreach (var data in dm.iconsToSpawn)
                 {
-                    if (data.isOpen && data.windowInstance != null)
+                    if ((data.label.Contains("FindKey") || data.label.Contains("Move")) && data.isOpen && data.windowInstance != null)
                     {
-                        if (moveAppData.playerIsFrontCat)
-                        {
-                            Moves moves = data.windowInstance.GetComponent<Moves>();
-                            moves.GoToCatPosition();
-                        }
+                        Moves moves = data.windowInstance.GetComponent<Moves>();
+                        if (moves != null) moves.ActivateCatUI();
+                        break;
                     }
-                    break;
                 }
             }
         }
     }
 
-    void Update()
+    private IEnumerator FadeInEnemy()
     {
-        if (enemyVisuals != null && nonEnemyFindedPanel != null)
+        if (enemyCanvasGroup == null) yield break;
+
+        enemyCanvasGroup.alpha = 0f;
+        float time = 0f;
+
+        while (time < fadeDuration)
         {
-            if (enemyVisuals.activeSelf == nonEnemyFindedPanel.activeSelf)
-            {
-                enemyVisuals.SetActive(!nonEnemyFindedPanel.activeSelf);
-            }
+            time += Time.deltaTime;
+            enemyCanvasGroup.alpha = Mathf.Clamp01(time / fadeDuration);
+            yield return null;
         }
+        enemyCanvasGroup.alpha = 1f;
+    }
+
+    public void ResetEncounter()
+    {
+        isEncounterActive = false;
+        if (nonEnemyFindedPanel != null) nonEnemyFindedPanel.SetActive(true);
+        if (enemyVisuals != null) enemyVisuals.SetActive(false);
     }
 }

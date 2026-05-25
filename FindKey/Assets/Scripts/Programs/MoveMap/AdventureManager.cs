@@ -505,7 +505,7 @@ public class AdventureManager : MonoBehaviour
     void ShowError()
     {
         string previousText = storyLog.lastLoadedText;
-        storyLog.SetTextAnimated($"<color=red>You can't do that here.</color>\n\n{previousText}");
+        storyLog.SetTextAnimated($"<color=red>Acción no válida.</color>\n\n{previousText}");
     }
 
     public void ForceLoadNode(StoryNode newNode)

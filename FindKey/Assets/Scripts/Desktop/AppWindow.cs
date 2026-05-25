@@ -238,4 +238,16 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
 
         transform.localPosition = originalPos;
     }
+
+    public void SetCloseAndMinimizeInteractable(bool state)
+    {
+        if (closeButton != null)
+        {
+            foreach (var btn in closeButton) btn.interactable = state;
+        }
+        if (minimizeButton != null)
+        {
+            foreach (var btn in minimizeButton) btn.interactable = state;
+        }
+    }
 }
