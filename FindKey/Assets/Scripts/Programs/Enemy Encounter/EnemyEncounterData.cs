@@ -9,7 +9,7 @@ public class EnemyEncounterData : MonoBehaviour
     public NPCProfile catProfile;
     public NPCProfile dogProfile;
 
-    public enum NPCType { None, Cat, Dog }
+    public enum NPCType { None, Dog, CatStage1, CatStage2, CatStage3, CatStage4 }
 
     [SerializeField]
     [Tooltip("Cambia esto en tiempo real y la IA cambiará sola.")]
@@ -46,13 +46,11 @@ public class EnemyEncounterData : MonoBehaviour
         InitCheck();
     }
 
-    // --- EL GUARDIÁN ABSOLUTO ---
-    // Da igual cuándo se abra la app, si estamos frente al gato, se fuerza el tipo Gato.
     void Update()
     {
-        if (moveAppData != null && moveAppData.playerIsFrontCat && selectedType != NPCType.Cat)
+        if (moveAppData != null && moveAppData.playerIsFrontCat && selectedType != NPCType.CatStage1)
         {
-            CurrentType = NPCType.Cat;
+            CurrentType = NPCType.CatStage1;
         }
     }
 
@@ -66,7 +64,7 @@ public class EnemyEncounterData : MonoBehaviour
 
         if (moveAppData != null && moveAppData.playerIsFrontCat)
         {
-            CurrentType = NPCType.Cat;
+            CurrentType = NPCType.CatStage1;
         }
         else if (currentAI == null && selectedType != NPCType.None)
         {
@@ -74,24 +72,31 @@ public class EnemyEncounterData : MonoBehaviour
         }
     }
 
-    // ¡HEMOS BORRADO ONVALIDATE() PARA EVITAR QUE UNITY SOBREESCRIBA EL TIPO A "NONE"!
-
     private void ApplyAI()
     {
         if (currentAI != null) Destroy(currentAI);
 
         switch (selectedType)
         {
-            case NPCType.Cat:
-                var cat = gameObject.AddComponent<CatAIScript>();
-                SetupAIReferences(cat, catProfile);
-                currentAI = cat;
+            case NPCType.CatStage1:
+                var c1 = gameObject.AddComponent<CatAIScript_Stage1>();
+                SetupAIReferences(c1, catProfile);
+                currentAI = c1;
                 break;
-
-            case NPCType.Dog:
-                var dog = gameObject.AddComponent<DogAIScript>();
-                SetupAIReferences(dog, dogProfile);
-                currentAI = dog;
+            case NPCType.CatStage2:
+                var c2 = gameObject.AddComponent<CatAIScript_Stage2>();
+                SetupAIReferences(c2, catProfile);
+                currentAI = c2;
+                break;
+            case NPCType.CatStage3:
+                var c3 = gameObject.AddComponent<CatAIScript_Stage3>();
+                SetupAIReferences(c3, catProfile);
+                currentAI = c3;
+                break;
+            case NPCType.CatStage4:
+                var c4 = gameObject.AddComponent<CatAIScript_Stage4>();
+                SetupAIReferences(c4, catProfile);
+                currentAI = c4;
                 break;
         }
     }
@@ -146,6 +151,20 @@ public class EnemyEncounterData : MonoBehaviour
         if (currentAI != null) Destroy(currentAI);
         currentAI = null;
         selectedType = NPCType.None;
+    }
+
+    public void AdvanceCatStage()
+    {
+        EnemyEncounterData encounterData = GetComponent<EnemyEncounterData>();
+
+        if (encounterData.CurrentType == EnemyEncounterData.NPCType.CatStage1)
+            encounterData.CurrentType = EnemyEncounterData.NPCType.CatStage2;
+
+        else if (encounterData.CurrentType == EnemyEncounterData.NPCType.CatStage2)
+            encounterData.CurrentType = EnemyEncounterData.NPCType.CatStage3;
+
+        else if (encounterData.CurrentType == EnemyEncounterData.NPCType.CatStage3)
+            encounterData.CurrentType = EnemyEncounterData.NPCType.CatStage4;
     }
 }
 

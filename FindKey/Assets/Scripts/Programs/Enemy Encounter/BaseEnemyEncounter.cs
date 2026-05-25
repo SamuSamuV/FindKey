@@ -67,7 +67,7 @@ public class BaseEnemyEncounter : MonoBehaviour
             isEncounterActive = true;
 
             EnemyEncounterData encounterData = GetComponent<EnemyEncounterData>();
-            if (encounterData != null) encounterData.CurrentType = EnemyEncounterData.NPCType.Cat;
+            if (encounterData != null) encounterData.CurrentType = EnemyEncounterData.NPCType.CatStage1;
 
             nonEnemyFindedPanel.SetActive(false);
             enemyVisuals.SetActive(true);

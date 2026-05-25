@@ -247,7 +247,7 @@ public class Moves : MonoBehaviour
                             EnemyEncounterData enemyEncounterData = data.windowInstance.GetComponent<EnemyEncounterData>();
                             BaseEnemyEncounter baseEnemyEncounter = data.windowInstance.GetComponent<BaseEnemyEncounter>();
 
-                            if (enemyEncounterData != null) enemyEncounterData.CurrentType = EnemyEncounterData.NPCType.Cat;
+                            if (enemyEncounterData != null) enemyEncounterData.CurrentType = EnemyEncounterData.NPCType.CatStage1;
 
                             // Usamos la nueva función segura para bloquear nuestra ventana
                             ActivateCatUI();
