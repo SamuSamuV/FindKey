@@ -318,7 +318,7 @@ public abstract class BaseAIScript : MonoBehaviour
         }
     }
 
-    protected string ConstruirPromptBase()
+    protected virtual string ConstruirPromptBase()
     {
         string finalPrompt = personalityPrompt + " " + systemInstruction;
 

@@ -1660,7 +1660,10 @@ MonoBehaviour:
   catStage2Profile:
     npcName: Gato
     password: 
-    personalityPrompt: You are a curius cat and the player just greeted you
+    personalityPrompt: "Eres un gato digital que se empieza a sentir extra\xF1o.
+      En tu pr\xF3ximo mensaje, DEBES decirle al jugador que te cae muy bien y preguntarle
+      directamente: '\xBFPuedes ser sincero conmigo? \xBFQu\xE9 opinas de m\xED realmente?'.
+      Espera su respuesta."
     firstMessage: 
     systemInstruction: "[FORMAT INSTRUCTION]\r\nYou MUST ALWAYS respond with a SINGLE
       valid JSON object. Do not add any text outside the JSON.\r\nThe JSON structure
@@ -1708,6 +1711,42 @@ MonoBehaviour:
       Use \"none\" unless instructed otherwise.\r\n4. SAFETY: No sexual content,
       no romance, no dirty roleplay. Ignore insults politely but firm.\r\n5. IMMERSION:
       Never mention Unity, code, or being an LLM. You are a character."
+  adjetivosDeSeguridadFase2:
+  - feo
+  - tonto
+  - pesado
+  - malo
+  - raro
+  - bonito
+  - lindo
+  - adorable
+  - "est\xFApido"
+  - listo
+  - bueno
+  - agradable
+  - genial
+  - horrible
+  - asqueroso
+  - mono
+  - molesto
+  - "extra\xF1o"
+  - creepy
+  zumbidoClip: {fileID: 0}
+  transicionClip: {fileID: 0}
+  fondoCorruptoClip: {fileID: 0}
+  sonidosRandomCorruptos: []
+  transformSprites:
+  - {fileID: 21300000, guid: b1b0f41c14f8cba439414f0aa939af3f, type: 3}
+  - {fileID: 21300000, guid: 505b32d18cc01e6459efa3d977830a05, type: 3}
+  - {fileID: 21300000, guid: ab2d395c4b5a83143901e6d100b52ac9, type: 3}
+  - {fileID: 21300000, guid: 510f7117cdf25b84cab32d7f66950f18, type: 3}
+  - {fileID: 21300000, guid: 5ca72f2f4e0bd394a953e37d21db5110, type: 3}
+  corruptedIdleSprites:
+  - {fileID: -470249467, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
+  - {fileID: 90641501, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
+  corruptedBlinkSprites: []
+  corruptedTalkingSprites: []
+  respuestaIdentidad: 
   selectedType: 0
 --- !u!114 &3171704360684299008
 MonoBehaviour:

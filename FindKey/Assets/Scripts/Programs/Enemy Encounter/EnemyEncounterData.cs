@@ -12,7 +12,28 @@ public class EnemyEncounterData : MonoBehaviour
     public NPCProfile catStage3Profile;
     public NPCProfile catStage4Profile;
 
-    // Eliminamos al perro y creamos las 4 fases en el Enum
+    [Header("Cinturón de Seguridad (Fase 2)")]
+    public string[] adjetivosDeSeguridadFase2 = new string[] {
+        "feo", "tonto", "pesado", "malo", "raro", "bonito", "lindo", "adorable", "estúpido", "listo",
+        "bueno", "agradable", "genial", "horrible", "asqueroso", "mono", "molesto", "extraño", "creepy"
+    };
+
+    [Header("Efectos Fase 3 (Corrupción)")]
+    public AudioClip zumbidoClip;
+    public AudioClip transicionClip;
+    public AudioClip fondoCorruptoClip;
+    public AudioClip[] sonidosRandomCorruptos;
+
+    // --- NUEVO: Huecos para los sprites de la transformación ---
+    [Header("Animaciones Fase 3 (Sprites)")]
+    public Sprite[] transformSprites;
+    public Sprite[] corruptedIdleSprites;
+    public Sprite[] corruptedBlinkSprites;
+    public Sprite[] corruptedTalkingSprites;
+
+    [Header("Datos Guardados de la Historia")]
+    public string respuestaIdentidad = ""; // Aquí guardaremos la respuesta a "¿Sabes quién soy?"
+
     public enum NPCType { None, CatStage1, CatStage2, CatStage3, CatStage4 }
 
     [SerializeField]
@@ -34,22 +55,10 @@ public class EnemyEncounterData : MonoBehaviour
 
     private BaseAIScript currentAI;
 
-    void Awake()
-    {
-        InitCheck();
-    }
+    void Awake() { InitCheck(); }
+    void OnEnable() { InitCheck(); }
+    void Start() { InitCheck(); }
 
-    void OnEnable()
-    {
-        InitCheck();
-    }
-
-    void Start()
-    {
-        InitCheck();
-    }
-
-    // Guardián del juego: Si estamos frente al gato y no ha empezado la fase 1, la forzamos
     void Update()
     {
         if (moveAppData != null && moveAppData.playerIsFrontCat && selectedType == NPCType.None)
@@ -92,6 +101,7 @@ public class EnemyEncounterData : MonoBehaviour
                 var c2 = gameObject.AddComponent<CatAIScript_Stage2>();
                 SetupAIReferences(c2, catStage2Profile);
                 c2.isProactiveTriggered = true;
+                c2.adjetivosDeSeguridad = adjetivosDeSeguridadFase2;
                 currentAI = c2;
                 break;
 
@@ -99,6 +109,19 @@ public class EnemyEncounterData : MonoBehaviour
                 var c3 = gameObject.AddComponent<CatAIScript_Stage3>();
                 SetupAIReferences(c3, catStage3Profile);
                 c3.isProactiveTriggered = true;
+
+                // Inyectamos los audios a la Fase 3
+                c3.zumbidoClip = zumbidoClip;
+                c3.transicionClip = transicionClip;
+                c3.fondoCorruptoClip = fondoCorruptoClip;
+                c3.sonidosRandomCorruptos = sonidosRandomCorruptos;
+
+                // --- NUEVO: Inyectamos los sprites a la Fase 3 ---
+                c3.transformSprites = transformSprites;
+                c3.corruptedIdleSprites = corruptedIdleSprites;
+                c3.corruptedBlinkSprites = corruptedBlinkSprites;
+                c3.corruptedTalkingSprites = corruptedTalkingSprites;
+
                 currentAI = c3;
                 break;
 
@@ -110,19 +133,18 @@ public class EnemyEncounterData : MonoBehaviour
                 break;
         }
     }
+
     private void SetupAIReferences(BaseAIScript newAI, NPCProfile profile)
     {
-        // CARGA DE PERFIL: Ahora que cada fase tiene su espacio, cargamos el perfil asignado
-        if (profile != null)
-        {
-            newAI.LoadProfile(profile);
-        }
-        else
-        {
-            Debug.LogWarning($"[ADVERTENCIA] No has asignado el perfil para la fase {selectedType} en el Inspector.");
-        }
+        if (profile != null) newAI.LoadProfile(profile);
 
         newAI.visualController = GetComponentInChildren<NPCVisualController>(true);
+
+        // --- NUEVO: Si estamos en Fase 1, restauramos los sprites del gato original por seguridad ---
+        if (selectedType == NPCType.CatStage1 && newAI.visualController != null)
+        {
+            newAI.visualController.RestoreDefaultSprites();
+        }
 
         DesktopManager dm = FindObjectOfType<DesktopManager>();
         if (dm != null)
@@ -152,7 +174,7 @@ public class EnemyEncounterData : MonoBehaviour
     public void ResetNPC()
     {
         DesktopManager dm = FindObjectOfType<DesktopManager>();
-
+    
         if (dm != null && dm.iconsToSpawn != null)
         {
             foreach (var data in dm.iconsToSpawn)
@@ -165,7 +187,7 @@ public class EnemyEncounterData : MonoBehaviour
                 }
             }
         }
-
+    
         if (currentAI != null) Destroy(currentAI);
         currentAI = null;
         selectedType = NPCType.None;

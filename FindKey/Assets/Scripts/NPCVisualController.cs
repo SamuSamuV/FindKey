@@ -38,6 +38,18 @@ public class NPCVisualController : MonoBehaviour
 
     private Coroutine animationCoroutine;
 
+    // --- NUEVO: Memoria para restaurar al gato normal si se reinicia ---
+    private Sprite[] baseIdle, baseBlink, baseNeutral, baseHappy, baseSad;
+
+    private void Awake()
+    {
+        baseIdle = idleSprites;
+        baseBlink = idleBlinkSprites;
+        baseNeutral = neutralTalkSprites;
+        baseHappy = happyTalkSprites;
+        baseSad = sadTalkSprites;
+    }
+
     private void Start()
     {
         if (npcImage == null) npcImage = GetComponent<Image>();
@@ -52,6 +64,41 @@ public class NPCVisualController : MonoBehaviour
         if (animationCoroutine != null) StopCoroutine(animationCoroutine);
         animationCoroutine = StartCoroutine(AnimationRoutine());
     }
+
+    // --- NUEVO: Funciones para controlar la animación en la Fase 3 ---
+    public void StopAnimation()
+    {
+        if (animationCoroutine != null) StopCoroutine(animationCoroutine);
+    }
+
+    public void ResumeAnimation()
+    {
+        SetState(currentState, currentEmotion);
+    }
+
+    public void ReplaceSprites(Sprite[] newIdle, Sprite[] newBlink, Sprite[] newTalk)
+    {
+        if (newIdle != null && newIdle.Length > 0) idleSprites = newIdle;
+        if (newBlink != null && newBlink.Length > 0) idleBlinkSprites = newBlink;
+
+        // Reemplazamos todos los estados de habla por los del gato corrupto
+        if (newTalk != null && newTalk.Length > 0)
+        {
+            neutralTalkSprites = newTalk;
+            happyTalkSprites = newTalk;
+            sadTalkSprites = newTalk;
+        }
+    }
+
+    public void RestoreDefaultSprites()
+    {
+        idleSprites = baseIdle;
+        idleBlinkSprites = baseBlink;
+        neutralTalkSprites = baseNeutral;
+        happyTalkSprites = baseHappy;
+        sadTalkSprites = baseSad;
+    }
+    // ------------------------------------------------------------------
 
     private IEnumerator AnimationRoutine()
     {
@@ -100,12 +147,10 @@ public class NPCVisualController : MonoBehaviour
             blinkAnim = idleBlinkSprites;
             return idleSprites;
         }
-
         else if (currentState == NPCState.Thinking)
         {
             return thinkingSprites;
         }
-
         else
         {
             switch (currentEmotion)

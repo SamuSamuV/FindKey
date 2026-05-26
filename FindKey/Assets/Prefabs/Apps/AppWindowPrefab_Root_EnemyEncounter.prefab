@@ -408,6 +408,7 @@ GameObject:
   - component: {fileID: 3095465065208573634}
   - component: {fileID: 8816266659487430629}
   - component: {fileID: 8197986160548590439}
+  - component: {fileID: 1836064078408361058}
   m_Layer: 5
   m_Name: AppWindowPrefab_Root_EnemyEncounter
   m_TagString: Untagged
@@ -512,7 +513,76 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nonEnemyFindedPanel: {fileID: 1067991120403699259}
   enemyVisuals: {fileID: 6970075757801559232}
+  fadeDuration: 1.5
   moveAppData: {fileID: 0}
+--- !u!114 &1836064078408361058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2342009986971900181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68cb1c3832017234cada9953f0acbcf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveAppData: {fileID: 0}
+  myAppStoryLog: {fileID: 0}
+  catStage1Profile:
+    npcName: 
+    password: 
+    personalityPrompt: 
+    firstMessage: 
+    systemInstruction: 
+  catStage2Profile:
+    npcName: 
+    password: 
+    personalityPrompt: 
+    firstMessage: 
+    systemInstruction: 
+  catStage3Profile:
+    npcName: 
+    password: 
+    personalityPrompt: 
+    firstMessage: 
+    systemInstruction: 
+  catStage4Profile:
+    npcName: 
+    password: 
+    personalityPrompt: 
+    firstMessage: 
+    systemInstruction: 
+  adjetivosDeSeguridadFase2:
+  - feo
+  - tonto
+  - pesado
+  - malo
+  - raro
+  - bonito
+  - lindo
+  - adorable
+  - "est\xFApido"
+  - listo
+  - bueno
+  - agradable
+  - genial
+  - horrible
+  - asqueroso
+  - mono
+  - molesto
+  - "extra\xF1o"
+  - creepy
+  zumbidoClip: {fileID: 0}
+  transicionClip: {fileID: 0}
+  fondoCorruptoClip: {fileID: 0}
+  sonidosRandomCorruptos: []
+  transformSprites: []
+  corruptedIdleSprites: []
+  corruptedBlinkSprites: []
+  corruptedTalkingSprites: []
+  respuestaIdentidad: 
+  selectedType: 0
 --- !u!1 &3591361015423859269
 GameObject:
   m_ObjectHideFlags: 0
