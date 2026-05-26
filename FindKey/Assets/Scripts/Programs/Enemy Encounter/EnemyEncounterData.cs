@@ -24,7 +24,6 @@ public class EnemyEncounterData : MonoBehaviour
     public AudioClip fondoCorruptoClip;
     public AudioClip[] sonidosRandomCorruptos;
 
-    // --- NUEVO: Huecos para los sprites de la transformación ---
     [Header("Animaciones Fase 3 (Sprites)")]
     public Sprite[] transformSprites;
     public Sprite[] corruptedIdleSprites;
@@ -116,7 +115,6 @@ public class EnemyEncounterData : MonoBehaviour
                 c3.fondoCorruptoClip = fondoCorruptoClip;
                 c3.sonidosRandomCorruptos = sonidosRandomCorruptos;
 
-                // --- NUEVO: Inyectamos los sprites a la Fase 3 ---
                 c3.transformSprites = transformSprites;
                 c3.corruptedIdleSprites = corruptedIdleSprites;
                 c3.corruptedBlinkSprites = corruptedBlinkSprites;

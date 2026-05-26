@@ -1,8 +1,5 @@
 using UnityEngine;
 
-// ==========================================
-// FASE 1: EL GATO AMIGABLE
-// ==========================================
 public class CatAIScript_Stage1 : BaseAIScript
 {
     public override void InitNPC() { } // Se configura desde el Inspector
@@ -50,9 +47,6 @@ public class CatAIScript_Stage1 : BaseAIScript
     protected override void OpenDoor() { }
 }
 
-// ==========================================
-// FASE 2: EL GATO QUE PIDE OPINIÓN
-// ==========================================
 public class CatAIScript_Stage2 : BaseAIScript
 {
     public string[] adjetivosDeSeguridad;
@@ -151,9 +145,6 @@ public class CatAIScript_Stage2 : BaseAIScript
     protected override void OpenDoor() { }
 }
 
-// ==========================================
-// FASE 3: LA ENTIDAD HOSTIL / CORRUPTA
-// ==========================================
 public class CatAIScript_Stage3 : BaseAIScript
 {
     // Audios
@@ -162,7 +153,6 @@ public class CatAIScript_Stage3 : BaseAIScript
     public AudioClip fondoCorruptoClip;
     public AudioClip[] sonidosRandomCorruptos;
 
-    // --- NUEVO: Arrays de Sprites ---
     public Sprite[] transformSprites;
     public Sprite[] corruptedIdleSprites;
     public Sprite[] corruptedBlinkSprites;
@@ -292,9 +282,6 @@ public class CatAIScript_Stage3 : BaseAIScript
     protected override void OpenDoor() { }
 }
 
-// ==========================================
-// FASE 4: EL SISTEMA ROTO / DATOS DAÑADOS
-// ==========================================
 public class CatAIScript_Stage4 : BaseAIScript
 {
     public override void InitNPC() { }

@@ -38,7 +38,6 @@ public class NPCVisualController : MonoBehaviour
 
     private Coroutine animationCoroutine;
 
-    // --- NUEVO: Memoria para restaurar al gato normal si se reinicia ---
     private Sprite[] baseIdle, baseBlink, baseNeutral, baseHappy, baseSad;
 
     private void Awake()
@@ -65,7 +64,6 @@ public class NPCVisualController : MonoBehaviour
         animationCoroutine = StartCoroutine(AnimationRoutine());
     }
 
-    // --- NUEVO: Funciones para controlar la animación en la Fase 3 ---
     public void StopAnimation()
     {
         if (animationCoroutine != null) StopCoroutine(animationCoroutine);

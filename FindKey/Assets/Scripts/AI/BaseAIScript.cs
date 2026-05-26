@@ -35,10 +35,8 @@ public abstract class BaseAIScript : MonoBehaviour
     protected Coroutine currentOllamaCoroutine;
     public bool isProactiveTriggered = false;
 
-    // --- NUEVO: Memoria a corto plazo para retomar pensamientos interrumpidos ---
     protected string lastSentPrompt = "";
     protected bool isThinking = false;
-    // -------------------------------------------------------------------------
 
     [Serializable]
     public class AIResponse
