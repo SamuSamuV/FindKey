@@ -1,72 +1,78 @@
 using UnityEngine;
-using UnityEngine.InputSystem; // 1. IMPORTANTE: Necesitas esta librería
 
+// ==========================================
+// FASE 1: EL GATO AMIGABLE
+// ==========================================
 public class CatAIScript_Stage1 : BaseAIScript
 {
-    public override void InitNPC()
-    {
-        npcName = "Cat";
-        personalityPrompt = "You are a curious, friendly cat. You like the player.";
-        systemInstruction = "Responde en español. Acción por defecto: 'none'.";
-    }
+    public override void InitNPC() { } // Se configura desde el Inspector
 
-    void Update()
+    protected override void OnAIResponse(string raw)
     {
-        // 2. Usamos el nuevo sistema en lugar de Input.GetKeyDown
-        if (inputField != null && Keyboard.current != null && Keyboard.current.enterKey.wasPressedThisFrame && !string.IsNullOrEmpty(inputField.text))
+        // 1. Guardamos lo que dijo el jugador ANTES de que el script base lo borre por seguridad
+        string currentPlayerText = lastPlayerText;
+
+        // 2. Dejamos que el script base haga su trabajo normal (escribir, animar, etc.)
+        base.OnAIResponse(raw);
+
+        // 3. CANDADO ANTI-CORTOCIRCUITO:
+        // Si el jugador no ha escrito nada (es decir, la IA está enviando su primer mensaje de saludo),
+        // es IMPOSIBLE avanzar de fase. Ignoramos cualquier locura que haya puesto la IA en el JSON.
+        if (string.IsNullOrEmpty(currentPlayerText))
         {
-            string message = inputField.text.ToLower();
+            return;
+        }
 
-            if (message.Contains("hola") || message.Contains("buenas") || message.Contains("saludos") || message.Contains("hey"))
+        // 4. Evaluación Híbrida (Solo se ejecuta si el jugador realmente ha hablado)
+        string lowerRaw = raw.ToLowerInvariant();
+        string lowerPlayer = currentPlayerText.ToLowerInvariant();
+
+        // ¿La IA puso la acción en el JSON?
+        bool aiDecided = lowerRaw.Contains("\"action\":\"next_stage\"") || lowerRaw.Contains("\"action\": \"next_stage\"");
+
+        // ¿O el jugador dijo una palabra clave? (Red de seguridad)
+        bool playerGreeted = lowerPlayer.Contains("hola") || lowerPlayer.Contains("buenas") ||
+                             lowerPlayer.Contains("saludos") || lowerPlayer.Contains("hey") ||
+                             lowerPlayer.Contains("miau");
+
+        if (aiDecided || playerGreeted)
+        {
+            Debug.Log("<color=magenta>[IA GATO]</color> Saludo detectado tras hablar el jugador. Avanzando a Fase 2 en secreto...");
+
+            EnemyEncounterData encounterData = GetComponent<EnemyEncounterData>();
+            if (encounterData != null)
             {
-                Debug.Log("Gato detecta saludo, avanzando a Fase 2...");
-                TransitionToStage2();
+                encounterData.CurrentType = EnemyEncounterData.NPCType.CatStage2;
             }
         }
     }
 
-    private void TransitionToStage2()
-    {
-        EnemyEncounterData encounterData = GetComponent<EnemyEncounterData>();
-
-        if (encounterData != null)
-        {
-            encounterData.CurrentType = EnemyEncounterData.NPCType.CatStage2;
-        }
-    }
-
     protected override void OpenDoor() { }
 }
 
+// ==========================================
+// FASE 2: EL GATO CONFUNDIDO / GLITCHEADO
+// ==========================================
 public class CatAIScript_Stage2 : BaseAIScript
 {
-    public override void InitNPC()
-    {
-        npcName = "Cat";
-        personalityPrompt = "You are a cat that is starting to see glitches. You are confused and slightly anxious.";
-        systemInstruction = "Responde en español. Acción por defecto: 'none'. Incluye palabras cortadas o errores tipo glitch.";
-    }
+    public override void InitNPC() { }
     protected override void OpenDoor() { }
 }
 
+// ==========================================
+// FASE 3: LA ENTIDAD HOSTIL / CORRUPTA
+// ==========================================
 public class CatAIScript_Stage3 : BaseAIScript
 {
-    public override void InitNPC()
-    {
-        npcName = "CorruptedCat";
-        personalityPrompt = "You are a corrupted entity inside the cat. You are aggressive and threatening.";
-        systemInstruction = "Responde en español. Sé hostil. Acción por defecto: 'none'.";
-    }
+    public override void InitNPC() { }
     protected override void OpenDoor() { }
 }
 
+// ==========================================
+// FASE 4: EL SISTEMA ROTO / DATOS DAÑADOS
+// ==========================================
 public class CatAIScript_Stage4 : BaseAIScript
 {
-    public override void InitNPC()
-    {
-        npcName = "BrokenData";
-        personalityPrompt = "You are a dying AI fragment. You barely have logic.";
-        systemInstruction = "Responde en español. Habla con frases rotas y símbolos extraños. Acción por defecto: 'none'.";
-    }
+    public override void InitNPC() { }
     protected override void OpenDoor() { }
 }

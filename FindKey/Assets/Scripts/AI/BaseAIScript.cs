@@ -33,7 +33,7 @@ public abstract class BaseAIScript : MonoBehaviour
     protected string currentSituationContext = "";
 
     protected Coroutine currentOllamaCoroutine;
-    protected bool isProactiveTriggered = false;
+    public bool isProactiveTriggered = false;
 
     // --- NUEVO: Memoria a corto plazo para retomar pensamientos interrumpidos ---
     protected string lastSentPrompt = "";
@@ -368,7 +368,7 @@ public abstract class BaseAIScript : MonoBehaviour
         return finalPrompt;
     }
 
-    protected void OnAIResponse(string raw)
+    protected virtual void OnAIResponse(string raw)
     {
         isThinking = false; // Ya terminó de pensar
         Debug.Log($"<color=cyan>[AI JSON]:</color> {raw}");

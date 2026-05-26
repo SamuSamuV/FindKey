@@ -6,13 +6,16 @@ public class EnemyEncounterData : MonoBehaviour
     public MoveAppData moveAppData;
     public StoryLog myAppStoryLog;
 
-    public NPCProfile catProfile;
-    public NPCProfile dogProfile;
+    [Header("Configuración de Fases del Gato")]
+    public NPCProfile catStage1Profile;
+    public NPCProfile catStage2Profile;
+    public NPCProfile catStage3Profile;
+    public NPCProfile catStage4Profile;
 
-    public enum NPCType { None, Dog, CatStage1, CatStage2, CatStage3, CatStage4 }
+    // Eliminamos al perro y creamos las 4 fases en el Enum
+    public enum NPCType { None, CatStage1, CatStage2, CatStage3, CatStage4 }
 
     [SerializeField]
-    [Tooltip("Cambia esto en tiempo real y la IA cambiará sola.")]
     private NPCType selectedType = NPCType.None;
 
     public NPCType CurrentType
@@ -46,9 +49,10 @@ public class EnemyEncounterData : MonoBehaviour
         InitCheck();
     }
 
+    // Guardián del juego: Si estamos frente al gato y no ha empezado la fase 1, la forzamos
     void Update()
     {
-        if (moveAppData != null && moveAppData.playerIsFrontCat && selectedType != NPCType.CatStage1)
+        if (moveAppData != null && moveAppData.playerIsFrontCat && selectedType == NPCType.None)
         {
             CurrentType = NPCType.CatStage1;
         }
@@ -62,7 +66,7 @@ public class EnemyEncounterData : MonoBehaviour
             if (goMoveAppData != null) moveAppData = goMoveAppData.GetComponent<MoveAppData>();
         }
 
-        if (moveAppData != null && moveAppData.playerIsFrontCat)
+        if (moveAppData != null && moveAppData.playerIsFrontCat && selectedType == NPCType.None)
         {
             CurrentType = NPCType.CatStage1;
         }
@@ -80,30 +84,44 @@ public class EnemyEncounterData : MonoBehaviour
         {
             case NPCType.CatStage1:
                 var c1 = gameObject.AddComponent<CatAIScript_Stage1>();
-                SetupAIReferences(c1, catProfile);
+                SetupAIReferences(c1, catStage1Profile);
                 currentAI = c1;
                 break;
+
             case NPCType.CatStage2:
                 var c2 = gameObject.AddComponent<CatAIScript_Stage2>();
-                SetupAIReferences(c2, catProfile);
+                SetupAIReferences(c2, catStage2Profile);
+                c2.isProactiveTriggered = true;
                 currentAI = c2;
                 break;
+
             case NPCType.CatStage3:
                 var c3 = gameObject.AddComponent<CatAIScript_Stage3>();
-                SetupAIReferences(c3, catProfile);
+                SetupAIReferences(c3, catStage3Profile);
+                c3.isProactiveTriggered = true;
                 currentAI = c3;
                 break;
+
             case NPCType.CatStage4:
                 var c4 = gameObject.AddComponent<CatAIScript_Stage4>();
-                SetupAIReferences(c4, catProfile);
+                SetupAIReferences(c4, catStage4Profile);
+                c4.isProactiveTriggered = true;
                 currentAI = c4;
                 break;
         }
     }
-
     private void SetupAIReferences(BaseAIScript newAI, NPCProfile profile)
     {
-        newAI.LoadProfile(profile);
+        // CARGA DE PERFIL: Ahora que cada fase tiene su espacio, cargamos el perfil asignado
+        if (profile != null)
+        {
+            newAI.LoadProfile(profile);
+        }
+        else
+        {
+            Debug.LogWarning($"[ADVERTENCIA] No has asignado el perfil para la fase {selectedType} en el Inspector.");
+        }
+
         newAI.visualController = GetComponentInChildren<NPCVisualController>(true);
 
         DesktopManager dm = FindObjectOfType<DesktopManager>();
@@ -151,20 +169,6 @@ public class EnemyEncounterData : MonoBehaviour
         if (currentAI != null) Destroy(currentAI);
         currentAI = null;
         selectedType = NPCType.None;
-    }
-
-    public void AdvanceCatStage()
-    {
-        EnemyEncounterData encounterData = GetComponent<EnemyEncounterData>();
-
-        if (encounterData.CurrentType == EnemyEncounterData.NPCType.CatStage1)
-            encounterData.CurrentType = EnemyEncounterData.NPCType.CatStage2;
-
-        else if (encounterData.CurrentType == EnemyEncounterData.NPCType.CatStage2)
-            encounterData.CurrentType = EnemyEncounterData.NPCType.CatStage3;
-
-        else if (encounterData.CurrentType == EnemyEncounterData.NPCType.CatStage3)
-            encounterData.CurrentType = EnemyEncounterData.NPCType.CatStage4;
     }
 }
 
