@@ -66,6 +66,7 @@ public class BaseEnemyEncounter : MonoBehaviour
         {
             isEncounterActive = true;
 
+            // Busca el componente que acabamos de mudar a esta ventana
             EnemyEncounterData encounterData = GetComponent<EnemyEncounterData>();
             if (encounterData != null) encounterData.CurrentType = EnemyEncounterData.NPCType.CatStage1;
 

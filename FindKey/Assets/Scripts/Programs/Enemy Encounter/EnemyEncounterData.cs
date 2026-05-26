@@ -138,24 +138,27 @@ public class EnemyEncounterData : MonoBehaviour
     {
         if (profile != null) newAI.LoadProfile(profile);
 
+        // Al estar en la ventana Enemy Encounter, encuentra al controlador visual al momento
         newAI.visualController = GetComponentInChildren<NPCVisualController>(true);
 
-        // --- NUEVO: Si estamos en Fase 1, restauramos los sprites del gato original por seguridad ---
         if (selectedType == NPCType.CatStage1 && newAI.visualController != null)
         {
             newAI.visualController.RestoreDefaultSprites();
         }
 
+        // Buscamos en el escritorio la ventana "Move" o "FindKey" para robarle el chat
         DesktopManager dm = FindObjectOfType<DesktopManager>();
         if (dm != null)
         {
             foreach (var data in dm.iconsToSpawn)
             {
+                // Buscamos la otra ventana (el chat de texto)
                 if ((data.label.Contains("FindKey") || data.label.Contains("Move")) && data.isOpen && data.windowInstance != null)
                 {
                     AI_References refs = data.windowInstance.GetComponentInChildren<AI_References>(true);
                     if (refs != null)
                     {
+                        // Le inyectamos los elementos de la ventana de texto a nuestra IA que corre en el radar
                         newAI.inputField = refs.inputField;
                         newAI.chatOutput = refs.chatOutput;
                         newAI.ollamaClient = refs.ollamaClient;
@@ -167,6 +170,7 @@ public class EnemyEncounterData : MonoBehaviour
             }
         }
 
+        // Fallbacks por si acaso
         if (newAI.ollamaClient == null) newAI.ollamaClient = FindObjectOfType<OllamaClient>(true);
         if (newAI.storyLog == null) newAI.storyLog = FindObjectOfType<StoryLog>(true);
     }

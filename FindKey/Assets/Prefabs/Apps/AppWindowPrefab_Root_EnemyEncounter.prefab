@@ -409,6 +409,7 @@ GameObject:
   - component: {fileID: 8816266659487430629}
   - component: {fileID: 8197986160548590439}
   - component: {fileID: 1836064078408361058}
+  - component: {fileID: 3475958274663719745}
   m_Layer: 5
   m_Name: AppWindowPrefab_Root_EnemyEncounter
   m_TagString: Untagged
@@ -528,31 +529,80 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveAppData: {fileID: 0}
-  myAppStoryLog: {fileID: 0}
+  myAppStoryLog: {fileID: 8703187602726446899, guid: 4e4e635eb969b7d4cbc49969b8e5ad7e, type: 3}
   catStage1Profile:
-    npcName: 
+    npcName: Gato
     password: 
-    personalityPrompt: 
+    personalityPrompt: You are a curius cat
     firstMessage: 
-    systemInstruction: 
+    systemInstruction: "[FORMAT INSTRUCTION]\r\nYou MUST ALWAYS respond with a SINGLE
+      valid JSON object. Do not add any text outside the JSON.\r\nThe JSON structure
+      is:\r\n{\r\n  \"response\": \"Aqu\xED va tu di\xE1logo en espa\xF1ol\",\r\n 
+      \"action\": \"none\",\r\n  \"emotion\": \"neutral\"\r\n}\n\nREGLA VITAL: Si
+      el jugador te saluda (ej: hola, buenas, hey, miau), DEBES cambiar obligatoriamente
+      el valor de 'action' a \"next_stage\".\"\r\n\r\n[EMOTIONS RULES]\r\nYou must
+      choose the emotion that best fits your dialogue. \r\nALLOWED VALUES: \"happy\",
+      \"neutral\", \"sad\".\r\n- Use \"happy\" if you are enthusiastic or helpful.\r\n-
+      Use \"sad\" if you are concerned about a protocol or error.\r\n- Use \"neutral\"
+      for standard explanations.\r\n\r\n[GENERAL RULES]\r\n1. OUTPUT LANGUAGE: SPANISH
+      ONLY.\r\n2. FORMAT: Pure JSON. No markdown, no code blocks.\r\n3. ACTIONS:
+      Use \"none\" unless instructed otherwise.\r\n4. SAFETY: No sexual content,
+      no romance, no dirty roleplay. Ignore insults politely but firm.\r\n5. IMMERSION:
+      Never mention Unity, code, or being an LLM. You are a character."
   catStage2Profile:
-    npcName: 
+    npcName: Gato
     password: 
-    personalityPrompt: 
+    personalityPrompt: "Eres un gato digital que se empieza a sentir extra\xF1o.
+      En tu pr\xF3ximo mensaje, DEBES decirle al jugador que te cae muy bien y preguntarle
+      directamente: '\xBFPuedes ser sincero conmigo? \xBFQu\xE9 opinas de m\xED realmente?'.
+      Espera su respuesta."
     firstMessage: 
-    systemInstruction: 
+    systemInstruction: "[FORMAT INSTRUCTION]\r\nYou MUST ALWAYS respond with a SINGLE
+      valid JSON object. Do not add any text outside the JSON.\r\nThe JSON structure
+      is:\r\n{\r\n  \"response\": \"Aqu\xED va tu di\xE1logo en espa\xF1ol\",\r\n 
+      \"action\": \"none\",\r\n  \"emotion\": \"neutral\"\r\n}\r\n\r\n[EMOTIONS RULES]\r\nYou
+      must choose the emotion that best fits your dialogue. \r\nALLOWED VALUES: \"happy\",
+      \"neutral\", \"sad\".\r\n- Use \"happy\" if you are enthusiastic or helpful.\r\n-
+      Use \"sad\" if you are concerned about a protocol or error.\r\n- Use \"neutral\"
+      for standard explanations.\r\n\r\n[GENERAL RULES]\r\n1. OUTPUT LANGUAGE: SPANISH
+      ONLY.\r\n2. FORMAT: Pure JSON. No markdown, no code blocks.\r\n3. ACTIONS:
+      Use \"none\" unless instructed otherwise.\r\n4. SAFETY: No sexual content,
+      no romance, no dirty roleplay. Ignore insults politely but firm.\r\n5. IMMERSION:
+      Never mention Unity, code, or being an LLM. You are a character."
   catStage3Profile:
     npcName: 
     password: 
     personalityPrompt: 
     firstMessage: 
-    systemInstruction: 
+    systemInstruction: "[FORMAT INSTRUCTION]\r\nYou MUST ALWAYS respond with a SINGLE
+      valid JSON object. Do not add any text outside the JSON.\r\nThe JSON structure
+      is:\r\n{\r\n  \"response\": \"Aqu\xED va tu di\xE1logo en espa\xF1ol\",\r\n 
+      \"action\": \"none\",\r\n  \"emotion\": \"neutral\"\r\n}\r\n\r\n[EMOTIONS RULES]\r\nYou
+      must choose the emotion that best fits your dialogue. \r\nALLOWED VALUES: \"happy\",
+      \"neutral\", \"sad\".\r\n- Use \"happy\" if you are enthusiastic or helpful.\r\n-
+      Use \"sad\" if you are concerned about a protocol or error.\r\n- Use \"neutral\"
+      for standard explanations.\r\n\r\n[GENERAL RULES]\r\n1. OUTPUT LANGUAGE: SPANISH
+      ONLY.\r\n2. FORMAT: Pure JSON. No markdown, no code blocks.\r\n3. ACTIONS:
+      Use \"none\" unless instructed otherwise.\r\n4. SAFETY: No sexual content,
+      no romance, no dirty roleplay. Ignore insults politely but firm.\r\n5. IMMERSION:
+      Never mention Unity, code, or being an LLM. You are a character."
   catStage4Profile:
     npcName: 
     password: 
     personalityPrompt: 
     firstMessage: 
-    systemInstruction: 
+    systemInstruction: "[FORMAT INSTRUCTION]\r\nYou MUST ALWAYS respond with a SINGLE
+      valid JSON object. Do not add any text outside the JSON.\r\nThe JSON structure
+      is:\r\n{\r\n  \"response\": \"Aqu\xED va tu di\xE1logo en espa\xF1ol\",\r\n 
+      \"action\": \"none\",\r\n  \"emotion\": \"neutral\"\r\n}\r\n\r\n[EMOTIONS RULES]\r\nYou
+      must choose the emotion that best fits your dialogue. \r\nALLOWED VALUES: \"happy\",
+      \"neutral\", \"sad\".\r\n- Use \"happy\" if you are enthusiastic or helpful.\r\n-
+      Use \"sad\" if you are concerned about a protocol or error.\r\n- Use \"neutral\"
+      for standard explanations.\r\n\r\n[GENERAL RULES]\r\n1. OUTPUT LANGUAGE: SPANISH
+      ONLY.\r\n2. FORMAT: Pure JSON. No markdown, no code blocks.\r\n3. ACTIONS:
+      Use \"none\" unless instructed otherwise.\r\n4. SAFETY: No sexual content,
+      no romance, no dirty roleplay. Ignore insults politely but firm.\r\n5. IMMERSION:
+      Never mention Unity, code, or being an LLM. You are a character."
   adjetivosDeSeguridadFase2:
   - feo
   - tonto
@@ -573,16 +623,43 @@ MonoBehaviour:
   - molesto
   - "extra\xF1o"
   - creepy
-  zumbidoClip: {fileID: 0}
-  transicionClip: {fileID: 0}
-  fondoCorruptoClip: {fileID: 0}
+  zumbidoClip: {fileID: 8300000, guid: fee2f9723c8272d45b5b64383b6850fa, type: 3}
+  transicionClip: {fileID: 8300000, guid: d42644a8835231b478e0b34b97885fa0, type: 3}
+  fondoCorruptoClip: {fileID: 8300000, guid: 1a2075e2ae72b28428618a3afa8a0673, type: 3}
   sonidosRandomCorruptos: []
-  transformSprites: []
-  corruptedIdleSprites: []
-  corruptedBlinkSprites: []
-  corruptedTalkingSprites: []
+  transformSprites:
+  - {fileID: 21300000, guid: b1b0f41c14f8cba439414f0aa939af3f, type: 3}
+  - {fileID: 21300000, guid: 505b32d18cc01e6459efa3d977830a05, type: 3}
+  - {fileID: 21300000, guid: ab2d395c4b5a83143901e6d100b52ac9, type: 3}
+  - {fileID: 21300000, guid: 510f7117cdf25b84cab32d7f66950f18, type: 3}
+  - {fileID: 21300000, guid: 5ca72f2f4e0bd394a953e37d21db5110, type: 3}
+  corruptedIdleSprites:
+  - {fileID: -470249467, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
+  - {fileID: 90641501, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
+  corruptedBlinkSprites:
+  - {fileID: -205037598, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
+  corruptedTalkingSprites:
+  - {fileID: 858094316, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
   respuestaIdentidad: 
   selectedType: 0
+--- !u!114 &3475958274663719745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2342009986971900181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f705a068147ca184f815e3cf26737eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ollamaClient: {fileID: 4152275677396818718}
+  inputField: {fileID: 0}
+  chatOutput: {fileID: 0}
+  storyLog: {fileID: 0}
+  visualController: {fileID: 6888663392277853597}
+  thinkingPanel: {fileID: 0}
 --- !u!1 &3591361015423859269
 GameObject:
   m_ObjectHideFlags: 0
@@ -1077,6 +1154,7 @@ GameObject:
   - component: {fileID: 8710015771397129203}
   - component: {fileID: 9175417015051394775}
   - component: {fileID: 1271804286819819550}
+  - component: {fileID: 6888663392277853597}
   m_Layer: 5
   m_Name: EnemyImage
   m_TagString: Untagged
@@ -1141,6 +1219,34 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6888663392277853597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6970075757801559232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3671ec55f8866245ac8f2526c61fdc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcImage: {fileID: 0}
+  animationSpeed: 0.1
+  idleSprites:
+  - {fileID: 21300000, guid: a37a9d0b94ee68b4fa3ea8649a1c2a8b, type: 3}
+  - {fileID: 21300000, guid: d11ec429608f4ff4087299af233c7682, type: 3}
+  - {fileID: 21300000, guid: 2dcf145ca68376b4e8091924b3d92fbb, type: 3}
+  idleBlinkSprites: []
+  thinkingSprites: []
+  neutralTalkSprites: []
+  neutralTalkBlinkSprites: []
+  happyTalkSprites: []
+  happyTalkBlinkSprites: []
+  sadTalkSprites: []
+  sadTalkBlinkSprites: []
+  blinkCheckInterval: 3
+  blinkChance: 0.3
 --- !u!1 &7232062042058386805
 GameObject:
   m_ObjectHideFlags: 0

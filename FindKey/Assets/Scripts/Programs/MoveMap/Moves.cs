@@ -223,7 +223,6 @@ public class Moves : MonoBehaviour
 
     public void GoToCatPosition()
     {
-        Debug.Log("Intentando ir a la posición del gato...");
         if (moveAppData == null) return;
 
         if (!moveAppData.catIsDead)
@@ -240,44 +239,38 @@ public class Moves : MonoBehaviour
                     {
                         if (data.isOpen && data.windowInstance != null)
                         {
-                            Debug.Log("UAJFBALFGUA");
-
                             enemyAppOpen = true;
 
+                            // IMPORTANTE: Como EnemyEncounterData está en la app Enemy Encounter,
+                            // lo extraemos de su windowInstance.
                             EnemyEncounterData enemyEncounterData = data.windowInstance.GetComponent<EnemyEncounterData>();
                             BaseEnemyEncounter baseEnemyEncounter = data.windowInstance.GetComponent<BaseEnemyEncounter>();
 
-                            if (enemyEncounterData != null) enemyEncounterData.CurrentType = EnemyEncounterData.NPCType.CatStage1;
+                            if (enemyEncounterData != null)
+                                enemyEncounterData.CurrentType = EnemyEncounterData.NPCType.CatStage1;
 
-                            // Usamos la nueva función segura para bloquear nuestra ventana
                             ActivateCatUI();
 
-                            // Avisamos a la otra app de que haga el FadeIn y se bloquee
-                            if (baseEnemyEncounter != null) baseEnemyEncounter.CheckCatEncounter();
+                            if (baseEnemyEncounter != null)
+                                baseEnemyEncounter.CheckCatEncounter();
                         }
                         break;
                     }
                 }
             }
 
-            // Si la app NO está abierta
             if (!enemyAppOpen)
             {
                 IAPanel.SetActive(false);
                 MovePanel.SetActive(true);
-                // YA NO HAY TEXTO HARDCODEADO: El nodo CAT ENCOUNTER pondrá su propio texto.
-
-                // Escondemos el input para obligarle a abrir la app del escáner
                 if (playerInputField) playerInputField.SetActive(false);
             }
         }
         else
         {
-            // Si el gato ya está muerto (pasas por ahí de nuevo)
             IAPanel.SetActive(false);
             MovePanel.SetActive(true);
             moveAppData.playerIsFrontCat = false;
-            // YA NO HAY TEXTO HARDCODEADO: El nodo alternativo pondrá su texto
             if (playerInputField) playerInputField.SetActive(true);
         }
     }
