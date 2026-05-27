@@ -51,13 +51,12 @@ public class CatAIScript_Stage2 : BaseAIScript
 {
     public string[] adjetivosDeSeguridad;
 
-    public override void InitNPC() { } // Se configura desde el Inspector
+    public override void InitNPC() { }
 
     protected override string ConstruirPromptBase()
     {
         string prompt = base.ConstruirPromptBase();
 
-        // 1. INYECCIÓN EN EL PROMPT (Para que la IA sepa de qué hablar)
         if (!string.IsNullOrEmpty(lastPlayerText))
         {
             string lowerPlayer = lastPlayerText.ToLowerInvariant();
@@ -80,15 +79,13 @@ public class CatAIScript_Stage2 : BaseAIScript
             if (detected)
             {
                 prompt += $"\n\n[SYSTEM OVERRIDE URGENTE]: El jugador te ha llamado '{adjetivoDetectado}'. " +
-                          $"DEBES ofenderte mucho, decirle explícitamente '¡No estoy de acuerdo con que sea {adjetivoDetectado}!' " +
-                          $"y DEBES poner OBLIGATORIAMENTE \"action\": \"next_stage\" en tu JSON.";
+                          $"DEBES poner OBLIGATORIAMENTE \"action\": \"next_stage\" en tu JSON.";
             }
             else
             {
-                // Instrucciones de detección más claras para la IA
                 prompt += $"\n\n[SYSTEM INSTRUCTION]: Analiza el mensaje del jugador. Si el jugador te ha dado cualquier tipo de opinión sobre ti (un insulto, un halago, una descripción), " +
-                          $"DEBES ofenderte, decirle que no estás de acuerdo, y OBLIGATORIAMENTE poner \"action\": \"next_stage\" en tu JSON. " +
-                          $"Si el jugador NO te da su opinión (solo saluda, hace preguntas o evade el tema), sigue insistiendo en que quieres saber qué opina de ti y pon \"action\": \"none\".";
+                          $"OBLIGATORIAMENTE pon \"action\": \"next_stage\" en tu JSON. " +
+                          $"Si el jugador NO te da su opinión (solo saluda o evade el tema), sigue insistiendo en que quieres saber qué opina de ti y pon \"action\": \"none\".";
             }
         }
 
@@ -97,21 +94,19 @@ public class CatAIScript_Stage2 : BaseAIScript
 
     protected override void OnAIResponse(string raw)
     {
-        // Guardamos el texto del jugador antes de que la base lo borre
         string currentPlayerText = lastPlayerText;
-        base.OnAIResponse(raw);
 
-        // Candado anti-cortocircuito (Evita saltos si es la IA quien empezó hablando)
-        if (string.IsNullOrEmpty(currentPlayerText)) return;
+        if (string.IsNullOrEmpty(currentPlayerText))
+        {
+            base.OnAIResponse(raw);
+            return;
+        }
 
         string lowerRaw = raw.ToLowerInvariant();
         string lowerPlayer = currentPlayerText.ToLowerInvariant();
 
-        // 2. EVALUACIÓN HÍBRIDA (Como en la Fase 1)
-        // A) ¿La IA ha deducido que es una opinión y ha puesto next_stage?
         bool aiDecided = lowerRaw.Contains("\"action\":\"next_stage\"") || lowerRaw.Contains("\"action\": \"next_stage\"");
 
-        // B) ¿El jugador ha usado alguna palabra del cinturón de seguridad?
         bool playerUsedAdjective = false;
         if (adjetivosDeSeguridad != null)
         {
@@ -125,13 +120,14 @@ public class CatAIScript_Stage2 : BaseAIScript
             }
         }
 
-        // 3. EJECUCIÓN INQUEBRANTABLE
-        // Si la IA lo ha detectado por contexto (ej: "gilipollas") O si Unity ha detectado la palabra clave...
         if (aiDecided || playerUsedAdjective)
         {
-            Debug.Log("<color=red>[IA GATO]</color> Opinión detectada (por IA o filtro). Avanzando a Fase 3 (Hostil)...");
+            Debug.Log("<color=red>[IA GATO]</color> Opinión detectada. Silenciando Fase 2 y saltando a Fase 3...");
 
-            // Limpiamos la memoria para evitar bucles o saltos dobles
+            isThinking = false;
+            if (thinkingPanel != null) thinkingPanel.SetActive(false);
+            if (inputField != null) inputField.gameObject.SetActive(true);
+
             lastPlayerText = "";
 
             EnemyEncounterData encounterData = GetComponent<EnemyEncounterData>();
@@ -139,7 +135,11 @@ public class CatAIScript_Stage2 : BaseAIScript
             {
                 encounterData.CurrentType = EnemyEncounterData.NPCType.CatStage3;
             }
+
+            return;
         }
+
+        base.OnAIResponse(raw);
     }
 
     protected override void OpenDoor() { }
@@ -153,6 +153,7 @@ public class CatAIScript_Stage3 : BaseAIScript
     public AudioClip fondoCorruptoClip;
     public AudioClip[] sonidosRandomCorruptos;
 
+    // Sprites
     public Sprite[] transformSprites;
     public Sprite[] corruptedIdleSprites;
     public Sprite[] corruptedBlinkSprites;
@@ -163,8 +164,12 @@ public class CatAIScript_Stage3 : BaseAIScript
 
     public override void InitNPC() { }
 
-    private void Start()
+    // ¡CAMBIO CLAVE! Renombramos Start() a IniciarEfectos() para no aplastar a la base
+    public void IniciarEfectos()
     {
+        // 1. Ocultamos el chat durante la animación para que el jugador no pueda interrumpir
+        if (inputField != null) inputField.gameObject.SetActive(false);
+
         catAudioSourcePrincipal = gameObject.AddComponent<AudioSource>();
         catAudioSourceRandom = gameObject.AddComponent<AudioSource>();
 
@@ -173,10 +178,8 @@ public class CatAIScript_Stage3 : BaseAIScript
 
     private System.Collections.IEnumerator RutinaTransformacion()
     {
-        // 1. CONGELAR EL SPRITE (Paramos el bucle de la Chica Roja)
         if (visualController != null) visualController.StopAnimation();
 
-        // 2. REPRODUCIR ZUMBIDO
         if (zumbidoClip != null)
         {
             catAudioSourcePrincipal.clip = zumbidoClip;
@@ -184,21 +187,17 @@ public class CatAIScript_Stage3 : BaseAIScript
             catAudioSourcePrincipal.Play();
         }
 
-        // 3. ESPERAR 4 SEGUNDOS (Totalmente congelado en el frame exacto)
         yield return new WaitForSeconds(4f);
 
-        // 4. DETENER ZUMBIDO Y REPRODUCIR SONIDO DE TRANSICIÓN
         catAudioSourcePrincipal.Stop();
         if (transicionClip != null)
         {
             catAudioSourcePrincipal.PlayOneShot(transicionClip);
         }
 
-        // 5. ANIMACIÓN DE TRANSICIÓN MANUAL (1.5 Segundos en total)
         float transitionDuration = 1.5f;
         if (visualController != null && transformSprites != null && transformSprites.Length > 0)
         {
-            // Calculamos cuánto debe durar cada frame para rellenar los 1.5 segundos
             float frameDelay = transitionDuration / transformSprites.Length;
             foreach (Sprite s in transformSprites)
             {
@@ -208,18 +207,15 @@ public class CatAIScript_Stage3 : BaseAIScript
         }
         else
         {
-            yield return new WaitForSeconds(transitionDuration); // Si no hay sprites, espera igual
+            yield return new WaitForSeconds(transitionDuration);
         }
 
-        // 6. INYECTAR NUEVAS ANIMACIONES Y DESCONGELAR
         if (visualController != null)
         {
-            // Cambiamos su cerebro visual para que a partir de ahora use al gato corrupto
             visualController.ReplaceSprites(corruptedIdleSprites, corruptedBlinkSprites, corruptedTalkingSprites);
-            visualController.ResumeAnimation(); // Vuelve al estado Idle, pero ahora es maligno
+            visualController.ResumeAnimation();
         }
 
-        // 7. SONIDO DE FONDO CONSTANTE (Gato corrupto)
         if (fondoCorruptoClip != null)
         {
             catAudioSourcePrincipal.clip = fondoCorruptoClip;
@@ -227,10 +223,9 @@ public class CatAIScript_Stage3 : BaseAIScript
             catAudioSourcePrincipal.Play();
         }
 
-        // 8. INICIAR SONIDOS ALEATORIOS
         StartCoroutine(RutinaSonidosRandom());
 
-        // 9. LA IA HABLA AUTOMÁTICAMENTE
+        // Al lanzar este mensaje proactivo, el sistema volverá a encender la caja de texto automáticamente al terminar
         ForceProactiveMessage("Acabas de sufrir una transformación gráfica muy dolorosa revelando tu forma corrupta. " +
                               "Dirígete al jugador, dile que NO te ha gustado NADA lo que acaba de decir sobre ti, " +
                               "y pregúntale de forma amenazante e inquietante: '¿Acaso sabes quién soy yo?'. " +
@@ -264,19 +259,41 @@ public class CatAIScript_Stage3 : BaseAIScript
     protected override void OnAIResponse(string raw)
     {
         string currentPlayerText = lastPlayerText;
-        base.OnAIResponse(raw);
 
-        if (string.IsNullOrEmpty(currentPlayerText)) return;
+        // Si el jugador no ha escrito nada (es la IA lanzando su mensaje inicial proactivo)
+        if (string.IsNullOrEmpty(currentPlayerText))
+        {
+            base.OnAIResponse(raw);
+            return;
+        }
 
+        // Si el jugador responde a la pregunta de identidad...
         EnemyEncounterData encounterData = GetComponent<EnemyEncounterData>();
         if (encounterData != null)
         {
             if (string.IsNullOrEmpty(encounterData.respuestaIdentidad))
             {
+                // 1. Guardamos lo que cree que somos
                 encounterData.respuestaIdentidad = currentPlayerText;
                 Debug.Log($"<color=cyan>[HISTORIA]</color> Se ha guardado la respuesta del jugador. Él cree que somos: '{encounterData.respuestaIdentidad}'");
+
+                // 2. Silenciamos el procesamiento normal de la Fase 3
+                isThinking = false;
+                if (thinkingPanel != null) thinkingPanel.SetActive(false);
+                if (inputField != null) inputField.gameObject.SetActive(true);
+
+                lastPlayerText = ""; // Limpiamos para que la Fase 4 lo coja fresco
+
+                // 3. ¡Saltamos a la Fase 4!
+                Debug.Log("<color=red>[IA GATO]</color> Identidad revelada. Pasando el control a la Fase 4...");
+                encounterData.CurrentType = EnemyEncounterData.NPCType.CatStage4;
+
+                return; // Evitamos ejecutar base.OnAIResponse(raw)
             }
         }
+
+        // Por si acaso cayera aquí
+        base.OnAIResponse(raw);
     }
 
     protected override void OpenDoor() { }
@@ -284,6 +301,81 @@ public class CatAIScript_Stage3 : BaseAIScript
 
 public class CatAIScript_Stage4 : BaseAIScript
 {
+    public string[] passwordsUbicacion;
+    public string respuestaIdentidadJugador;
+
+    // Aquí recibimos tu ScriptableObject del GameEvent
+    public GameEvent eventoFinalDemo;
+
     public override void InitNPC() { }
+
+    void Start()
+    {
+        base.Start();
+
+        if (visualController != null)
+        {
+            visualController.animationSpeed = 0.03f;
+        }
+
+        string identidad = string.IsNullOrEmpty(respuestaIdentidadJugador) ? "un monstruo" : respuestaIdentidadJugador;
+
+        ForceProactiveMessage($"En el mensaje anterior, el jugador te dijo que creía que tú eras: '{identidad}'. " +
+                              $"Dirígete al jugador y dile: '¿Así que crees que soy {identidad}...? Qué ingenuidad tan deliciosa.'. " +
+                              $"Luego, cambia a un tono extremadamente hostil y urgente y pregúntale: 'La verdadera pregunta es... ¿Sabes acaso DÓNDE estamos?'. " +
+                              $"DEBES mantener OBLIGATORIAMENTE el formato JSON.");
+    }
+
+    protected override string ConstruirPromptBase()
+    {
+        string prompt = base.ConstruirPromptBase();
+
+        prompt += "\n\n[SYSTEM INSTRUCTION]: El jugador debe adivinar el nombre del lugar donde estáis. " +
+                  "Si falla o dice no saberlo, búrlate de su ignorancia y dile que jamás escapará. Pon \"action\": \"none\" en tu JSON.";
+
+        return prompt;
+    }
+
+    protected override void OnAIResponse(string raw)
+    {
+        string currentPlayerText = lastPlayerText;
+        base.OnAIResponse(raw);
+
+        if (string.IsNullOrEmpty(currentPlayerText)) return;
+
+        string lowerPlayer = currentPlayerText.ToLowerInvariant();
+        bool passwordCorrecta = false;
+
+        if (passwordsUbicacion != null)
+        {
+            foreach (string pwd in passwordsUbicacion)
+            {
+                if (lowerPlayer.Contains(pwd.ToLowerInvariant()))
+                {
+                    passwordCorrecta = true;
+                    break;
+                }
+            }
+        }
+
+        if (passwordCorrecta)
+        {
+            Debug.Log("<color=red>[FINAL]</color> Ubicación adivinada. Lanzando evento al EventManager...");
+
+            if (inputField != null) inputField.gameObject.SetActive(false);
+            isThinking = false;
+            if (thinkingPanel != null) thinkingPanel.SetActive(false);
+
+            if (eventoFinalDemo != null)
+            {
+                EventManager.Instance.TriggerEvent(eventoFinalDemo);
+            }
+            else
+            {
+                Debug.LogWarning("[AVISO] El jugador acertó, pero no has arrastrado ningún GameEvent al Inspector del EnemyEncounterData.");
+            }
+        }
+    }
+
     protected override void OpenDoor() { }
 }

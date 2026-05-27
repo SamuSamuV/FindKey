@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyEncounterData : MonoBehaviour
 {
@@ -32,6 +33,13 @@ public class EnemyEncounterData : MonoBehaviour
 
     [Header("Datos Guardados de la Historia")]
     public string respuestaIdentidad = ""; // Aquí guardaremos la respuesta a "¿Sabes quién soy?"
+
+    [Header("Fase 4 (Final)")]
+    [Tooltip("Lista de lugares o passwords correctos para terminar la demo.")]
+    public string[] passwordsUbicacionFase4 = new string[] { "matchingames", "match in games", "udit", "universidad" };
+
+    [Tooltip("El GameEvent que se lanzará al adivinar la palabra")]
+    public GameEvent eventoFinalDemo;
 
     public enum NPCType { None, CatStage1, CatStage2, CatStage3, CatStage4 }
 
@@ -109,7 +117,7 @@ public class EnemyEncounterData : MonoBehaviour
                 SetupAIReferences(c3, catStage3Profile);
                 c3.isProactiveTriggered = true;
 
-                // Inyectamos los audios a la Fase 3
+                // Inyectamos audios y sprites
                 c3.zumbidoClip = zumbidoClip;
                 c3.transicionClip = transicionClip;
                 c3.fondoCorruptoClip = fondoCorruptoClip;
@@ -120,6 +128,9 @@ public class EnemyEncounterData : MonoBehaviour
                 c3.corruptedBlinkSprites = corruptedBlinkSprites;
                 c3.corruptedTalkingSprites = corruptedTalkingSprites;
 
+                // --- NUEVO: Lanzamos los efectos de forma manual y segura ---
+                c3.IniciarEfectos();
+
                 currentAI = c3;
                 break;
 
@@ -127,6 +138,13 @@ public class EnemyEncounterData : MonoBehaviour
                 var c4 = gameObject.AddComponent<CatAIScript_Stage4>();
                 SetupAIReferences(c4, catStage4Profile);
                 c4.isProactiveTriggered = true;
+
+                c4.passwordsUbicacion = passwordsUbicacionFase4;
+                c4.respuestaIdentidadJugador = respuestaIdentidad;
+
+                // Le pasamos tu GameEvent a la IA
+                c4.eventoFinalDemo = eventoFinalDemo;
+
                 currentAI = c4;
                 break;
         }

@@ -17,6 +17,7 @@ public enum EventActionType
     AddInventoryItem,   // Añade un item directamente
     RemoveDesktopIcon,
     ChangeAdventureNode,
+    PlayVideo,
 }
 
 [System.Serializable]
@@ -63,6 +64,10 @@ public class EventAction
 
     [Header("Aventura (ChangeAdventureNode)")]
     public StoryNode newStoryNode;
+
+    [Header("Parámetros de Video (PlayVideo)")]
+    [Tooltip("El clip de video que quieres reproducir.")]
+    public UnityEngine.Video.VideoClip videoClip;
 }
 
 [CreateAssetMenu(fileName = "NewGameEvent", menuName = "OS System/Game Event")]

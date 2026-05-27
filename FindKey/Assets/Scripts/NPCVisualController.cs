@@ -138,32 +138,53 @@ public class NPCVisualController : MonoBehaviour
 
     private Sprite[] GetCurrentAnimation(out Sprite[] blinkAnim)
     {
-        blinkAnim = null;
+        // Por defecto, si algo falla, preparamos el parpadeo del Idle
+        blinkAnim = idleBlinkSprites;
 
         if (currentState == NPCState.Idle)
         {
-            blinkAnim = idleBlinkSprites;
             return idleSprites;
         }
         else if (currentState == NPCState.Thinking)
         {
-            return thinkingSprites;
-        }
-        else
-        {
-            switch (currentEmotion)
+            // Si tiene sprites de pensar, los usa
+            if (thinkingSprites != null && thinkingSprites.Length > 0)
             {
-                case NPCEmotion.Happy:
-                    blinkAnim = happyTalkBlinkSprites;
-                    return happyTalkSprites;
-                case NPCEmotion.Sad:
-                    blinkAnim = sadTalkBlinkSprites;
-                    return sadTalkSprites;
-                case NPCEmotion.Neutral:
-                default:
-                    blinkAnim = neutralTalkBlinkSprites;
-                    return neutralTalkSprites;
+                blinkAnim = null; // No parpadea mientras piensa
+                return thinkingSprites;
             }
+            // FALLBACK: Si no tiene sprites de pensar, sigue haciendo el Idle normal
+            return idleSprites;
+        }
+        else // ESTADO TALKING
+        {
+            Sprite[] talkAnim = null;
+
+            // Busca la emoción correcta asegurándose de que la lista NO esté vacía
+            if (currentEmotion == NPCEmotion.Happy && happyTalkSprites != null && happyTalkSprites.Length > 0)
+            {
+                blinkAnim = happyTalkBlinkSprites;
+                talkAnim = happyTalkSprites;
+            }
+            else if (currentEmotion == NPCEmotion.Sad && sadTalkSprites != null && sadTalkSprites.Length > 0)
+            {
+                blinkAnim = sadTalkBlinkSprites;
+                talkAnim = sadTalkSprites;
+            }
+            else if (neutralTalkSprites != null && neutralTalkSprites.Length > 0)
+            {
+                blinkAnim = neutralTalkBlinkSprites;
+                talkAnim = neutralTalkSprites;
+            }
+
+            // FALLBACK ABSOLUTO: Si la IA manda hablar pero no has puesto ningún sprite de hablar en el Inspector...
+            if (talkAnim == null || talkAnim.Length == 0)
+            {
+                blinkAnim = idleBlinkSprites;
+                return idleSprites; // Se queda haciendo el Idle sin romperse
+            }
+
+            return talkAnim;
         }
     }
 }

@@ -570,7 +570,7 @@ MonoBehaviour:
       no romance, no dirty roleplay. Ignore insults politely but firm.\r\n5. IMMERSION:
       Never mention Unity, code, or being an LLM. You are a character."
   catStage3Profile:
-    npcName: 
+    npcName: Gato
     password: 
     personalityPrompt: 
     firstMessage: 
@@ -587,7 +587,7 @@ MonoBehaviour:
       no romance, no dirty roleplay. Ignore insults politely but firm.\r\n5. IMMERSION:
       Never mention Unity, code, or being an LLM. You are a character."
   catStage4Profile:
-    npcName: 
+    npcName: Gato
     password: 
     personalityPrompt: 
     firstMessage: 
@@ -636,11 +636,15 @@ MonoBehaviour:
   corruptedIdleSprites:
   - {fileID: -470249467, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
   - {fileID: 90641501, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
-  corruptedBlinkSprites:
-  - {fileID: -205037598, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
-  corruptedTalkingSprites:
-  - {fileID: 858094316, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
+  corruptedBlinkSprites: []
+  corruptedTalkingSprites: []
   respuestaIdentidad: 
+  passwordsUbicacionFase4:
+  - matchingames
+  - match in games
+  - udit
+  - universidad
+  eventoFinalDemo: {fileID: 11400000, guid: efa12974d3b3eb447bbf1bf8bc1f6dcf, type: 2}
   selectedType: 0
 --- !u!114 &3475958274663719745
 MonoBehaviour:

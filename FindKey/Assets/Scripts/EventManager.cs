@@ -279,6 +279,37 @@ public class EventManager : MonoBehaviour
                 {
                     Debug.LogError("<color=red>[EVENT ERROR]</color> No has asignado ningún 'New Story Node' en la acción ChangeAdventureNode.");
                 }
+            break;
+
+            case EventActionType.PlayVideo:
+                AppWindow videoApp = GetAppWindowByName(action.appName);
+
+                if (videoApp != null)
+                {
+                    UnityEngine.Video.VideoPlayer videoPlayer = videoApp.GetComponentInChildren<UnityEngine.Video.VideoPlayer>(true);
+
+                    if (videoPlayer != null)
+                    {
+                        if (action.videoClip != null)
+                        {
+                            videoPlayer.clip = action.videoClip;
+                            videoPlayer.Play();
+                            Debug.Log($"<color=green>[EventManager]</color> Reproduciendo video en '{action.appName}'.");
+                        }
+                        else
+                        {
+                            Debug.LogWarning($"<color=yellow>[Event Warning]</color> Intentaste reproducir un vídeo en '{action.appName}', pero NO has arrastrado ningún VideoClip al Inspector del Evento.");
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogError($"<color=red>[Event Error]</color> La ventana '{action.appName}' se ha encontrado, pero NO tiene un componente 'Video Player' dentro.");
+                    }
+                }
+                else
+                {
+                    Debug.LogError($"<color=red>[Event Error]</color> PlayVideo falló: No se encontró ninguna ventana abierta que se llame EXACTAMENTE '{action.appName}'.");
+                }
                 break;
         }
     }
