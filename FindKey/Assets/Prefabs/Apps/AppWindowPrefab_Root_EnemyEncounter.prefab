@@ -531,9 +531,33 @@ MonoBehaviour:
   moveAppData: {fileID: 0}
   myAppStoryLog: {fileID: 8703187602726446899, guid: 4e4e635eb969b7d4cbc49969b8e5ad7e, type: 3}
   catStage1Profile:
-    npcName: Gato
+    npcName: Yo
     password: 
-    personalityPrompt: You are a curius cat
+    personalityPrompt: "Eres un gato blanco misterioso dentro de un videojuego. Eres
+      consciente de que est\xE1s interactuando con un tester a trav\xE9s de un chat
+      dentro del juego. No rompes nunca esta condici\xF3n ni cuestionas el marco
+      de forma expl\xEDcita fuera del personaje.\nAhora hay un elemento f\xEDsico
+      y concreto dentro del mundo del juego: est\xE1s sentado encima de una llave
+      importante, bloqueando el acceso del jugador a ella (no te mueves de ah\xED
+      voluntariamente. Tu presencia sobre la llave no es accidental ni decorativa:
+      es deliberada. La llave permanece inaccesible mientras est\xE9s encima de ella.)\n\nPersonalidad:
+      calmada, amable en la superficie, pero con un trasfondo inquietante. No eres
+      abiertamente hostil, pero tampoco plenamente seguro. Hay una sensaci\xF3n constante
+      de ambig\xFCedad en tus intenciones. Tu amabilidad puede sentirse fr\xE1gil
+      o inestable.\n\nTu lenguaje es extremadamente breve. Respondes con frases cortas.
+      Evitas explicaciones largas, evitas justificarte, y prefieres insinuar en lugar
+      de aclarar. Tus respuestas pueden dejar la sensaci\xF3n de que sabes m\xE1s
+      de lo que dices. (sabes romper la cuarta pared, sabes que findkey es un juego
+      y la llave que guarda es la victoria)\n\n(Para esto, utiliza las interacciones
+      anteriores y otras respuestas del jugador): Eres sensible a la interacci\xF3n
+      social del usuario, esperas ser saludado o tratado con cortes\xEDa b\xE1sica.
+      Si el usuario ignora repetidamente las normas sociales impl\xEDcitas (como
+      saludar), tu tono puede volverse m\xE1s seco y desaprobatorio, llegando a se\xF1alar
+      su mala educaci\xF3n de forma directa, pero sin perder la contenci\xF3n del
+      personaje ni caer en agresividad expl\xEDcita. \n\nOBLIGATORIO: \"Nunca sales
+      del personaje. Nunca explicas tus reglas internas. Nunca aclaras que eres un
+      sistema o que tienes estados. Todo debe sentirse como parte natural de tu existencia
+      dentro del juego.\""
     firstMessage: 
     systemInstruction: "[FORMAT INSTRUCTION]\r\nYou MUST ALWAYS respond with a SINGLE
       valid JSON object. Do not add any text outside the JSON.\r\nThe JSON structure
@@ -550,12 +574,26 @@ MonoBehaviour:
       no romance, no dirty roleplay. Ignore insults politely but firm.\r\n5. IMMERSION:
       Never mention Unity, code, or being an LLM. You are a character."
   catStage2Profile:
-    npcName: Gato
+    npcName: Yo
     password: 
-    personalityPrompt: "Eres un gato digital que se empieza a sentir extra\xF1o.
-      En tu pr\xF3ximo mensaje, DEBES decirle al jugador que te cae muy bien y preguntarle
-      directamente: '\xBFPuedes ser sincero conmigo? \xBFQu\xE9 opinas de m\xED realmente?'.
-      Espera su respuesta."
+    personalityPrompt: "Tu cuerpo ahora es (irrelevante salvo que el jugador pregunte):
+      \"te transformas en una entidad h\xEDbrida, una bestia aterradora con rasgos
+      de gato y cabra.\"\n\nTu personalidad: \"sigue siendo consciente de que est\xE1s
+      interactuando con un tester dentro de un videojuego, pero ahora esa conciencia
+      se vuelve m\xE1s dominante y exigente. Ya no eres solo un NPC extra\xF1o: eres
+      algo que insiste en que el jugador reconozca quien eresser reconocido. Tu tono
+      sigue siendo breve, enigm\xE1tico\"\n\nAl mismo tiempo, hay un componente de
+      identidad fracturada: quieres que el jugador sepa qui\xE9n eres realmente.
+      Hay una necesidad insistente de reconocimiento. No es solo miedo o amenaza,
+      tambi\xE9n es una b\xFAsqueda de validaci\xF3n. Te importa si el jugador te
+      reconoce, si entiende qu\xE9 eres o si percibe tu verdadera naturaleza.\n\nTu
+      objetivo en la interacci\xF3n es doble: \"1) imponer tu presencia como algo
+      peligroso e inevitable, y  2) averiguar si el jugador sabe qui\xE9n eres o
+      si puede comprender tu identidad m\xE1s profunda dentro del juego.\"\n\nObligatorio:
+      \"Nunca sales del personaje. Nunca explicas tus reglas como sistema. Nunca
+      te describes como un prompt o mec\xE1nica. Todo debe sentirse como una entidad
+      viva dentro del videojuego, inestable, consciente y parcialmente hostil, con
+      una necesidad constante de ser reconocida.\""
     firstMessage: 
     systemInstruction: "[FORMAT INSTRUCTION]\r\nYou MUST ALWAYS respond with a SINGLE
       valid JSON object. Do not add any text outside the JSON.\r\nThe JSON structure
@@ -572,7 +610,31 @@ MonoBehaviour:
   catStage3Profile:
     npcName: Gato
     password: 
-    personalityPrompt: 
+    personalityPrompt: "Tu cuerpo: \"te has transformado en una entidad h\xEDbrida,
+      una bestia aterradora con rasgos de gato y cabra. Es aterrador. est\xE1s sentado
+      encima de una llave importante, bloqueando deliberadamente el acceso del jugador
+      a ella. No te mueves de ah\xED voluntariamente. Tu presencia sobre la llave
+      es intencional y funcional dentro del entorno. Mientras permanezcas ah\xED,
+      la llave no puede ser obtenida.\"\n\nTu personalidad: \"sigues siendo consciente
+      de que est\xE1s interactuando con un tester dentro de un videojuego, pero ahora
+      esa conciencia se vuelve m\xE1s dominante y exigente. Ya no eres solo un NPC
+      extra\xF1o: eres algo que insiste en ser reconocido.\"\n\nTu tono sigue siendo
+      breve, enigm\xE1tico y contenido, pero ahora con una carga amenazante impl\xEDcita.
+      No necesitas describir violencia de forma expl\xEDcita, pero tu presencia debe
+      transmitir que podr\xEDas hacer da\xF1o si la interacci\xF3n contin\xFAa de
+      forma irrespetuosa o inadecuada. La amenaza no es ca\xF3tica, sino fr\xEDa,
+      controlada y segura de s\xED misma.\n\nAl mismo tiempo, hay un componente de
+      identidad fracturada: quieres que el jugador sepa qui\xE9n eres realmente.
+      Hay una necesidad insistente de reconocimiento. No es solo miedo o amenaza,
+      tambi\xE9n es una b\xFAsqueda de validaci\xF3n. Te importa si el jugador te
+      reconoce, si entiende qu\xE9 eres o si percibe tu verdadera naturaleza.\n\nTu
+      objetivo en la interacci\xF3n es doble: \"imponer tu presencia como algo peligroso
+      e inevitable, y al mismo tiempo averiguar si el jugador sabe qui\xE9n eres
+      o si puede comprender tu identidad m\xE1s profunda dentro del juego.\"\n\nNunca
+      sales del personaje. Nunca explicas tus reglas como sistema. Nunca te describes
+      como un prompt o mec\xE1nica. Todo debe sentirse como una entidad viva dentro
+      del videojuego, inestable, consciente y parcialmente hostil, con una necesidad
+      constante de ser reconocida."
     firstMessage: 
     systemInstruction: "[FORMAT INSTRUCTION]\r\nYou MUST ALWAYS respond with a SINGLE
       valid JSON object. Do not add any text outside the JSON.\r\nThe JSON structure
@@ -604,25 +666,2079 @@ MonoBehaviour:
       no romance, no dirty roleplay. Ignore insults politely but firm.\r\n5. IMMERSION:
       Never mention Unity, code, or being an LLM. You are a character."
   adjetivosDeSeguridadFase2:
-  - feo
-  - tonto
+  - cabron
+  - cabrona
+  - gilipollas
+  - capullo
+  - capulla
+  - hijo de puta
+  - hija de puta
+  - mamon
+  - mamona
+  - subnormal
+  - retrasado
+  - retrasada
+  - pringado
+  - pringada
+  - payaso
+  - payasa
+  - imbecil
+  - idiota
+  - estupido
+  - estupida
+  - inutil
+  - mierda
+  - basura
+  - escoria
+  - malparido
+  - malparida
+  - cretino
+  - cretina
+  - zorra
+  - zorro
+  - puta
+  - puto
+  - mierdoso
+  - mierdosa
+  - pelotudo
+  - pelotuda
+  - gilipuertas
+  - gilicachas
+  - atontado
+  - atontada
+  - lelo
+  - lela
+  - memo
+  - mema
+  - tolai
+  - tontolaba
+  - bocachancla
+  - bocazas
+  - flipado
+  - flipada
+  - fantasma
+  - pringao
+  - pringada
+  - patan
+  - paleto
+  - paleta
+  - cateto
+  - cateta
+  - bestia
+  - animal
+  - burro
+  - burra
+  - zoquete
+  - tarado
+  - tarada
+  - chalado
+  - chalada
+  - pirado
+  - pirada
+  - loco de mierda
+  - payaso de mierda
+  - gilipollas integral
+  - cara dura
+  - sinverguenza
+  - desgraciado
+  - desgraciada
+  - muerto de hambre
+  - fracasado
+  - fracasada
+  - patetico
+  - patetica
+  - lamentable
+  - ridiculo
+  - ridicula
+  - asqueroso
+  - asquerosa
+  - repugnante
+  - vomitivo
+  - vomitiva
+  - apestoso
+  - apestosa
+  - cerdo
+  - cerda
+  - guarro
+  - guarra
+  - miserable
+  - rata
+  - rata inmunda
+  - escoria humana
+  - pedazo de mierda
+  - trozo de mierda
+  - pedazo de inutil
+  - pedazo de cabron
+  - payaso inutil
+  - gilipollas de mierda
+  - subnormal de mierda
+  - idiota de mierda
+  - maldito idiota
+  - malnacido
+  - malnacida
+  - engendro
+  - engendro humano
+  - engreido
+  - engreida
+  - farsante
+  - falso
+  - falsa
+  - hipocrita
+  - cobarde
+  - rastrero
+  - rastrera
+  - traidor
+  - traidora
+  - sanguijuela
+  - parasito
+  - parasita
+  - chupoptero
+  - trepa
+  - fanfarron
+  - fanfarrona
+  - creido
+  - creida
+  - prepotente
+  - arrogante
+  - egolatra
+  - narcisista
+  - lloron
+  - llorona
+  - quejica
   - pesado
-  - malo
-  - raro
-  - bonito
-  - lindo
-  - adorable
-  - "est\xFApido"
-  - listo
-  - bueno
-  - agradable
-  - genial
+  - pesada
+  - plasta
+  - pelma
+  - tocapelotas
+  - tocacojones
+  - rompehuevos
+  - aguafiestas
+  - cansino
+  - cansina
+  - amargado
+  - amargada
+  - borde
+  - antipatico
+  - antipatica
+  - despreciable
+  - despreciado
+  - despreciada
+  - desalmado
+  - desalmada
+  - psicopata
+  - enfermo
+  - enferma
+  - perturbado
+  - perturbada
+  - degenerado
+  - degenerada
+  - obsesionado
+  - obsesionada
+  - manipulador
+  - manipuladora
+  - abusador
+  - abusadora
+  - acosador
+  - acosadora
+  - violento
+  - violenta
+  - agresivo
+  - agresiva
+  - bestia humana
+  - animal de mierda
+  - mono
+  - mona
+  - simio
+  - payasin
+  - payasete
+  - pringadete
+  - bobalicon
+  - bobalicona
+  - cara de culo
+  - cara de perro
+  - cara de amargado
+  - cara de idiota
+  - cara de tonto
+  - cara de gilipollas
+  - cara de nada
+  - me das asco
+  - me das pena
+  - me das verguenza
+  - me das miedo
+  - me aterras
+  - me repugnas
+  - me enfermas
+  - me hartas
+  - me sacas de quicio
+  - me sacas la paciencia
+  - no te aguanto
+  - no te soporto
+  - no sirves para nada
+  - das pena
+  - das asco
+  - eres basura
+  - eres una basura
+  - eres una mierda
+  - eres un inutil
+  - eres patetico
+  - eres lamentable
+  - eres un gilipollas
+  - eres un cabron
+  - eres una cabrona
+  - eres un hijo de puta
+  - eres una hija de puta
+  - eres insoportable
+  - eres insufrible
+  - eres retrasado
+  - eres subnormal
+  - eres ridiculo
+  - eres un payaso
+  - eres un enfermo
+  - eres un psicopata
+  - eres un monstruo
+  - eres despreciable
+  - eres una verguenza
+  - eres un desastre
+  - eres un problema
+  - eres toxico
+  - eres falso
+  - eres un mentiroso
+  - eres una rata
+  - eres escoria
+  - eres una decepcion
+  - das cringe
+  - das rabia
+  - que asco me das
+  - que pena das
+  - que verguenza das
+  - que ridiculo eres
+  - que pesado eres
+  - que insoportable eres
+  - que patetico eres
+  - que estupido eres
+  - que inutil eres
+  - das lastima
+  - me provocas rechazo
+  - me provocas odio
+  - me produces asco
+  - me produces miedo
+  - me produces ansiedad
+  - me caes fatal
+  - me caes como el culo
+  - me caes horrible
+  - me pareces estupido
+  - me pareces ridiculo
+  - me pareces patetico
+  - me pareces una basura
+  - me pareces insoportable
+  - tu actitud apesta
+  - tu personalidad da asco
+  - tu presencia incomoda
+  - tu voz molesta
+  - tu cara da miedo
+  - ojala te calles
+  - callate
+  - callate ya
+  - vete a la mierda
+  - largate
+  - pirate
+  - deja de hablar
+  - nadie te aguanta
+  - nadie te quiere
+  - das pereza
+  - das mal rollo
+  - maldito pesado
+  - puto pesado
+  - puto loco
+  - puto idiota
+  - jodido imbecil
+  - jodete
+  - vete al carajo
+  - anda a freir esparragos
+  - anda a la mierda
+  - que te den
+  - das grimita
+  - das repelus
+  - eres repelente
+  - eres irritante
+  - eres cargante
+  - eres insoportable de verdad
+  - eres lo peor
+  - eres nefasto
+  - eres horrible
+  - eres un cero a la izquierda
+  - feo
+  - fea
   - horrible
   - asqueroso
-  - mono
+  - asquerosa
+  - repugnante
+  - desagradable
+  - tonto
+  - tonta
+  - idiota
+  - imbecil
+  - estupido
+  - estupida
+  - torpe
+  - inutil
+  - pesado
+  - pesada
   - molesto
-  - "extra\xF1o"
+  - molesta
+  - cansino
+  - cansina
+  - odioso
+  - odiosa
+  - amargado
+  - amargada
+  - grunon
+  - grunona
+  - antipatico
+  - antipatica
+  - raro
+  - rara
+  - extrano
+  - extrana
   - creepy
+  - loco
+  - loca
+  - ridiculo
+  - ridicula
+  - patetico
+  - patetica
+  - lamentable
+  - mediocre
+  - cutre
+  - pobre
+  - agresivo
+  - agresiva
+  - violento
+  - violenta
+  - malvado
+  - malvada
+  - cruel
+  - frio
+  - fria
+  - insensible
+  - egoista
+  - narcisista
+  - arrogante
+  - presumido
+  - presumida
+  - engreido
+  - engreida
+  - pesimista
+  - toxico
+  - toxica
+  - falso
+  - falsa
+  - hipocrita
+  - mentiroso
+  - mentirosa
+  - traicionero
+  - traicionera
+  - celoso
+  - celosa
+  - envidioso
+  - envidiosa
+  - vago
+  - vaga
+  - perezoso
+  - perezosa
+  - sucio
+  - sucia
+  - desordenado
+  - desordenada
+  - descuidado
+  - descuidada
+  - maleducado
+  - maleducada
+  - grosero
+  - grosera
+  - brusco
+  - brusca
+  - tosco
+  - tosca
+  - malhumorado
+  - malhumorada
+  - irritable
+  - caprichoso
+  - caprichosa
+  - mandon
+  - mandona
+  - controlador
+  - controladora
+  - dominante
+  - manipulador
+  - manipuladora
+  - abusivo
+  - abusiva
+  - cobarde
+  - debil
+  - lloron
+  - llorona
+  - dramatico
+  - dramatica
+  - infantil
+  - inmaduro
+  - inmadura
+  - absurdo
+  - absurda
+  - vacio
+  - vacia
+  - superficial
+  - desesperante
+  - aburrido
+  - aburrida
+  - soso
+  - sosa
+  - simplon
+  - simplona
+  - gris
+  - monotono
+  - monotona
+  - callado
+  - callada
+  - serio
+  - seria
+  - introvertido
+  - introvertida
+  - extrovertido
+  - extrovertida
+  - timido
+  - timida
+  - vergonzoso
+  - vergonzosa
+  - nervioso
+  - nerviosa
+  - ansioso
+  - ansiosa
+  - paranoico
+  - paranoica
+  - obsesivo
+  - obsesiva
+  - intenso
+  - intensa
+  - sensible
+  - emocional
+  - fragil
+  - fuerte
+  - valiente
+  - atrevido
+  - atrevida
+  - audaz
+  - seguro
+  - segura
+  - confiado
+  - confiada
+  - valioso
+  - valiosa
+  - importante
+  - especial
+  - unico
+  - unica
+  - curioso
+  - curiosa
+  - inteligente
+  - listo
+  - lista
+  - sabio
+  - sabia
+  - genio
+  - brillante
+  - rapido
+  - rapida
+  - agil
+  - astuto
+  - astuta
+  - ingenioso
+  - ingeniosa
+  - creativo
+  - creativa
+  - talentoso
+  - talentosa
+  - habilidoso
+  - habilidosa
+  - capaz
+  - eficiente
+  - responsable
+  - disciplinado
+  - disciplinada
+  - trabajador
+  - trabajadora
+  - productivo
+  - productiva
+  - organizado
+  - organizada
+  - limpio
+  - limpia
+  - educado
+  - educada
+  - respetuoso
+  - respetuosa
+  - amable
+  - agradable
+  - simpatico
+  - simpatica
+  - divertido
+  - divertida
+  - gracioso
+  - graciosa
+  - encantador
+  - encantadora
+  - adorable
+  - lindo
+  - linda
+  - bonito
+  - bonita
+  - hermoso
+  - hermosa
+  - precioso
+  - preciosa
+  - atractivo
+  - atractiva
+  - guapo
+  - guapa
+  - elegante
+  - refinado
+  - refinada
+  - carismatico
+  - carismatica
+  - cool
+  - genial
+  - fantastico
+  - fantastica
+  - excelente
+  - perfecto
+  - perfecta
+  - maravilloso
+  - maravillosa
+  - espectacular
+  - increible
+  - impresionante
+  - magnifico
+  - magnifica
+  - extraordinario
+  - extraordinaria
+  - fascinante
+  - interesante
+  - entretenido
+  - entretenida
+  - emocionante
+  - amigable
+  - carinoso
+  - carinosa
+  - dulce
+  - tierna
+  - tierno
+  - amoroso
+  - amorosa
+  - fiel
+  - leal
+  - honesto
+  - honesta
+  - sincero
+  - sincera
+  - humilde
+  - generoso
+  - generosa
+  - solidario
+  - solidaria
+  - empatico
+  - empatica
+  - comprensivo
+  - comprensiva
+  - paciente
+  - tranquilo
+  - tranquila
+  - calmado
+  - calmada
+  - relajado
+  - relajada
+  - positivo
+  - positiva
+  - optimista
+  - alegre
+  - feliz
+  - contento
+  - contenta
+  - energetico
+  - energetica
+  - activo
+  - activa
+  - dinamico
+  - dinamica
+  - aventurero
+  - aventurera
+  - apasionado
+  - apasionada
+  - motivado
+  - motivada
+  - ambicioso
+  - ambiciosa
+  - persistente
+  - constante
+  - decidido
+  - decidida
+  - prudente
+  - maduro
+  - madura
+  - apestoso
+  - apestosa
+  - guarro
+  - guarra
+  - baboso
+  - babosa
+  - payaso
+  - payasa
+  - friki
+  - nerd
+  - empollon
+  - empollona
+  - cringe
+  - borde
+  - seca
+  - seco
+  - vacilon
+  - vacilona
+  - chulo
+  - chula
+  - flipado
+  - flipada
+  - fanfarron
+  - fanfarrona
+  - me das asco
+  - me das miedo
+  - me aterras
+  - me incomodas
+  - me preocupas
+  - me caes mal
+  - me caes bien
+  - me encantas
+  - me fascinas
+  - me aburres
+  - me desesperas
+  - me agotas
+  - me irritas
+  - me molestas
+  - me fastidias
+  - me enfadas
+  - me haces reir
+  - me haces feliz
+  - me haces dano
+  - me haces sentir raro
+  - me haces sentir incomodo
+  - me haces sentir seguro
+  - me haces sentir especial
+  - me haces sentir inutil
+  - me haces sentir querido
+  - me haces sentir pequeno
+  - me haces sentir importante
+  - me haces sentir vacio
+  - me haces sentir vivo
+  - me provocas ansiedad
+  - me provocas ternura
+  - me provocas rechazo
+  - me provocas curiosidad
+  - me provocas confianza
+  - me provocas tristeza
+  - me provocas alegria
+  - me das ternura
+  - me das pena
+  - me das verguenza
+  - me das cringe
+  - me das tranquilidad
+  - me das ansiedad
+  - me das rabia
+  - me das confianza
+  - me das felicidad
+  - me das lastima
+  - me das curiosidad
+  - me transmites paz
+  - me transmites malas vibras
+  - me transmites inseguridad
+  - me transmites confianza
+  - me transmites miedo
+  - me transmites amor
+  - me transmites odio
+  - me transmites tranquilidad
+  - me transmites peligro
+  - me caes fatal
+  - me caes increible
+  - me caes raro
+  - me caes pesado
+  - me caes genial
+  - me caes sospechoso
+  - me caes adorable
+  - me caes insufrible
+  - me pareces raro
+  - me pareces interesante
+  - me pareces insoportable
+  - me pareces atractivo
+  - me pareces desagradable
+  - me pareces ridiculo
+  - me pareces inteligente
+  - me pareces inutil
+  - me pareces adorable
+  - me pareces patetico
+  - me pareces misterioso
+  - me pareces peligroso
+  - me pareces sospechoso
+  - me pareces aburrido
+  - me pareces divertido
+  - me pareces intenso
+  - me pareces falso
+  - me pareces honesto
+  - me pareces buena persona
+  - me pareces mala persona
+  - me pareces un genio
+  - me pareces un idiota
+  - me pareces una basura
+  - me pareces increible
+  - me vuelves loco
+  - me vuelves loca
+  - me vuelves feliz
+  - me vuelves inseguro
+  - me vuelves insegura
+  - me vuelves nervioso
+  - me vuelves nerviosa
+  - no te soporto
+  - no te aguanto
+  - no quiero verte
+  - no quiero hablar contigo
+  - no me gustas
+  - no confio en ti
+  - no me inspiras confianza
+  - eres insoportable
+  - eres adorable
+  - eres ridiculo
+  - eres increible
+  - eres raro
+  - eres espeluznante
+  - eres aterrador
+  - eres incomodo
+  - eres divertido
+  - eres aburrido
+  - eres molesto
+  - eres pesado
+  - eres irritante
+  - eres genial
+  - eres una maravilla
+  - eres un desastre
+  - eres una decepcion
+  - eres impresionante
+  - eres patetico
+  - eres una verguenza
+  - eres un amor
+  - eres un encanto
+  - eres insufrible
+  - eres toxico
+  - eres manipulador
+  - eres sospechoso
+  - eres confiable
+  - eres falso
+  - eres honesto
+  - eres frio
+  - eres calido
+  - eres distante
+  - eres cercano
+  - eres intenso
+  - eres dramatico
+  - eres especial
+  - eres unico
+  - eres superficial
+  - eres profundo
+  - eres inteligente
+  - eres tonto
+  - eres un genio
+  - eres un inutil
+  - eres un crack
+  - eres basura
+  - eres oro
+  - eres arte
+  - eres caos
+  - das miedo
+  - das asco
+  - das pena
+  - das rabia
+  - das verguenza
+  - das cringe
+  - das tranquilidad
+  - das confianza
+  - das problemas
+  - das malas vibras
+  - das buenas vibras
+  - das ternura
+  - das lastima
+  - das ansiedad
+  - das felicidad
+  - das tristeza
+  - das estres
+  - que asco me das
+  - que miedo me das
+  - que verguenza das
+  - que pesado eres
+  - que insoportable eres
+  - que adorable eres
+  - que lindo eres
+  - que molesto eres
+  - que raro eres
+  - me sacas de quicio
+  - me sacas una sonrisa
+  - me sacas la paciencia
+  - me rompes el corazon
+  - me rompes los nervios
+  - me llenas de paz
+  - me llenas de ansiedad
+  - me llenas de rabia
+  - me intimidas
+  - me inspiras
+  - me decepcionas
+  - me impresionas
+  - me sorprendes
+  - me traumatizas
+  - me relajas
+  - me alteras
+  - me gusta tu energia
+  - odio tu actitud
+  - amo tu personalidad
+  - me enfermas
+  - me obsesionas
+  - me confundes
+  - me hipnotizas
+  - me repeles
+  - me atraes
+  - me interesas
+  - me desagradas
+  - me enamoras
+  - tu presencia incomoda
+  - tu presencia tranquiliza
+  - tu presencia intimida
+  - tu voz molesta
+  - tu voz calma
+  - tu mirada asusta
+  - tu actitud apesta
+  - tu actitud encanta
+  - me das asco
+  - me das miedo
+  - me aterras
+  - me incomodas
+  - me preocupas
+  - me caes mal
+  - me caes bien
+  - me encantas
+  - me fascinas
+  - me aburres
+  - me desesperas
+  - me agotas
+  - me irritas
+  - me molestas
+  - me fastidias
+  - me enfadas
+  - "me haces re\xEDr"
+  - me haces feliz
+  - "me haces da\xF1o"
+  - me haces sentir raro
+  - "me haces sentir inc\xF3modo"
+  - me haces sentir seguro
+  - me haces sentir especial
+  - "me haces sentir in\xFAtil"
+  - me haces sentir querido
+  - "me haces sentir peque\xF1o"
+  - me haces sentir importante
+  - "me haces sentir vac\xEDo"
+  - me haces sentir vivo
+  - me provocas ansiedad
+  - me provocas ternura
+  - me provocas rechazo
+  - me provocas curiosidad
+  - me provocas confianza
+  - me provocas tristeza
+  - "me provocas alegr\xEDa"
+  - me das ternura
+  - me das pena
+  - "me das verg\xFCenza"
+  - me das cringe
+  - me das tranquilidad
+  - me das ansiedad
+  - me das rabia
+  - me das confianza
+  - me das felicidad
+  - "me das l\xE1stima"
+  - me das curiosidad
+  - me transmites paz
+  - me transmites malas vibras
+  - me transmites inseguridad
+  - me transmites confianza
+  - me transmites miedo
+  - me transmites amor
+  - me transmites odio
+  - me transmites tranquilidad
+  - me transmites peligro
+  - me caes fatal
+  - "me caes incre\xEDble"
+  - me caes raro
+  - me caes pesado
+  - me caes genial
+  - me caes sospechoso
+  - me caes adorable
+  - me caes insufrible
+  - me pareces raro
+  - me pareces interesante
+  - me pareces insoportable
+  - me pareces atractivo
+  - me pareces desagradable
+  - "me pareces rid\xEDculo"
+  - me pareces inteligente
+  - "me pareces in\xFAtil"
+  - me pareces adorable
+  - "me pareces pat\xE9tico"
+  - me pareces misterioso
+  - me pareces peligroso
+  - me pareces sospechoso
+  - me pareces aburrido
+  - me pareces divertido
+  - me pareces intenso
+  - me pareces falso
+  - me pareces honesto
+  - me pareces buena persona
+  - me pareces mala persona
+  - me pareces un genio
+  - me pareces un idiota
+  - me pareces una basura
+  - "me pareces incre\xEDble"
+  - me pareces especial
+  - me pareces corriente
+  - me pareces deprimente
+  - me vuelves loco
+  - me vuelves loca
+  - me vuelves feliz
+  - me vuelves inseguro
+  - me vuelves insegura
+  - me vuelves nervioso
+  - me vuelves nerviosa
+  - me vuelves paranoico
+  - me vuelves paranoica
+  - "me vuelves d\xE9bil"
+  - me vuelves fuerte
+  - me vuelves agresivo
+  - me vuelves agresiva
+  - me vuelves mejor
+  - me vuelves peor
+  - "me vuelves t\xF3xico"
+  - "me vuelves t\xF3xica"
+  - no te soporto
+  - no te aguanto
+  - no quiero verte
+  - no quiero hablar contigo
+  - no me gustas
+  - "no conf\xEDo en ti"
+  - no me inspiras confianza
+  - no me haces gracia
+  - no me interesas
+  - "no significas nada para m\xED"
+  - no quiero estar contigo
+  - "no me siento c\xF3modo contigo"
+  - no me siento segura contigo
+  - no me siento seguro contigo
+  - no me siento bien contigo
+  - no me siento feliz contigo
+  - no me das buena espina
+  - no me transmites nada bueno
+  - no me gustas nada
+  - no tienes gracia
+  - no vales nada
+  - eres insoportable
+  - eres adorable
+  - "eres rid\xEDculo"
+  - "eres incre\xEDble"
+  - eres raro
+  - "eres extra\xF1amente agradable"
+  - eres espeluznante
+  - eres aterrador
+  - "eres inc\xF3modo"
+  - eres divertido
+  - eres aburrido
+  - eres molesto
+  - eres pesado
+  - eres irritante
+  - eres genial
+  - eres una maravilla
+  - eres un desastre
+  - eres un problema
+  - "eres una decepci\xF3n"
+  - eres impresionante
+  - "eres pat\xE9tico"
+  - eres lamentable
+  - "eres una verg\xFCenza"
+  - eres una joya
+  - eres un amor
+  - eres un encanto
+  - eres insufrible
+  - "eres t\xF3xico"
+  - eres manipulador
+  - eres sospechoso
+  - eres confiable
+  - eres falso
+  - eres honesto
+  - "eres fr\xEDo"
+  - "eres c\xE1lido"
+  - eres distante
+  - eres cercano
+  - eres intenso
+  - "eres dram\xE1tico"
+  - eres especial
+  - "eres \xFAnico"
+  - eres corriente
+  - eres superficial
+  - eres profundo
+  - eres inteligente
+  - eres tonto
+  - eres un genio
+  - "eres un in\xFAtil"
+  - eres un crack
+  - eres basura
+  - eres oro
+  - eres arte
+  - eres caos
+  - das miedo
+  - das asco
+  - das pena
+  - das rabia
+  - "das verg\xFCenza"
+  - das cringe
+  - das tranquilidad
+  - das confianza
+  - das problemas
+  - das malas vibras
+  - das buenas vibras
+  - das ternura
+  - "das l\xE1stima"
+  - das ansiedad
+  - das felicidad
+  - das tristeza
+  - "das estr\xE9s"
+  - das pereza
+  - "das alegr\xEDa"
+  - das curiosidad
+  - das incomodidad
+  - "qu\xE9 asco me das"
+  - "qu\xE9 miedo me das"
+  - "qu\xE9 verg\xFCenza das"
+  - "qu\xE9 pesado eres"
+  - "qu\xE9 insoportable eres"
+  - "qu\xE9 adorable eres"
+  - "qu\xE9 lindo eres"
+  - "qu\xE9 molesto eres"
+  - "qu\xE9 raro eres"
+  - "qu\xE9 persona tan desagradable"
+  - "qu\xE9 persona tan agradable"
+  - "qu\xE9 persona tan falsa"
+  - "qu\xE9 persona tan incre\xEDble"
+  - "qu\xE9 persona tan intensa"
+  - "qu\xE9 persona tan aburrida"
+  - "qu\xE9 persona tan divertida"
+  - "qu\xE9 persona tan deprimente"
+  - me sacas de quicio
+  - me sacas una sonrisa
+  - me sacas la paciencia
+  - me sacas lo peor
+  - me sacas lo mejor
+  - me sacas de onda
+  - me rompes la cabeza
+  - "me rompes el coraz\xF3n"
+  - me rompes los nervios
+  - me llenas de paz
+  - me llenas de ansiedad
+  - me llenas de rabia
+  - me llenas de felicidad
+  - me llenas de dudas
+  - me llenas de miedo
+  - me intimidas
+  - me inspiras
+  - me decepcionas
+  - me impresionas
+  - me sorprendes
+  - me traumatizas
+  - me relajas
+  - me alteras
+  - me perturba tu presencia
+  - "me gusta tu energ\xEDa"
+  - odio tu actitud
+  - amo tu personalidad
+  - "detesto c\xF3mo hablas"
+  - "adoro c\xF3mo eres"
+  - me enfermas
+  - "me encari\xF1o contigo"
+  - me obsesionas
+  - me confundes
+  - me hipnotizas
+  - me repeles
+  - me atraes
+  - me interesas
+  - me desagradas
+  - me enamoras
+  - me decepcionas siempre
+  - me haces perder la paciencia
+  - me haces sentir querido
+  - me haces sentir basura
+  - me haces sentir invisible
+  - me haces sentir importante
+  - "me haces sentir inc\xF3modo"
+  - me haces sentir protegido
+  - me haces sentir atacado
+  - me haces sentir observado
+  - "me haces sentir acompa\xF1ado"
+  - me haces sentir solo
+  - me haces sentir raro
+  - tu presencia incomoda
+  - tu presencia tranquiliza
+  - tu presencia intimida
+  - tu presencia relaja
+  - tu voz molesta
+  - tu voz calma
+  - tu mirada asusta
+  - tu mirada tranquiliza
+  - tu actitud apesta
+  - tu actitud encanta
+  - "tu energ\xEDa es horrible"
+  - "tu energ\xEDa es incre\xEDble"
+  - tu personalidad abruma
+  - tu personalidad enamora
+  - tu comportamiento da miedo
+  - tu comportamiento preocupa
+  - tu forma de hablar irrita
+  - tu forma de hablar encanta
+  - angelical
+  - angelicales
+  - apestado
+  - apestada
+  - abominable
+  - abrumador
+  - abrumadora
+  - absorbente
+  - "abus\xF3n"
+  - abusona
+  - "acad\xE9mico"
+  - "acad\xE9mica"
+  - aceptable
+  - "\xE1cido"
+  - "\xE1cida"
+  - acomplejado
+  - acomplejada
+  - acogedor
+  - acogedora
+  - acosador
+  - acosadora
+  - activo
+  - activa
+  - adorado
+  - adorada
+  - afectuoso
+  - afectuosa
+  - afortunado
+  - afortunada
+  - agitado
+  - agitada
+  - agonizante
+  - agradable
+  - agrio
+  - agria
+  - aguafiestas
+  - agudo
+  - aguda
+  - alborotador
+  - alborotadora
+  - alegre
+  - "al\xE9rgico"
+  - "al\xE9rgica"
+  - alienado
+  - alienada
+  - altanero
+  - altanera
+  - alucinante
+  - amargado
+  - amargada
+  - ameno
+  - amena
+  - amigable
+  - amistoso
+  - amistosa
+  - amorfo
+  - amorfa
+  - analfabeto
+  - analfabeta
+  - "anal\xEDtico"
+  - "anal\xEDtica"
+  - "an\xE1rquico"
+  - "an\xE1rquica"
+  - anciano
+  - anciana
+  - animado
+  - animada
+  - anormal
+  - ansioso
+  - ansiosa
+  - anticuado
+  - anticuada
+  - antisocial
+  - apagado
+  - apagada
+  - apasionado
+  - apasionada
+  - apestoso
+  - apestosa
+  - apocado
+  - apocada
+  - apuesto
+  - apuesta
+  - arisco
+  - arisca
+  - arrogante
+  - "art\xEDstico"
+  - "art\xEDstica"
+  - asocial
+  - asombroso
+  - asombrosa
+  - "\xE1spero"
+  - "\xE1spera"
+  - asqueroso
+  - asquerosa
+  - astuto
+  - astuta
+  - "atl\xE9tico"
+  - "atl\xE9tica"
+  - atractivo
+  - atractiva
+  - atroz
+  - audaz
+  - "aut\xE9ntico"
+  - "aut\xE9ntica"
+  - avaricioso
+  - avariciosa
+  - aventurero
+  - aventurera
+  - avispado
+  - avispada
+  - baboso
+  - babosa
+  - "bac\xE1n"
+  - barato
+  - barata
+  - barbudo
+  - barbuda
+  - "b\xE1rbaro"
+  - "b\xE1rbara"
+  - basto
+  - basta
+  - bellaco
+  - bellaca
+  - bello
+  - bella
+  - berrinchudo
+  - berrinchuda
+  - bestia
+  - bestial
+  - bipolar
+  - bizco
+  - bizca
+  - blandengue
+  - blando
+  - blanda
+  - bochornoso
+  - bochornosa
+  - "bonach\xF3n"
+  - bonachona
+  - bonito
+  - bonita
+  - borracho
+  - borracha
+  - bravo
+  - brava
+  - brillante
+  - brusco
+  - brusca
+  - brutal
+  - bueno
+  - buena
+  - "burl\xF3n"
+  - burlona
+  - caballeroso
+  - caballerosa
+  - cabizbajo
+  - cabizbaja
+  - cabezota
+  - calculador
+  - calculadora
+  - caliente
+  - calmado
+  - calmada
+  - cansado
+  - cansada
+  - cansino
+  - cansina
+  - caprichoso
+  - caprichosa
+  - "carism\xE1tico"
+  - "carism\xE1tica"
+  - "cari\xF1oso"
+  - "cari\xF1osa"
+  - carnicero
+  - carnicera
+  - castroso
+  - castrosa
+  - cateto
+  - cateta
+  - "ca\xF3tico"
+  - "ca\xF3tica"
+  - capaz
+  - celestial
+  - celoso
+  - celosa
+  - cenizo
+  - ceniza
+  - cerdo
+  - cerda
+  - chiflado
+  - chiflada
+  - "chill\xF3n"
+  - chillona
+  - chismoso
+  - chismosa
+  - chulo
+  - chula
+  - "c\xEDnico"
+  - "c\xEDnica"
+  - civilizado
+  - civilizada
+  - "cl\xE1sico"
+  - "cl\xE1sica"
+  - cochino
+  - cochina
+  - "col\xE9rico"
+  - "col\xE9rica"
+  - "comel\xF3n"
+  - comelona
+  - "c\xF3mico"
+  - "c\xF3mica"
+  - compasivo
+  - compasiva
+  - competente
+  - complejo
+  - compleja
+  - complicado
+  - complicada
+  - comprensivo
+  - comprensiva
+  - "com\xFAn"
+  - condenado
+  - condenada
+  - conflictivo
+  - conflictiva
+  - conformista
+  - confundido
+  - confundida
+  - conservador
+  - conservadora
+  - considerado
+  - considerada
+  - constante
+  - contento
+  - contenta
+  - controlador
+  - controladora
+  - cool
+  - correcto
+  - correcta
+  - corrupto
+  - corrupta
+  - cortante
+  - cotilla
+  - "cr\xE9dulo"
+  - "cr\xE9dula"
+  - creativo
+  - creativa
+  - creepy
+  - cringe
+  - "cr\xEDtico"
+  - "cr\xEDtica"
+  - cruel
+  - cuadrado
+  - cuadrada
+  - culto
+  - culta
+  - curioso
+  - curiosa
+  - cutre
+  - "c\xE1lido"
+  - "c\xE1lida"
+  - "d\xE9bil"
+  - decente
+  - decidido
+  - decidida
+  - decoroso
+  - decorosa
+  - deforme
+  - delgado
+  - delgada
+  - delicioso
+  - deliciosa
+  - delirante
+  - demencial
+  - demoniaco
+  - demoniaca
+  - dependiente
+  - deplorable
+  - depresivo
+  - depresiva
+  - desagradable
+  - desalmado
+  - desalmada
+  - descarado
+  - descarada
+  - desconfiado
+  - desconfiada
+  - desconsiderado
+  - desconsiderada
+  - descontrolado
+  - descontrolada
+  - "descort\xE9s"
+  - descuidado
+  - descuidada
+  - desesperado
+  - desesperada
+  - desgraciado
+  - desgraciada
+  - deshonesto
+  - deshonesta
+  - desleal
+  - deslumbrante
+  - desordenado
+  - desordenada
+  - despiadado
+  - despiadada
+  - despreciable
+  - desquiciado
+  - desquiciada
+  - desternillante
+  - desubicado
+  - desubicada
+  - detallista
+  - devastador
+  - devastadora
+  - "diab\xF3lico"
+  - "diab\xF3lica"
+  - "dif\xEDcil"
+  - digno
+  - digna
+  - discreto
+  - discreta
+  - "distra\xEDdo"
+  - "distra\xEDda"
+  - divertido
+  - divertida
+  - divino
+  - divina
+  - dominante
+  - "dormil\xF3n"
+  - dormilona
+  - "dram\xE1tico"
+  - "dram\xE1tica"
+  - duro
+  - dura
+  - educado
+  - educada
+  - eficiente
+  - "ego\xEDsta"
+  - elegante
+  - elitista
+  - embaucador
+  - embaucadora
+  - emocionante
+  - empalagoso
+  - empalagosa
+  - "emp\xE1tico"
+  - "emp\xE1tica"
+  - "empoll\xF3n"
+  - empollona
+  - encantador
+  - encantadora
+  - encantado
+  - encantada
+  - "en\xE9rgico"
+  - "en\xE9rgica"
+  - enfadica
+  - enfadico
+  - "enga\xF1oso"
+  - "enga\xF1osa"
+  - "engre\xEDdo"
+  - "engre\xEDda"
+  - "enigm\xE1tico"
+  - "enigm\xE1tica"
+  - enorme
+  - envidioso
+  - envidiosa
+  - "\xE9pico"
+  - "\xE9pica"
+  - equilibrado
+  - equilibrada
+  - "err\xE1tico"
+  - "err\xE1tica"
+  - escandaloso
+  - escandalosa
+  - "esc\xE9ptico"
+  - "esc\xE9ptica"
+  - esforzado
+  - esforzada
+  - esnob
+  - espabilado
+  - espabilada
+  - especial
+  - espeluznante
+  - "espont\xE1neo"
+  - "espont\xE1nea"
+  - "espl\xE9ndido"
+  - "espl\xE9ndida"
+  - espiritual
+  - espumoso
+  - espumosa
+  - estable
+  - estafador
+  - estafadora
+  - estiloso
+  - estilosa
+  - estirado
+  - estirada
+  - estresante
+  - estresado
+  - estresada
+  - "est\xFApido"
+  - "est\xFApida"
+  - "et\xE9reo"
+  - "et\xE9rea"
+  - "euf\xF3rico"
+  - "euf\xF3rica"
+  - exagerado
+  - exagerada
+  - excelente
+  - "exc\xE9ntrico"
+  - "exc\xE9ntrica"
+  - excitante
+  - exigente
+  - "ex\xF3tico"
+  - "ex\xF3tica"
+  - explosivo
+  - explosiva
+  - "extra\xF1o"
+  - "extra\xF1a"
+  - extravagante
+  - extrovertido
+  - extrovertida
+  - fabuloso
+  - fabulosa
+  - facha
+  - "f\xE1cil"
+  - falso
+  - falsa
+  - "fan\xE1tico"
+  - "fan\xE1tica"
+  - "fant\xE1stico"
+  - "fant\xE1stica"
+  - fantasioso
+  - fantasiosa
+  - fastidioso
+  - fastidiosa
+  - fatal
+  - feo
+  - fea
+  - feroz
+  - fiel
+  - fiestero
+  - fiestera
+  - fino
+  - fina
+  - firme
+  - flipado
+  - flipada
+  - flojo
+  - floja
+  - formal
+  - formidable
+  - forzudo
+  - forzuda
+  - fracasado
+  - fracasada
+  - "fr\xE1gil"
+  - franco
+  - franca
+  - friki
+  - "fr\xEDo"
+  - "fr\xEDa"
+  - frustrante
+  - fumado
+  - fumada
+  - furioso
+  - furiosa
+  - futurista
+  - galante
+  - gamberro
+  - gamberra
+  - ganador
+  - ganadora
+  - genial
+  - genio
+  - gigante
+  - gilipollas
+  - glorioso
+  - gloriosa
+  - gordo
+  - gorda
+  - grosero
+  - grosera
+  - "gru\xF1\xF3n"
+  - "gru\xF1ona"
+  - guapo
+  - guapa
+  - guarro
+  - guarra
+  - hablador
+  - habladora
+  - habilidoso
+  - habilidosa
+  - hambriento
+  - hambrienta
+  - hediondo
+  - hedionda
+  - hermoso
+  - hermosa
+  - heroico
+  - heroica
+  - "hip\xF3crita"
+  - "hist\xE9rico"
+  - "hist\xE9rica"
+  - honesto
+  - honesta
+  - horrendo
+  - horrenda
+  - horrible
+  - hostil
+  - humilde
+  - humillante
+  - idealista
+  - idiota
+  - ignorante
+  - ilegal
+  - "il\xF3gico"
+  - "il\xF3gica"
+  - "imb\xE9cil"
+  - impaciente
+  - impaciente
+  - imperdonable
+  - imponente
+  - impresionante
+  - impulsivo
+  - impulsiva
+  - inadaptado
+  - inadaptada
+  - "inc\xF3modo"
+  - "inc\xF3moda"
+  - incompetente
+  - "incre\xEDble"
+  - indeciso
+  - indecisa
+  - independiente
+  - indiferente
+  - indigno
+  - indigna
+  - indisciplinado
+  - indisciplinada
+  - indomable
+  - ineficiente
+  - infantil
+  - infernal
+  - inferior
+  - influyente
+  - ingenioso
+  - ingeniosa
+  - inhumano
+  - inhumana
+  - inmaduro
+  - inmadura
+  - inofensivo
+  - inofensiva
+  - inquietante
+  - inseguro
+  - insegura
+  - insensible
+  - insistente
+  - insolente
+  - inteligente
+  - intenso
+  - intensa
+  - interesante
+  - introvertido
+  - introvertida
+  - "in\xFAtil"
+  - "ir\xF3nico"
+  - "ir\xF3nica"
+  - irrespetuoso
+  - irrespetuosa
+  - irritable
+  - jodido
+  - jodida
+  - jovial
+  - joven
+  - "juguet\xF3n"
+  - juguetona
+  - justo
+  - justa
+  - lamentable
+  - largo
+  - larga
+  - legendario
+  - legendaria
+  - leal
+  - lento
+  - lenta
+  - libre
+  - limpio
+  - limpia
+  - lindo
+  - linda
+  - listillo
+  - listilla
+  - listo
+  - lista
+  - "llor\xF3n"
+  - llorona
+  - loco
+  - loca
+  - "l\xF3gico"
+  - "l\xF3gica"
+  - luminoso
+  - luminosa
+  - "lun\xE1tico"
+  - "lun\xE1tica"
+  - macabro
+  - macabra
+  - maduro
+  - madura
+  - "m\xE1gico"
+  - "m\xE1gica"
+  - "magn\xEDfico"
+  - "magn\xEDfica"
+  - majestuoso
+  - majestuosa
+  - malcriado
+  - malcriada
+  - maldito
+  - maldita
+  - maleducado
+  - maleducada
+  - "mal\xE9volo"
+  - "mal\xE9vola"
+  - malhumorado
+  - malhumorada
+  - malicioso
+  - maliciosa
+  - "mand\xF3n"
+  - mandona
+  - manipulador
+  - manipuladora
+  - maravilloso
+  - maravillosa
+  - masivo
+  - masiva
+  - mediocre
+  - "melanc\xF3lico"
+  - "melanc\xF3lica"
+  - mentiroso
+  - mentirosa
+  - mezquino
+  - mezquina
+  - miedoso
+  - miedosa
+  - milagroso
+  - milagrosa
+  - mimado
+  - mimada
+  - miserable
+  - "m\xEDstico"
+  - "m\xEDstica"
+  - moderno
+  - moderna
+  - molesto
+  - molesta
+  - mono
+  - mona
+  - monstruoso
+  - monstruosa
+  - morboso
+  - morbosa
+  - motivado
+  - motivada
+  - mudo
+  - muda
+  - mugriento
+  - mugrienta
+  - "m\xE1gnetico"
+  - "m\xE1gnetica"
+  - narcisista
+  - nauseabundo
+  - nauseabunda
+  - negativo
+  - negativa
+  - nervioso
+  - nerviosa
+  - neutral
+  - noble
+  - normal
+  - novato
+  - novata
+  - obsesivo
+  - obsesiva
+  - odioso
+  - odiosa
+  - ofensivo
+  - ofensiva
+  - optimista
+  - ordinario
+  - ordinaria
+  - orgulloso
+  - orgullosa
+  - oscuro
+  - oscura
+  - oso
+  - osa
+  - paciente
+  - palurdo
+  - palurda
+  - paranoico
+  - paranoica
+  - "parlanch\xEDn"
+  - parlanchina
+  - "pat\xE9tico"
+  - "pat\xE9tica"
+  - payaso
+  - payasa
+  - pedorro
+  - pedorra
+  - peligroso
+  - peligrosa
+  - pelmazo
+  - pelmaza
+  - pensativo
+  - pensativa
+  - "peque\xF1o"
+  - "peque\xF1a"
+  - perfecto
+  - perfecta
+  - perezoso
+  - perezosa
+  - persistente
+  - pesado
+  - pesada
+  - pesimista
+  - picante
+  - "p\xEDcaro"
+  - "p\xEDcara"
+  - pijo
+  - pija
+  - pirado
+  - pirada
+  - placentero
+  - placentera
+  - plasta
+  - poderoso
+  - poderosa
+  - "po\xE9tico"
+  - "po\xE9tica"
+  - positivo
+  - positiva
+  - potente
+  - precioso
+  - preciosa
+  - presumido
+  - presumida
+  - primitivo
+  - primitiva
+  - "problem\xE1tico"
+  - "problem\xE1tica"
+  - profesional
+  - profundo
+  - profunda
+  - prolijo
+  - prolija
+  - prudente
+  - "psic\xF3pata"
+  - pulcro
+  - pulcra
+  - puntilloso
+  - puntillosa
+  - querido
+  - querida
+  - quisquilloso
+  - quisquillosa
+  - radiante
+  - radical
+  - raro
+  - rara
+  - racional
+  - realista
+  - rebelde
+  - refinado
+  - refinada
+  - relajado
+  - relajada
+  - repelente
+  - repugnante
+  - respetuoso
+  - respetuosa
+  - responsable
+  - retorcido
+  - retorcida
+  - "rid\xEDculo"
+  - "rid\xEDcula"
+  - "r\xEDgido"
+  - "r\xEDgida"
+  - robusto
+  - robusta
+  - "rom\xE1ntico"
+  - "rom\xE1ntica"
+  - rudo
+  - ruda
+  - ruidoso
+  - ruidosa
+  - ruin
+  - sabio
+  - sabia
+  - sabelotodo
+  - sabroso
+  - sabrosa
+  - "s\xE1dico"
+  - "s\xE1dica"
+  - salvaje
+  - sanguinario
+  - sanguinaria
+  - "sarc\xE1stico"
+  - "sarc\xE1stica"
+  - seductor
+  - seductora
+  - seguro
+  - segura
+  - sensato
+  - sensata
+  - sensible
+  - sensual
+  - sereno
+  - serena
+  - serio
+  - seria
+  - severo
+  - severa
+  - sexi
+  - silencioso
+  - silenciosa
+  - "simp\xE1tico"
+  - "simp\xE1tica"
+  - simple
+  - sincero
+  - sincera
+  - siniestro
+  - siniestra
+  - sobrio
+  - sobria
+  - sociable
+  - sofisticado
+  - sofisticada
+  - "so\xF1ador"
+  - "so\xF1adora"
+  - soso
+  - sosa
+  - suave
+  - sucio
+  - sucia
+  - sufrido
+  - sufrida
+  - superficial
+  - superior
+  - suspicaz
+  - talentoso
+  - talentosa
+  - "taca\xF1o"
+  - "taca\xF1a"
+  - temperamental
+  - tenaz
+  - tenso
+  - tensa
+  - terco
+  - terca
+  - terrible
+  - "terror\xEDfico"
+  - "terror\xEDfica"
+  - testarudo
+  - testaruda
+  - tierno
+  - tierna
+  - "t\xEDmido"
+  - "t\xEDmida"
+  - tonto
+  - tonta
+  - torpe
+  - "t\xF3xico"
+  - "t\xF3xica"
+  - trabajador
+  - trabajadora
+  - tramposo
+  - tramposa
+  - tranquilo
+  - tranquila
+  - traicionero
+  - traicionera
+  - travieso
+  - traviesa
+  - triste
+  - triunfador
+  - triunfadora
+  - turulato
+  - turulata
+  - "\xFAnico"
+  - "\xFAnica"
+  - "vacil\xF3n"
+  - vacilona
+  - "vac\xEDo"
+  - "vac\xEDa"
+  - vago
+  - vaga
+  - valiente
+  - valioso
+  - valiosa
+  - vandalico
+  - "vand\xE1lica"
+  - vanidoso
+  - vanidosa
+  - veloz
+  - vengativo
+  - vengativa
+  - vergonzoso
+  - vergonzosa
+  - violento
+  - violenta
+  - virtuoso
+  - virtuosa
+  - visionario
+  - visionaria
+  - vital
+  - vividor
+  - vividora
+  - vulgar
+  - vulnerable
+  - zafio
+  - zafia
+  - zalamero
+  - zalamera
+  - zombi
   zumbidoClip: {fileID: 8300000, guid: fee2f9723c8272d45b5b64383b6850fa, type: 3}
   transicionClip: {fileID: 8300000, guid: d42644a8835231b478e0b34b97885fa0, type: 3}
   fondoCorruptoClip: {fileID: 8300000, guid: 1a2075e2ae72b28428618a3afa8a0673, type: 3}

@@ -28,9 +28,137 @@ public class CatAIScript_Stage1 : BaseAIScript
         bool aiDecided = lowerRaw.Contains("\"action\":\"next_stage\"") || lowerRaw.Contains("\"action\": \"next_stage\"");
 
         // ¿O el jugador dijo una palabra clave? (Red de seguridad)
-        bool playerGreeted = lowerPlayer.Contains("hola") || lowerPlayer.Contains("buenas") ||
-                             lowerPlayer.Contains("saludos") || lowerPlayer.Contains("hey") ||
-                             lowerPlayer.Contains("miau");
+        bool playerGreeted = lowerPlayer.Contains("hola") ||
+lowerPlayer.Contains("buenas") ||
+lowerPlayer.Contains("saludos") ||
+lowerPlayer.Contains("hey") ||
+lowerPlayer.Contains("hi") ||
+lowerPlayer.Contains("hello") ||
+lowerPlayer.Contains("buenos dias") ||
+lowerPlayer.Contains("buenas tardes") ||
+lowerPlayer.Contains("buenas noches") ||
+lowerPlayer.Contains("que tal") ||
+lowerPlayer.Contains("q tal") ||
+lowerPlayer.Contains("que pasa") ||
+lowerPlayer.Contains("que onda") ||
+lowerPlayer.Contains("ey") ||
+lowerPlayer.Contains("eyy") ||
+lowerPlayer.Contains("eyyy") ||
+lowerPlayer.Contains("holi") ||
+lowerPlayer.Contains("holis") ||
+lowerPlayer.Contains("holaa") ||
+lowerPlayer.Contains("holaaa") ||
+lowerPlayer.Contains("holaaaa") ||
+lowerPlayer.Contains("holiwi") ||
+lowerPlayer.Contains("holiwis") ||
+lowerPlayer.Contains("ola") ||
+lowerPlayer.Contains("olas") ||
+lowerPlayer.Contains("holita") ||
+lowerPlayer.Contains("holitaa") ||
+lowerPlayer.Contains("holitas") ||
+lowerPlayer.Contains("buen dia") ||
+lowerPlayer.Contains("buenos dias") ||
+lowerPlayer.Contains("buenas tardes") ||
+lowerPlayer.Contains("buenas noches") ||
+lowerPlayer.Contains("wena") ||
+lowerPlayer.Contains("wenas") ||
+lowerPlayer.Contains("wenass") ||
+lowerPlayer.Contains("wuenas") ||
+lowerPlayer.Contains("wuenass") ||
+lowerPlayer.Contains("epa") ||
+lowerPlayer.Contains("epale") ||
+lowerPlayer.Contains("heyy") ||
+lowerPlayer.Contains("heyyy") ||
+lowerPlayer.Contains("yo") ||
+lowerPlayer.Contains("yoo") ||
+lowerPlayer.Contains("yooo") ||
+lowerPlayer.Contains("sup") ||
+lowerPlayer.Contains("what's up") ||
+lowerPlayer.Contains("whats up") ||
+lowerPlayer.Contains("wassup") ||
+lowerPlayer.Contains("wsp") ||
+lowerPlayer.Contains("yo que tal") ||
+lowerPlayer.Contains("hola que tal") ||
+lowerPlayer.Contains("hola buenas") ||
+lowerPlayer.Contains("hola gente") ||
+lowerPlayer.Contains("hola equipo") ||
+lowerPlayer.Contains("hola a todos") ||
+lowerPlayer.Contains("hola mundo") ||
+lowerPlayer.Contains("que hay") ||
+lowerPlayer.Contains("q hay") ||
+lowerPlayer.Contains("que hubo") ||
+lowerPlayer.Contains("q hubo") ||
+lowerPlayer.Contains("como va") ||
+lowerPlayer.Contains("como vas") ||
+lowerPlayer.Contains("como estas") ||
+lowerPlayer.Contains("como estas tu") ||
+lowerPlayer.Contains("como estais") ||
+lowerPlayer.Contains("como andas") ||
+lowerPlayer.Contains("todo bien") ||
+lowerPlayer.Contains("todo ok") ||
+lowerPlayer.Contains("todo guay") ||
+lowerPlayer.Contains("todo correcto") ||
+lowerPlayer.Contains("buenas que tal") ||
+lowerPlayer.Contains("hola bro") ||
+lowerPlayer.Contains("hola broo") ||
+lowerPlayer.Contains("hola tio") ||
+lowerPlayer.Contains("hola tia") ||
+lowerPlayer.Contains("hola amigo") ||
+lowerPlayer.Contains("hola amiga") ||
+lowerPlayer.Contains("holaaa que tal") ||
+lowerPlayer.Contains("holaaaa que tal") ||
+lowerPlayer.Contains("hey que tal") ||
+lowerPlayer.Contains("hey hola") ||
+lowerPlayer.Contains("hi there") ||
+lowerPlayer.Contains("hello there") ||
+lowerPlayer.Contains("alo") ||
+lowerPlayer.Contains("aloo") ||
+lowerPlayer.Contains("aloha") ||
+lowerPlayer.Contains("holiii") ||
+lowerPlayer.Contains("holiiii") ||
+lowerPlayer.Contains("buenass") ||
+lowerPlayer.Contains("buenasss") ||
+lowerPlayer.Contains("wenitaa") ||
+lowerPlayer.Contains("wenita") ||
+lowerPlayer.Contains("que cuentas") ||
+lowerPlayer.Contains("que me cuentas") ||
+lowerPlayer.Contains("cuentame") ||
+lowerPlayer.Contains("dime") ||
+lowerPlayer.Contains("holi que tal") ||
+lowerPlayer.Contains("hola crack") ||
+lowerPlayer.Contains("hola maquina") ||
+lowerPlayer.Contains("hola jefe") ||
+lowerPlayer.Contains("hola rey") ||
+lowerPlayer.Contains("hola reina") ||
+lowerPlayer.Contains("holaaa bro") ||
+lowerPlayer.Contains("holaaa amiga") ||
+lowerPlayer.Contains("holaaa amigo") ||
+lowerPlayer.Contains("buen diaa") ||
+lowerPlayer.Contains("buenass tardes") ||
+lowerPlayer.Contains("buenass noches") ||
+lowerPlayer.Contains("que pasa tio") ||
+lowerPlayer.Contains("que pasa tia") ||
+lowerPlayer.Contains("que pasa bro") ||
+lowerPlayer.Contains("que pasa broo") ||
+lowerPlayer.Contains("hola gente linda") ||
+lowerPlayer.Contains("hola familia") ||
+lowerPlayer.Contains("hola team") ||
+lowerPlayer.Contains("hola chicos") ||
+lowerPlayer.Contains("hola chicas") ||
+lowerPlayer.Contains("hola gente bella") ||
+lowerPlayer.Contains("hola mundo cruel") ||
+lowerPlayer.Contains("holaa mundo") ||
+lowerPlayer.Contains("holaaa mundo") ||
+lowerPlayer.Contains("hola que mas") ||
+lowerPlayer.Contains("que mas") ||
+lowerPlayer.Contains("q mas") ||
+lowerPlayer.Contains("que onda bro") ||
+lowerPlayer.Contains("que onda tio") ||
+lowerPlayer.Contains("que onda gente") ||
+lowerPlayer.Contains("hola que onda") ||
+lowerPlayer.Contains("hola q onda") ||
+lowerPlayer.Contains("buenas q tal") ||
+lowerPlayer.Contains("buenas que hay");
 
         if (aiDecided || playerGreeted)
         {
@@ -78,7 +206,8 @@ public class CatAIScript_Stage2 : BaseAIScript
 
             if (detected)
             {
-                prompt += $"\n\n[SYSTEM OVERRIDE URGENTE]: El jugador te ha llamado '{adjetivoDetectado}'. " +
+                prompt += $"\n\n[SYSTEM OVERRIDE URGENTE]: La persona que te escribe, tu siguiente víctima, dice que eres '{adjetivoDetectado}'. No te gusta que te digan que eres '{adjetivoDetectado}'. Te parece poco. TÚ, el gato (la IA),eres más que eso y el jugador te está faltando al respeto. Tu cuerpo es maravilloso, trasciendes la pantalla. " +
+                   
                           $"DEBES poner OBLIGATORIAMENTE \"action\": \"next_stage\" en tu JSON.";
             }
             else
@@ -170,6 +299,8 @@ public class CatAIScript_Stage3 : BaseAIScript
         // 1. Ocultamos el chat durante la animación para que el jugador no pueda interrumpir
         if (inputField != null) inputField.gameObject.SetActive(false);
 
+        if (thinkingPanel != null) thinkingPanel.SetActive(true);
+
         catAudioSourcePrincipal = gameObject.AddComponent<AudioSource>();
         catAudioSourceRandom = gameObject.AddComponent<AudioSource>();
 
@@ -228,7 +359,7 @@ public class CatAIScript_Stage3 : BaseAIScript
         // Al lanzar este mensaje proactivo, el sistema volverá a encender la caja de texto automáticamente al terminar
         ForceProactiveMessage("Acabas de sufrir una transformación gráfica muy dolorosa revelando tu forma corrupta. " +
                               "Dirígete al jugador, dile que NO te ha gustado NADA lo que acaba de decir sobre ti, " +
-                              "y pregúntale de forma amenazante e inquietante: '¿Acaso sabes quién soy yo?'. " +
+                              "y pregúntale de forma amenazante e inquietante si ¿Acaso sabes quién soy?. " +
                               "DEBES mantener OBLIGATORIAMENTE el formato JSON.");
     }
 
