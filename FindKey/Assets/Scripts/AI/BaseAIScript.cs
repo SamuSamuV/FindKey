@@ -160,14 +160,14 @@ public abstract class BaseAIScript : MonoBehaviour
             currentOllamaCoroutine = null;
         }
 
-        if (thinkingPanel != null) thinkingPanel.SetActive(false);
-        visualController?.SetState(NPCVisualController.NPCState.Idle);
-        if (inputField != null) inputField.gameObject.SetActive(true);
+        if (storyLog == null || !storyLog.IsTyping)
+        {
+            if (thinkingPanel != null) thinkingPanel.SetActive(false);
+            visualController?.SetState(NPCVisualController.NPCState.Idle);
 
-        // ¡OJO! NO ponemos isThinking = false aquí. 
-        // Queremos que la IA recuerde que estaba pensando para retomarlo en el OnEnable.
+            if (inputField != null) inputField.gameObject.SetActive(true);
+        }
     }
-
     protected virtual void OnDestroy()
     {
         if (inputField != null) inputField.onSubmit.RemoveListener(OnInputSubmit);

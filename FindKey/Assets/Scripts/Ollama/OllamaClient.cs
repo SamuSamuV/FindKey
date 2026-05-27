@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 public class OllamaClient : MonoBehaviour
 {
     [Header("Ollama Settings")]
-    public string model = "llama3.2:3b";
+    public string model;
     public string baseUrl = "http://localhost:11434/api/generate";
     
     [Range(1024, 8192)] public int contextSize = 2048; 

@@ -8,7 +8,7 @@ public class OllamaLauncher : MonoBehaviour
 {
     [Header("Configuración")]
     // IMPORTANTE: Asegúrate de que este nombre coincida con la carpeta dentro de 'manifests'
-    public string modelToLoad = "llama3.2:3b";
+    public string modelToLoad;
     public bool showDebugLogs = true;
 
     private Process ollamaProcess;

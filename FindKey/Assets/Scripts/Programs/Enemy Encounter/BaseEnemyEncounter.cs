@@ -24,7 +24,15 @@ public class BaseEnemyEncounter : MonoBehaviour
     void OnEnable()
     {
         InitReferences();
-        CheckCatEncounter();
+        if (moveAppData != null && moveAppData.playerIsFrontCat)
+        {
+            CheckCatEncounter();
+        }
+
+        else
+        {
+            ResetEncounter();
+        }
     }
 
     void Start()
@@ -66,12 +74,14 @@ public class BaseEnemyEncounter : MonoBehaviour
         {
             isEncounterActive = true;
 
-            // Busca el componente que acabamos de mudar a esta ventana
+            // 1. PRIMERO ENCENDEMOS LA PANTALLA DEL GATO
+            // Así garantizamos que Unity despierte a sus componentes.
+            if (nonEnemyFindedPanel != null) nonEnemyFindedPanel.SetActive(false);
+            if (enemyVisuals != null) enemyVisuals.SetActive(true);
+
+            // 2. LUEGO CONFIGURAMOS LA IA
             EnemyEncounterData encounterData = GetComponent<EnemyEncounterData>();
             if (encounterData != null) encounterData.CurrentType = EnemyEncounterData.NPCType.CatStage1;
-
-            nonEnemyFindedPanel.SetActive(false);
-            enemyVisuals.SetActive(true);
 
             StartCoroutine(FadeInEnemy());
 

@@ -40,19 +40,49 @@ public class NPCVisualController : MonoBehaviour
 
     private Sprite[] baseIdle, baseBlink, baseNeutral, baseHappy, baseSad;
 
+    private bool isInitialized = false;
+
     private void Awake()
     {
+        InitializeData();
+    }
+
+    // Esta función guarda los sprites del Inspector a salvo.
+    public void InitializeData()
+    {
+        if (isInitialized) return; // Si ya se hizo, no lo repetimos
+
+        if (npcImage == null) npcImage = GetComponent<Image>();
+
         baseIdle = idleSprites;
         baseBlink = idleBlinkSprites;
         baseNeutral = neutralTalkSprites;
         baseHappy = happyTalkSprites;
         baseSad = sadTalkSprites;
+
+        isInitialized = true;
     }
 
     private void Start()
     {
-        if (npcImage == null) npcImage = GetComponent<Image>();
-        SetState(NPCState.Idle);
+        // Lo dejamos vacío porque OnEnable ya arranca la animación automáticamente.
+        // Si forzamos el Idle aquí, podríamos pisar a la IA si ya ha empezado a pensar.
+    }
+
+    private void OnEnable()
+    {
+        ResumeAnimation();
+    }
+
+    public void RestoreDefaultSprites()
+    {
+        InitializeData(); // CLAVE: Si la IA llama a esto estando apagado, se autoinicializa primero.
+
+        idleSprites = baseIdle;
+        idleBlinkSprites = baseBlink;
+        neutralTalkSprites = baseNeutral;
+        happyTalkSprites = baseHappy;
+        sadTalkSprites = baseSad;
     }
 
     public void SetState(NPCState newState, NPCEmotion newEmotion = NPCEmotion.Neutral)
@@ -88,16 +118,6 @@ public class NPCVisualController : MonoBehaviour
         }
     }
 
-    public void RestoreDefaultSprites()
-    {
-        idleSprites = baseIdle;
-        idleBlinkSprites = baseBlink;
-        neutralTalkSprites = baseNeutral;
-        happyTalkSprites = baseHappy;
-        sadTalkSprites = baseSad;
-    }
-    // ------------------------------------------------------------------
-
     private IEnumerator AnimationRoutine()
     {
         int frameIndex = 0;
@@ -105,6 +125,8 @@ public class NPCVisualController : MonoBehaviour
 
         while (true)
         {
+            if (npcImage == null) yield break;
+
             Sprite[] currentAnim = GetCurrentAnimation(out Sprite[] currentBlink);
 
             if (currentAnim == null || currentAnim.Length == 0)

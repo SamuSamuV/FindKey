@@ -283,9 +283,11 @@ public class EventManager : MonoBehaviour
 
             case EventActionType.PlayVideo:
                 AppWindow videoApp = GetAppWindowByName(action.appName);
-
                 if (videoApp != null)
                 {
+                    // CAMBIO: Bloqueamos los botones de cerrar y minimizar
+                    videoApp.SetCloseAndMinimizeInteractable(false);
+
                     UnityEngine.Video.VideoPlayer videoPlayer = videoApp.GetComponentInChildren<UnityEngine.Video.VideoPlayer>(true);
 
                     if (videoPlayer != null)
@@ -293,9 +295,13 @@ public class EventManager : MonoBehaviour
                         if (action.videoClip != null)
                         {
                             videoPlayer.clip = action.videoClip;
-                            videoPlayer.Play();
-                            Debug.Log($"<color=green>[EventManager]</color> Reproduciendo video en '{action.appName}'.");
+                            videoPlayer.Prepare();
+                            videoPlayer.prepareCompleted += (vp) => {
+                                vp.Play();
+                                Debug.Log($"<color=green>[EventManager]</color> Vídeo listo y reproduciéndose.");
+                            };
                         }
+
                         else
                         {
                             Debug.LogWarning($"<color=yellow>[Event Warning]</color> Intentaste reproducir un vídeo en '{action.appName}', pero NO has arrastrado ningún VideoClip al Inspector del Evento.");

@@ -175,13 +175,12 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
                                 BaseEnemyEncounter baseEnemy = otherApp.windowInstance.GetComponent<BaseEnemyEncounter>();
                                 EnemyEncounterData enemyData = otherApp.windowInstance.GetComponent<EnemyEncounterData>();
 
-                                if (baseEnemy != null) baseEnemy.nonEnemyFindedPanel.SetActive(true);
+                                if (baseEnemy != null) baseEnemy.ResetEncounter();
                                 if (enemyData != null) enemyData.CurrentType = EnemyEncounterData.NPCType.None;
                                 break;
                             }
                         }
                     }
-
                     break;
                 }
             }
