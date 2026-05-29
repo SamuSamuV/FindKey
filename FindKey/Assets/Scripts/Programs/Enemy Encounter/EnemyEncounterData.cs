@@ -426,7 +426,15 @@ public class EnemyEncounterData : MonoBehaviour
 
     [Header("Fase 4 (Final)")]
     [Tooltip("Lista de lugares o passwords correctos para terminar la demo.")]
-    public string[] passwordsUbicacionFase4 = new string[] { "matchingames", "match in games", "udit", "universidad" };
+    public string[] passwordsUbicacionFase4 = new string[] { "estamos en udit", "estoy en udit", "estoi en udit", "estoy en UDIT", "estoy en la udit", "estamos en la udit", "somos en udit", "somos en la udit",
+"esto es udit", "esto es UDIT", "esto es la udit", "esto es universidad", "esto es la universidad", "esto es la uni", "es udit", "es UDIT", "es la udit", "es la universidad",
+"estoy en la match in games", "estamos en la match in games", "estoi en la match in games", "estamos en match in games", "estoy en match in games", "en la match in games", "en match in games", "match in games", "MATCH IN GAMES", "match ing games", "matchin games", "matching games", "matchin games",
+"estoy en la feria", "estamos en la feria", "estoi en la feria", "en la feria gaming", "feria gaming", "feria de videojuegos", "feria de videogames", "evento gaming", "evento de videojuegos",
+"estoy en udit en la match in games", "estamos en udit en la match in games", "estoi en udit en la match in games", "estoy en udit feria", "estamos en udit feria", "udit feria gaming", "udit feria", "udit match in games", "udit matching games", "udit matchin games", "udit matchingames", "udit match ing games",
+"estoy en la uni", "estamos en la uni", "estoi en la uni", "la uni", "uni", "universidad", "universidad de diseño", "universidad de diseño y tecnología", "UDIT universidad", "udit universidad",
+"toy en udit", "toy en la udit", "ando en udit", "ando en la udit", "ando en la match", "toy en la match", "toy en match in games", "ando en match in games", "toy en la feria", "ando en la feria",
+"estamos en udi", "estoy en udi", "udid", "udit.", "u d i t", "u-d-i-t",
+"estamos en la match", "estoy en la match", "match", "la match", "la matching", "matching games", "match games", "matchgame", "match game" };
 
     [Tooltip("El GameEvent que se lanzará al adivinar la palabra")]
     public GameEvent eventoFinalDemo;
