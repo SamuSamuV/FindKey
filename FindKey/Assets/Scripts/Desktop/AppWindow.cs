@@ -22,6 +22,10 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
     public bool isMinimized = false;
     public float animationDuration = 0.2f;
 
+    [Header("Opciones de Posición")]
+    [Tooltip("Si se activa, esta ventana ignorará el efecto cascada y siempre se abrirá en el centro de la pantalla.")]
+    public bool forceCenterOnOpen = false;
+
     protected virtual void Awake()
     {
         if (closeButton != null)
@@ -49,6 +53,25 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
     {
         transform.localScale = Vector3.zero;
         StartCoroutine(AnimateWindow(Vector3.zero, Vector3.one, 0f, 1f, null));
+    }
+
+    protected virtual void OnEnable()
+    {
+        if (forceCenterOnOpen)
+        {
+            StartCoroutine(ForceCenterRoutine());
+        }
+    }
+
+    private System.Collections.IEnumerator ForceCenterRoutine()
+    {
+        yield return new WaitForEndOfFrame();
+
+        RectTransform rt = GetComponent<RectTransform>();
+        if (rt != null)
+        {
+            rt.anchoredPosition = Vector2.zero; // Vector2.zero es el centro exacto (0, 0)
+        }
     }
 
     public virtual void Setup(string title)

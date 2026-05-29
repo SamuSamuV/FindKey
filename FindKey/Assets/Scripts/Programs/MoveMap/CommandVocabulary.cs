@@ -1,3 +1,10 @@
+/// <summary>
+/// Class: CommandVocabulary
+/// Descripción: ScriptableObject que representa el vocabulario de comandos disponibles en el juego.
+/// Autor: Samuel Campos Borrego
+/// Proyecto: FindKey
+/// </summary>
+
 using UnityEngine;
 using System.Collections.Generic;
 

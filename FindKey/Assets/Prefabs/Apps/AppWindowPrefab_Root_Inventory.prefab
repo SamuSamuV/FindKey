@@ -323,6 +323,7 @@ MonoBehaviour:
   moveAppData: {fileID: 0}
   isMinimized: 0
   animationDuration: 0.2
+  forceCenterOnOpen: 0
 --- !u!114 &2932860321930911457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,10 +336,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f3818fa72087a243b8ce1d76c66dd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveAppData: {fileID: 0}
   inventoryGrid: {fileID: 2709354110825581668}
   inventoryItemPrefab: {fileID: 4390448501480410331, guid: 55881fa0e9b67ec48b960c77575b2b2c, type: 3}
-  axeSprite: {fileID: 21300000, guid: a37a9d0b94ee68b4fa3ea8649a1c2a8b, type: 3}
 --- !u!1 &3018252877830466723
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,8 +1040,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.01940918, y: -201.9}
-  m_SizeDelta: {x: 605, y: 375}
+  m_AnchoredPosition: {x: 0.0001877, y: -202.19998}
+  m_SizeDelta: {x: 606, y: 374.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9040168119344333255
 CanvasRenderer:

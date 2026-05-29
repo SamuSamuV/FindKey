@@ -12,11 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Boot.unity
     guid: 100e5d51078824d46b2641f6d8ed609b
   - enabled: 1
+    path: Assets/Scenes/Login.unity
+    guid: 260e76559d3c74c4886eca6c4d94fe46
+  - enabled: 1
     path: Assets/Scenes/Desktop.unity
     guid: 814fc92c35d74874b9e1a5c7a865489b
   - enabled: 1
-    path: Assets/Scenes/Login.unity
-    guid: 260e76559d3c74c4886eca6c4d94fe46
+    path: Assets/Scenes/BlueScreen.unity
+    guid: 061496e9156b1e2468cb1546391e4abb
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

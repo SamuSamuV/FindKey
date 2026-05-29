@@ -1,3 +1,10 @@
+/// <summary>
+/// Class: StoryLog
+/// Descripción: Gestiona la visualización y el comportamiento del texto de la historia en el juego, incluyendo la animación de escritura y los sonidos asociados.
+/// Autor: Samuel Campos Borrego
+/// Proyecto: FindKey
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;

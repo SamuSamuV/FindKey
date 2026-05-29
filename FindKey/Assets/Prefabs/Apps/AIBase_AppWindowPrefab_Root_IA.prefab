@@ -1014,6 +1014,7 @@ MonoBehaviour:
   moveAppData: {fileID: 0}
   isMinimized: 0
   animationDuration: 0.2
+  forceCenterOnOpen: 0
 --- !u!114 &378559017298775776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1267,8 +1268,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.01940918, y: -218}
-  m_SizeDelta: {x: 804.9, y: 405.5}
+  m_AnchoredPosition: {x: 0.00011772, y: -217.88}
+  m_SizeDelta: {x: 807.9, y: 405.76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3926818565415155307
 CanvasRenderer:
@@ -2720,7 +2721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee2599d3cd375e44b8b4466d2a8c099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: llama3.1:8b
+  model: llama3.2:3b
   baseUrl: http://localhost:11434/api/generate
   contextSize: 2048
 --- !u!1 &8079959227856916642

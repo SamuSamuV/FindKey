@@ -1,3 +1,13 @@
+/// <summary>
+/// Class: Moves
+/// Description: This script manages the different moves and interactions that the player can perform in the movement map of the FindKey game. It contains methods for
+///              handling various actions such as going to specific locations, interacting with objects, and dealing with encounters. The script also manages the state
+///              of the game related to these moves, such as whether the player has picked up certain items or if they have died. It interacts with other components like StoryLog,
+///              InventoryManager, and DesktopManager to update the game's narrative and inventory based on the player's actions.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
+/// </summary>
+
 using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.UI;

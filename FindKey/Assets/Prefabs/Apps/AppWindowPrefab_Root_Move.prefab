@@ -181,7 +181,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 448.90005, y: -0.3}
+  m_AnchoredPosition: {x: 451.50003, y: -0.3}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1369586164900921997
@@ -301,8 +301,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.51724, y: -277.16022}
-  m_SizeDelta: {x: 990.05, y: 524.9107}
+  m_AnchoredPosition: {x: -0.00052124, y: -277.16022}
+  m_SizeDelta: {x: 989.01, y: 524.9107}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2750960040933922561
 CanvasRenderer:
@@ -3193,7 +3193,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 477.6, y: -0.30000615}
+  m_AnchoredPosition: {x: 480.2, y: -0.30000615}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1533484658936029887
@@ -4979,7 +4979,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee2599d3cd375e44b8b4466d2a8c099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: llama3.1:8b
+  model: llama3.2:3b
   baseUrl: http://localhost:11434/api/generate
   contextSize: 2048
 --- !u!1 &8968409186146594419

@@ -1,3 +1,13 @@
+/// <summary>
+/// File: StoryNode
+/// Description: This script defines the StoryNode class, which represents a node in the narrative structure of the FindKey game. Each StoryNode contains the text to be displayed,
+///              options for player choices, and various settings related to text display, sound effects, popups, and interactions with the game's AI memory system. The StoryNode
+///              allows for complex storytelling by enabling different paths based on player decisions, triggering events, and managing audio-visual elements that enhance the player's
+///              experience as they progress through the game's story.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
+/// </summary>
+
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -11,12 +21,24 @@ public enum AudioChannel
     Master, Front, Back, Left, Right
 }
 
+/// <summary>
+/// Class: NodeSoundAction
+/// Description: This class represents a sound action that can be triggered when the player enters a StoryNode. It contains information about which audio channel to play
+///              the sound on and the settings for the sound itself. These sounds are designed to enhance the player's immersion and can be used for various effects, such as
+///              background music, ambient noises, or specific sound effects related to the narrative. The sounds defined in this class will stop playing when the player moves
+///              to a different StoryNode, allowing for dynamic audio changes throughout the game.
+/// </summary>
 [System.Serializable]
 public class NodeSoundAction
 {
     public AudioChannel channel = AudioChannel.Master;
     public SoundSettings soundSettings;
 }
+
+/// <summary>
+/// Class: RandomNodeSoundAction
+/// Description: This class represents a sound action that can be triggered randomly while the player is in a StoryNode. It includes settings for the audio channel, the sound to be played.
+/// </summary>
 
 [System.Serializable]
 public class RandomNodeSoundAction
@@ -32,6 +54,14 @@ public class RandomNodeSoundAction
     [Range(0f, 1f)] public float playChance = 0.5f;
 }
 
+/// <summary>
+/// Class: AmbientSoundAction
+/// Description: This class represents a persistent ambient sound that can be triggered when the player enters a StoryNode. It includes a unique tag to identify the sound,
+///              the audio channel to play it on, and the settings for the sound itself. These ambient sounds are designed to create a consistent atmosphere and can continue
+///              playing across multiple StoryNodes until they are explicitly stopped or replaced by another sound with the same tag. This allows for dynamic and immersive audio
+///              experiences that evolve as the player progresses through the game's narrative.
+/// </summary>
+
 [System.Serializable]
 public class AmbientSoundAction
 {
@@ -45,6 +75,10 @@ public class AmbientSoundAction
     public bool stopAmbient = false;
 }
 
+/// <summary>
+/// Class: StoryNode
+/// Description: This class represents a node in the narrative structure of the FindKey game. Each StoryNode contains the text to be displayed, options for player choices, and various settings.
+/// </summary>
 [CreateAssetMenu(fileName = "NewStoryNode", menuName = "Adventure/Story Node")]
 public class StoryNode : ScriptableObject
 {
@@ -99,6 +133,12 @@ public class StoryNode : ScriptableObject
     public bool forceMemoryUpdate = false;
 }
 
+/// <summary>
+/// Class: PopupData
+/// Description: This class represents the data for a popup that can be displayed during a StoryNode. It includes settings for the delay before the popup appears, its duration,
+///              position on the screen, the specific prefab to use for the popup, the title and message to be displayed, an optional image, and sound settings for any audio that
+///              should accompany the popup.
+/// </summary>
 [System.Serializable]
 public class PopupData
 {
@@ -112,6 +152,12 @@ public class PopupData
     public Sprite image;
     public SoundSettings sound;
 }
+
+/// <summary>
+/// Class: StoryOption
+/// Description: This class represents an option that the player can choose when presented with a StoryNode.
+///              Each StoryOption includes valid inputs that the player can type to select the option.
+/// </summary>
 
 [System.Serializable]
 public class StoryOption

@@ -285,7 +285,6 @@ public class EventManager : MonoBehaviour
                 AppWindow videoApp = GetAppWindowByName(action.appName);
                 if (videoApp != null)
                 {
-                    // CAMBIO: Bloqueamos los botones de cerrar y minimizar
                     videoApp.SetCloseAndMinimizeInteractable(false);
 
                     UnityEngine.Video.VideoPlayer videoPlayer = videoApp.GetComponentInChildren<UnityEngine.Video.VideoPlayer>(true);
@@ -296,26 +295,20 @@ public class EventManager : MonoBehaviour
                         {
                             videoPlayer.clip = action.videoClip;
                             videoPlayer.Prepare();
+
                             videoPlayer.prepareCompleted += (vp) => {
                                 vp.Play();
                                 Debug.Log($"<color=green>[EventManager]</color> Vídeo listo y reproduciéndose.");
                             };
-                        }
 
-                        else
-                        {
-                            Debug.LogWarning($"<color=yellow>[Event Warning]</color> Intentaste reproducir un vídeo en '{action.appName}', pero NO has arrastrado ningún VideoClip al Inspector del Evento.");
+                            videoPlayer.loopPointReached += (vp) => {
+                                Debug.Log("<color=cyan>[EventManager]</color> El vídeo ha terminado. Saltando a la escena final...");
+                                UnityEngine.SceneManagement.SceneManager.LoadScene("BlueScreen");
+                            };
                         }
                     }
-                    else
-                    {
-                        Debug.LogError($"<color=red>[Event Error]</color> La ventana '{action.appName}' se ha encontrado, pero NO tiene un componente 'Video Player' dentro.");
-                    }
                 }
-                else
-                {
-                    Debug.LogError($"<color=red>[Event Error]</color> PlayVideo falló: No se encontró ninguna ventana abierta que se llame EXACTAMENTE '{action.appName}'.");
-                }
+
                 break;
         }
     }

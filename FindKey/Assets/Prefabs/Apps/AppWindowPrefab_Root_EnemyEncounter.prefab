@@ -94,7 +94,7 @@ MonoBehaviour:
   - {fileID: -1339252659, guid: e1d41eaa2a2c54b4794c050185b32bcd, type: 3}
   - {fileID: -1145854666, guid: e1d41eaa2a2c54b4794c050185b32bcd, type: 3}
   - {fileID: 89580783, guid: e1d41eaa2a2c54b4794c050185b32bcd, type: 3}
-  timePerFrame: 0.1
+  timePerFrame: 0.05
   loop: 1
 --- !u!1 &1385455847142560455
 GameObject:
@@ -520,6 +520,7 @@ MonoBehaviour:
   moveAppData: {fileID: 0}
   isMinimized: 0
   animationDuration: 0.2
+  forceCenterOnOpen: 0
 --- !u!114 &8197986160548590439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2764,16 +2765,30 @@ MonoBehaviour:
   fondoCorruptoClip: {fileID: 8300000, guid: 1a2075e2ae72b28428618a3afa8a0673, type: 3}
   sonidosRandomCorruptos: []
   transformSprites:
-  - {fileID: 21300000, guid: b1b0f41c14f8cba439414f0aa939af3f, type: 3}
-  - {fileID: 21300000, guid: 505b32d18cc01e6459efa3d977830a05, type: 3}
-  - {fileID: 21300000, guid: ab2d395c4b5a83143901e6d100b52ac9, type: 3}
-  - {fileID: 21300000, guid: 510f7117cdf25b84cab32d7f66950f18, type: 3}
-  - {fileID: 21300000, guid: 5ca72f2f4e0bd394a953e37d21db5110, type: 3}
+  - {fileID: 621824249, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
+  - {fileID: 686839774, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
+  - {fileID: 1209427940, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
+  - {fileID: -64867181, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
+  - {fileID: -640333673, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
+  - {fileID: 2104185173, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
+  - {fileID: -2043567501, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
+  - {fileID: -163039036, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
   corruptedIdleSprites:
-  - {fileID: -470249467, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
-  - {fileID: 90641501, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
+  - {fileID: -2086109157, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
+  - {fileID: -2029853347, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
+  - {fileID: 787973475, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
+  - {fileID: 1909182385, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
+  - {fileID: 1086386299, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
+  - {fileID: -599807694, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
+  - {fileID: -1184955083, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
+  - {fileID: 1951195965, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
+  - {fileID: -2030886277, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
+  - {fileID: 1751270091, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
   corruptedBlinkSprites: []
   corruptedTalkingSprites: []
+  transformDuration: 1.7
+  corruptedAnimationSpeed: 0.1
+  stage4AnimationSpeed: 0.08
   respuestaIdentidad: 
   passwordsUbicacionFase4:
   - matchingames
@@ -3349,7 +3364,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a37a9d0b94ee68b4fa3ea8649a1c2a8b, type: 3}
+  m_Sprite: {fileID: 1293736651, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3372,11 +3387,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcImage: {fileID: 0}
-  animationSpeed: 0.05
+  animationSpeed: 0.1
   idleSprites:
-  - {fileID: 21300000, guid: a37a9d0b94ee68b4fa3ea8649a1c2a8b, type: 3}
-  - {fileID: 21300000, guid: d11ec429608f4ff4087299af233c7682, type: 3}
-  - {fileID: 21300000, guid: 2dcf145ca68376b4e8091924b3d92fbb, type: 3}
+  - {fileID: 1293736651, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
+  - {fileID: -501596659, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
+  - {fileID: -1515906594, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
+  - {fileID: 1285682323, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
+  - {fileID: 374881758, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
+  - {fileID: -453485930, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
+  - {fileID: 1122920720, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
+  - {fileID: 1090091440, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
+  - {fileID: -79855680, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
+  - {fileID: -169989099, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
+  - {fileID: 55052832, guid: 9c9d5ec9062d4f54cbe60dd89c88fae3, type: 3}
   idleBlinkSprites: []
   thinkingSprites: []
   neutralTalkSprites: []
@@ -3431,7 +3454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee2599d3cd375e44b8b4466d2a8c099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: llama3.1:8b
+  model: llama3.2:3b
   baseUrl: http://localhost:11434/api/generate
   contextSize: 2048
 --- !u!1 &8316285008392748901

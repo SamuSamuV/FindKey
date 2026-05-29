@@ -1,3 +1,14 @@
+/// <summary>
+/// Class: AdventureManager
+/// Description: This script serves as the central manager for the adventure mode of the FindKey game. It handles the narrative flow, player input, audio management, and
+///              visual updates based on the current story node. The AdventureManager processes player choices, updates the story log, manages audio sources for music and
+///              sound effects, and controls the display of popups and other visual elements. It also interacts with other components such as Moves and MapViewer to ensure
+///              a cohesive gameplay experience. The script is designed to be flexible and extensible, allowing for complex storytelling and dynamic responses to player actions
+///              throughout the adventure mode.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
+/// </summary>
+
 using UnityEngine;
 using TMPro;
 using System.Collections;

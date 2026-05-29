@@ -413,13 +413,23 @@ public class EnemyEncounterData : MonoBehaviour
     public AudioClip zumbidoClip;
     public AudioClip transicionClip;
     public AudioClip fondoCorruptoClip;
-    public AudioClip[] sonidosRandomCorruptos;
+    public RandomNodeSoundAction[] sonidosRandomCorruptos;
 
     [Header("Animaciones Fase 3 (Sprites)")]
     public Sprite[] transformSprites;
     public Sprite[] corruptedIdleSprites;
     public Sprite[] corruptedBlinkSprites;
     public Sprite[] corruptedTalkingSprites;
+
+    [Header("Velocidades Fase 3")]
+    [Tooltip("Tiempo total (en segundos) que tarda en pasar todos los sprites de transformación.")]
+    public float transformDuration = 1.5f;
+    [Tooltip("Nueva velocidad de parpadeo/habla del gato una vez ya está corrupto.")]
+    public float corruptedAnimationSpeed = 0.05f;
+
+    [Header("Velocidades Fase 4")]
+    [Tooltip("Velocidad de animación (parpadeo/habla) del gato hostil en la Fase 4.")]
+    public float stage4AnimationSpeed = 0.03f;
 
     [Header("Datos Guardados de la Historia")]
     public string respuestaIdentidad = ""; // Aquí guardaremos la respuesta a "¿Sabes quién soy?"
@@ -525,6 +535,9 @@ public class EnemyEncounterData : MonoBehaviour
                 c3.corruptedIdleSprites = corruptedIdleSprites;
                 c3.corruptedBlinkSprites = corruptedBlinkSprites;
                 c3.corruptedTalkingSprites = corruptedTalkingSprites;
+
+                c3.transformDuration = transformDuration;
+                c3.corruptedAnimationSpeed = corruptedAnimationSpeed;
 
                 // --- NUEVO: Lanzamos los efectos de forma manual y segura ---
                 c3.IniciarEfectos();

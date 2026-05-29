@@ -249,6 +249,10 @@ MonoBehaviour:
   accountButton: {fileID: 2024021209}
   welcomeText: {fileID: 1069300558}
   welcomeDuration: 3
+  textoAparecer: {fileID: 638519969}
+  botonAparecer: {fileID: 2024021213}
+  textFadeDuration: 1.5
+  buttonFadeDuration: 1.5
 --- !u!1 &256923879
 GameObject:
   m_ObjectHideFlags: 0
@@ -1164,6 +1168,7 @@ GameObject:
   - component: {fileID: 2024021211}
   - component: {fileID: 2024021210}
   - component: {fileID: 2024021209}
+  - component: {fileID: 2024021213}
   m_Layer: 5
   m_Name: AccountButton
   m_TagString: Untagged
@@ -1228,7 +1233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.66723037, g: 0.7222341, b: 0.9622642, a: 0.50980395}
+  m_Color: {r: 0.66723037, g: 0.7222341, b: 0.9622642, a: 0.6509804}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1274,6 +1279,18 @@ RectTransform:
   m_AnchoredPosition: {x: 487, y: -84}
   m_SizeDelta: {x: 293, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &2024021213
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024021208}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2110901088
 GameObject:
   m_ObjectHideFlags: 0
