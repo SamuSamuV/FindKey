@@ -50,6 +50,41 @@ MonoBehaviour:
     itemSprite: {fileID: 0}
     newStoryNode: {fileID: 0}
     videoClip: {fileID: 0}
+  - actionType: 5
+    delayBeforeExecute: 0
+    waitTime: 0
+    appName: Reproductor Video
+    shakeMagnitude: 0
+    shakeDuration: 0
+    sound:
+      clip: {fileID: 0}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+    popupData:
+      delayBeforeSpawn: 0
+      duration: 0
+      position: {x: 0, y: 0}
+      specificPrefab: {fileID: 0}
+      title: 
+      message: 
+      image: {fileID: 0}
+      sound:
+        clip: {fileID: 0}
+        volume: 0
+        pitch: 0
+        loop: 0
+        fadeInDuration: 0
+        fadeOutDuration: 0
+    newWallpaper: {fileID: 0}
+    toggleState: 0
+    aiPromptMessage: 
+    itemName: 
+    itemSprite: {fileID: 0}
+    newStoryNode: {fileID: 0}
+    videoClip: {fileID: 32900000, guid: a51fc475238cf8c4eae04d4028d6ed0a, type: 3}
   - actionType: 2
     delayBeforeExecute: 0
     waitTime: 0
