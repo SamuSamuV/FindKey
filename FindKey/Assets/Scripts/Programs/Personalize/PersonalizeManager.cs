@@ -1,3 +1,6 @@
+using UnityEngine;
+using UnityEngine.UI;
+
 /// <summary>
 /// Class: PersonalizeManager
 /// Description: This script manages the personalization section of the FindKey game, specifically handling the display and functionality of wallpaper selection.
@@ -7,10 +10,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using UnityEngine;
-using UnityEngine.UI;
-
 public class PersonalizeManager : MonoBehaviour
 {
     public Transform inventoryGrid;

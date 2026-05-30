@@ -1,3 +1,7 @@
+using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+
 /// <summary>
 /// Class: NPCVisualController
 /// Description: Control the visual representation of NPCs, managing different animations based on their state and emotion. This includes idle, thinking, and talking animations,
@@ -5,11 +9,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
-
 public class NPCVisualController : MonoBehaviour
 {
     public Image npcImage;

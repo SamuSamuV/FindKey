@@ -1,3 +1,10 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using TMPro;
+using UnityEngine;
+
 /// <summary>
 /// Class: BaseAIScript
 /// Description: This is an abstract base class for AI-controlled NPCs in the FindKey game. It manages the core functionalities of NPC interactions, including handling player input,
@@ -7,14 +14,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using TMPro;
-using UnityEngine;
-
 public abstract class BaseAIScript : MonoBehaviour
 {
     [Header("Referencias")]

@@ -1,3 +1,8 @@
+using UnityEngine;
+using UnityEngine.UI;
+using System;
+using TMPro;
+
 /// <summary>
 /// Class: Clock
 /// Description: This script manages the display of the current time and date in the FindKey game. It references two TextMeshProUGUI components,
@@ -6,13 +11,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using UnityEngine;
-using UnityEngine.UI;
-using System;
-using TMPro;
-
-
 public class Clock : MonoBehaviour
 {
     public TextMeshProUGUI timeText;

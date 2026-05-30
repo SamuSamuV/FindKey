@@ -1,3 +1,6 @@
+using UnityEngine;
+using UnityEngine.EventSystems;
+
 /// <summary>
 /// Class: DesktopAreaClick
 /// Description: This script handles click events on the desktop area in the FindKey game. When the user clicks on the desktop, it deselects any currently selected icons and closes
@@ -7,10 +10,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using UnityEngine;
-using UnityEngine.EventSystems;
-
 public class DesktopAreaClick : MonoBehaviour, IPointerClickHandler
 {
     public DesktopManager manager;

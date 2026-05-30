@@ -1,11 +1,3 @@
-/// <summary>
-/// Class: SystemEventTrigger
-/// Description: This class listens for specific system events (like app opening/closing) and triggers corresponding GameEvents in Unity.
-///              It allows you to define which GameEvent should be triggered based on the specified conditions.
-/// Author: Samuel Campos Borrego
-/// Project: FindKey
-/// </summary>
-
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +11,8 @@ public enum TriggerCondition // Enum to specify when the event should be trigger
 /// <summary>
 /// Class: EventTriggerEntry
 /// Description: This class represents a single entry in the SystemEventTrigger's list of triggers. It contains the condition for triggering and the associated GameEvent.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
 /// </summary>
 [System.Serializable]
 public class EventTriggerEntry
@@ -33,6 +27,13 @@ public class EventTriggerEntry
     public GameEvent gameEventToTrigger;
 }
 
+/// <summary>
+/// Class: SystemEventTrigger
+/// Description: This class listens for specific system events (like app opening/closing) and triggers corresponding GameEvents in Unity.
+///              It allows you to define which GameEvent should be triggered based on the specified conditions.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
+/// </summary>
 public class SystemEventTrigger : MonoBehaviour
 {
     [Header("Lista de Eventos del Sistema")]

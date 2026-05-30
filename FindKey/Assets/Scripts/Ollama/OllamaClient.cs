@@ -1,4 +1,10 @@
-﻿/// <summary>
+﻿using System;
+using System.Collections;
+using System.Text;
+using UnityEngine;
+using UnityEngine.Networking;
+
+/// <summary>
 /// Class: OllamaClient
 /// Description: This script defines the OllamaClient class, which is responsible for communicating with the Ollama API to generate responses based on prompts.
 ///              It includes configuration options for the model, context size, and other parameters that can be adjusted to optimize performance.
@@ -7,13 +13,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using System;
-using System.Collections;
-using System.Text;
-using UnityEngine;
-using UnityEngine.Networking;
-
 public class OllamaClient : MonoBehaviour
 {
     [Header("Ollama Settings")]

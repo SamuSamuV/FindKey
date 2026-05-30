@@ -1,3 +1,9 @@
+using System.Collections;
+using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 /// <summary>
 /// Class: LoginManager
 /// Description: This script manages the login screen of the FindKey game. It handles the initial fade-in animation of the welcome text and the account button, creating a smooth and
@@ -6,13 +12,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using System.Collections;
-using TMPro;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-
 public class LoginManager : MonoBehaviour
 {
     [Header("Referencias Originales")]

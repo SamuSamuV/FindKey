@@ -1,14 +1,16 @@
-/// <summary>
-/// Class: SystemLoadManager
-/// Description: Manages the simulation of system load based on the number of open windows in the Taskbar. As the load increases, it has a chance to trigger "struggle" events,
-///              which play specific sounds and change the cursor to indicate the system is under stress. The manager also includes cooldown mechanics to prevent constant triggering ofstruggle events.
-/// </summary>
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
+
+/// <summary>
+/// Class: SystemLoadManager
+/// Description: Manages the simulation of system load based on the number of open windows in the Taskbar. As the load increases, it has a chance to trigger "struggle" events,
+///              which play specific sounds and change the cursor to indicate the system is under stress. The manager also includes cooldown mechanics to prevent constant triggering ofstruggle events.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
+/// </summary>
 public class SystemLoadManager : MonoBehaviour
 {
     [Header("Audio Sources")]

@@ -1,3 +1,6 @@
+using UnityEngine;
+using System.Collections.Generic;
+
 /// <summary>
 /// Class: CommandVocabulary
 /// Description: This script defines a ScriptableObject called CommandVocabulary, which is used to store a list of synonyms for commands in the FindKey game. It allows for easy
@@ -6,10 +9,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using UnityEngine;
-using System.Collections.Generic;
-
 [CreateAssetMenu(fileName = "NewVocabulary", menuName = "Adventure/Vocabulary")]
 public class CommandVocabulary : ScriptableObject
 {

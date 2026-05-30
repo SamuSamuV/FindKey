@@ -1,3 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
+
 /// <summary>
 /// Class: EventManager
 /// Description: Gestor centralizado de eventos del juego. Permite definir eventos con múltiples acciones (abrir apps, mostrar popups, cambiar fondo, etc) y ejecutarlos secuencialmente.
@@ -6,12 +11,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
-
 public class EventManager : MonoBehaviour
 {
     public static EventManager Instance { get; private set; } // Singleton to global access

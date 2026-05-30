@@ -1,3 +1,7 @@
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
 /// <summary>
 /// Class: TaskbarButton
 /// Description: This script manages the behavior of a taskbar button in the FindKey game. Each taskbar button is linked to an AppWindow and allows the player to minimize or restore
@@ -7,11 +11,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-
 public class TaskbarButton : MonoBehaviour
 {
     public TextMeshProUGUI labelText;

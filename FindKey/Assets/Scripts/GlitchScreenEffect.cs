@@ -1,14 +1,13 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
+
 /// <summary>
 /// Class: GlitchScreenEffect
 /// Description: Toggles a full-screen black image on and off to create a glitch/flickerscreen effect for a configurable duration, then quits the application.
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using System.Collections;
-using UnityEngine;
-using UnityEngine.UI;
-
 public class GlitchScreenEffect : MonoBehaviour
 {
     [Header("Referencias")]

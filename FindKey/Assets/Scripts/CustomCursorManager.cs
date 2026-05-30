@@ -1,3 +1,9 @@
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System.Collections.Generic;
+using UnityEngine.InputSystem;
+
 /// <summary>
 /// Class: CustomCursorManager
 /// Description: This class manages the custom cursor behavior in the game, including changing the cursor sprite based on interactions and handling a loading animation.
@@ -5,13 +11,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using System.Collections.Generic;
-using UnityEngine.InputSystem;
-
 public class CustomCursorManager : MonoBehaviour
 {
     public static CustomCursorManager Instance { get; private set; } // Singleton to globally access the cursor manager

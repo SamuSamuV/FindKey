@@ -1,3 +1,8 @@
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+
 /// <summary>
 /// Class: TextOnlyScroll
 /// Description: This class is responsible for managing a TextMeshProUGUI component and a ScrollRect to display text in a scrollable area.
@@ -5,12 +10,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
-
 public class TextOnlyScroll : MonoBehaviour
 {
     public TextMeshProUGUI tmpText;

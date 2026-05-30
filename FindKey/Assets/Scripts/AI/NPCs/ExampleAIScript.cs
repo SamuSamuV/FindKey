@@ -1,3 +1,5 @@
+using UnityEngine;
+
 /// <summary>
 /// Class: ExampleAIScript
 /// Description: This script is an example implementation of a BaseAIScript for an NPC in the FindKey game. It initializes the NPC with specific attributes such as name,
@@ -6,9 +8,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using UnityEngine;
-
 public class ExampleAIScript : BaseAIScript
 {
     public override void InitNPC() // This method initializes the NPC with specific attributes and instructions.

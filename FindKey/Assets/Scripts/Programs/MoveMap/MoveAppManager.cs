@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using UnityEngine;
+
 /// <summary>
 /// Class: MoveAppManager
 /// Description: This script manages the overall state of the movement map application in the FindKey game. It keeps track of whether the player is dead and maintains a
@@ -7,10 +10,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using System.Collections.Generic;
-using UnityEngine;
-
 public class MoveAppManager : MonoBehaviour
 {
     public bool dead;

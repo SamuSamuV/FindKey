@@ -1,3 +1,7 @@
+using System.Collections;
+using UnityEngine;
+
+[System.Serializable]
 /// <summary>
 /// Class: SoundSettings
 /// Description: Encapsulates audio clip settings and provides functionality to play sounds with optional fade-in and fade-out effects.
@@ -5,11 +9,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using System.Collections;
-using UnityEngine;
-
-[System.Serializable]
 public class SoundSettings
 {
     public AudioClip clip;

@@ -1,14 +1,3 @@
-/// <summary>
-/// Class: SelectMove
-/// Description: This script manages the player's input for selecting moves in the movement map of the FindKey game. It listens for text input from the player, processes it
-///              based on the current position in the movement map, and updates the game's state accordingly. The script checks the player's current location and available actions,
-///              then validates the input against expected commands for that position. If the input is valid, it triggers the corresponding move or interaction; if not, it shows an
-///              error message. The script also handles adding and removing movements from the player's history and interacts with other components like Moves, StoryLog, and
-///              MoveAppManager to manage the narrative and game mechanics based on the player's choices.
-/// Author: Samuel Campos Borrego
-/// Project: FindKey
-/// </summary>
-
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -29,6 +18,16 @@ public enum Actions // Enum to represent the possible actions the player can tak
     Run,
 }
 
+/// <summary>
+/// Class: SelectMove
+/// Description: This script manages the player's input for selecting moves in the movement map of the FindKey game. It listens for text input from the player, processes it
+///              based on the current position in the movement map, and updates the game's state accordingly. The script checks the player's current location and available actions,
+///              then validates the input against expected commands for that position. If the input is valid, it triggers the corresponding move or interaction; if not, it shows an
+///              error message. The script also handles adding and removing movements from the player's history and interacts with other components like Moves, StoryLog, and
+///              MoveAppManager to manage the narrative and game mechanics based on the player's choices.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
+/// </summary>
 public class SelectMove : MonoBehaviour
 {
     public TMP_InputField inputField;

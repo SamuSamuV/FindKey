@@ -1,3 +1,5 @@
+using UnityEngine;
+
 /// <summary>
 /// Class: CatAIScript
 /// Description: This script defines the behavior of the cat NPC in the FindKey game. It inherits from BaseAIScript and overrides necessary methods to set up the cat's personality,
@@ -8,9 +10,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using UnityEngine;
-
 public class CatAIScript : BaseAIScript
 {
     public StoryNode nodeAfterCat;

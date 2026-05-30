@@ -1,3 +1,9 @@
+using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
+using System.Collections;
+
+[RequireComponent(typeof(AudioSource))]
 /// <summary>
 /// Class: PopupController
 /// Description: Controller for handling the display and behavior of pop-up messages in the FindKey project. This class manages the content, appearance, and timing of pop-ups,
@@ -5,13 +11,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
-using System.Collections;
-
-[RequireComponent(typeof(AudioSource))]
 public class PopupController : MonoBehaviour
 {
     public TextMeshProUGUI titleText;

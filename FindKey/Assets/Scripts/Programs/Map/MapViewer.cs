@@ -1,3 +1,7 @@
+using UnityEngine;
+using UnityEngine.UI;
+using System.Collections.Generic;
+
 /// <summary>
 /// Class: MapViewer
 /// Description: This script manages the display of the map in the FindKey game. It allows for updating the map image based on the current story node.
@@ -8,11 +12,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using UnityEngine;
-using UnityEngine.UI;
-using System.Collections.Generic;
-
 public class MapViewer : MonoBehaviour
 {
     [Header("Referencias")]

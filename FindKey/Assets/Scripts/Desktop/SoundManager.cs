@@ -1,3 +1,5 @@
+using UnityEngine;
+
 /// <summary>
 /// Class: SoundManager
 /// Description: This script manages the sound effects in the FindKey game. It uses a singleton pattern to ensure that there is only one instance of the SoundManager throughout the game.
@@ -7,9 +9,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using UnityEngine;
-
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; } // Singleton instance

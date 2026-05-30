@@ -1,3 +1,5 @@
+using UnityEngine;
+
 /// <summary>
 /// Class: InventoryManager
 /// Description: This script manages the inventory system in the FindKey game. It is responsible for displaying the items in the player's inventory and allowing for dynamic updates when
@@ -7,9 +9,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using UnityEngine;
-
 public class InventoryManager : MonoBehaviour
 {
     public Transform inventoryGrid;

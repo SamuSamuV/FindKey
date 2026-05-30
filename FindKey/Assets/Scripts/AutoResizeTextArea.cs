@@ -1,3 +1,6 @@
+using UnityEngine;
+using TMPro;
+
 /// <summary>
 /// Class: AutoResizeTextArea
 /// Description: This script manages the auto-resizing of a TextMeshProUGUI text area in the FindKey game. It allows for dynamically updating the text content and adjusting
@@ -7,10 +10,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using UnityEngine;
-using TMPro;
-
 public class AutoResizeTextArea : MonoBehaviour
 {
     [Header("Referencias")]

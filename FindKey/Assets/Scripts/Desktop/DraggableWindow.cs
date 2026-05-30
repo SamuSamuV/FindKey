@@ -1,3 +1,6 @@
+using UnityEngine;
+using UnityEngine.EventSystems;
+
 /// <summary>
 /// Class: DraggableWindow
 /// Description: This script allows a UI window to be draggable within the bounds of its parent canvas in the FindKey game. It implements the necessary interfaces to handle drag
@@ -7,10 +10,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using UnityEngine;
-using UnityEngine.EventSystems;
-
 public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler
 {
     public RectTransform windowRoot;

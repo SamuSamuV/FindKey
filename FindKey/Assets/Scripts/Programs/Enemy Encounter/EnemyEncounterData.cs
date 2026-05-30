@@ -1,3 +1,7 @@
+using System;
+using UnityEngine;
+using UnityEngine.Events;
+
 /// <summary>
 /// Class: EnemyEncounterData
 /// Description: This script serves as a data container for the enemy encounter in the FindKey game. It holds references to various data objects and configurations related to the
@@ -6,11 +10,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using System;
-using UnityEngine;
-using UnityEngine.Events;
-
 public class EnemyEncounterData : MonoBehaviour
 {
     public MoveAppData moveAppData;

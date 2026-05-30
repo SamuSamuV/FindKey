@@ -1,3 +1,7 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
+
 /// <summary>
 /// Class: BaseEnemyEncounter
 /// Description: This script manages the base logic for an enemy encounter in the FindKey game. It handles the activation of the encounter when the player is in front of the cat,
@@ -6,11 +10,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using System.Collections;
-using UnityEngine;
-using UnityEngine.UI;
-
 public class BaseEnemyEncounter : MonoBehaviour
 {
     public GameObject nonEnemyFindedPanel;

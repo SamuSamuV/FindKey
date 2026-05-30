@@ -1,10 +1,3 @@
-/// <summary>
-/// Class: DesktopIcon
-/// Description: Represents a draggable desktop icon; handles selection, dragging, double-click launching and grid snapping.
-/// Author: Samuel Campos Borrego
-/// Project: FindKey
-/// </summary>
-
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -12,6 +5,12 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(RectTransform))]
 
+/// <summary>
+/// Class: DesktopIcon
+/// Description: Represents a draggable desktop icon; handles selection, dragging, double-click launching and grid snapping.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
+/// </summary>
 public class DesktopIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
     public Image iconImage;

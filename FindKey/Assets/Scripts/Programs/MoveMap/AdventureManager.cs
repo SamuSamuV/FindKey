@@ -1,3 +1,8 @@
+using UnityEngine;
+using TMPro;
+using System.Collections;
+using System.Collections.Generic;
+
 /// <summary>
 /// Class: AdventureManager
 /// Description: This script serves as the central manager for the adventure mode of the FindKey game. It handles the narrative flow, player input, audio management, and
@@ -8,12 +13,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using UnityEngine;
-using TMPro;
-using System.Collections;
-using System.Collections.Generic;
-
 public class AdventureManager : MonoBehaviour
 {
     public TMP_InputField inputField;

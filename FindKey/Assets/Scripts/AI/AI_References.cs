@@ -1,3 +1,6 @@
+using TMPro;
+using UnityEngine;
+
 /// <summary>
 /// Class: AI_References
 /// Description: This script serves as a centralized reference holder for various components related to the AI system in the FindKey game.
@@ -8,10 +11,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using TMPro;
-using UnityEngine;
-
 public class AI_References : MonoBehaviour
 {
     public OllamaClient ollamaClient;

@@ -1,3 +1,5 @@
+using UnityEngine;
+
 /// <summary>
 /// Class: DogAIScript
 /// Description: This script defines the behavior of a dog NPC in the FindKey game. It inherits from BaseAIScript and overrides the InitNPC method to set specific values for the
@@ -7,9 +9,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using UnityEngine;
-
 public class DogAIScript : BaseAIScript
 {
     public override void InitNPC() // Override the InitNPC method to set specific values for the dog NPC

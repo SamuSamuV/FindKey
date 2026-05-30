@@ -1,4 +1,10 @@
-﻿/// <summary>
+﻿using UnityEngine;
+using System.Diagnostics;
+using System.IO;
+using UnityEngine.Networking;
+using System.Collections;
+
+/// <summary>
 /// Class: OllamaLauncher
 /// Description: This script is responsible for launching the Ollama server when the game starts. It checks for the presence of the ollama.exe file in the StreamingAssets/Ollama
 ///              folder and starts the server as a background process. The script also sets up environment variables to specify the models directory and GPU usage for Ollama.
@@ -8,13 +14,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using UnityEngine;
-using System.Diagnostics;
-using System.IO;
-using UnityEngine.Networking;
-using System.Collections;
-
 public class OllamaLauncher : MonoBehaviour
 {
     [Header("Configuración")]

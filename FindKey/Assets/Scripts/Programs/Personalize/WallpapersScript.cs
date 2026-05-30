@@ -1,3 +1,6 @@
+using UnityEngine;
+using UnityEngine.UI;
+
 /// <summary>
 /// Class: WallpapersScript
 /// Description: This script manages the desktop background in the personalization section of the FindKey game. It allows changing the wallpaper by updating the sprite of
@@ -6,10 +9,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using UnityEngine;
-using UnityEngine.UI;
-
 public class WallpapersScript : MonoBehaviour
 {
     public Image desktopBackground;

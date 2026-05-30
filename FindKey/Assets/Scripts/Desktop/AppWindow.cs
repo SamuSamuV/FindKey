@@ -1,3 +1,10 @@
+using System;
+using System.Collections;
+using TMPro;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
 /// <summary>
 /// Class: AppWindow
 /// Description: This script manages the behavior of application windows in the FindKey game. It handles opening, closing, minimizing, and restoring windows, as well as animating these
@@ -7,14 +14,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using System;
-using System.Collections;
-using TMPro;
-using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
-
 public class AppWindow : MonoBehaviour, IPointerDownHandler
 {
     private Coroutine shakeCoroutine;

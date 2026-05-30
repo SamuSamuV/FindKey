@@ -1,3 +1,8 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+[RequireComponent(typeof(Image))] // Now requires an Image component, not a SpriteRenderer
+
 /// <summary>
 /// Class: BackgroundAnim
 /// Description: This script manages the animation of a background image in the FindKey game. It allows for cycling through a series of sprites to create an animated effect.
@@ -6,11 +11,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using UnityEngine;
-using UnityEngine.UI;
-
-[RequireComponent(typeof(Image))] // Now requires an Image component, not a SpriteRenderer
 
 public class BackgroundAnim : MonoBehaviour
 {

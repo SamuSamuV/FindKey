@@ -1,11 +1,4 @@
-/// <summary>
-/// File: StoryLog
-/// Description: This script manages the story log in the FindKey game, providing functionalities for displaying text with a typewriter effect, playing typing sounds,
-///              and adding visual effects based on the NPC's emotion. It allows for adding lines of text either instantly or with animation, and supports skipping the typing effect if desired.
-///              The script also includes a tool for applying global sound parameters to all character-specific typing sounds, making it easier to maintain consistency across the game's audio design.
-/// Author: Samuel Campos Borrego
-/// Project: FindKey
-/// </summary>
+
 
 using System.Collections;
 using System.Collections.Generic;
@@ -28,9 +21,12 @@ public class CharSoundMapping
 }
 
 /// <summary>
-/// Class: StoryLog
-/// Description: This script manages the story log in the FindKey game, providing functionalities for displaying text with a typewriter effect, playing typing sounds, and adding visual
-///              effects based on the NPC's emotion. It allows for adding lines of text either instantly or with animation, and supports skipping the typing effect if desired.
+/// File: StoryLog
+/// Description: This script manages the story log in the FindKey game, providing functionalities for displaying text with a typewriter effect, playing typing sounds,
+///              and adding visual effects based on the NPC's emotion. It allows for adding lines of text either instantly or with animation, and supports skipping the typing effect if desired.
+///              The script also includes a tool for applying global sound parameters to all character-specific typing sounds, making it easier to maintain consistency across the game's audio design.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
 /// </summary>
 public class StoryLog : MonoBehaviour
 {

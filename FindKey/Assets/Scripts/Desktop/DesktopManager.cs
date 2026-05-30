@@ -1,4 +1,9 @@
-﻿/// <summary>
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+/// <summary>
 /// Class: DesktopManager
 /// Description: This script manages the desktop area of the FindKey game, allowing for the spawning and management of desktop icons. It handles the layout of icons in a grid format,
 ///              allowing for both predefined positions and automatic placement. The script also manages the selection and deselection of icons, as well as checking for occupied grid positions to
@@ -7,12 +12,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
 public class DesktopManager : MonoBehaviour
 {
     public static DesktopManager Instance { get; private set; } // Singleton to global access

@@ -1,3 +1,7 @@
+using System.Xml.Linq;
+using UnityEngine;
+using UnityEngine.UI;
+
 /// <summary>
 /// Class: Moves
 /// Description: This script manages the different moves and interactions that the player can perform in the movement map of the FindKey game. It contains methods for
@@ -7,11 +11,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using System.Xml.Linq;
-using UnityEngine;
-using UnityEngine.UI;
-
 public class Moves : MonoBehaviour
 {
     // Strings for the different locations and interactions in the movement map. These are set in the Unity Inspector and can be easily modified without changing the code.

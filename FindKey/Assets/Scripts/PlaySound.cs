@@ -1,3 +1,5 @@
+using UnityEngine;
+
 /// <summary>
 /// Class: PlaySound
 /// Description: This class is responsible for playing a sound effect when a specific event occurs in the game. It uses an AudioSource component to play the sound clip assigned to it.
@@ -6,9 +8,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using UnityEngine;
-
 public class PlaySound : MonoBehaviour
 {
     [SerializeField] private AudioClip soundToPlay;

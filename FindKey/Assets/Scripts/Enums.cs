@@ -1,3 +1,4 @@
+using UnityEngine;
 /// <summary>
 /// Class: Enums
 /// Description: This class contains the enumerations used in the FindKey project. It defines the possible directions and actions that can be performed by the characters in the game.
@@ -6,8 +7,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using UnityEngine;
 
 public class Enums : MonoBehaviour
 {

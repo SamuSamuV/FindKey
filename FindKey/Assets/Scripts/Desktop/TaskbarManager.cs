@@ -1,3 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+[DefaultExecutionOrder(-100)]
 /// <summary>
 /// Class: TaskbarManager
 /// Description: This script manages the taskbar functionality in the FindKey game, including the start menu, volume control, wallpaper selection, and taskbar icons for open applications.
@@ -6,13 +12,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
-[DefaultExecutionOrder(-100)]
 public class TaskbarManager : MonoBehaviour
 {
     public static TaskbarManager Instance { get; private set; } // Singleton pattern for easy access from other scripts

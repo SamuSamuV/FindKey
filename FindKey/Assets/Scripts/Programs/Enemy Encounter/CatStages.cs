@@ -1,15 +1,15 @@
+using UnityEngine;
+
 /// <summary>
-/// Class: CatAIScript_Stage1, CatAIScript_Stage2, CatAIScript_Stage3, CatAIScript_Stage4
-/// Description: This scripts manage the AI behavior of a cat NPC across four stages in the FindKey game. Each stage represents a different phase of the encounter, with unique
-///              interactions and transformations. The scripts handle player input, AI responses, and transitions between stages based on specific triggers such as player greetings or keyword
-///              detection. The final stage includes a transformation sequence with audio and visual effects, culminating in a challenge for the player to guess the location. 
-///              The scripts also include fail-safe mechanisms to ensure smooth progression through the encounter, even if the AI fails to respond as expected.
+/// Class: CatAIScript_Stage1
+/// Description: CatAIScript_Stage1 represents the first phase of the cat NPC encounter in the FindKey game. In this initial stage, the cat will appear in its most innocent and
+///              friendly state, engaging with the player in a seemingly harmless manner. The AI will have the autonomy to decide when to advance to the next stage based on its own criteria,
+///              but we will also secretly monitor the player's input for greetings. If the player greets the cat, we will advance to the next stage in secret, without informing the LLM, as a
+///              sort of "Easter egg" that rewards players for trying to interact with the cat in a friendly way. This design allows for a more dynamic and immersive encounter, where player choices
+///              can influence the progression of the narrative in unexpected ways.
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using UnityEngine;
-
 public class CatAIScript_Stage1 : BaseAIScript // In this first phase, the cat will be in its most innocent and friendly state. The AI will have the freedom to decide when to advance to the next stage based on its own criteria, but we will also secretly monitor the player's input for greetings. If the player greets the cat, we will advance to the next stage in secret, without telling the LLM, as a sort of "Easter egg" that rewards players for trying to interact with the cat in a friendly way.
 {
     public override void InitNPC() { } // No necesary, we will trigger the phase change with a player greeting or if the LLM decides to do it proactively.
@@ -177,6 +177,18 @@ lowerPlayer.Contains("buenas que hay");
     protected override void OpenDoor() { }
 }
 
+/// <summary>
+/// Class: CatAIScript_Stage2
+/// Description: CatAIScript_Stage2 represents the second phase of the cat NPC encounter in the FindKey game. In this stage, the cat will start to show subtle hints of its true nature,
+///              becoming more mysterious and less friendly. The AI will still have the autonomy to decide when to advance to the next stage based on its own criteria, but we will also monitor the
+///              player's input for specific adjectives that might indicate they are starting to suspect the cat's true nature. If we detect any of those adjectives, we will force the AI to
+///              transition to the next stage by including "action": "next_stage" in the prompt, even if the AI doesn't decide to do it on its own. This is a sort of fail-safe mechanism to ensure
+///              that if the player is on the right track, they will be able to progress through the encounter without getting stuck due to an uncooperative AI. This design allows for a more
+///              dynamic and immersive encounter, where player choices can influence the progression of the narrative in unexpected ways, while also ensuring that players who are on the right
+///              track can continue progressing even if the LLM fails to respond as expected.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
+/// </summary>
 public class CatAIScript_Stage2 : BaseAIScript // In this second phase, we will monitor the player's input for specific adjectives that might indicate they are starting to suspect the cat's true nature. If we detect any of those adjectives, we will force the AI to transition to the next stage by including "action": "next_stage" in the prompt, even if the AI doesn't decide to do it on its own. This is a sort of fail-safe mechanism to ensure that if the player is on the right track, they will be able to progress through the encounter without getting stuck due to an uncooperative AI.
 {
     public string[] adjetivosDeSeguridad; // We will populate this array in the Inspector with adjectives that we consider "red flags" that indicate the player is starting to suspect the cat's true nature. For example, words like "sombra", "oscuro", "misterioso", "extraño", "raro", "siniestro", "tenebroso", "escondido", "oculto", "desconocido", etc. The more adjectives we include, the more likely we are to catch players who are on the right track, but we should also be careful not to include too many or too vague ones that could trigger false positives.
@@ -259,6 +271,17 @@ public class CatAIScript_Stage2 : BaseAIScript // In this second phase, we will 
     protected override void OpenDoor() { }
 }
 
+/// <summary>
+/// Class: CatAIScript_Stage3
+/// Description: CatAIScript_Stage3 represents the third and final phase of the cat NPC encounter in the FindKey game. In this stage, we will trigger a transformation
+///              sequence where the cat reveals its true corrupted form. This will involve changing the cat's sprites to more disturbing and corrupted versions, playing ominous sound
+///              effects, and forcing a proactive message that describes the transformation in a dramatic way. The LLM will not be aware of the transformation until it receives the new
+///              prompt in the next turn, so it will be a surprise for it as well. After the transformation, we will also monitor the player's response to the cat's question
+///              "¿Acaso sabes quién soy yo?" and save that response for later use in the final stage of the encounter. This design allows for a more dynamic and immersive encounter,
+///              where player choices can influence the progression of the narrative in unexpected ways, while also providing a dramatic climax to the cat's storyline.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
+/// </summary>
 public class CatAIScript_Stage3 : BaseAIScript // In this third phase, we will trigger a transformation sequence where the cat reveals its true corrupted form. This will involve changing the cat's sprites to more disturbing and corrupted versions, playing ominous sound effects, and forcing a proactive message that describes the transformation in a dramatic way. The LLM will not be aware of the transformation until it receives the new prompt in the next turn, so it will be a surprise for it as well. After the transformation, we will also monitor the player's response to the cat's question "¿Acaso sabes quién soy yo?" and save that response for later use in the final stage of the encounter.
 {
     public AudioClip zumbidoClip;
@@ -457,6 +480,17 @@ public class CatAIScript_Stage3 : BaseAIScript // In this third phase, we will t
     protected override void OpenDoor() { }
 }
 
+/// <summary>
+/// Class: CatAIScript_Stage4
+/// Description: CatAIScript_Stage4 represents the fourth and final phase of the cat NPC encounter in the FindKey game. In this stage,
+///              the cat will have fully revealed its corrupted form and will challenge the player to guess the location where they are.
+///              The player will have to use the clues given by the cat throughout the encounter, as well as their own intuition and reasoning, to figure out the correct location.
+///              We will monitor the player's input for specific keywords that indicate they are guessing the location, and if they guess correctly,
+///              we will trigger a final event that ends the encounter in a dramatic way. We will also refer to the player's previous guess about the cat's identity
+///              (saved in respuestaIdentidad) to make the interaction more personalized and reactive.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
+/// </summary>
 public class CatAIScript_Stage4 : BaseAIScript // In this fourth and final phase, the cat will have fully revealed its corrupted form and will challenge the player to guess the location where they are. The player will have to use the clues given by the cat throughout the encounter, as well as their own intuition and reasoning, to figure out the correct location. We will monitor the player's input for specific keywords that indicate they are guessing the location, and if they guess correctly, we will trigger a final event that ends the encounter in a dramatic way. We will also refer to the player's previous guess about the cat's identity (saved in respuestaIdentidad) to make the interaction more personalized and reactive.
 {
     public string[] passwordsUbicacion;

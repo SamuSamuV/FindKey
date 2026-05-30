@@ -1,3 +1,8 @@
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+[ExecuteAlways]
 /// <summary>
 /// Class: FixedVisualHandle
 /// Description: This script is designed to be attached to a UI element that serves as a visual handle for a scrollbar in the FindKey game. It allows the handle to be dragged with
@@ -8,12 +13,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
-
-[ExecuteAlways]
 public class FixedVisualHandle : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [Header("Referencias")]

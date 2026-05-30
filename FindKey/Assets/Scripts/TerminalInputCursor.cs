@@ -1,3 +1,8 @@
+using UnityEngine;
+using TMPro;
+using System.Collections;
+
+[RequireComponent(typeof(TMP_InputField))]
 /// <summary>
 /// Class: TerminalInputCursor
 /// Description: This script creates a custom blinking cursor for a TMP_InputField, allowing for a more terminal-like experience.
@@ -6,12 +11,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using UnityEngine;
-using TMPro;
-using System.Collections;
-
-[RequireComponent(typeof(TMP_InputField))]
 public class TerminalInputCursor : MonoBehaviour
 {
     [Header("Referencias")]

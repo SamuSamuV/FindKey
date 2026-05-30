@@ -1,13 +1,3 @@
-/// <summary>
-/// File: StoryNode
-/// Description: This script defines the StoryNode class, which represents a node in the narrative structure of the FindKey game. Each StoryNode contains the text to be displayed,
-///              options for player choices, and various settings related to text display, sound effects, popups, and interactions with the game's AI memory system. The StoryNode
-///              allows for complex storytelling by enabling different paths based on player decisions, triggering events, and managing audio-visual elements that enhance the player's
-///              experience as they progress through the game's story.
-/// Author: Samuel Campos Borrego
-/// Project: FindKey
-/// </summary>
-
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -28,6 +18,8 @@ public enum AudioChannel // Enum to define different audio channels for sound ma
 ///              the sound on and the settings for the sound itself. These sounds are designed to enhance the player's immersion and can be used for various effects, such as
 ///              background music, ambient noises, or specific sound effects related to the narrative. The sounds defined in this class will stop playing when the player moves
 ///              to a different StoryNode, allowing for dynamic audio changes throughout the game.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
 /// </summary>
 [System.Serializable]
 public class NodeSoundAction
@@ -79,6 +71,8 @@ public class AmbientSoundAction
 /// <summary>
 /// Class: StoryNode
 /// Description: This class represents a node in the narrative structure of the FindKey game. Each StoryNode contains the text to be displayed, options for player choices, and various settings.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
 /// </summary>
 [CreateAssetMenu(fileName = "NewStoryNode", menuName = "Adventure/Story Node")]
 public class StoryNode : ScriptableObject
@@ -139,6 +133,8 @@ public class StoryNode : ScriptableObject
 /// Description: This class represents the data for a popup that can be displayed during a StoryNode. It includes settings for the delay before the popup appears, its duration,
 ///              position on the screen, the specific prefab to use for the popup, the title and message to be displayed, an optional image, and sound settings for any audio that
 ///              should accompany the popup.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
 /// </summary>
 [System.Serializable]
 public class PopupData
@@ -158,6 +154,8 @@ public class PopupData
 /// Class: StoryOption
 /// Description: This class represents an option that the player can choose when presented with a StoryNode.
 ///              Each StoryOption includes valid inputs that the player can type to select the option.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
 /// </summary>
 
 [System.Serializable]

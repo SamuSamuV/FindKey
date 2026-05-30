@@ -1,3 +1,8 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 /// <summary>
 /// Class: BootManager
 /// Description: This script manages the boot sequence of the FindKey game. It handles the display of a loading screen with an animated indicator and plays a boot sound effect.
@@ -6,12 +11,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using System.Collections;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-
 public class BootManager : MonoBehaviour
 {
     [Header("Ajustes de Escena")]

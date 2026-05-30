@@ -1,3 +1,7 @@
+using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
+
 /// <summary>
 /// Class: InventoryItem
 /// Description: This script represents an individual item in the inventory system of the FindKey game. It manages the display of the item's image and name within the inventory UI.
@@ -7,11 +11,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
-
 public class InventoryItem : MonoBehaviour
 {
     public Image itemImage;

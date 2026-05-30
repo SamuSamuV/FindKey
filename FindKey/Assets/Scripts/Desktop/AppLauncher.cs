@@ -1,3 +1,5 @@
+using UnityEngine;
+
 /// <summary>
 /// Class: AppLauncher
 /// Description: This script is responsible for launching applications in the FindKey game. It manages the instantiation of application windows based on a given app name and launch
@@ -7,9 +9,6 @@
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
-
-using UnityEngine;
-
 public class AppLauncher : MonoBehaviour
 {
     public static AppLauncher Instance { get; private set; } // Singleton to global access
