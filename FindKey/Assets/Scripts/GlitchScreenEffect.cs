@@ -1,3 +1,10 @@
+/// <summary>
+/// Class: GlitchScreenEffect
+/// Description: Toggles a full-screen black image on and off to create a glitch/flickerscreen effect for a configurable duration, then quits the application.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
+/// </summary>
+
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,14 +15,15 @@ public class GlitchScreenEffect : MonoBehaviour
     [Tooltip("La imagen negra que va a parpadear ocupando toda la pantalla.")]
     public Image blackScreen;
 
-    [Header("Configuración del Glitch")]
-    [Tooltip("Tiempo total (en segundos) que durará el efecto de parpadeo.")]
+    [Header("Configuraci�n del Glitch")]
+    [Tooltip("Tiempo total (en segundos) que durar� el efecto de parpadeo.")]
     public float glitchDuration = 5f;
-    [Tooltip("Tiempo MÍNIMO entre parpadeos.")]
+    [Tooltip("Tiempo M�NIMO entre parpadeos.")]
     public float minFlickerTime = 0.05f;
-    [Tooltip("Tiempo MÁXIMO entre parpadeos.")]
+    [Tooltip("Tiempo M�XIMO entre parpadeos.")]
     public float maxFlickerTime = 0.25f;
 
+    // Start the glitch coroutine if a blackScreen Image has been assigned
     private void Start()
     {
         if (blackScreen != null)
@@ -24,32 +32,32 @@ public class GlitchScreenEffect : MonoBehaviour
         }
     }
 
+    // Coroutine that toggles the blackScreen on/off at random intervals
+    // until the configured glitchDuration has passed, then ensures the
+    // screen is black and exits the application.
     private IEnumerator GlitchRoutine()
     {
         float elapsedTime = 0f;
 
-        // Mientras no hayamos superado los X segundos...
         while (elapsedTime < glitchDuration)
         {
-            // 1. Invertimos el estado de la imagen (Si está encendida se apaga, y viceversa)
+            // Toggle the visibility of the black screen to create a flicker
             blackScreen.enabled = !blackScreen.enabled;
 
-            // 2. Calculamos un tiempo de espera aleatorio para dar sensación de arritmia y fallo
+            // Wait a random short interval between flickers
             float randomWait = Random.Range(minFlickerTime, maxFlickerTime);
 
             yield return new WaitForSeconds(randomWait);
 
-            elapsedTime += randomWait; // Sumamos el tiempo transcurrido
+            elapsedTime += randomWait;
         }
 
-        // --- QUÉ PASA AL TERMINAR ---
-        // Forzamos a que la pantalla se quede completamente negra al final
+        // Ensure the screen is black at the end of the effect
         blackScreen.enabled = true;
 
         Debug.Log("<color=red>[FIN]</color> El glitch ha terminado. Cerrando el juego...");
 
-        // (Opcional) Una vez se queda en negro, cierra el juego automáticamente. 
-        // Si no quieres que se cierre de golpe, puedes borrar esta línea o ponerle un retraso.
+        // Quit the application (has effect in standalone builds)
         Application.Quit();
     }
 }

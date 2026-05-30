@@ -16,7 +16,7 @@ public class WallpapersScript : MonoBehaviour
 
     public Sprite[] availableWallpapers;
 
-    public void ChangeBackground(Sprite newWallpaper)
+    public void ChangeBackground(Sprite newWallpaper) // Function to change the desktop background to the selected wallpaper
     {
         desktopBackground.sprite = newWallpaper;
     }

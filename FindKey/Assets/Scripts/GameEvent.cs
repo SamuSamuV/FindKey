@@ -1,25 +1,39 @@
+/// <summary>
+/// Class: GameEvent
+/// Description: ScriptableObject that defines an event in the game, which can consist of a sequence of actions. Each action can be of various types
+///              (waiting, playing sound, opening apps, etc.) and can have specific parameters. This allows for flexible and modular event creation that can be easily edited in the Unity Inspector.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
+/// </summary>
+
 using UnityEngine;
 using System.Collections.Generic;
 
 public enum EventActionType
 {
-    Wait,
-    PlaySound,
-    OpenApp,
-    CloseApp,
-    ShowPopup,
-    ChangeWallpaper,
-    ShakeWindow,
-    MinimizeApp,
-    ToggleBlackScreen,     // Enciende o apaga un panel negro
-    BringTaskbarToFront,   // Superpone la barra de tareas
-    ForceAIMessage,        // Obliga a la IA a hablar
-    AddInventoryItem,   // Añade un item directamente
-    RemoveDesktopIcon,
-    ChangeAdventureNode,
-    PlayVideo,
+    Wait, // Just wait
+    PlaySound, // Play a sound effect or music
+    OpenApp, // Open an application window
+    CloseApp, // Close an application window
+    ShowPopup, // Show a popup message on the screen
+    ChangeWallpaper, // Change the desktop wallpaper
+    ShakeWindow, // Shake a specific application window or the entire screen
+    MinimizeApp, // Minimize an application window
+    ToggleBlackScreen, // Toggle a full-screen black overlay on/off
+    BringTaskbarToFront, // Bring the taskbar to the front of all windows
+    ForceAIMessage, // Force a specific message to appear in the AI chat interface
+    AddInventoryItem, // Add an item to the player's inventory
+    RemoveDesktopIcon, // Remove a specific icon from the desktop
+    ChangeAdventureNode, // Change the current node in an adventure/story system
+    PlayVideo, // Play a video clip
 }
 
+/// <summary>
+/// Class: EventAction
+/// Description: Defines a single action that can be part of a GameEvent. Each action has a type (defined by EventActionType) and parameters relevant to that type.
+///              For example, a PlaySound action would have sound settings, while an OpenApp action would specify the app name. The delayBeforeExecute parameter allows for timing control
+///              between actions in a sequence.
+/// </summary>
 [System.Serializable]
 public class EventAction
 {
@@ -70,6 +84,11 @@ public class EventAction
     public UnityEngine.Video.VideoClip videoClip;
 }
 
+/// <summary>
+/// Class: GameEvent
+/// Description: ScriptableObject that represents a game event, which can consist of a sequence of EventActions. It includes a description for the designer and a flag to determine
+///              if the event should only be played once per game.
+/// </summary>
 [CreateAssetMenu(fileName = "NewGameEvent", menuName = "OS System/Game Event")]
 
 public class GameEvent : ScriptableObject

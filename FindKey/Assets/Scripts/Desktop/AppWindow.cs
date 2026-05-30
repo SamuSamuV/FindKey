@@ -1,3 +1,13 @@
+/// <summary>
+/// Class: AppWindow
+/// Description: This script manages the behavior of application windows in the FindKey game. It handles opening, closing, minimizing, and restoring windows, as well as animating these
+///              transitions. The script also interacts with the TaskbarManager to register and unregister windows, and with the DesktopManager to update the state of desktop icons. It includes
+///              functionality for shaking the window for visual feedback and for forcing the window to open in the center of the screen if desired. The script is designed to be flexible and can be
+///              extended for specific types of application windows by overriding its methods.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
+/// </summary>
+
 using System;
 using System.Collections;
 using TMPro;
@@ -30,7 +40,7 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
     {
         if (closeButton != null)
         {
-            for (int i = 0; i < closeButton.Length; i++)
+            for (int i = 0; i < closeButton.Length; i++) // Use a for loop to avoid closure issues with lambda
             {
                 closeButton[i].onClick.AddListener(Close);
             }
@@ -38,9 +48,9 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
 
         if (minimizeButton != null)
         {
-            for (int i = 0; i < minimizeButton.Length; i++)
+            for (int i = 0; i < minimizeButton.Length; i++) // Use a for loop to avoid closure issues with lambda
             {
-                minimizeButton[i].onClick.AddListener(Minimize);
+                minimizeButton[i].onClick.AddListener(Minimize); 
             }
         }
 
@@ -49,13 +59,13 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
             moveAppData = goMoveAppData.GetComponent<MoveAppData>();
     }
 
-    protected virtual void Start()
+    protected virtual void Start() // Open with a scale of 0 and animate to full size
     {
         transform.localScale = Vector3.zero;
         StartCoroutine(AnimateWindow(Vector3.zero, Vector3.one, 0f, 1f, null));
     }
 
-    protected virtual void OnEnable()
+    protected virtual void OnEnable() // Force center on open if the option is enabled
     {
         if (forceCenterOnOpen)
         {
@@ -63,35 +73,35 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
         }
     }
 
-    private System.Collections.IEnumerator ForceCenterRoutine()
+    private System.Collections.IEnumerator ForceCenterRoutine() // Wait until the end of the frame to ensure all layout calculations are done, then set anchoredPosition to zero
     {
         yield return new WaitForEndOfFrame();
 
         RectTransform rt = GetComponent<RectTransform>();
         if (rt != null)
         {
-            rt.anchoredPosition = Vector2.zero; // Vector2.zero es el centro exacto (0, 0)
+            rt.anchoredPosition = Vector2.zero;
         }
     }
 
-    public virtual void Setup(string title)
+    public virtual void Setup(string title) // Set the title and register with TaskbarManager
     {
         if (titleText) titleText.text = title;
     }
 
-    public virtual void Close()
+    public virtual void Close() // Animate closing and then call CloseLogic to handle the actual closing behavior
     {
         SoundManager.Instance?.Play("close");
         StartCoroutine(AnimateWindow(transform.localScale, Vector3.zero, 1f, 0f, CloseLogic));
     }
 
-    public virtual void Minimize()
+    public virtual void Minimize() // Animate minimizing and then call MinimizeLogic to handle the actual minimizing behavior
     {
         SoundManager.Instance?.Play("minimize");
         StartCoroutine(AnimateWindow(transform.localScale, Vector3.zero, 1f, 0f, MinimizeLogic));
     }
 
-    public virtual void Restore()
+    public virtual void Restore() // If the window is minimized, animate restoring it to full size and make it active again
     {
         if (!isMinimized) return;
 
@@ -102,14 +112,14 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
         StartCoroutine(AnimateWindow(Vector3.zero, Vector3.one, 0f, 1f, null));
     }
 
-    public void Reopen()
+    public void Reopen() // If the window is closed but not destroyed (keepAliveOnClose), animate reopening it to full size and make it active again
     {
         gameObject.SetActive(true);
         transform.SetAsLastSibling();
         StartCoroutine(AnimateWindow(Vector3.zero, Vector3.one, 0f, 1f, null));
     }
 
-    private IEnumerator AnimateWindow(Vector3 startScale, Vector3 endScale, float startAlpha, float endAlpha, Action onComplete)
+    private IEnumerator AnimateWindow(Vector3 startScale, Vector3 endScale, float startAlpha, float endAlpha, Action onComplete) // Animate the window's scale and alpha over time, then call onComplete when done
     {
         CanvasGroup cg = GetComponent<CanvasGroup>();
         if (cg == null) cg = gameObject.AddComponent<CanvasGroup>();
@@ -132,12 +142,12 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
         onComplete?.Invoke();
     }
 
-    private void MinimizeLogic()
+    private void MinimizeLogic() // Update the DesktopManager to mark this app as minimized and open, then set the window as inactive
     {
         DesktopManager dm = FindObjectOfType<DesktopManager>();
         if (dm != null)
         {
-            foreach (var data in dm.iconsToSpawn)
+            foreach (var data in dm.iconsToSpawn) // Find the corresponding desktop icon data for this app and mark it as minimized and open
             {
                 if (data.label == appName)
                 {
@@ -152,7 +162,7 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
         gameObject.SetActive(false);
     }
 
-    private void CloseLogic()
+    private void CloseLogic() // Unregister from TaskbarManager, update DesktopManager to mark this app as closed (and not minimized), and either destroy or deactivate the window based on keepAliveOnClose
     {
         TaskbarManager.GetOrFindInstance()?.UnregisterWindow(this);
 
@@ -220,29 +230,29 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
         }
     }
 
-    public void ToggleMinimizeRestore()
+    public void ToggleMinimizeRestore() // If the window is currently minimized, restore it; otherwise, minimize it
     {
         if (isMinimized) Restore();
         else Minimize();
     }
 
-    public void BringToFront()
+    public void BringToFront() // Move this window to the end of its parent's children, making it render on top of other sibling windows
     {
         transform.SetAsLastSibling();
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+    public void OnPointerDown(PointerEventData eventData) // When the window is clicked, bring it to the front
     {
         BringToFront();
     }
 
-    public void ShakeWindow(float duration, float magnitude)
+    public void ShakeWindow(float duration, float magnitude) // If the window is already shaking, stop the current shake coroutine before starting a new one to prevent overlapping shakes
     {
         if (shakeCoroutine != null) StopCoroutine(shakeCoroutine);
         shakeCoroutine = StartCoroutine(ShakeRoutine(duration, magnitude));
     }
 
-    private IEnumerator ShakeRoutine(float duration, float magnitude)
+    private IEnumerator ShakeRoutine(float duration, float magnitude) // Shake the window by randomly offsetting its local position for the specified duration, then return it to its original position
     {
         Vector3 originalPos = transform.localPosition;
         float elapsed = 0.0f;
@@ -261,12 +271,13 @@ public class AppWindow : MonoBehaviour, IPointerDownHandler
         transform.localPosition = originalPos;
     }
 
-    public void SetCloseAndMinimizeInteractable(bool state)
+    public void SetCloseAndMinimizeInteractable(bool state) // Enable or disable the interactability of the close and minimize buttons, if they exist
     {
         if (closeButton != null)
         {
             foreach (var btn in closeButton) btn.interactable = state;
         }
+
         if (minimizeButton != null)
         {
             foreach (var btn in minimizeButton) btn.interactable = state;

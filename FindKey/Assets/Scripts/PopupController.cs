@@ -1,3 +1,11 @@
+/// <summary>
+/// Class: PopupController
+/// Description: Controller for handling the display and behavior of pop-up messages in the FindKey project. This class manages the content, appearance, and timing of pop-ups,
+///              allowing for dynamic updates based on provided data. It also handles audio playback for associated sounds and ensures proper cleanup after the pop-up is closed.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
+/// </summary>
+
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -12,7 +20,7 @@ public class PopupController : MonoBehaviour
 
     private AudioSource _audioSource;
 
-    void Awake()
+    void Awake() // Initialize the audio source and set the parent to the canvas
     {
         _audioSource = GetComponent<AudioSource>();
 
@@ -23,7 +31,7 @@ public class PopupController : MonoBehaviour
         }
     }
 
-    public void Setup(PopupData data)
+    public void Setup(PopupData data) // Configure the pop-up based on the provided data
     {
         if (titleText != null) titleText.text = data.title;
         if (bodyText != null) bodyText.text = data.message;
@@ -43,10 +51,9 @@ public class PopupController : MonoBehaviour
             rt.anchoredPosition = data.position;
         }
 
-        // --- AQUI APLICAMOS LA NUEVA CLASE DE SONIDO ---
         if (data.sound != null && data.sound.IsValid() && _audioSource != null)
         {
-            data.sound.PlayOn(_audioSource, true); // true = PlayOneShot
+            data.sound.PlayOn(_audioSource, true);
         }
 
         if (data.duration > 0)
@@ -55,13 +62,13 @@ public class PopupController : MonoBehaviour
         }
     }
 
-    IEnumerator AutoCloseRoutine(float time)
+    IEnumerator AutoCloseRoutine(float time) // Coroutine to automatically close the pop-up after a specified duration
     {
         yield return new WaitForSeconds(time);
         Destroy(gameObject);
     }
 
-    public void ClosePopup()
+    public void ClosePopup() // Method to manually close the pop-up, can be called from UI buttons or other events
     {
         Destroy(gameObject);
     }

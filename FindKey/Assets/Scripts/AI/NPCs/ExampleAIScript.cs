@@ -1,8 +1,17 @@
+/// <summary>
+/// Class: ExampleAIScript
+/// Description: This script is an example implementation of a BaseAIScript for an NPC in the FindKey game. It initializes the NPC with specific attributes such as name,
+///              password, personality prompt, first message, and system instructions. The NPC is designed to be a helpful assistant for the player, guiding them through the process of
+///              starting the game and navigating it. The script also includes a placeholder method for opening a door, which can be implemented with specific functionality as needed.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
+/// </summary>
+
 using UnityEngine;
 
 public class ExampleAIScript : BaseAIScript
 {
-    public override void InitNPC()
+    public override void InitNPC() // This method initializes the NPC with specific attributes and instructions.
     {
         if (string.IsNullOrEmpty(npcName))
             npcName = "Her";

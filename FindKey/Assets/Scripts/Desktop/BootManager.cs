@@ -1,3 +1,12 @@
+/// <summary>
+/// Class: BootManager
+/// Description: This script manages the boot sequence of the FindKey game. It handles the display of a loading screen with an animated indicator and plays a boot sound effect.
+///              The duration of the boot sequence is randomized between a minimum and maximum value to create variability in the loading experience. Once the boot sequence is complete,
+///              it transitions to the "Login" scene. The script also ensures that the loading indicator moves smoothly across the screen during the boot process.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
+/// </summary>
+
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -45,7 +54,7 @@ public class BootManager : MonoBehaviour
         }
     }
 
-    private IEnumerator BootSequence(float duration)
+    private IEnumerator BootSequence(float duration) // This coroutine manages the boot sequence, waiting for the specified duration before transitioning to the next scene.
     {
         yield return new WaitForSeconds(duration);
         SceneManager.LoadScene("Login");

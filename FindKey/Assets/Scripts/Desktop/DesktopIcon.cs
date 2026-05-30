@@ -1,15 +1,22 @@
+/// <summary>
+/// Class: DesktopIcon
+/// Description: Represents a draggable desktop icon; handles selection, dragging, double-click launching and grid snapping.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
+/// </summary>
+
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-
 [RequireComponent(typeof(RectTransform))]
+
 public class DesktopIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
     public Image iconImage;
     public TextMeshProUGUI labelText;
-    public Image backgroundImage; // fondo del icono (para colorear al seleccionar)
+    public Image backgroundImage; // icon background (used to color on selection)
     private RectTransform rt;
     private CanvasGroup cg;
     private Canvas canvas;
@@ -20,11 +27,11 @@ public class DesktopIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     private const float doubleClickThreshold = 0.4f;
 
 
-    public Color normalBg = new Color(0, 0, 0, 0); // transparente
-    public Color selectedBg = new Color(0.0f, 0.48f, 1f, 0.9f); // azul similar a XP
+    public Color normalBg = new Color(0, 0, 0, 0); // transparent
+    public Color selectedBg = new Color(0.0f, 0.48f, 1f, 0.9f); // blue similar to XP
 
 
-    public void Setup(string label, Sprite sprite, DesktopManager mgr)
+    public void Setup(string label, Sprite sprite, DesktopManager mgr) // called by DesktopManager when spawning the icon
     {
         labelText.text = label;
         if (sprite != null) iconImage.sprite = sprite;
@@ -46,20 +53,20 @@ public class DesktopIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     }
 
 
-    public void SetSelected(bool sel)
+    public void SetSelected(bool sel) // called by DesktopManager when selecting/deselecting the icon
     {
         if (backgroundImage) backgroundImage.color = sel ? selectedBg : normalBg;
     }
 
 
-    public void OnBeginDrag(PointerEventData eventData)
+    public void OnBeginDrag(PointerEventData eventData) // called by the EventSystem when starting to drag the icon
     {
         originalPos = rt.anchoredPosition;
         if (cg) { cg.blocksRaycasts = false; cg.alpha = 0.9f; }
     }
 
 
-    public void OnDrag(PointerEventData eventData)
+    public void OnDrag(PointerEventData eventData) // called by the EventSystem while dragging the icon
     {
         Vector2 move;
         RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)rt.parent, eventData.position, eventData.pressEventCamera, out move);
@@ -67,7 +74,7 @@ public class DesktopIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     }
 
 
-    public void OnEndDrag(PointerEventData eventData)
+    public void OnEndDrag(PointerEventData eventData) // called by the EventSystem when releasing the icon after dragging
     {
         if (cg) { cg.blocksRaycasts = true; cg.alpha = 1f; }
 
@@ -75,44 +82,45 @@ public class DesktopIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         Vector2 targetPos;
 
-        if (manager.IsGridOccupied(grid, this))
+        if (manager.IsGridOccupied(grid, this)) // If the grid is occupied, snap back to original position
         {
             targetPos = originalPos;
         }
+
         else
         {
-            targetPos = manager.GridToPosition(grid);
+            targetPos = manager.GridToPosition(grid); // Snap to the grid position
         }
 
         rt.anchoredPosition = ClampToCanvas(targetPos);
     }
 
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnPointerClick(PointerEventData eventData) // called by the EventSystem when clicking on the icon
     {
-        // Single click  selección visual
+        // Single click - visual selection
         manager.SelectIcon(this);
 
-        // Detectar doble clic
+        // Detect double click
         if (Time.time - clickTime < doubleClickThreshold)
         {
-            // Doble clic  lanzar app individual
+            // Double click - launch individual app
             if (AppLauncher.Instance != null)
             {
-                // Buscar si este icono tiene un prefab de ventana asignado desde DesktopManager
+                // Find if this icon has a window prefab assigned from DesktopManager
                 DesktopManager dm = manager;
 
-                // Buscamos en la lista de iconosToSpawn cuál coincide con este label
+                // Search in iconsToSpawn list for one matching this label
                 foreach (var data in dm.iconsToSpawn)
                 {
                     if (data.label == labelText.text && data.windowApp != null)
                     {
-                        AppLauncher.Instance.appWindowPrefab = data.windowApp; //asigna la app individual
+                        AppLauncher.Instance.appWindowPrefab = data.windowApp; // assigns the individual app
                         break;
                     }
                 }
 
-                // Lanza la app normalmente
+                // Launch the app normally
                 AppLauncher.Instance.LaunchApp(labelText.text, rt.anchoredPosition);
             }
         }
@@ -120,16 +128,16 @@ public class DesktopIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         clickTime = Time.time;
     }
 
-    private Vector2 ClampToCanvas(Vector2 pos)
+    private Vector2 ClampToCanvas(Vector2 pos) // Ensures the icon stays within the bounds of the canvas when dragged
     {
         RectTransform canvasRT = canvas.GetComponent<RectTransform>();
         RectTransform iconRT = rt;
 
-        // Tamaños
+        // Sizes
         Vector2 canvasSize = canvasRT.rect.size;
         Vector2 iconSize = iconRT.rect.size;
 
-        // Límites (centrados en anchor del canvas)
+        // Limits (centered on the canvas anchor)
         float minX = -canvasSize.x * 0.5f + iconSize.x * 0.5f;
         float maxX = canvasSize.x * 0.5f - iconSize.x * 0.5f;
 

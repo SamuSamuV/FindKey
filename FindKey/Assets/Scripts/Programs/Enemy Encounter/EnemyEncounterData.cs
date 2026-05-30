@@ -1,3 +1,12 @@
+/// <summary>
+/// Class: EnemyEncounterData
+/// Description: This script serves as a data container for the enemy encounter in the FindKey game. It holds references to various data objects and configurations related to the
+///              enemy encounter, such as MoveAppData, StoryLog, NPC profiles for different stages of the cat encounter, and a list of adjectives for the "Cinturón de Seguridad" phase.
+///              The script is designed to be attached to a GameObject in the Unity scene, allowing other scripts to access and utilize this data during the enemy encounter sequence.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
+/// </summary>
+
 using System;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,13 +16,13 @@ public class EnemyEncounterData : MonoBehaviour
     public MoveAppData moveAppData;
     public StoryLog myAppStoryLog;
 
-    [Header("Configuración de Fases del Gato")]
+    [Header("Configuración de Fases del Gato")] // Cat stages
     public NPCProfile catStage1Profile;
     public NPCProfile catStage2Profile;
     public NPCProfile catStage3Profile;
     public NPCProfile catStage4Profile;
 
-    [Header("Cinturón de Seguridad (Fase 2)")]
+    [Header("Cinturón de Seguridad (Fase 2)")] // All the adjectives for the "Cinturón de Seguridad" phase, which is the second stage of the cat encounter. These adjetives was wrote by the designer.
     [SerializeField] public string[] adjetivosDeSeguridadFase2 = new string[] {
         "cabron", "cabrona", "gilipollas", "capullo", "capulla", "hijo de puta", "hija de puta",
 "mamon", "mamona", "subnormal", "retrasado", "retrasada", "pringado", "pringada",
@@ -432,10 +441,10 @@ public class EnemyEncounterData : MonoBehaviour
     public float stage4AnimationSpeed = 0.03f;
 
     [Header("Datos Guardados de la Historia")]
-    public string respuestaIdentidad = ""; // Aquí guardaremos la respuesta a "¿Sabes quién soy?"
+    public string respuestaIdentidad = ""; // Here we will store the player's answer about the cat's identity, which will influence the final outcome.
 
     [Header("Fase 4 (Final)")]
-    [Tooltip("Lista de lugares o passwords correctos para terminar la demo.")]
+    [Tooltip("Lista de lugares o passwords correctos para terminar la demo.")] // All the passwords for the stage 4. These adjetives was wrote by the designer.
     public string[] passwordsUbicacionFase4 = new string[] { "estamos en udit", "estoy en udit", "estoi en udit", "estoy en UDIT", "estoy en la udit", "estamos en la udit", "somos en udit", "somos en la udit",
 "esto es udit", "esto es UDIT", "esto es la udit", "esto es universidad", "esto es la universidad", "esto es la uni", "es udit", "es UDIT", "es la udit", "es la universidad",
 "estoy en la match in games", "estamos en la match in games", "estoi en la match in games", "estamos en match in games", "estoy en match in games", "en la match in games", "en match in games", "match in games", "MATCH IN GAMES", "match ing games", "matchin games", "matching games", "matchin games",
@@ -449,15 +458,16 @@ public class EnemyEncounterData : MonoBehaviour
     [Tooltip("El GameEvent que se lanzará al adivinar la palabra")]
     public GameEvent eventoFinalDemo;
 
-    public enum NPCType { None, CatStage1, CatStage2, CatStage3, CatStage4 }
+    public enum NPCType { None, CatStage1, CatStage2, CatStage3, CatStage4 } // Enum to select the NPC type and its corresponding AI behavior.
 
     [SerializeField]
-    private NPCType selectedType = NPCType.None;
+    private NPCType selectedType = NPCType.None; // This variable will determine which AI script is applied to the NPC. It can be set in the Inspector or changed at runtime.
 
-    public NPCType CurrentType
+    public NPCType CurrentType // Property to get/set the current NPC type. When set, it will apply the corresponding AI script if it's different from the current one or if no AI is currently applied.
     {
-        get { return selectedType; }
-        set
+        get { return selectedType; } // Getter to return the currently selected NPC type.
+
+        set // Setter to change the NPC type. It checks if the new value is different from the current one or if there is no AI applied. If so, it updates the selectedType and applies the corresponding AI script.
         {
             if (selectedType != value || currentAI == null)
             {
@@ -482,7 +492,7 @@ public class EnemyEncounterData : MonoBehaviour
         }
     }
 
-    private void InitCheck()
+    private void InitCheck() // This method checks if the MoveAppData reference is assigned and if the player is in front of the cat. If so, it sets the NPC type to CatStage1. It also checks if there is no AI applied and a type is selected, in which case it applies the corresponding AI script.
     {
         if (moveAppData == null)
         {
@@ -494,13 +504,14 @@ public class EnemyEncounterData : MonoBehaviour
         {
             CurrentType = NPCType.CatStage1;
         }
+
         else if (currentAI == null && selectedType != NPCType.None)
         {
             ApplyAI();
         }
     }
 
-    private void ApplyAI()
+    private void ApplyAI() // This method applies the corresponding AI script to the NPC based on the selectedType. It first destroys any existing AI script, then adds the new one and sets up its references and properties according to the NPCProfile and other settings defined in this class.
     {
         if (currentAI != null) Destroy(currentAI);
 
@@ -525,7 +536,6 @@ public class EnemyEncounterData : MonoBehaviour
                 SetupAIReferences(c3, catStage3Profile);
                 c3.isProactiveTriggered = true;
 
-                // Inyectamos audios y sprites
                 c3.zumbidoClip = zumbidoClip;
                 c3.transicionClip = transicionClip;
                 c3.fondoCorruptoClip = fondoCorruptoClip;
@@ -539,7 +549,6 @@ public class EnemyEncounterData : MonoBehaviour
                 c3.transformDuration = transformDuration;
                 c3.corruptedAnimationSpeed = corruptedAnimationSpeed;
 
-                // --- NUEVO: Lanzamos los efectos de forma manual y segura ---
                 c3.IniciarEfectos();
 
                 currentAI = c3;
@@ -553,7 +562,6 @@ public class EnemyEncounterData : MonoBehaviour
                 c4.passwordsUbicacion = passwordsUbicacionFase4;
                 c4.respuestaIdentidadJugador = respuestaIdentidad;
 
-                // Le pasamos tu GameEvent a la IA
                 c4.eventoFinalDemo = eventoFinalDemo;
 
                 currentAI = c4;
@@ -561,11 +569,10 @@ public class EnemyEncounterData : MonoBehaviour
         }
     }
 
-    private void SetupAIReferences(BaseAIScript newAI, NPCProfile profile)
+    private void SetupAIReferences(BaseAIScript newAI, NPCProfile profile) // This method sets up the references and properties of the newly added AI script based on the provided NPCProfile and other settings. It loads the profile into the AI, assigns the visual controller, and tries to find the necessary UI components from the DesktopManager's open windows. It also includes fallbacks to find the OllamaClient and StoryLog if they were not assigned from the windows.
     {
         if (profile != null) newAI.LoadProfile(profile);
 
-        // Al estar en la ventana Enemy Encounter, encuentra al controlador visual al momento
         newAI.visualController = GetComponentInChildren<NPCVisualController>(true);
 
         if (selectedType == NPCType.CatStage1 && newAI.visualController != null)
@@ -573,19 +580,16 @@ public class EnemyEncounterData : MonoBehaviour
             newAI.visualController.RestoreDefaultSprites();
         }
 
-        // Buscamos en el escritorio la ventana "Move" o "FindKey" para robarle el chat
         DesktopManager dm = FindObjectOfType<DesktopManager>();
         if (dm != null)
         {
             foreach (var data in dm.iconsToSpawn)
             {
-                // Buscamos la otra ventana (el chat de texto)
                 if ((data.label.Contains("FindKey") || data.label.Contains("Move")) && data.isOpen && data.windowInstance != null)
                 {
                     AI_References refs = data.windowInstance.GetComponentInChildren<AI_References>(true);
                     if (refs != null)
                     {
-                        // Le inyectamos los elementos de la ventana de texto a nuestra IA que corre en el radar
                         newAI.inputField = refs.inputField;
                         newAI.chatOutput = refs.chatOutput;
                         newAI.ollamaClient = refs.ollamaClient;
@@ -597,12 +601,12 @@ public class EnemyEncounterData : MonoBehaviour
             }
         }
 
-        // Fallbacks por si acaso
+        // Fallbacks just in case
         if (newAI.ollamaClient == null) newAI.ollamaClient = FindObjectOfType<OllamaClient>(true);
         if (newAI.storyLog == null) newAI.storyLog = FindObjectOfType<StoryLog>(true);
     }
 
-    public void ResetNPC()
+    public void ResetNPC() // This method resets the NPC to its initial state. It looks for the "Buscador Enemigos" or "Enemy Encounter" window in the DesktopManager and activates the nonEnemyFindedPanel if it finds it. Then it destroys any existing AI script, sets the currentAI reference to null, and resets the selectedType to None.
     {
         DesktopManager dm = FindObjectOfType<DesktopManager>();
     
@@ -625,6 +629,12 @@ public class EnemyEncounterData : MonoBehaviour
     }
 }
 
+/// <summary>
+/// Class: NPCProfile
+/// Description: This class is a serializable data structure that holds the profile information for an NPC (Non-Player Character). It includes fields for the NPC's name, an optional
+///              password (if the NPC is not peaceful), a personality prompt to guide the AI's behavior, a first message that the NPC will say when interacted with, and system instructions that
+///              can be used to provide additional context or rules for the AI. This profile can be loaded into different AI scripts to create varied NPC behaviors based on the same underlying data.
+/// </summary>
 [Serializable]
 public class NPCProfile
 {

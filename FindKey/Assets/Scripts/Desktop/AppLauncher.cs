@@ -1,14 +1,23 @@
+/// <summary>
+/// Class: AppLauncher
+/// Description: This script is responsible for launching applications in the FindKey game. It manages the instantiation of application windows based on a given app name and launch
+///              position. The script checks for existing instances of the application and handles their state (open, minimized) accordingly. It also manages the cascading of windows to prevent
+///              overlap and registers opened applications with the TaskbarManager for easy access. The AppLauncher ensures that each application window is properly initialized and displayed on the
+///              desktop when launched.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
+/// </summary>
+
 using UnityEngine;
 
 public class AppLauncher : MonoBehaviour
 {
-    public static AppLauncher Instance { get; private set; }
-
+    public static AppLauncher Instance { get; private set; } // Singleton to global access
     [Tooltip("Prefab por defecto por si falla la búsqueda. Ya no es estrictamente necesario.")]
     public GameObject appWindowPrefab;
     public Transform windowsParent;
 
-    public Vector2 cascadeOffset = new Vector2(30f, -30f);
+    public Vector2 cascadeOffset = new Vector2(30f, -30f); // Displacement for cascading windows
     public int maxCascades = 10;
     private int windowCount = 0;
 
@@ -18,7 +27,7 @@ public class AppLauncher : MonoBehaviour
         else Instance = this;
     }
 
-    public void LaunchApp(string appName, Vector2 launchPosition)
+    public void LaunchApp(string appName, Vector2 launchPosition) // Main function to launch an app by name and position
     {
         Sprite appIconSprite = null;
         GameObject prefabToSpawn = appWindowPrefab;
@@ -26,7 +35,7 @@ public class AppLauncher : MonoBehaviour
         DesktopManager dm = FindObjectOfType<DesktopManager>();
         if (dm != null)
         {
-            foreach (var data in dm.iconsToSpawn)
+            foreach (var data in dm.iconsToSpawn) // Search for the app in the desktop manager's icon data
             {
                 if (data.label == appName)
                 {
@@ -46,23 +55,25 @@ public class AppLauncher : MonoBehaviour
                             data.isOpen = true;
                             if (existingWindow != null)
                             {
-                                existingWindow.Reopen();
-                                TaskbarManager.GetOrFindInstance()?.RegisterWindow(existingWindow, appName, appIconSprite);
+                                existingWindow.Reopen(); // Reopen the existing window if it was closed but kept alive
+                                TaskbarManager.GetOrFindInstance()?.RegisterWindow(existingWindow, appName, appIconSprite); // Re-register the window with the taskbar in case it was closed
                             }
+
                             else
                             {
-                                data.windowInstance.SetActive(true);
+                                data.windowInstance.SetActive(true); // If for some reason the instance reference exists but the GameObject is inactive, activate it
                             }
                         }
+
                         else if (data.isMinimized)
                         {
-                            if (existingWindow != null) existingWindow.Restore();
-                            else data.windowInstance.SetActive(true);
+                            if (existingWindow != null) existingWindow.Restore(); // Restore the window if it was minimized
+                            else data.windowInstance.SetActive(true); // If for some reason the instance reference exists but the GameObject is inactive, activate it
 
                             data.isMinimized = false;
                         }
 
-                        data.windowInstance.transform.SetAsLastSibling();
+                        data.windowInstance.transform.SetAsLastSibling(); // Bring the existing window to the front
                         return;
                     }
                     data.isOpen = true;
@@ -77,23 +88,23 @@ public class AppLauncher : MonoBehaviour
             return;
         }
 
-        GameObject appGO = Instantiate(prefabToSpawn, windowsParent);
+        GameObject appGO = Instantiate(prefabToSpawn, windowsParent); // Instantiate the app window as a child of the windows parent
         AppWindow appWindow = appGO.GetComponent<AppWindow>();
 
-        appGO.transform.SetAsLastSibling();
+        appGO.transform.SetAsLastSibling(); // Ensure the new window is on top of others
         RectTransform rt = appGO.GetComponent<RectTransform>();
-        rt.anchoredPosition = new Vector2(cascadeOffset.x * windowCount, cascadeOffset.y * windowCount);
+        rt.anchoredPosition = new Vector2(cascadeOffset.x * windowCount, cascadeOffset.y * windowCount); // Position the window with an offset based on the current window count to create a cascading effect
 
         windowCount++;
         if (windowCount >= maxCascades) windowCount = 0;
 
-        TaskbarManager.GetOrFindInstance()?.RegisterWindow(appWindow, appName, appIconSprite);
+        TaskbarManager.GetOrFindInstance()?.RegisterWindow(appWindow, appName, appIconSprite); // Register the new window with the taskbar manager for easy access
 
         appWindow.appName = appName;
 
         if (dm != null)
         {
-            foreach (var data in dm.iconsToSpawn)
+            foreach (var data in dm.iconsToSpawn) // Update the desktop manager's icon data to reference the new window instance
             {
                 if (data.label == appName)
                 {
@@ -103,6 +114,6 @@ public class AppLauncher : MonoBehaviour
             }
         }
 
-        EventManager.NotifyAppOpened(appName);
+        EventManager.NotifyAppOpened(appName); // Notify the event manager that an app has been opened, allowing other systems to react accordingly (e.g., triggering events, updating UI)
     }
 }

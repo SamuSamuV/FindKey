@@ -24,20 +24,19 @@ public class PersonalizeManager : MonoBehaviour
 
         GameObject backgroundObj = GameObject.Find("DesktopArea");
 
-        // Asignamos el componente Image del área de escritorio al script de fondos de pantalla para que pueda cambiarlo dinámicamente
-
+        // Link the desktop background to the WallpapersScript
         if (backgroundObj != null)
         {
             wallpapersScript.desktopBackground = backgroundObj.GetComponent<Image>();
         }
 
+        // Spawn wallpaper buttons in the inventory grid
         SpawnWallpaperButtons();
     }
 
-    // Función para generar los botones de los fondos de pantalla
     public void SpawnWallpaperButtons()
     {
-        // Primero, limpiamos cualquier botón existente en la cuadrícula de inventario
+        // Clear existing buttons
         foreach (Transform child in inventoryGrid)
         {
             Destroy(child.gameObject);
@@ -45,20 +44,21 @@ public class PersonalizeManager : MonoBehaviour
 
         if (wallpapersScript == null || wallpapersScript.availableWallpapers == null) return;
 
-        // Luego, iteramos sobre la lista de fondos de pantalla disponibles y creamos un botón para cada uno
-
+        // Create a button for each available wallpaper
         foreach (Sprite wallpaper in wallpapersScript.availableWallpapers)
         {
             GameObject newBtn = Instantiate(wallpaperButtonPrefab, inventoryGrid);
 
             Image btnImage = newBtn.transform.GetChild(0).GetComponent<Image>();
 
+            // Set the button image to the wallpaper thumbnail
             if (btnImage != null)
             {
                 btnImage.sprite = wallpaper;
                 btnImage.preserveAspect = true;
             }
 
+            // Add click listener to change the background when the button is clicked
             Button btn = newBtn.GetComponent<Button>();
             if (btn != null)
             {

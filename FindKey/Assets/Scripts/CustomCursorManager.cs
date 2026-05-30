@@ -1,3 +1,11 @@
+/// <summary>
+/// Class: CustomCursorManager
+/// Description: This class manages the custom cursor behavior in the game, including changing the cursor sprite based on interactions and handling a loading animation.
+///              It uses Unity's new Input System to track mouse position and clicks, and it checks for UI interactions to update the cursor accordingly.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
+/// </summary>
+
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -6,7 +14,7 @@ using UnityEngine.InputSystem;
 
 public class CustomCursorManager : MonoBehaviour
 {
-    public static CustomCursorManager Instance { get; private set; }
+    public static CustomCursorManager Instance { get; private set; } // Singleton to globally access the cursor manager
 
     [Header("Referencias UI")]
     public Image cursorImage;
@@ -17,69 +25,62 @@ public class CustomCursorManager : MonoBehaviour
     public Sprite clickCursor;
 
     [Header("Animación de Carga (Loading)")]
-    public Sprite[] loadingCursorFrames; // Lista de imágenes para la animación
-    public float loadingAnimationSpeed = 0.1f; // Velocidad a la que cambian los frames
+    public Sprite[] loadingCursorFrames;
+    public float loadingAnimationSpeed = 0.1f;
 
     [Header("Ajustes")]
     public Vector2 hotspotOffset = Vector2.zero;
 
     [HideInInspector] public bool isLoading = false;
 
-    // Variables internas para controlar la animación
     private int currentLoadingFrame = 0;
     private float loadingAnimationTimer = 0f;
 
-    private void Awake()
+    private void Awake() // Ensure singleton pattern
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
     }
 
-    private void Start()
+    private void Start() // Hide the default system cursor
     {
         Cursor.visible = false;
     }
 
-    private void Update()
+    private void Update() // Main update loop to handle cursor behavior
     {
         if (Mouse.current == null) return;
 
-        MoveCursor();
+        MoveCursor(); // Update cursor position to follow the mouse
 
-        // LÓGICA DE ANIMACIÓN DE CARGA
         if (isLoading && loadingCursorFrames != null && loadingCursorFrames.Length > 0)
         {
-            // Sumamos el tiempo que ha pasado
             loadingAnimationTimer += Time.deltaTime;
 
-            // Si supera la velocidad asignada, pasamos al siguiente frame
             if (loadingAnimationTimer >= loadingAnimationSpeed)
             {
-                loadingAnimationTimer = 0f; // Reseteamos temporizador
-                currentLoadingFrame++;      // Avanzamos de imagen
+                loadingAnimationTimer = 0f;
+                currentLoadingFrame++;
 
-                // Si llegamos al final de la lista, volvemos a empezar (Bucle)
                 if (currentLoadingFrame >= loadingCursorFrames.Length)
                 {
                     currentLoadingFrame = 0;
                 }
             }
 
-            // Aplicamos la imagen actual de la animación
             cursorImage.sprite = loadingCursorFrames[currentLoadingFrame];
         }
-        else if (IsHoveringInteractable())
+
+        else if (IsHoveringInteractable()) // Change cursor to click sprite when hovering over interactable UI elements
         {
-            // Si no está cargando pero pasamos por encima de un botón
             cursorImage.sprite = clickCursor;
         }
+
         else
         {
-            // Cursor normal por defecto
             cursorImage.sprite = normalCursor;
         }
 
-        // Sonido de clic general
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             if (SoundManager.Instance != null)
@@ -89,13 +90,13 @@ public class CustomCursorManager : MonoBehaviour
         }
     }
 
-    private void MoveCursor()
+    private void MoveCursor() // Update the cursor image position to follow the mouse, applying the hotspot offset
     {
         Vector2 mousePos = Mouse.current.position.ReadValue();
         cursorImage.transform.position = mousePos + hotspotOffset;
     }
 
-    private bool IsHoveringInteractable()
+    private bool IsHoveringInteractable() // Check if the mouse is currently hovering over any interactable UI elements (buttons, toggles, desktop icons, taskbar buttons, input fields)
     {
         Vector2 mousePos = Mouse.current.position.ReadValue();
         PointerEventData pointerData = new PointerEventData(EventSystem.current) { position = mousePos };
@@ -103,7 +104,7 @@ public class CustomCursorManager : MonoBehaviour
 
         if (EventSystem.current != null) EventSystem.current.RaycastAll(pointerData, results);
 
-        foreach (RaycastResult result in results)
+        foreach (RaycastResult result in results) // Check each raycast result for interactable components
         {
             GameObject obj = result.gameObject;
             if (obj.GetComponent<Button>() != null) return true;
@@ -112,6 +113,7 @@ public class CustomCursorManager : MonoBehaviour
             if (obj.GetComponent<TaskbarButton>() != null || obj.GetComponentInParent<TaskbarButton>() != null) return true;
             if (obj.GetComponent<TMPro.TMP_InputField>() != null) return true;
         }
+
         return false;
     }
 }

@@ -1,3 +1,12 @@
+/// <summary>
+/// Class: TerminalInputCursor
+/// Description: This script creates a custom blinking cursor for a TMP_InputField, allowing for a more terminal-like experience.
+///              It hides the default caret and selection visuals of the input field and uses a TextMeshProUGUI to display the text along with a blinking cursor character.
+///              The cursor blinks at a specified speed, and the script also handles placeholder text when the input is empty.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
+/// </summary>
+
 using UnityEngine;
 using TMPro;
 using System.Collections;
@@ -21,7 +30,7 @@ public class TerminalInputCursor : MonoBehaviour
     private int lastCaretPos = -1;
     private Coroutine blinkCoroutine;
 
-    void Start()
+    void Start() // Initialization to set up the input field and start the cursor blinking
     {
         if (inputField == null) inputField = GetComponent<TMP_InputField>();
 
@@ -36,7 +45,7 @@ public class TerminalInputCursor : MonoBehaviour
 
         if (inputField != null)
         {
-            // Hacemos invisible todo el input nativo
+            // We made the input field invisible by setting the text color, caret color, and selection color to fully transparent.
             inputField.textComponent.color = new Color(1, 1, 1, 0);
             inputField.customCaretColor = true;
             inputField.caretColor = new Color(1, 1, 1, 0);
@@ -56,7 +65,7 @@ public class TerminalInputCursor : MonoBehaviour
         blinkCoroutine = StartCoroutine(BlinkCursor());
     }
 
-    void Update()
+    void Update() // Update is called once per frame to handle the display of the text and cursor
     {
         if (inputField == null || displayText == null) return;
 
@@ -90,7 +99,7 @@ public class TerminalInputCursor : MonoBehaviour
         displayText.color = Color.white;
     }
 
-    private IEnumerator BlinkCursor()
+    private IEnumerator BlinkCursor() // Coroutine to handle the blinking of the cursor
     {
         while (true)
         {

@@ -1,8 +1,18 @@
+/// <summary>
+/// Class: DogAIScript
+/// Description: This script defines the behavior of a dog NPC in the FindKey game. It inherits from BaseAIScript and overrides the InitNPC method to set specific values for the
+///              dog's name, password, personality prompt, first message, and system instruction. The OpenDoor method is also overridden to provide a unique response when the dog opens a door,
+///              describing the dog's excited behavior as it runs in circles and opens the door. This script allows the dog NPC to interact with the player in a way that fits its character and adds
+///              flavor to the game.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
+/// </summary>
+
 using UnityEngine;
 
 public class DogAIScript : BaseAIScript
 {
-    public override void InitNPC()
+    public override void InitNPC() // Override the InitNPC method to set specific values for the dog NPC
     {
         if (string.IsNullOrEmpty(npcName))
             npcName = "Dog";

@@ -1,3 +1,9 @@
+/// <summary>
+/// Class: SystemLoadManager
+/// Description: Manages the simulation of system load based on the number of open windows in the Taskbar. As the load increases, it has a chance to trigger "struggle" events,
+///              which play specific sounds and change the cursor to indicate the system is under stress. The manager also includes cooldown mechanics to prevent constant triggering ofstruggle events.
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,7 +32,7 @@ public class SystemLoadManager : MonoBehaviour
 
     private bool isOnCooldown = false;
 
-    private void Start()
+    private void Start() // Initialize audio sources and start the load checking routine
     {
         if (ambientSource == null) ambientSource = GetComponent<AudioSource>();
         if (sfxSource == null) sfxSource = gameObject.AddComponent<AudioSource>();
@@ -39,7 +45,7 @@ public class SystemLoadManager : MonoBehaviour
         StartCoroutine(LoadCheckRoutine());
     }
 
-    private IEnumerator LoadCheckRoutine()
+    private IEnumerator LoadCheckRoutine() // Periodically checks the number of open windows and determines if a struggle event should be triggered based on the load percentage
     {
         while (true)
         {
@@ -63,7 +69,7 @@ public class SystemLoadManager : MonoBehaviour
         }
     }
 
-    private void TriggerSystemStruggle()
+    private void TriggerSystemStruggle() // Plays a random struggle sound and initiates the cursor loading effect and cooldown
     {
         if (heavyLoadSounds != null && heavyLoadSounds.Count > 0)
         {
@@ -82,7 +88,7 @@ public class SystemLoadManager : MonoBehaviour
         }
     }
 
-    private IEnumerator CursorLoadingRoutine(float duration)
+    private IEnumerator CursorLoadingRoutine(float duration) // Simulates a loading cursor effect for the duration of the struggle sound, indicating that the system is under stress
     {
         if (CustomCursorManager.Instance != null)
         {
@@ -92,7 +98,7 @@ public class SystemLoadManager : MonoBehaviour
         }
     }
 
-    private IEnumerator CooldownRoutine(float time)
+    private IEnumerator CooldownRoutine(float time) // Puts the system on cooldown for a specified duration to prevent immediate retriggering of struggle events, allowing the player to recover from the simulated system stress
     {
         isOnCooldown = true;
         yield return new WaitForSeconds(time);

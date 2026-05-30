@@ -1,3 +1,14 @@
+/// <summary>
+/// Class: CatAIScript
+/// Description: This script defines the behavior of the cat NPC in the FindKey game. It inherits from BaseAIScript and overrides necessary methods to set up the cat's personality,
+///              initial message, and system instructions. The cat has a specific password and responds to player interactions. When the player successfully interacts with the cat
+///              (e.g., "defeating" it), it triggers changes in the game state, such as marking the cat as dead, enabling certain UI elements in related windows, and forcing a transition to a
+///              new story node in the adventure. The script ensures that all interactions with the cat are handled according to its defined behavior and integrates with other game systems like the
+///              desktop manager and adventure manager.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
+/// </summary>
+
 using UnityEngine;
 
 public class CatAIScript : BaseAIScript
@@ -9,7 +20,7 @@ public class CatAIScript : BaseAIScript
         base.Start();
     }
 
-    public override void InitNPC()
+    public override void InitNPC() // This method is called to initialize the NPC's properties and behavior. It sets default values for the cat's name, password, personality prompt, first message, and system instructions if they are not already set.
     {
         if (string.IsNullOrEmpty(npcName))
             npcName = "Cat";
@@ -32,7 +43,7 @@ public class CatAIScript : BaseAIScript
         }
     }
 
-    protected override void OpenDoor()
+    protected override void OpenDoor() // This method is called when the player successfully interacts with the cat (e.g., "defeating" it). It updates the game state to reflect that the cat is dead, enables certain UI elements in related windows, and forces a transition to a new story node in the adventure.
     {
         moveAppData.catIsDead = true;
         Debug.Log("Gato derrotado/superado.");
@@ -41,7 +52,7 @@ public class CatAIScript : BaseAIScript
 
         if (dm != null && dm.iconsToSpawn != null)
         {
-            foreach (var data in dm.iconsToSpawn)
+            foreach (var data in dm.iconsToSpawn) // Loop through the icons on the desktop to find the ones related to the cat and enemy encounter, and update their UI accordingly.
             {
                 if (data.label == "FindKey.exe" && data.isOpen && data.windowInstance != null)
                 {
@@ -57,7 +68,7 @@ public class CatAIScript : BaseAIScript
                     moves.GoToNextStageAfterCat();
                 }
 
-                if (data.label == "Enemy Encounter" && data.isOpen && data.windowInstance != null)
+                if (data.label == "Enemy Encounter" && data.isOpen && data.windowInstance != null) // This block checks for the "Enemy Encounter" window and updates its UI to reflect that the cat has been defeated, such as hiding enemy visuals and showing a panel indicating no enemy is found.
                 {
                     AppWindow enemyWindow = data.windowInstance.GetComponent<AppWindow>();
                     if (enemyWindow != null) enemyWindow.SetCloseAndMinimizeInteractable(true);

@@ -11,12 +11,13 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public enum StoryAction
+
+public enum StoryAction // Enum to define the type of action associated with a StoryOption, which can be used to trigger specific behaviors in the Moves script when the player selects an option.
 {
     None, TriggerCat, PickAxe, LookPainting, Die
 }
 
-public enum AudioChannel
+public enum AudioChannel // Enum to define different audio channels for sound management, allowing for more granular control over audio playback in the game.
 {
     Master, Front, Back, Left, Right
 }
@@ -43,7 +44,7 @@ public class NodeSoundAction
 [System.Serializable]
 public class RandomNodeSoundAction
 {
-    public AudioChannel channel = AudioChannel.Master;
+    public AudioChannel channel = AudioChannel.Master; // Audio channel to play the sound on
     public SoundSettings soundSettings;
 
     [Header("Intervalo de Tiempo (Segundos)")]

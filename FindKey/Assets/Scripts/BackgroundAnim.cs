@@ -1,7 +1,16 @@
+/// <summary>
+/// Class: BackgroundAnim
+/// Description: This script manages the animation of a background image in the FindKey game. It allows for cycling through a series of sprites to create an animated effect.
+///              The script references an Image component to display the sprites and an array of sprites that represent the frames of the animation. The animation can be configured to
+///              loop or play once, and the time between frames can be adjusted. The script updates the displayed sprite based on a timer, creating a smooth animation effect for the background.
+/// Author: Samuel Campos Borrego
+/// Project: FindKey
+/// </summary>
+
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Image))] // Ahora pide un componente Image, no un SpriteRenderer
+[RequireComponent(typeof(Image))] // Now requires an Image component, not a SpriteRenderer
 
 public class BackgroundAnim : MonoBehaviour
 {
@@ -10,13 +19,13 @@ public class BackgroundAnim : MonoBehaviour
     [SerializeField] private float timePerFrame = 0.1f;
     [SerializeField] private bool loop = true;
 
-    private Image imageComponent; // Cambiamos el tipo a Image
+    private Image imageComponent; // Changed the type to Image
     private int currentFrameIndex = 0;
     private float timer = 0f;
 
     private void Awake()
     {
-        // Buscamos el componente Image en este objeto
+        // Find the Image component on this object
         imageComponent = GetComponent<Image>();
     }
 
@@ -41,7 +50,7 @@ public class BackgroundAnim : MonoBehaviour
         }
     }
 
-    private void AdvanceFrame()
+    private void AdvanceFrame() // This function advances to the next frame of the animation
     {
         currentFrameIndex++;
 
@@ -51,7 +60,7 @@ public class BackgroundAnim : MonoBehaviour
             else { currentFrameIndex = animationSprites.Length - 1; enabled = false; return; }
         }
 
-        // Asignamos el sprite al componente Image
+        // Assign the sprite to the Image component
         imageComponent.sprite = animationSprites[currentFrameIndex];
     }
 }
