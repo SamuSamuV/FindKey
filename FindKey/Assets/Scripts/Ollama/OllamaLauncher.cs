@@ -32,6 +32,10 @@ public class OllamaLauncher : MonoBehaviour
         DontDestroyOnLoad(gameObject); // Prevent this object from being destroyed when loading new scenes, so the server keeps running in the background
     }
 
+/// <summary>
+    /// Starts the Ollama server as a background process. 
+    /// Sets up the necessary environment variables (OLLAMA_MODELS, OLLAMA_NUM_GPU) to force GPU usage and redirects the models directory to StreamingAssets.
+    /// </summary>
     void StartOllamaServer() // Method to start the Ollama server
     {
         string streamingPath = Application.streamingAssetsPath; // Get the path to the StreamingAssets folder
@@ -107,6 +111,10 @@ public class OllamaLauncher : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Forcefully kills any orphaned or existing 'ollama.exe' processes in the system using console commands (taskkill).
+    /// Ensures a clean startup and prevents port conflicts.
+    /// </summary>
     public void KillOllamaByForce() // Method to forcefully kill any existing Ollama server processes, this is useful to ensure that there are no conflicts when starting a new server instance
     {
         try // Try to execute the taskkill command to kill any existing ollama.exe processes, this is a forceful way to ensure that no Ollama server instances are left running in the background
@@ -127,6 +135,11 @@ public class OllamaLauncher : MonoBehaviour
         ollamaProcess = null;
     }
 
+    /// <summary>
+    /// Preloads the specified language model into the GPU VRAM by sending a silent request to the API.
+    /// This drastically reduces the latency (response time) of the player's first interaction.
+    /// </summary>
+    /// <returns>IEnumerator for the asynchronous coroutine wait.</returns>
     IEnumerator PreloadModel() // Coroutine to preload the specified model into VRAM by sending a request to the Ollama API after the server has started, this helps reduce latency when generating responses for the first time
     {
         yield return new WaitForSeconds(2.0f);

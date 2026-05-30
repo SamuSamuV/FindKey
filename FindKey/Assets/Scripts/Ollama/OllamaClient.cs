@@ -61,6 +61,13 @@ public class OllamaClient : MonoBehaviour
         public bool done; // Indicates whether the response is complete (useful for streaming responses, but we set stream to false in this implementation)
     }
 
+/// <summary>
+    /// Sends a prompt to the local Ollama API asynchronously and processes the JSON response.
+    /// </summary>
+    /// <param name="prompt">The input text or instruction to be sent to the language model.</param>
+    /// <param name="onSuccess">Callback executed if the communication is successful, returning the generated response.</param>
+    /// <param name="onError">Optional callback executed if an HTTP or parsing error occurs, returning the error message.</param>
+    /// <returns>IEnumerator for the coroutine execution (UnityWebRequest).</returns>
     public IEnumerator SendPrompt(string prompt, Action<string> onSuccess, Action<string> onError = null) // Coroutine to send a prompt to the Ollama API and handle the response
     {
         if (string.IsNullOrEmpty(baseUrl)) { onError?.Invoke("Base URL vacía."); yield break; }

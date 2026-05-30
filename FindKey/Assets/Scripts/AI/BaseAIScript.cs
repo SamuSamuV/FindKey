@@ -152,6 +152,10 @@ public abstract class BaseAIScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Generates the AI's initial greeting when the player first interacts with the NPC.
+    /// Constructs the prompt by injecting the personality and system instructions.
+    /// </summary>
     protected void GenerateAIGreeting() // This method generates the initial greeting from the AI when the NPC is first interacted with. It constructs the prompt using the personality and system instructions, and sends it to the OllamaClient to get the AI's response. This allows the NPC to introduce itself and set the tone for the interaction right from the start.
     {
         if (inputField != null) inputField.gameObject.SetActive(false);
@@ -203,6 +207,13 @@ public abstract class BaseAIScript : MonoBehaviour
         if (inputField != null) inputField.onSubmit.RemoveListener(OnInputSubmit);
     }
 
+    /// <summary>
+    /// Dynamically injects new information into the NPC's permanent memory.
+    /// Uses a memory level system to avoid overwriting critical information with less important data.
+    /// </summary>
+    /// <param name="newMemory">The new information or context the AI needs to assimilate.</param>
+    /// <param name="memoryLevel">Priority or importance level of the memory.</param>
+    /// <param name="forceUpdate">Forces the update ignoring the current priority level.</param>
     public void InjectMemory(string newMemory, int memoryLevel, bool forceUpdate = false) // This method allows for dynamic injection of new memory into the NPC's permanent memory. The 'memoryLevel' parameter is used to determine the importance or priority of the new memory, ensuring that only more significant updates can overwrite existing memory unless 'forceUpdate' is set to true. This mechanism allows the NPC's behavior and responses to evolve over time based on new information or changes in the game state, creating a more dynamic and responsive AI experience.
     {
         if (string.IsNullOrEmpty(newMemory)) return;
@@ -256,6 +267,10 @@ public abstract class BaseAIScript : MonoBehaviour
 
     private void OnInputSubmit(string unused) => OnSendClicked(); // When the player submits input in the input field, we call the OnSendClicked method to process the input and send it to the AI. This allows for a seamless interaction where the player can type their message and have it processed immediately when they hit enter or submit the input field.
 
+    /// <summary>
+    /// Executed when the send button is clicked. Processes the player's input, updates the conversation history, 
+    /// and structures the final prompt verifying event overrides (keywords) before sending it to Ollama.
+    /// </summary>
     public void OnSendClicked() // This method is called when the player clicks the send button or submits their input. It processes the player's input, updates the conversation history, and sends a new prompt to the AI based on the player's message and the current context. It also handles the UI changes for thinking and resets the input field for the next message. This is a critical part of the interaction loop, allowing the player to communicate with the NPC and receive responses based on their input.
     {
         string text = inputField.text?.Trim();
@@ -351,6 +366,11 @@ public abstract class BaseAIScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Constructs the final base prompt to be sent to the language model.
+    /// Assembles the personality, injected memory, current visual context, and JSON format restrictions (Response rules).
+    /// </summary>
+    /// <returns>String containing the structured prompt using Prompt Engineering techniques.</returns>
     protected virtual string ConstruirPromptBase() // This method constructs the base prompt that will be sent to the AI for generating a response. It combines the personality prompt, system instructions, any permanent injected memory, the current situation context, and information about the player's inventory and allowed actions. This comprehensive prompt provides the AI with all the necessary information to generate a relevant and context-aware response based on the current state of the game and the player's interactions.
     {
         string finalPrompt = personalityPrompt + " " + systemInstruction;
@@ -402,6 +422,11 @@ public abstract class BaseAIScript : MonoBehaviour
         return finalPrompt;
     }
 
+    /// <summary>
+    /// Processes the raw response received from the Ollama API and parses it from JSON format.
+    /// Extracts the text message, the emotion to alter the visual interface, and the mechanical action to execute in the engine (Unity).
+    /// </summary>
+    /// <param name="raw">The raw text response (string) returned by the LLM.</param>
     protected virtual void OnAIResponse(string raw) // This method is called when we receive a response from the AI. It processes the raw response, updates the NPC's state and visuals based on the content of the response, and triggers any necessary game events based on the AI's requested actions. It also handles the UI changes for when the AI finishes responding, allowing the player to input their next message. This is a critical part of the interaction loop, as it determines how the NPC reacts to the AI's response and how it continues the conversation with the player.
     {
         isThinking = false;

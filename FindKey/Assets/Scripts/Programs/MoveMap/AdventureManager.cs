@@ -145,6 +145,10 @@ public class AdventureManager : MonoBehaviour
         activeAmbientSources.Clear(); // We clear the active ambient sources but not the persistentAmbientsData, allowing us to restore them when we come back to a node that has them or if the scene is reloaded
     }
 
+    /// <summary>
+    /// Updates all visual, auditory, and narrative elements of the interface based on the current node data (StoryNode).
+    /// Triggers on-enter events, pop-ups, and updates the AI memory.
+    /// </summary>
     void UpdateStoryVisuals() // This method is responsible for updating all the visuals and audio based on the current story node. It sets the story text, manages popups
                               // updates audio sources, and triggers any events or AI updates associated with the node. This method is called whenever we load a new node to ensure
                               // that all aspects of the game reflect the current state of the story.
@@ -200,6 +204,11 @@ public class AdventureManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Manages the ambient audio tracks for the current node.
+    /// Performs smooth transitions (fade-in/fade-out) and maintains sound persistence if the player returns to previous nodes.
+    /// </summary>
+    /// <param name="newAmbients">List of ambient sound configurations to play.</param>
     void UpdateAmbientAudio(List<AmbientSoundAction> newAmbients) // This method manages the ambient sounds for the current node. It checks the new list of ambient sounds
                                                                   // against the currently active ones, stopping any that are no longer needed and starting any new ones.
                                                                   // It also updates the settings of existing ambient sounds if they are still relevant but have changes in their settings.
@@ -440,6 +449,11 @@ public class AdventureManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Processes the text entered by the player in the input field.
+    /// Compares the input with the flexible vocabulary (synonyms) of the current node to determine if there is a match and execute the next narrative action.
+    /// </summary>
+    /// <param name="input">Text command entered by the player.</param>
     void ProcessInput(string input) // This method processes the player's input from the input field. It first checks if the story log is currently typing out text and if the input is empty; if so, it tries to skip the typing animation. If the input is not empty, it checks the current story node's options to see if any of them match the player's input (taking into account synonyms). If a matching option is found, it executes that option, which may involve changing the current node and updating visuals and audio accordingly. If no matching option is found, it shows an error message to the player. This method is central to how player choices are processed and how they affect the flow of the story.
     {
         if (storyLog.IsTyping && string.IsNullOrEmpty(input.Trim()))
