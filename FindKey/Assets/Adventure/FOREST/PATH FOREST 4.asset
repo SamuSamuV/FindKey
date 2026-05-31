@@ -16,17 +16,26 @@ MonoBehaviour:
     por el susurro seco de las hojas. Aqu\xED los \xE1rboles crecen m\xE1s juntos,
     inclin\xE1ndose unos sobre otros como si compartieran secretos. El aire ya no
     es fr\xEDo\u2026 es denso. Pesado. Tus ojos intentan entender qu\xE9 se encuentra
-    m\xE1s adelante del camino y distinguen una verja.\n\xBFDecides seguir o volver?"
+    m\xE1s adelante del camino y distinguen una verja.\n\xBFDecides SEGUIR o VOLVER?"
+  customTypingSpeed: 0
+  canNotBeSkipped: 0
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: 5670fd659d9d1f348927ae46953b13da, type: 2}
     actionType: 0
+    disableIfVisited: 0
+    alternateNodeIfBlocked: {fileID: 0}
   - validInputs: {fileID: 11400000, guid: 59921cc1611cd494fa4c5de13ee9b91d, type: 2}
     nextNode: {fileID: 11400000, guid: c8345c8e7c16c4c4587663b387328af7, type: 2}
     actionType: 0
+    disableIfVisited: 0
+    alternateNodeIfBlocked: {fileID: 0}
   popups: []
-  masterSound: {fileID: 0}
-  frontSound: {fileID: 0}
-  backSound: {fileID: 0}
-  leftSound: {fileID: 0}
-  rightSound: {fileID: 0}
+  nodeSounds: []
+  randomSounds: []
+  ambientSounds: []
+  onEnterEvent: {fileID: 0}
+  aiMemoryLevel: 0
+  aiMemoryUpdate: 
+  aiProactivePrompt: 
+  forceMemoryUpdate: 0

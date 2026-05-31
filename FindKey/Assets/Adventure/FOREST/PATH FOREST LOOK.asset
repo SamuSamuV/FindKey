@@ -15,12 +15,30 @@ MonoBehaviour:
   storyText: "Te paras a mirar tu entorno m\xE1s detalladamente y notas en tus pies
     descalzos el dolor de un camino creado por las criaturas que habitan el lugar.
     El camino creado con mucho m\xE1s cuidado se encuentra a la izquierda, apartado
-    del lago.\nDecides volver despu\xE9s de sentir una presencia observ\xE1ndote.\r"
+    del lago.\nDecides VOLVER despu\xE9s de sentir una presencia observ\xE1ndote.\r"
+  customTypingSpeed: 0
+  canNotBeSkipped: 0
   options:
   - validInputs: {fileID: 11400000, guid: 59921cc1611cd494fa4c5de13ee9b91d, type: 2}
     nextNode: {fileID: 11400000, guid: c025f4fbc0256e6409ad6ae851005ccd, type: 2}
     actionType: 0
-  popups: []
+    disableIfVisited: 0
+    alternateNodeIfBlocked: {fileID: 0}
+  popups:
+  - delayBeforeSpawn: 0
+    duration: 0
+    position: {x: 0, y: 0}
+    specificPrefab: {fileID: 0}
+    title: 
+    message: 
+    image: {fileID: 21300000, guid: 0f1aa6c469d8a4f48a5e792642073fc7, type: 3}
+    sound:
+      clip: {fileID: 0}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
   nodeSounds: []
   randomSounds:
   - channel: 0
@@ -35,5 +53,8 @@ MonoBehaviour:
     maxInterval: 0
     playChance: 1
   ambientSounds: []
+  onEnterEvent: {fileID: 0}
   aiMemoryLevel: 0
   aiMemoryUpdate: 
+  aiProactivePrompt: 
+  forceMemoryUpdate: 0

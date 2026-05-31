@@ -16,8 +16,8 @@ MonoBehaviour:
     ra\xEDces retorcidas que se hunden en el agua negra. El bosque parece escuchar
     contigo. A lo lejos, entre los \xE1rboles, distingues una vieja reja oxidada
     que bloquea un paso angosto del sendero: m\xE1s all\xE1 solo hay oscuridad. El
-    lago permanece a tu lado, inm\xF3vil. \xBFDecides volver al inicio del bosque,
-    vas a la izquierda o a la derecha?"
+    lago permanece a tu lado, inm\xF3vil. \n\xBFDecides VOLVER al inicio del bosque,
+    vas a la IZQUIERDA o a la DERECHA?"
   customTypingSpeed: 0
   canNotBeSkipped: 0
   options:

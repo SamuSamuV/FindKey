@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
-  m_Name: PATH FOREST GATE
+  m_Name: PATH FOREST GATE LOOK
   m_EditorClassIdentifier: 
   storyText: "Te detienes ante la reja. Es antigua, hierro carcomido por el \xF3xido,
     asegurada con un grueso alambre retorcido que la mantiene cerrada. No hay candado\u2026

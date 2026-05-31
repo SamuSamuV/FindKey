@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: 00_EasyPath
   m_EditorClassIdentifier: 
-  storyText: "Este es el camino f\xE1cil, quieres seguir o volver?"
+  storyText: "Al solo disponer de la demo de Findkey, solo dos rutas est\xE1n abiertas:
+    este es el camino f\xE1cil:\n\xBFQuieres seguir o volver?"
   customTypingSpeed: 0
   canNotBeSkipped: 0
   options:

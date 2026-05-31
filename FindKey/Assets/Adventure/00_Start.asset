@@ -15,10 +15,10 @@ MonoBehaviour:
   storyText: "Despiertas en un bosque en mitad de la noche.  [1s]<br>El aire es fr\xEDo,
     espeso, y huele a hojas h\xFAmedas y tierra removida, como si algo hubiera estado
     escarbando hace poco.  [1s]No recuerdas c\xF3mo llegaste aqu\xED. A lo lejos,
-    entre los \xE1rboles, oyes ALGO: no es viento\u2026 el viento no respira. A tu
-    izquierda el bosque se vuelve m\xE1s frondoso y oscuro; al frente se abre un
-    claro donde la negrura refleja un lago inm\xF3vil.\n\n\xBFVas hacia atr\xE1s
-    o sigues al frente hacia el lago?"
+    entre los \xE1rboles, oyes ALGO: no es viento\u2026 el viento no respira. Al
+    frente se abre un claro donde la negrura refleja un lago inm\xF3vil. Detr\xE1s
+    un campo te llama la atenci\xF3n.\n\n\xBFVas hacia atr\xE1s o sigues al frente
+    hacia el lago?"
   customTypingSpeed: 0
   canNotBeSkipped: 0
   options:
