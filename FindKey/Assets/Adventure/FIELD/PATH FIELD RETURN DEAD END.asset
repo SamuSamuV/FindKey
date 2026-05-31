@@ -13,13 +13,20 @@ MonoBehaviour:
   m_Name: PATH FIELD RETURN DEAD END
   m_EditorClassIdentifier: 
   storyText: "SIGUE\r"
+  customTypingSpeed: 0
+  canNotBeSkipped: 0
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: 86c1fd64ad59c4040bf75c466575fe71, type: 2}
     actionType: 0
+    disableIfVisited: 0
+    alternateNodeIfBlocked: {fileID: 0}
   popups: []
-  masterSound: {fileID: 0}
-  frontSound: {fileID: 0}
-  backSound: {fileID: 0}
-  leftSound: {fileID: 0}
-  rightSound: {fileID: 0}
+  nodeSounds: []
+  randomSounds: []
+  ambientSounds: []
+  onEnterEvent: {fileID: 0}
+  aiMemoryLevel: 0
+  aiMemoryUpdate: 
+  aiProactivePrompt: 
+  forceMemoryUpdate: 0
