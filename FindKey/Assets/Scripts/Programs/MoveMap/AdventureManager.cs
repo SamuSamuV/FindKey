@@ -22,6 +22,8 @@ public class AdventureManager : MonoBehaviour
 
     public Transform popupContainer;
     public GameObject defaultPopupPrefab;
+    public GameObject popupPrefabTipo1;
+    public GameObject popupPrefabTipo2;
 
     [Header("Audio GameObjects (Auto-detected)")]
     public GameObject audioMasterObj;
@@ -436,9 +438,16 @@ public class AdventureManager : MonoBehaviour
         }
     }
 
-    void SpawnSinglePopup(PopupData data) // This method is responsible for spawning a single popup based on the provided PopupData. It determines which prefab to use (either a specific one defined in the PopupData or a default one), instantiates it as a child of the popup container, and then sets it up with the provided data. This allows for flexibility in the types of popups that can be displayed, as well as a consistent way to initialize them with the necessary information.
+    void SpawnSinglePopup(PopupData data) // This method is responsible for spawning a single popup based on the provided PopupData. It determines which prefab to use based on the popup type specified in the data, and then instantiates the popup as a child of the popupContainer. After instantiating the popup, it calls the Setup method on the PopupController component to initialize it with the provided data. This allows for a flexible and customizable popup system that can display different types of information in various formats, enhancing the player's engagement and immersion in the story.
     {
-        GameObject prefabToUse = data.specificPrefab != null ? data.specificPrefab : defaultPopupPrefab;
+        GameObject prefabToUse = defaultPopupPrefab;
+
+        if (data.popupType == PopupType.PopupAncho && popupPrefabTipo1 != null)
+            prefabToUse = popupPrefabTipo1;
+        else if (data.popupType == PopupType.PopupLargo && popupPrefabTipo2 != null)
+            prefabToUse = popupPrefabTipo2;
+        else if (data.popupType == PopupType.Personalizado && data.specificPrefab != null)
+            prefabToUse = data.specificPrefab;
 
         if (prefabToUse != null)
         {

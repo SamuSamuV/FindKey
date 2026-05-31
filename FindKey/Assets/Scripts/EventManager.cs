@@ -24,6 +24,8 @@ public class EventManager : MonoBehaviour
     [Header("Configuración UI")]
     public Transform popupContainer;
     public GameObject defaultPopupPrefab;
+    public GameObject popupPrefabTipo1;
+    public GameObject popupPrefabTipo2;
     public GameObject blackScreenPanel;
 
     [Header("Backlog (Eventos ya ocurridos)")]
@@ -341,11 +343,20 @@ public class EventManager : MonoBehaviour
         return null;
     }
 
-    private void SpawnEventPopup(PopupData data) // Helper method to spawn a popup based on the provided PopupData. It checks if the data and popup container are valid, then instantiates the appropriate prefab (either a specific one defined in the data or a default one) and sets it up with the provided data.
+    private void SpawnEventPopup(PopupData data) // Method to spawn a popup based on the provided PopupData. It checks the popup type specified in the data and selects the appropriate prefab to instantiate. It then sets up the popup using its PopupController component with the provided data.
     {
         if (data == null || popupContainer == null) return;
 
-        GameObject prefabToUse = data.specificPrefab != null ? data.specificPrefab : defaultPopupPrefab;
+        GameObject prefabToUse = defaultPopupPrefab;
+
+        // Comprobamos qué ha seleccionado el diseñador en el desplegable
+        if (data.popupType == PopupType.PopupAncho && popupPrefabTipo1 != null)
+            prefabToUse = popupPrefabTipo1;
+        else if (data.popupType == PopupType.PopupLargo && popupPrefabTipo2 != null)
+            prefabToUse = popupPrefabTipo2;
+        else if (data.popupType == PopupType.Personalizado && data.specificPrefab != null)
+            prefabToUse = data.specificPrefab;
+
         if (prefabToUse != null)
         {
             GameObject newPopup = Instantiate(prefabToUse, popupContainer);

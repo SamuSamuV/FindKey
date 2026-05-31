@@ -2761,8 +2761,8 @@ MonoBehaviour:
   - zalamero
   - zalamera
   - zombi
-  zumbidoClip: {fileID: 8300000, guid: fee2f9723c8272d45b5b64383b6850fa, type: 3}
-  transicionClip: {fileID: 8300000, guid: d42644a8835231b478e0b34b97885fa0, type: 3}
+  zumbidoClip: {fileID: 8300000, guid: c93c82d5af16f21489ef3184c009e1bf, type: 3}
+  transicionClip: {fileID: 8300000, guid: 36871d85d9146f443970eade3cf82bc3, type: 3}
   fondoCorruptoClip: {fileID: 8300000, guid: 1a2075e2ae72b28428618a3afa8a0673, type: 3}
   sonidosRandomCorruptos: []
   transformSprites:

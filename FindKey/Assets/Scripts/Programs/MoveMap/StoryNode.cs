@@ -12,6 +12,13 @@ public enum AudioChannel // Enum to define different audio channels for sound ma
     Master, Front, Back, Left, Right
 }
 
+public enum PopupType // Enum to define different types of pop-ups that can be displayed in the game, which can be used to categorize and manage various pop-up messages based on their purpose or content.
+{
+    PopupAncho,
+    PopupLargo,
+    Personalizado
+}
+
 /// <summary>
 /// Class: NodeSoundAction
 /// Description: This class represents a sound action that can be triggered when the player enters a StoryNode. It contains information about which audio channel to play
@@ -136,13 +143,21 @@ public class StoryNode : ScriptableObject
 /// Author: Samuel Campos Borrego
 /// Project: FindKey
 /// </summary>
+
 [System.Serializable]
 public class PopupData
 {
+    [Header("Tipo de Popup")]
+    [Tooltip("Elige qué variante de popup quieres que aparezca.")]
+    public PopupType popupType = PopupType.PopupAncho;
+
     public float delayBeforeSpawn = 0f;
     public float duration = 0f;
     public Vector2 position;
+
+    [Tooltip("Solo se usará si eliges el PopupType 'Personalizado'.")]
     public GameObject specificPrefab;
+
     public string title;
     [TextArea(3, 5)]
     public string message;

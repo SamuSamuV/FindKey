@@ -13,13 +13,20 @@ MonoBehaviour:
   m_Name: PATH FOREST END 3
   m_EditorClassIdentifier: 
   storyText: "3\r"
+  customTypingSpeed: 0
+  canNotBeSkipped: 0
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: 930c9baf3f638294ab876ad855a1eb5e, type: 2}
     actionType: 0
+    disableIfVisited: 0
+    alternateNodeIfBlocked: {fileID: 0}
   popups: []
-  masterSound: {fileID: 0}
-  frontSound: {fileID: 0}
-  backSound: {fileID: 0}
-  leftSound: {fileID: 0}
-  rightSound: {fileID: 0}
+  nodeSounds: []
+  randomSounds: []
+  ambientSounds: []
+  onEnterEvent: {fileID: 0}
+  aiMemoryLevel: 0
+  aiMemoryUpdate: 
+  aiProactivePrompt: 
+  forceMemoryUpdate: 0

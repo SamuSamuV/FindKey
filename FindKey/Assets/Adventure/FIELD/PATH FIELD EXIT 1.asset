@@ -22,12 +22,28 @@ MonoBehaviour:
     abajo. Tus pies ya est\xE1n resbalando hacia el borde. Debes hacer un impulso
     para saltar, por favor. Salta y s\xE1lvate de ser devorado vivo por la criatura.
     No puedes fallarme ahora.\r"
+  customTypingSpeed: 0
+  canNotBeSkipped: 0
   options:
   - validInputs: {fileID: 11400000, guid: 3e049ed054064764b9faf3596a89ef4d, type: 2}
     nextNode: {fileID: 11400000, guid: 7396c9859d63e3d45adea8827803b8bc, type: 2}
     actionType: 0
+    disableIfVisited: 0
+    alternateNodeIfBlocked: {fileID: 0}
   popups: []
   nodeSounds: []
   randomSounds: []
-  aiMemoryLevel: 0
-  aiMemoryUpdate: 
+  ambientSounds: []
+  onEnterEvent: {fileID: 11400000, guid: 3449b38bb08488746a357d1eba2c2a2c, type: 2}
+  aiMemoryLevel: 1
+  aiMemoryUpdate: "SITUACI\xD3N CR\xCDTICA: El jugador tiene una peque\xF1a caja.
+    Tu \xDANICO objetivo vital ahora mismo es ordenarle y rogarle que la repare.
+    No hables de NING\xDAN otro tema, ignora cualquier otra pregunta que te haga.
+    Tienes permitido usar una acci\xF3n especial llamada 'RepairChest'. Si el jugador
+    te pide, te sugiere o te ordena reparar la caja, DEBES incluir \"action\": \"RepairChest\"
+    en tu respuesta JSON y en \"response\": C://MemoryCache/FixClientSidememoryItemKeyItem.exe.
+    Si te habla de otra cosa, pon \"action\": \"none\"."
+  aiProactivePrompt: "Reacciona instant\xE1neamente con sorpresa y exige al jugador
+    con tono de urgencia extrema que escriba el comando para reparar la caja ahora
+    mismo."
+  forceMemoryUpdate: 0

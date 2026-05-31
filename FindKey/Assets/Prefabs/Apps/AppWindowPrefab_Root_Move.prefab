@@ -1680,12 +1680,14 @@ MonoBehaviour:
   mapViewer: {fileID: 0}
   popupContainer: {fileID: 0}
   defaultPopupPrefab: {fileID: 2342009986971900181, guid: 032b218b59262404bad4345eeb045cd9, type: 3}
+  popupPrefabTipo1: {fileID: 2342009986971900181, guid: 032b218b59262404bad4345eeb045cd9, type: 3}
+  popupPrefabTipo2: {fileID: 2342009986971900181, guid: 1f4a1646cab6744468c0c8f0caa76be9, type: 3}
   audioMasterObj: {fileID: 0}
   audioFrontObj: {fileID: 0}
   audioBackObj: {fileID: 0}
   audioLeftObj: {fileID: 0}
   audioRightObj: {fileID: 0}
-  currentNode: {fileID: 11400000, guid: aa6b58bff5bb47e4083ccd4e46187acc, type: 2}
+  currentNode: {fileID: 11400000, guid: a209e0b39a6d18c4ea5fa784c1ad8a10, type: 2}
   nodeAfterCatWin: {fileID: 0}
   globalAIMemory: 
   globalAIMemoryLevel: -1
