@@ -27,7 +27,7 @@ MonoBehaviour:
     disableIfVisited: 0
     alternateNodeIfBlocked: {fileID: 0}
   - validInputs: {fileID: 11400000, guid: e9849b6b24f104a428f17cda840099d9, type: 2}
-    nextNode: {fileID: 11400000, guid: b5710367915c50346bdd3ce2920e4946, type: 2}
+    nextNode: {fileID: 11400000, guid: 207ad447c01350e4a9f911d9ad1bd07f, type: 2}
     actionType: 0
     disableIfVisited: 0
     alternateNodeIfBlocked: {fileID: 0}

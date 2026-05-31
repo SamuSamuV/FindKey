@@ -16,7 +16,8 @@ MonoBehaviour:
     por el susurro seco de las hojas. Aqu\xED los \xE1rboles crecen m\xE1s juntos,
     inclin\xE1ndose unos sobre otros como si compartieran secretos. El aire ya no
     es fr\xEDo\u2026 es denso. Pesado. Tus ojos intentan entender qu\xE9 se encuentra
-    m\xE1s adelante del camino y distinguen una verja.\n\xBFDecides SEGUIR o VOLVER?"
+    m\xE1s adelante del camino y distinguen una verja.\n\xBFDecides SEGUIR o VOLVER
+    o ir a tu DERECHA hacia el lago?"
   customTypingSpeed: 0
   canNotBeSkipped: 0
   options:
@@ -27,6 +28,11 @@ MonoBehaviour:
     alternateNodeIfBlocked: {fileID: 0}
   - validInputs: {fileID: 11400000, guid: 59921cc1611cd494fa4c5de13ee9b91d, type: 2}
     nextNode: {fileID: 11400000, guid: c8345c8e7c16c4c4587663b387328af7, type: 2}
+    actionType: 0
+    disableIfVisited: 0
+    alternateNodeIfBlocked: {fileID: 0}
+  - validInputs: {fileID: 11400000, guid: ab89fec8c2302db45ada034b48d62db3, type: 2}
+    nextNode: {fileID: 11400000, guid: faa2c9d69e0aecd4faea24696fa98bf1, type: 2}
     actionType: 0
     disableIfVisited: 0
     alternateNodeIfBlocked: {fileID: 0}

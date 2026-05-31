@@ -15,8 +15,8 @@ MonoBehaviour:
   storyText: "Te aproximas a la orilla. El barro absorbe el sonido de tus pasos.
     El lago est\xE1 tan quieto que parece un espejo oscuro apoyado sobre la tierra.
     No refleja el cielo\u2026 solo profundidad. Algo en el centro rompe apenas la
-    superficie, como una ondulaci\xF3n que no genera ondas.\nPuedes avanzar por la
-    orilla o volver al sendero.\r"
+    superficie, como una ondulaci\xF3n que no genera ondas.\nPuedes AVANZAR por la
+    orilla o VOLVER al sendero.\r"
   customTypingSpeed: 0
   canNotBeSkipped: 0
   options:

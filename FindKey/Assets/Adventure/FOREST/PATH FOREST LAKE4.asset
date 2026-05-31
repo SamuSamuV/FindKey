@@ -12,16 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH FOREST LAKE4
   m_EditorClassIdentifier: 
-  storyText: "La mano desaparece en la profundidad sin salpicar. Ahora la sostienes
-    entre tus dedos: es peque\xF1a, antigua, tallada con un detalle enfermizamente
-    preciso. En la tapa hay un ojo grabado, abierto, atento\u2026 y a los lados,
-    delicadas flores grabadas. Intentas abrirla pero... est\xE1 cerrada.\nTus piernas
-    empiezan a temblar inexplicablemente, quieren volver al camino.\r"
+  storyText: "La mano desaparece en la profundidad. Ahora la sostienes entre tus
+    dedos: es peque\xF1a, antigua, tallada con un detalle enfermizamente preciso.
+    En la tapa hay un ojo grabado, abierto, atento\u2026 y a los lados, delicadas
+    flores grabadas. Intentas abrirla pero... est\xE1 cerrada.\nTus piernas empiezan
+    a temblar inexplicablemente, quieren volver al camino.\r"
   customTypingSpeed: 0
   canNotBeSkipped: 0
   options: []
   popups: []
-  nodeSounds: []
+  nodeSounds:
+  - channel: 0
+    soundSettings:
+      clip: {fileID: 8300000, guid: 8b1af0ab63d4ba54a828b10d443f0ea2, type: 3}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
   randomSounds: []
   ambientSounds: []
   onEnterEvent: {fileID: 11400000, guid: 3449b38bb08488746a357d1eba2c2a2c, type: 2}

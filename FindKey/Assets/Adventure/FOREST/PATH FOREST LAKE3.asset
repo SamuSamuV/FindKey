@@ -26,7 +26,22 @@ MonoBehaviour:
     actionType: 0
     disableIfVisited: 0
     alternateNodeIfBlocked: {fileID: 0}
-  popups: []
+  popups:
+  - popupType: 1
+    delayBeforeSpawn: 2
+    duration: 0
+    position: {x: 0, y: 0}
+    specificPrefab: {fileID: 0}
+    title: "T\xD3MALO"
+    message: 
+    image: {fileID: 21300000, guid: 7efad78b1ffde4946b7bbe1518b5400c, type: 3}
+    sound:
+      clip: {fileID: 0}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
   nodeSounds: []
   randomSounds: []
   ambientSounds: []

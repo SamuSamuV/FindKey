@@ -25,11 +25,12 @@ MonoBehaviour:
     disableIfVisited: 0
     alternateNodeIfBlocked: {fileID: 0}
   popups:
-  - delayBeforeSpawn: 0
+  - popupType: 1
+    delayBeforeSpawn: 1
     duration: 0
-    position: {x: 0, y: 0}
+    position: {x: 719.8, y: 26.51}
     specificPrefab: {fileID: 0}
-    title: 
+    title: LAGO
     message: 
     image: {fileID: 21300000, guid: 0f1aa6c469d8a4f48a5e792642073fc7, type: 3}
     sound:
