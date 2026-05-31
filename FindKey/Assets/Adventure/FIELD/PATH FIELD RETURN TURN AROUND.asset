@@ -26,7 +26,23 @@ MonoBehaviour:
     disableIfVisited: 0
     alternateNodeIfBlocked: {fileID: 0}
   popups: []
-  nodeSounds: []
+  nodeSounds:
+  - channel: 0
+    soundSettings:
+      clip: {fileID: 8300000, guid: 1a2075e2ae72b28428618a3afa8a0673, type: 3}
+      volume: 0.8
+      pitch: 1
+      loop: 0
+      fadeInDuration: 2
+      fadeOutDuration: 2
+  - channel: 1
+    soundSettings:
+      clip: {fileID: 8300000, guid: a222bc907e437e74da0425caec28d80c, type: 3}
+      volume: 0.6
+      pitch: 1
+      loop: 0
+      fadeInDuration: 2
+      fadeOutDuration: 2
   randomSounds: []
   ambientSounds: []
   onEnterEvent: {fileID: 0}

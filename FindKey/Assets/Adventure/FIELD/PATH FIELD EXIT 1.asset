@@ -33,7 +33,27 @@ MonoBehaviour:
   popups: []
   nodeSounds: []
   randomSounds: []
-  ambientSounds: []
+  ambientSounds:
+  - ambientTag: Persecucion
+    channel: 0
+    soundSettings:
+      clip: {fileID: 0}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+    stopAmbient: 1
+  - ambientTag: Respiracion
+    channel: 0
+    soundSettings:
+      clip: {fileID: 0}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+    stopAmbient: 1
   onEnterEvent: {fileID: 11400000, guid: 3449b38bb08488746a357d1eba2c2a2c, type: 2}
   aiMemoryLevel: 1
   aiMemoryUpdate: "SITUACI\xD3N CR\xCDTICA: El jugador tiene una peque\xF1a caja.

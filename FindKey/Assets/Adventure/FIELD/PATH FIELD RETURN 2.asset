@@ -32,9 +32,45 @@ MonoBehaviour:
     disableIfVisited: 0
     alternateNodeIfBlocked: {fileID: 0}
   popups: []
-  nodeSounds: []
+  nodeSounds:
+  - channel: 0
+    soundSettings:
+      clip: {fileID: 8300000, guid: d42644a8835231b478e0b34b97885fa0, type: 3}
+      volume: 0.8
+      pitch: 1
+      loop: 0
+      fadeInDuration: 2
+      fadeOutDuration: 2
+  - channel: 2
+    soundSettings:
+      clip: {fileID: 8300000, guid: 5bf1c8aa8673a7140bddaf0a96947346, type: 3}
+      volume: 0.5
+      pitch: 1
+      loop: 0
+      fadeInDuration: 2
+      fadeOutDuration: 2
   randomSounds: []
-  ambientSounds: []
+  ambientSounds:
+  - ambientTag: Persecucion
+    channel: 0
+    soundSettings:
+      clip: {fileID: 8300000, guid: fee2f9723c8272d45b5b64383b6850fa, type: 3}
+      volume: 0.7
+      pitch: 1
+      loop: 1
+      fadeInDuration: 2
+      fadeOutDuration: 2
+    stopAmbient: 0
+  - ambientTag: Respiracion
+    channel: 2
+    soundSettings:
+      clip: {fileID: 8300000, guid: 36871d85d9146f443970eade3cf82bc3, type: 3}
+      volume: 0.3
+      pitch: 1
+      loop: 1
+      fadeInDuration: 0
+      fadeOutDuration: 0
+    stopAmbient: 0
   onEnterEvent: {fileID: 0}
   aiMemoryLevel: 0
   aiMemoryUpdate: 
