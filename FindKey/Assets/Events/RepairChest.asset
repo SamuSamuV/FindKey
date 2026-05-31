@@ -48,6 +48,8 @@ MonoBehaviour:
     aiPromptMessage: 
     itemName: 
     itemSprite: {fileID: 0}
+    newStoryNode: {fileID: 0}
+    videoClip: {fileID: 0}
   - actionType: 0
     delayBeforeExecute: 0
     waitTime: 1.5
@@ -81,6 +83,43 @@ MonoBehaviour:
     aiPromptMessage: 
     itemName: 
     itemSprite: {fileID: 0}
+    newStoryNode: {fileID: 0}
+    videoClip: {fileID: 0}
+  - actionType: 13
+    delayBeforeExecute: 0
+    waitTime: 0
+    appName: 
+    shakeMagnitude: 0
+    shakeDuration: 0
+    sound:
+      clip: {fileID: 0}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+    popupData:
+      delayBeforeSpawn: 0
+      duration: 0
+      position: {x: 0, y: 0}
+      specificPrefab: {fileID: 0}
+      title: 
+      message: 
+      image: {fileID: 0}
+      sound:
+        clip: {fileID: 0}
+        volume: 0
+        pitch: 0
+        loop: 0
+        fadeInDuration: 0
+        fadeOutDuration: 0
+    newWallpaper: {fileID: 0}
+    toggleState: 0
+    aiPromptMessage: 
+    itemName: 
+    itemSprite: {fileID: 0}
+    newStoryNode: {fileID: 11400000, guid: 7268fc1008b462c4a8359e79324101b6, type: 2}
+    videoClip: {fileID: 0}
   - actionType: 8
     delayBeforeExecute: 0
     waitTime: 0
@@ -114,6 +153,8 @@ MonoBehaviour:
     aiPromptMessage: 
     itemName: 
     itemSprite: {fileID: 0}
+    newStoryNode: {fileID: 0}
+    videoClip: {fileID: 0}
   - actionType: 0
     delayBeforeExecute: 0
     waitTime: 2
@@ -147,6 +188,8 @@ MonoBehaviour:
     aiPromptMessage: 
     itemName: 
     itemSprite: {fileID: 0}
+    newStoryNode: {fileID: 0}
+    videoClip: {fileID: 0}
   - actionType: 9
     delayBeforeExecute: 0
     waitTime: 0
@@ -180,6 +223,8 @@ MonoBehaviour:
     aiPromptMessage: 
     itemName: 
     itemSprite: {fileID: 0}
+    newStoryNode: {fileID: 0}
+    videoClip: {fileID: 0}
   - actionType: 3
     delayBeforeExecute: 0
     waitTime: 0
@@ -213,6 +258,8 @@ MonoBehaviour:
     aiPromptMessage: 
     itemName: 
     itemSprite: {fileID: 0}
+    newStoryNode: {fileID: 0}
+    videoClip: {fileID: 0}
   - actionType: 0
     delayBeforeExecute: 0
     waitTime: 2
@@ -246,6 +293,8 @@ MonoBehaviour:
     aiPromptMessage: 
     itemName: 
     itemSprite: {fileID: 0}
+    newStoryNode: {fileID: 0}
+    videoClip: {fileID: 0}
   - actionType: 8
     delayBeforeExecute: 0
     waitTime: 0
@@ -279,6 +328,43 @@ MonoBehaviour:
     aiPromptMessage: 
     itemName: 
     itemSprite: {fileID: 0}
+    newStoryNode: {fileID: 0}
+    videoClip: {fileID: 0}
+  - actionType: 12
+    delayBeforeExecute: 0
+    waitTime: 0
+    appName: IA
+    shakeMagnitude: 0
+    shakeDuration: 0
+    sound:
+      clip: {fileID: 0}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+    popupData:
+      delayBeforeSpawn: 0
+      duration: 0
+      position: {x: 0, y: 0}
+      specificPrefab: {fileID: 0}
+      title: 
+      message: 
+      image: {fileID: 0}
+      sound:
+        clip: {fileID: 0}
+        volume: 0
+        pitch: 0
+        loop: 0
+        fadeInDuration: 0
+        fadeOutDuration: 0
+    newWallpaper: {fileID: 0}
+    toggleState: 0
+    aiPromptMessage: 
+    itemName: 
+    itemSprite: {fileID: 0}
+    newStoryNode: {fileID: 0}
+    videoClip: {fileID: 0}
   - actionType: 0
     delayBeforeExecute: 0
     waitTime: 1
@@ -312,39 +398,8 @@ MonoBehaviour:
     aiPromptMessage: 
     itemName: 
     itemSprite: {fileID: 0}
-  - actionType: 2
-    delayBeforeExecute: 0
-    waitTime: 1
-    appName: IA
-    shakeMagnitude: 0
-    shakeDuration: 0
-    sound:
-      clip: {fileID: 0}
-      volume: 0
-      pitch: 0
-      loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
-    popupData:
-      delayBeforeSpawn: 0
-      duration: 0
-      position: {x: 0, y: 0}
-      specificPrefab: {fileID: 0}
-      title: 
-      message: 
-      image: {fileID: 0}
-      sound:
-        clip: {fileID: 0}
-        volume: 0
-        pitch: 0
-        loop: 0
-        fadeInDuration: 0
-        fadeOutDuration: 0
-    newWallpaper: {fileID: 0}
-    toggleState: 0
-    aiPromptMessage: 
-    itemName: 
-    itemSprite: {fileID: 0}
+    newStoryNode: {fileID: 0}
+    videoClip: {fileID: 0}
   - actionType: 0
     delayBeforeExecute: 0
     waitTime: 1.5
@@ -378,41 +433,8 @@ MonoBehaviour:
     aiPromptMessage: 
     itemName: 
     itemSprite: {fileID: 0}
-  - actionType: 10
-    delayBeforeExecute: 0
-    waitTime: 0
-    appName: 
-    shakeMagnitude: 0
-    shakeDuration: 0
-    sound:
-      clip: {fileID: 0}
-      volume: 0
-      pitch: 0
-      loop: 0
-      fadeInDuration: 0
-      fadeOutDuration: 0
-    popupData:
-      delayBeforeSpawn: 0
-      duration: 0
-      position: {x: 0, y: 0}
-      specificPrefab: {fileID: 0}
-      title: 
-      message: 
-      image: {fileID: 0}
-      sound:
-        clip: {fileID: 0}
-        volume: 0
-        pitch: 0
-        loop: 0
-        fadeInDuration: 0
-        fadeOutDuration: 0
-    newWallpaper: {fileID: 0}
-    toggleState: 0
-    aiPromptMessage: "Acaba de ocurrir un fallo grave en el sistema que ha reiniciado
-      el entorno. P\xEDdele mil disculpas al jugador con un tono asustado, y dile
-      que al menos el proceso de reparaci\xF3n se complet\xF3 y tiene su objeto listo."
-    itemName: 
-    itemSprite: {fileID: 0}
+    newStoryNode: {fileID: 0}
+    videoClip: {fileID: 0}
   - actionType: 11
     delayBeforeExecute: 0
     waitTime: 0
@@ -445,4 +467,6 @@ MonoBehaviour:
     toggleState: 0
     aiPromptMessage: 
     itemName: Caja
-    itemSprite: {fileID: 0}
+    itemSprite: {fileID: 21300000, guid: dc5896e23a904194396f08a46857d13d, type: 3}
+    newStoryNode: {fileID: 0}
+    videoClip: {fileID: 0}

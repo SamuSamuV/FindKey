@@ -10,19 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
-  m_Name: PATH FOREST GATE
+  m_Name: PATH FOREST LAKE 2 ALTERNATIVE
   m_EditorClassIdentifier: 
-  storyText: "Te detienes ante la reja. Es antigua, hierro carcomido por el \xF3xido,
-    asegurada con un grueso alambre retorcido que la mantiene cerrada. No hay candado\u2026
-    solo metal cruelmente entrelazado. M\xE1s all\xE1 de la reja el bosque contin\xFAa,
-    pero los \xE1rboles crecen tan juntos que apenas dejan pasar la luz inexistente
-    de la noche. \nNecesitar\xEDas alguna herramienta para abrirlo... o simplemente
-    volver.\r"
+  storyText: No puedes volver al lago, solo puedes volver.
   customTypingSpeed: 0
   canNotBeSkipped: 0
   options:
   - validInputs: {fileID: 11400000, guid: 59921cc1611cd494fa4c5de13ee9b91d, type: 2}
-    nextNode: {fileID: 11400000, guid: b5710367915c50346bdd3ce2920e4946, type: 2}
+    nextNode: {fileID: 11400000, guid: 2b316db5c10e0db43ba135f387616580, type: 2}
     actionType: 0
     disableIfVisited: 0
     alternateNodeIfBlocked: {fileID: 0}

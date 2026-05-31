@@ -16,7 +16,8 @@ MonoBehaviour:
     ra\xEDces retorcidas que se hunden en el agua negra. El bosque parece escuchar
     contigo. A lo lejos, entre los \xE1rboles, distingues una vieja reja oxidada
     que bloquea un paso angosto del sendero: m\xE1s all\xE1 solo hay oscuridad. El
-    lago permanece a tu lado, inm\xF3vil."
+    lago permanece a tu lado, inm\xF3vil. \xBFDecides volver al inicio del bosque,
+    vas a la izquierda o a la derecha?"
   customTypingSpeed: 0
   canNotBeSkipped: 0
   options:
@@ -30,7 +31,7 @@ MonoBehaviour:
     actionType: 0
     disableIfVisited: 0
     alternateNodeIfBlocked: {fileID: 0}
-  - validInputs: {fileID: 11400000, guid: ac428914eae63c4488c2d718afd0d788, type: 2}
+  - validInputs: {fileID: 11400000, guid: 59921cc1611cd494fa4c5de13ee9b91d, type: 2}
     nextNode: {fileID: 11400000, guid: c025f4fbc0256e6409ad6ae851005ccd, type: 2}
     actionType: 0
     disableIfVisited: 0

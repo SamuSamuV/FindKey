@@ -47,7 +47,9 @@ MonoBehaviour:
     toggleState: 0
     aiPromptMessage: 
     itemName: Caja Corrupta
-    itemSprite: {fileID: -470249467, guid: ac586f287fb8b5842a7dea70acba7b7a, type: 3}
+    itemSprite: {fileID: 21300000, guid: d7bc1ea4c96c42d43a0be2589ef4508d, type: 3}
+    newStoryNode: {fileID: 0}
+    videoClip: {fileID: 0}
   - actionType: 2
     delayBeforeExecute: 1
     waitTime: 0
@@ -81,3 +83,5 @@ MonoBehaviour:
     aiPromptMessage: 
     itemName: 
     itemSprite: {fileID: 0}
+    newStoryNode: {fileID: 0}
+    videoClip: {fileID: 0}

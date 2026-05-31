@@ -1511,6 +1511,7 @@ MonoBehaviour:
   moveAppData: {fileID: 0}
   isMinimized: 0
   animationDuration: 0.2
+  forceCenterOnOpen: 0
 --- !u!114 &7965827391508177018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1684,7 +1685,7 @@ MonoBehaviour:
   audioBackObj: {fileID: 0}
   audioLeftObj: {fileID: 0}
   audioRightObj: {fileID: 0}
-  currentNode: {fileID: 11400000, guid: 4b43d04eb8d1e794998b3af67c72862f, type: 2}
+  currentNode: {fileID: 11400000, guid: aa6b58bff5bb47e4083ccd4e46187acc, type: 2}
   nodeAfterCatWin: {fileID: 0}
   globalAIMemory: 
   globalAIMemoryLevel: -1
@@ -4979,7 +4980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee2599d3cd375e44b8b4466d2a8c099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: llama3.2:3b
+  model: llama3.1:8b
   baseUrl: http://localhost:11434/api/generate
   contextSize: 2048
 --- !u!1 &8968409186146594419

@@ -19,12 +19,7 @@ MonoBehaviour:
     empiezan a temblar inexplicablemente, quieren volver al camino.\r"
   customTypingSpeed: 0
   canNotBeSkipped: 0
-  options:
-  - validInputs: {fileID: 11400000, guid: 59921cc1611cd494fa4c5de13ee9b91d, type: 2}
-    nextNode: {fileID: 11400000, guid: 2b316db5c10e0db43ba135f387616580, type: 2}
-    actionType: 0
-    disableIfVisited: 0
-    alternateNodeIfBlocked: {fileID: 0}
+  options: []
   popups: []
   nodeSounds: []
   randomSounds: []

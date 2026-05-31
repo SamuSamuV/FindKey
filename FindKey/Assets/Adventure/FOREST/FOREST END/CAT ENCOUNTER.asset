@@ -13,13 +13,20 @@ MonoBehaviour:
   m_Name: CAT ENCOUNTER
   m_EditorClassIdentifier: 
   storyText: "EJECUTAR JUEGO GATO\r"
+  customTypingSpeed: 0
+  canNotBeSkipped: 0
   options:
   - validInputs: {fileID: 11400000, guid: d611042d84834ba428963a87bb4e7364, type: 2}
     nextNode: {fileID: 11400000, guid: 53d3b5e4d5b5ee541b0d1e0cd7dbfdeb, type: 2}
-    actionType: 1
+    actionType: 0
+    disableIfVisited: 0
+    alternateNodeIfBlocked: {fileID: 0}
   popups: []
-  masterSound: {fileID: 0}
-  frontSound: {fileID: 0}
-  backSound: {fileID: 0}
-  leftSound: {fileID: 0}
-  rightSound: {fileID: 0}
+  nodeSounds: []
+  randomSounds: []
+  ambientSounds: []
+  onEnterEvent: {fileID: 0}
+  aiMemoryLevel: 0
+  aiMemoryUpdate: 
+  aiProactivePrompt: 
+  forceMemoryUpdate: 0

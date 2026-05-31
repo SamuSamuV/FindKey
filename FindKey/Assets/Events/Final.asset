@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 388e72c634494894798967f1be11d9a6, type: 3}
   m_Name: Final
   m_EditorClassIdentifier: 
-  eventDescription: "Describe qu\xE9 hace este evento..."
+  eventDescription: Final del juego evento
   playOnlyOnce: 1
   actions:
   - actionType: 3
