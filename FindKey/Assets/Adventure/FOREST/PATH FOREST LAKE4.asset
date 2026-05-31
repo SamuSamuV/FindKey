@@ -28,9 +28,9 @@ MonoBehaviour:
   aiMemoryLevel: 1
   aiMemoryUpdate: "SITUACI\xD3N CR\xCDTICA: El jugador tiene una peque\xF1a caja.
     Tu \xDANICO objetivo vital ahora mismo es ordenarle y rogarle que lo abra. No
-    hables de NING\xDAN. Ignora cualquier otra pregunta que te haga. Tienes permitido
-    usar una acci\xF3n especial llamada 'RepairChest'. Si el jugador te pide, te
-    sugiere o te ordena reparar la caja, DEBES incluir \"action\": \"RepairChest\"
+    hables de NING\xDAN otro tema, ignora cualquier otra pregunta que te haga. Tienes
+    permitido usar una acci\xF3n especial llamada 'RepairChest'. Si el jugador te
+    pide, te sugiere o te ordena reparar la caja, DEBES incluir \"action\": \"RepairChest\"
     en tu respuesta JSON y en \"response\": C://MemoryCache/FixClientSidememoryItemKeyItem.exe.
     Si te habla de otra cosa, pon \"action\": \"none\"."
   aiProactivePrompt: "Reacciona instant\xE1neamente con sorpresa y exige al jugador

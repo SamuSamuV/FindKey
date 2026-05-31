@@ -17,23 +17,18 @@ MonoBehaviour:
     escarbando hace poco.  [1s]No recuerdas c\xF3mo llegaste aqu\xED. A lo lejos,
     entre los \xE1rboles, oyes ALGO: no es viento\u2026 el viento no respira. A tu
     izquierda el bosque se vuelve m\xE1s frondoso y oscuro; al frente se abre un
-    claro donde la negrura refleja un lago inm\xF3vil.\n\n\xBFVas a la izquierda
+    claro donde la negrura refleja un lago inm\xF3vil.\n\n\xBFVas hacia atr\xE1s
     o sigues al frente hacia el lago?"
   customTypingSpeed: 0
   canNotBeSkipped: 0
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
-    nextNode: {fileID: 11400000, guid: c025f4fbc0256e6409ad6ae851005ccd, type: 2}
+    nextNode: {fileID: 11400000, guid: be5fc22e1eb1a5a418e5a4d512f875e5, type: 2}
     actionType: 0
     disableIfVisited: 0
     alternateNodeIfBlocked: {fileID: 0}
-  - validInputs: {fileID: 11400000, guid: ac428914eae63c4488c2d718afd0d788, type: 2}
-    nextNode: {fileID: 11400000, guid: aa86f7e7fa1e27d45b71e86a25eeaee3, type: 2}
-    actionType: 0
-    disableIfVisited: 0
-    alternateNodeIfBlocked: {fileID: 0}
-  - validInputs: {fileID: 11400000, guid: d39a7c7997f8e6345bc05edb52e1f0be, type: 2}
-    nextNode: {fileID: 11400000, guid: 589decb06ef83dc4bb208f525f97b161, type: 2}
+  - validInputs: {fileID: 11400000, guid: 59921cc1611cd494fa4c5de13ee9b91d, type: 2}
+    nextNode: {fileID: 11400000, guid: c1488f62688578c4098a1f2cdd36d440, type: 2}
     actionType: 0
     disableIfVisited: 0
     alternateNodeIfBlocked: {fileID: 0}

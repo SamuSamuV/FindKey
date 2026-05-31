@@ -14,16 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storyText: "Decides seguir avanzando, dejando el espantap\xE1jaros atr\xE1s. El
     viento se vuelve m\xE1s fuerte aqu\xED, empujando la hierba seca contra tus piernas
-    con un sonido constante. \n\nPuedes seguir avanzando, o volver por donde viniste.\r"
+    con un sonido constante. \n\nPuedes seguir avanzando.\r"
+  customTypingSpeed: 0
+  canNotBeSkipped: 0
   options:
-  - validInputs: {fileID: 11400000, guid: d611042d84834ba428963a87bb4e7364, type: 2}
+  - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: 16bafe78214d7de4a9eb57f132106111, type: 2}
     actionType: 0
-  - validInputs: {fileID: 11400000, guid: 59921cc1611cd494fa4c5de13ee9b91d, type: 2}
-    nextNode: {fileID: 11400000, guid: 0054d3669d5d147468d1e6caaf6dcad6, type: 2}
-    actionType: 0
+    disableIfVisited: 0
+    alternateNodeIfBlocked: {fileID: 0}
   popups: []
   nodeSounds: []
   randomSounds: []
+  ambientSounds: []
+  onEnterEvent: {fileID: 0}
   aiMemoryLevel: 0
   aiMemoryUpdate: 
+  aiProactivePrompt: 
+  forceMemoryUpdate: 0

@@ -20,13 +20,16 @@ MonoBehaviour:
     pero no baja.\n\nTras unos segundos desaparece entre la oscuridad.\n\nPoco a
     poco recuperas el aliento. Tus manos tiemblan y el hacha sigue en ellas. No sabes
     qu\xE9 era esa cosa\u2026 pero sabes que existe.\n\nCuando finalmente te pones
-    en pie, el bosque vuelve a rodearte. Justo en frente tuyo. Respiras. Vives. Sigues.\r"
-  options:
-  - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
-    nextNode: {fileID: 11400000, guid: ba54b81d0b5593d49992da20a700936c, type: 2}
-    actionType: 0
+    en pie, el bosque vuelve a rodearte. Justo en frente tuyo. Respiras. Vives.\r"
+  customTypingSpeed: 0
+  canNotBeSkipped: 0
+  options: []
   popups: []
   nodeSounds: []
   randomSounds: []
+  ambientSounds: []
+  onEnterEvent: {fileID: 0}
   aiMemoryLevel: 0
   aiMemoryUpdate: 
+  aiProactivePrompt: 
+  forceMemoryUpdate: 0

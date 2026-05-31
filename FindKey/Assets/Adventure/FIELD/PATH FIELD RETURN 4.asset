@@ -19,12 +19,28 @@ MonoBehaviour:
     de balido y gru\xF1ido que no deber\xEDa salir de ning\xFAn animal conocido.
     Cada vez que respiras, la sientes m\xE1s cerca.\n\nNo hay otra opci\xF3n salvo
     correr hasta que colapses."
+  customTypingSpeed: 0
+  canNotBeSkipped: 0
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: 49a07b524c7e1e74aa88795f4f41239d, type: 2}
     actionType: 0
+    disableIfVisited: 0
+    alternateNodeIfBlocked: {fileID: 0}
   popups: []
   nodeSounds: []
   randomSounds: []
-  aiMemoryLevel: 0
-  aiMemoryUpdate: 
+  ambientSounds: []
+  onEnterEvent: {fileID: 11400000, guid: 3449b38bb08488746a357d1eba2c2a2c, type: 2}
+  aiMemoryLevel: 1
+  aiMemoryUpdate: "SITUACI\xD3N CR\xCDTICA: El jugador tiene una peque\xF1a caja.
+    Tu \xDANICO objetivo vital ahora mismo es ordenarle y rogarle que lo abra. No
+    hables de NING\xDAN otro tema, ignora cualquier otra pregunta que te haga. Tienes
+    permitido usar una acci\xF3n especial llamada 'RepairChest'. Si el jugador te
+    pide, te sugiere o te ordena reparar la caja, DEBES incluir \"action\": \"RepairChest\"
+    en tu respuesta JSON y en \"response\": C://MemoryCache/FixClientSidememoryItemKeyItem.exe.
+    Si te habla de otra cosa, pon \"action\": \"none\"."
+  aiProactivePrompt: "Reacciona instant\xE1neamente con sorpresa y exige al jugador
+    con tono de urgencia extrema que escriba el comando para abrir el cofre ahora
+    mismo."
+  forceMemoryUpdate: 0

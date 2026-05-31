@@ -12,17 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH FIELD RETURN TURN AROUND
   m_EditorClassIdentifier: 
-  storyText: "<br>Te giras.</br>\nLa cosa que estaba detr\xE1s de ti se mueve cuando
-    la miras: una forma alta y torcida que surge entre la hierba como si hubiera
-    estado agachada observ\xE1ndote. No tiene forma clara, solo extremidades demasiado
-    largas y un movimiento irregular que hace que tu mente no quiera comprender lo
-    que ve.\n\nNo piensas. \nEmpiezas a correr.\r"
+  storyText: "Te giras.\n\nLa cosa que estaba detr\xE1s de ti se mueve cuando la
+    miras: una forma alta y torcida que surge entre la hierba como si hubiera estado
+    agachada observ\xE1ndote. No tiene forma clara, solo extremidades demasiado largas
+    y un movimiento irregular que hace que tu mente no quiera comprender lo que ve.\n\nNo
+    piensas. \nEmpiezas a correr.\r"
+  customTypingSpeed: 0
+  canNotBeSkipped: 0
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: 9f813bc5d82f476458ee0890d0868b23, type: 2}
     actionType: 0
+    disableIfVisited: 0
+    alternateNodeIfBlocked: {fileID: 0}
   popups: []
   nodeSounds: []
   randomSounds: []
+  ambientSounds: []
+  onEnterEvent: {fileID: 0}
   aiMemoryLevel: 0
   aiMemoryUpdate: 
+  aiProactivePrompt: 
+  forceMemoryUpdate: 0
