@@ -189,4 +189,4 @@ MonoBehaviour:
     itemName: 
     itemSprite: {fileID: 0}
     newStoryNode: {fileID: 0}
-    videoClip: {fileID: 32900000, guid: a51fc475238cf8c4eae04d4028d6ed0a, type: 3}
+    videoClip: {fileID: 32900000, guid: 07b35f163638c0848bf9be5d5ccfb644, type: 3}
