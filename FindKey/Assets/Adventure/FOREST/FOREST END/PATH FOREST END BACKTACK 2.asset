@@ -30,7 +30,7 @@ MonoBehaviour:
   - channel: 0
     soundSettings:
       clip: {fileID: 8300000, guid: d257003c05d72154bb28caf79c8a9ee2, type: 3}
-      volume: 1
+      volume: 0.257
       pitch: 1
       loop: 0
       fadeInDuration: 0

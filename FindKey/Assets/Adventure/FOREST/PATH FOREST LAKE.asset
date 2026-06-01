@@ -35,15 +35,15 @@ MonoBehaviour:
   - channel: 1
     soundSettings:
       clip: {fileID: 8300000, guid: 1e5c608a213b9934781471433a819ce7, type: 3}
-      volume: 0
-      pitch: 0
+      volume: 0.105
+      pitch: 0.96
       loop: 0
       fadeInDuration: 1
       fadeOutDuration: 1
   - channel: 4
     soundSettings:
       clip: {fileID: 8300000, guid: 20760c23fda6a824a9c815af89a314f8, type: 3}
-      volume: 0.22
+      volume: 0.105
       pitch: 0.55
       loop: 1
       fadeInDuration: 1
