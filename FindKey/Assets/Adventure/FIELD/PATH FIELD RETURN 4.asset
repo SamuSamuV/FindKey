@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH FIELD RETURN 4
   m_EditorClassIdentifier: 
-  storyText: "Corres. Sin parar.[1s]  Te atreves a mirar un instante.\n\nLa criatura
-    te persigue. [1s]Es alta, cerca de dos metros y medio, con el cuerpo encorvado
-    y patas que recuerdan a las de una cabra monstruosa. Sus pezu\xF1as golpean el
-    suelo con fuerza brutal mientras emite un sonido profundo y desgarrado, una mezcla
-    de balido y gru\xF1ido que no deber\xEDa salir de ning\xFAn animal conocido.
-    Cada vez que respiras, la sientes m\xE1s cerca.\n\nNo hay otra opci\xF3n salvo
-    correr hasta que colapses."
+  storyText: "Corres. [1s]Sin parar.[1s]  Te atreves a mirar un instante.[1s]\n\nLa
+    criatura te persigue. [1s]Es alta, cerca de dos metros y medio, con el cuerpo
+    encorvado y patas que recuerdan a las de una cabra monstruosa.[1s] Sus pezu\xF1as
+    golpean el suelo con fuerza brutal mientras emite un sonido profundo y desgarrado,
+    una mezcla de balido y gru\xF1ido que no deber\xEDa salir de ning\xFAn animal
+    conocido. [1s]Cada vez que respiras, la sientes m\xE1s cerca.[1s]\n\nNo hay otra
+    opci\xF3n salvo CORRER hasta que colapses.[1s]"
   customTypingSpeed: 0
   canNotBeSkipped: 0
   options:
@@ -27,7 +27,97 @@ MonoBehaviour:
     actionType: 0
     disableIfVisited: 0
     alternateNodeIfBlocked: {fileID: 0}
-  popups: []
+  popups:
+  - popupType: 0
+    delayBeforeSpawn: 13
+    duration: 0
+    position: {x: -470, y: -300}
+    specificPrefab: {fileID: 0}
+    title: 
+    message: 
+    image: {fileID: 21300000, guid: 1ff556514b6fcf14cac547682bbf4801, type: 3}
+    sound:
+      clip: {fileID: 8300000, guid: dd6b1dd2163888d478f8d8602971b144, type: 3}
+      volume: 0.145
+      pitch: 0.98
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - popupType: 0
+    delayBeforeSpawn: 3
+    duration: 0
+    position: {x: 600, y: 230}
+    specificPrefab: {fileID: 0}
+    title: 
+    message: 
+    image: {fileID: 21300000, guid: 1ff556514b6fcf14cac547682bbf4801, type: 3}
+    sound:
+      clip: {fileID: 8300000, guid: dd6b1dd2163888d478f8d8602971b144, type: 3}
+      volume: 0.145
+      pitch: 0.98
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - popupType: 0
+    delayBeforeSpawn: 2
+    duration: 0
+    position: {x: -100, y: 100}
+    specificPrefab: {fileID: 0}
+    title: 
+    message: 
+    image: {fileID: 21300000, guid: 1ff556514b6fcf14cac547682bbf4801, type: 3}
+    sound:
+      clip: {fileID: 8300000, guid: dd6b1dd2163888d478f8d8602971b144, type: 3}
+      volume: 0.145
+      pitch: 0.98
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - popupType: 0
+    delayBeforeSpawn: 1
+    duration: 0
+    position: {x: 10, y: -200}
+    specificPrefab: {fileID: 0}
+    title: 
+    message: 
+    image: {fileID: 21300000, guid: 1ff556514b6fcf14cac547682bbf4801, type: 3}
+    sound:
+      clip: {fileID: 8300000, guid: dd6b1dd2163888d478f8d8602971b144, type: 3}
+      volume: 0.145
+      pitch: 0.98
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - popupType: 0
+    delayBeforeSpawn: 0.5
+    duration: 0
+    position: {x: 400, y: 165}
+    specificPrefab: {fileID: 0}
+    title: 
+    message: 
+    image: {fileID: 21300000, guid: 1ff556514b6fcf14cac547682bbf4801, type: 3}
+    sound:
+      clip: {fileID: 8300000, guid: dd6b1dd2163888d478f8d8602971b144, type: 3}
+      volume: 0.145
+      pitch: 0.98
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - popupType: 0
+    delayBeforeSpawn: 0.5
+    duration: 0
+    position: {x: 0, y: 0}
+    specificPrefab: {fileID: 0}
+    title: 
+    message: "EST\xC1 SUELTO."
+    image: {fileID: 21300000, guid: 33845bb31b8ef874d83043be707627b3, type: 3}
+    sound:
+      clip: {fileID: 8300000, guid: 170e486841fbbea49a21a9bbe1cf9e5c, type: 3}
+      volume: 0.079
+      pitch: 0.98
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
   nodeSounds: []
   randomSounds: []
   ambientSounds: []

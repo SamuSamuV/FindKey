@@ -27,7 +27,22 @@ MonoBehaviour:
     actionType: 0
     disableIfVisited: 0
     alternateNodeIfBlocked: {fileID: 0}
-  popups: []
+  popups:
+  - popupType: 0
+    delayBeforeSpawn: 0
+    duration: 0
+    position: {x: 0, y: 0}
+    specificPrefab: {fileID: 0}
+    title: AVISO IMPORTANTE
+    message: "Est\xE1s en peligro. Peligro real. Debes huir."
+    image: {fileID: 0}
+    sound:
+      clip: {fileID: 8300000, guid: 228d18928c2d2214eba382c031c63ad4, type: 3}
+      volume: 0.105
+      pitch: 0.9
+      loop: 0
+      fadeInDuration: 0.4
+      fadeOutDuration: 0
   nodeSounds: []
   randomSounds: []
   ambientSounds: []

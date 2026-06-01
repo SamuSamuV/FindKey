@@ -23,7 +23,18 @@ MonoBehaviour:
     alternateNodeIfBlocked: {fileID: 0}
   popups: []
   nodeSounds: []
-  randomSounds: []
+  randomSounds:
+  - channel: 0
+    soundSettings:
+      clip: {fileID: 8300000, guid: c62ce697a82ca874c92bae57e8681fea, type: 3}
+      volume: 0.02
+      pitch: 0.6
+      loop: 0
+      fadeInDuration: 1
+      fadeOutDuration: 5
+    minInterval: 9
+    maxInterval: 0
+    playChance: 1
   ambientSounds: []
   onEnterEvent: {fileID: 0}
   aiMemoryLevel: 0

@@ -31,12 +31,27 @@ MonoBehaviour:
     actionType: 0
     disableIfVisited: 0
     alternateNodeIfBlocked: {fileID: 0}
-  popups: []
+  popups:
+  - popupType: 1
+    delayBeforeSpawn: 8
+    duration: 1
+    position: {x: -200, y: 300}
+    specificPrefab: {fileID: 0}
+    title: 
+    message: 
+    image: {fileID: 21300000, guid: 1ff556514b6fcf14cac547682bbf4801, type: 3}
+    sound:
+      clip: {fileID: 8300000, guid: ec599b3fd0a0c364cbc1070c6390a628, type: 3}
+      volume: 0.039
+      pitch: 0.94
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
   nodeSounds:
   - channel: 0
     soundSettings:
       clip: {fileID: 8300000, guid: d42644a8835231b478e0b34b97885fa0, type: 3}
-      volume: 0.8
+      volume: 0.105
       pitch: 1
       loop: 0
       fadeInDuration: 2
@@ -44,7 +59,7 @@ MonoBehaviour:
   - channel: 2
     soundSettings:
       clip: {fileID: 8300000, guid: 5bf1c8aa8673a7140bddaf0a96947346, type: 3}
-      volume: 0.5
+      volume: 0.112
       pitch: 1
       loop: 0
       fadeInDuration: 2
@@ -55,7 +70,7 @@ MonoBehaviour:
     channel: 0
     soundSettings:
       clip: {fileID: 8300000, guid: fee2f9723c8272d45b5b64383b6850fa, type: 3}
-      volume: 0.7
+      volume: 0.122
       pitch: 1
       loop: 1
       fadeInDuration: 2
@@ -65,7 +80,7 @@ MonoBehaviour:
     channel: 2
     soundSettings:
       clip: {fileID: 8300000, guid: 36871d85d9146f443970eade3cf82bc3, type: 3}
-      volume: 0.3
+      volume: 0.079
       pitch: 1
       loop: 1
       fadeInDuration: 0

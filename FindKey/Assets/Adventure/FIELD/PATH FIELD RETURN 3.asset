@@ -12,16 +12,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH FIELD RETURN 3
   m_EditorClassIdentifier: 
-  storyText: "Corres hacia la derecha sin pensar. El camino es una franja de tierra
-    dura entre la hierba seca que azota tus piernas mientras el viento ruge en tus
-    o\xEDdos. Entonces lo oyes claramente detr\xE1s de ti: pasos pesados, demasiado
-    r\xE1pidos para algo de ese tama\xF1o.\n\nTu cuerpo corre involuntariamente.\r"
+  storyText: "Corres hacia la derecha sin pensar. [1s]El camino es una franja de
+    tierra dura entre la hierba seca que azota tus piernas mientras el viento ruge
+    en tus o\xEDdos. Entonces[1s] lo oyes claramente[1s] detr\xE1s[1s] de[1s] ti[1s]:
+    pasos pesados,[1s] demasiado r\xE1pidos para algo de ese tama\xF1o.[1s]\n\nTu
+    cuerpo corre involuntariamente.\r"
+  customTypingSpeed: 0
+  canNotBeSkipped: 0
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: 9961d71deb8db3c4488095cf23b2a892, type: 2}
     actionType: 0
-  popups: []
+    disableIfVisited: 0
+    alternateNodeIfBlocked: {fileID: 0}
+  popups:
+  - popupType: 0
+    delayBeforeSpawn: 6
+    duration: 0.5
+    position: {x: -400, y: 200}
+    specificPrefab: {fileID: 0}
+    title: 
+    message: 
+    image: {fileID: 21300000, guid: d541878882193d841b436e7a3547b984, type: 3}
+    sound:
+      clip: {fileID: 8300000, guid: dd6b1dd2163888d478f8d8602971b144, type: 3}
+      volume: 0.115
+      pitch: 0.64
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+  - popupType: 0
+    delayBeforeSpawn: 8
+    duration: 0.5
+    position: {x: 0, y: 0}
+    specificPrefab: {fileID: 0}
+    title: 
+    message: 
+    image: {fileID: 21300000, guid: d541878882193d841b436e7a3547b984, type: 3}
+    sound:
+      clip: {fileID: 8300000, guid: dd6b1dd2163888d478f8d8602971b144, type: 3}
+      volume: 0.108
+      pitch: 0.85
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
   nodeSounds: []
   randomSounds: []
+  ambientSounds: []
+  onEnterEvent: {fileID: 0}
   aiMemoryLevel: 0
   aiMemoryUpdate: 
+  aiProactivePrompt: 
+  forceMemoryUpdate: 0
