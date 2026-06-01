@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH FIELD RETURN GOAT CLOSEUP 2
   m_EditorClassIdentifier: 
-  storyText: "EST\xC1 [3s] D[1s]E[1s]T[1s]R[1s]\xC1[1s]S[1s]. [2s]\n\nCorre.\r"
+  storyText: "EST\xC1 [3s] D[1s]E[1s]T[1s]R[1s]\xC1[1s]S[1s]. [2s]\n\nCORRE.\n\n\r"
   customTypingSpeed: 0
   canNotBeSkipped: 0
   options:

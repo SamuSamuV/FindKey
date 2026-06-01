@@ -17,11 +17,9 @@ MonoBehaviour:
     corre casi pegada a tus talones ahora. Puedes o\xEDr su respiraci\xF3n h\xFAmeda
     y pesada, y el golpeteo furioso de sus pezu\xF1as sobre la tierra.\n\nEl camino
     empieza a descender y el terreno se vuelve inestable. La criatura lanza un sonido
-    macabro, agudo y antinatural, como si celebrara la caza.\n\nDelante de ti el
-    terreno desaparece en una ladera de tierra suelta que cae abruptamente hacia
-    abajo. Tus pies ya est\xE1n resbalando hacia el borde. Debes hacer un impulso
+    macabro, agudo y antinatural, como si celebrara la caza.\n\nDebes hacer un impulso
     para saltar, por favor[1s].[1s].[1s].[1s] SALTA [1s]y s\xE1lvate de ser devorado
-    vivo por la criatura. [1s]No puedes fallarme ahora.[1s] SALTA\r"
+    vivo por la criatura. [3s]No puedes fallarme ahora.[1s] SALTA\r"
   customTypingSpeed: 0
   canNotBeSkipped: 0
   options:
@@ -30,7 +28,22 @@ MonoBehaviour:
     actionType: 0
     disableIfVisited: 0
     alternateNodeIfBlocked: {fileID: 0}
-  popups: []
+  popups:
+  - popupType: 1
+    delayBeforeSpawn: 7
+    duration: 0
+    position: {x: 0, y: 0}
+    specificPrefab: {fileID: 0}
+    title: 
+    message: 
+    image: {fileID: 21300000, guid: 71a38d77e18ee42498ebca86d77e85e5, type: 3}
+    sound:
+      clip: {fileID: 8300000, guid: 170e486841fbbea49a21a9bbe1cf9e5c, type: 3}
+      volume: 0.066
+      pitch: 1
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
   nodeSounds:
   - channel: 2
     soundSettings:
