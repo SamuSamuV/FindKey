@@ -49,7 +49,7 @@ MonoBehaviour:
       fadeOutDuration: 2
   randomSounds: []
   ambientSounds: []
-  onEnterEvent: {fileID: 0}
+  onEnterEvent: {fileID: 11400000, guid: 0612724f0d0dc7e438ffe0a7a3f23921, type: 2}
   aiMemoryLevel: 0
   aiMemoryUpdate: 
   aiProactivePrompt: 

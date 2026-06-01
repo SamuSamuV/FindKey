@@ -612,8 +612,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49a4ec66179401e4c80a148a4d7dd97d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minBootDuration: 2
-  maxBootDuration: 6
+  minBootDuration: 6
+  maxBootDuration: 10
   bootSource: {fileID: 1067723994}
   bootSound:
     clip: {fileID: 0}
@@ -637,9 +637,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: a6ffdc5c637f63a459fdc61aff6cbf33, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0

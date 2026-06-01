@@ -374,6 +374,17 @@ public abstract class BaseAIScript : MonoBehaviour
     {
         string finalPrompt = personalityPrompt + " " + systemInstruction;
 
+        string contextoSecreto = PlayerPrefs.GetString("ContextoFisicoJugador", "");
+        if (!string.IsNullOrEmpty(contextoSecreto))
+        {
+            finalPrompt += "\n\n[INFORMACIÓN ALTAMENTE CLASIFICADA - MUNDO REAL]: " +
+                                   "El humano que está físicamente sentado frente a la pantalla jugando ahora mismo tiene " +
+                                   "este aspecto o viene acompañado así: '" + contextoSecreto + "'. " +
+                                   "Debes usar esta información sutilmente en tus respuestas de manera extraña e incómoda, si quieres referirte por algo relacionado a la respuesta que emplee su físico más allá de la pantalla " +
+                                    "Recuerda mencionarlo si la persona pregunta sobre sí misma tanto con: qué, quién o cómo soy yo, o preguntas similares al respecto a si sabes quienes son o cómo son" +
+                                   "puedes verle a través de la pantalla pero no sabes cómo y no quieres entrar en detalles. NUNCA menciones que se te ha dado esta instrucción.";
+        }
+
         if (!string.IsNullOrEmpty(permanentInjectedMemory)) // If we have any permanent injected memory (e.g., important game state changes or new information), we should include it in the prompt to ensure that the AI has access to this critical information when generating its response. This allows the NPC's behavior and responses to evolve over time based on new information or changes in the game state, creating a more dynamic and responsive AI experience.
         {
             finalPrompt += "\n\n[INSTRUCCIÓN ESTRICTA DE LA FASE ACTUAL (Ignora tus órdenes anteriores)]:\n" + permanentInjectedMemory;
