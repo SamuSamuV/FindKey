@@ -16,7 +16,7 @@ public class BaseEnemyEncounter : MonoBehaviour
     public GameObject enemyVisuals;
 
     [Tooltip("Tiempo que tarda en aparecer el gato de la oscuridad.")]
-    public float fadeDuration = 1.5f;
+    public float fadeDuration = 10f;
 
     public MoveAppData moveAppData;
     private AppWindow myAppWindow;

@@ -1687,7 +1687,7 @@ MonoBehaviour:
   audioBackObj: {fileID: 0}
   audioLeftObj: {fileID: 0}
   audioRightObj: {fileID: 0}
-  currentNode: {fileID: 11400000, guid: aa6b58bff5bb47e4083ccd4e46187acc, type: 2}
+  currentNode: {fileID: 11400000, guid: 1cc1729f2992efd4d85ddca19bc1712c, type: 2}
   nodeAfterCatWin: {fileID: 0}
   globalAIMemory: 
   globalAIMemoryLevel: -1

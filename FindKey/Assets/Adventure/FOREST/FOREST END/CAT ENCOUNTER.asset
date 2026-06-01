@@ -32,16 +32,16 @@ MonoBehaviour:
       fadeOutDuration: 0
   randomSounds: []
   ambientSounds:
-  - ambientTag: Viento
+  - ambientTag: Gato
     channel: 0
     soundSettings:
-      clip: {fileID: 0}
-      volume: 0
-      pitch: 0
-      loop: 0
+      clip: {fileID: 8300000, guid: d64c9a66b0bc60543a0f6b15151182be, type: 3}
+      volume: 0.257
+      pitch: 0.97
+      loop: 1
       fadeInDuration: 2
       fadeOutDuration: 2
-    stopAmbient: 1
+    stopAmbient: 0
   onEnterEvent: {fileID: 0}
   aiMemoryLevel: 0
   aiMemoryUpdate: 

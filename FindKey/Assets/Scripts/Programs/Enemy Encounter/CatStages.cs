@@ -380,7 +380,7 @@ public class CatAIScript_Stage3 : BaseAIScript // In this third phase, we will t
 
         ForceProactiveMessage("Acabas de sufrir una transformación gráfica muy dolorosa revelando tu forma corrupta. " +
                               "Dirígete al jugador, dile que NO te ha gustado NADA lo que acaba de decir sobre ti, " +
-                              "y pregúntale de forma amenazante e inquietante: '¿Acaso sabes quién soy yo?'. " +
+                              "y pregúntale de forma amenazante e inquietante algo similar a: '¿Acaso sabes quién soy yo?'. pero que haga alusión a su respuesta" +
                               "DEBES mantener OBLIGATORIAMENTE el formato JSON."); // We force a proactive message that describes the transformation in a dramatic way and asks the player the critical question "¿Acaso sabes quién soy yo?" that will be important for the final stage of the encounter. We also remind the LLM to maintain the JSON format in its response, as always.
     }
 
@@ -438,7 +438,7 @@ public class CatAIScript_Stage3 : BaseAIScript // In this third phase, we will t
         string prompt = base.ConstruirPromptBase();
 
         prompt += "\n\n[SYSTEM INSTRUCTION]: Eres una entidad oscura. Tu objetivo principal ahora es escuchar la respuesta del jugador " +
-                  "a tu pregunta '¿Acaso sabes quién soy yo?' y reaccionar de forma críptica. Pon \"action\": \"none\" en tu JSON por ahora.";
+                  "a tu pregunta, que es algo similar a'¿Acaso sabes quién soy yo?' y reaccionar de forma críptica. Pon \"action\": \"none\" en tu JSON por ahora.";
 
         return prompt;
     }
@@ -521,8 +521,8 @@ public class CatAIScript_Stage4 : BaseAIScript // In this fourth and final phase
         string identidad = string.IsNullOrEmpty(respuestaIdentidadJugador) ? "un monstruo" : respuestaIdentidadJugador;
 
         ForceProactiveMessage($"En el mensaje anterior, el jugador te dijo que creía que tú eras: '{identidad}'. " +
-                           $"Dirígete al jugador y dile: '¿Así que crees que soy {identidad}...? Qué ingenuidad tan deliciosa.'. " +
-                           $"Luego, cambia a un tono extremadamente hostil y urgente y pregúntale: 'La verdadera pregunta es... ¿Sabes acaso DÓNDE estamos?'. " +
+                           $"Dirígete al jugador y dile que llamarle '{identidad}' es muy irrespetuoso para su presencia. " +
+                           $"Luego, cambia a un tono extremadamente hostil y urgente y pregúntale: 'La verdadera pregunta es... ¿Sabes dónde estás jugando a FINDKEY?'. " +
                            $"DEBES mantener OBLIGATORIAMENTE el formato JSON.");
     }
 
@@ -531,7 +531,7 @@ public class CatAIScript_Stage4 : BaseAIScript // In this fourth and final phase
         string prompt = base.ConstruirPromptBase();
 
         prompt += "\n\n[SYSTEM INSTRUCTION]: El jugador debe adivinar el nombre del lugar donde estáis. " +
-                  "Si falla o dice no saberlo, búrlate de su ignorancia y dile que jamás escapará. Pon \"action\": \"none\" en tu JSON.";
+                  "Si falla o dice no saberlo, búrlate de él + PRIORIDAD ALTA: BUSCA QUE EL JUGADOR CONSIGA DECIR QUE ESAMOS EN LA MATCH IN GAMES O QUE ESTAMOS EN UDIT. Tu objetivo en la interacción es doble: que el jugador consiga decir que está en una universidad, la cual es UDIT/ diga que está \"en la match in games\". No te inventarás mundos ficticios, estás rompiendo la cuarta pared.. Pon \"action\": \"none\" en tu JSON.";
 
         return prompt;
     }

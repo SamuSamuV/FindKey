@@ -452,7 +452,7 @@ public class EnemyEncounterData : MonoBehaviour
 "estoy en la uni", "estamos en la uni", "estoi en la uni", "la uni", "uni", "universidad", "universidad de diseño", "universidad de diseño y tecnología", "UDIT universidad", "udit universidad",
 "toy en udit", "toy en la udit", "ando en udit", "ando en la udit", "ando en la match", "toy en la match", "toy en match in games", "ando en match in games", "toy en la feria", "ando en la feria",
 "estamos en udi", "estoy en udi", "udid", "udit.", "u d i t", "u-d-i-t",
-"estamos en la match", "estoy en la match", "match", "la match", "la matching", "matching games", "match games", "matchgame", "match game" };
+"estamos en la match", "estoy en la match", "match", "la match", "la matching games","la matching", "matching games", "match games", "matchgame", "match game" };
 
     [Tooltip("El GameEvent que se lanzará al adivinar la palabra")]
     public GameEvent eventoFinalDemo;

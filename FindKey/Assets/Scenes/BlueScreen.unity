@@ -546,9 +546,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blackScreen: {fileID: 85622066}
-  glitchDuration: 5
-  minFlickerTime: 0.05
-  maxFlickerTime: 0.25
+  glitchDuration: 7
+  minFlickerTime: 0.1
+  maxFlickerTime: 0.4
 --- !u!1 &969205876
 GameObject:
   m_ObjectHideFlags: 0
