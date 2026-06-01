@@ -19,16 +19,29 @@ MonoBehaviour:
     Enemy Encounter\u2014\r"
   customTypingSpeed: 0
   canNotBeSkipped: 0
-  options:
-  - validInputs: {fileID: 11400000, guid: d611042d84834ba428963a87bb4e7364, type: 2}
-    nextNode: {fileID: 11400000, guid: 53d3b5e4d5b5ee541b0d1e0cd7dbfdeb, type: 2}
-    actionType: 0
-    disableIfVisited: 0
-    alternateNodeIfBlocked: {fileID: 0}
+  options: []
   popups: []
-  nodeSounds: []
+  nodeSounds:
+  - channel: 0
+    soundSettings:
+      clip: {fileID: 8300000, guid: 1af775d0eebe2af4eb6dba8f1274a68f, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
   randomSounds: []
-  ambientSounds: []
+  ambientSounds:
+  - ambientTag: Viento
+    channel: 0
+    soundSettings:
+      clip: {fileID: 0}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 2
+      fadeOutDuration: 2
+    stopAmbient: 1
   onEnterEvent: {fileID: 0}
   aiMemoryLevel: 0
   aiMemoryUpdate: 

@@ -27,9 +27,27 @@ MonoBehaviour:
     disableIfVisited: 0
     alternateNodeIfBlocked: {fileID: 0}
   popups: []
-  nodeSounds: []
+  nodeSounds:
+  - channel: 0
+    soundSettings:
+      clip: {fileID: 8300000, guid: 78e3a3cca75e5414c9894a2cdd780456, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      fadeInDuration: 2
+      fadeOutDuration: 2
   randomSounds: []
-  ambientSounds: []
+  ambientSounds:
+  - ambientTag: Viento
+    channel: 0
+    soundSettings:
+      clip: {fileID: 8300000, guid: ab51126ceea8c2845a1b24d6805b7bf1, type: 3}
+      volume: 0.1
+      pitch: 1
+      loop: 1
+      fadeInDuration: 2
+      fadeOutDuration: 2
+    stopAmbient: 0
   onEnterEvent: {fileID: 0}
   aiMemoryLevel: 0
   aiMemoryUpdate: 

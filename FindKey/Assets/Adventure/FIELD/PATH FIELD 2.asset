@@ -36,7 +36,7 @@ MonoBehaviour:
   - channel: 3
     soundSettings:
       clip: {fileID: 8300000, guid: ab51126ceea8c2845a1b24d6805b7bf1, type: 3}
-      volume: 1
+      volume: 0.2
       pitch: 1
       loop: 1
       fadeInDuration: 2
@@ -44,7 +44,7 @@ MonoBehaviour:
   - channel: 4
     soundSettings:
       clip: {fileID: 8300000, guid: ab51126ceea8c2845a1b24d6805b7bf1, type: 3}
-      volume: 0.4
+      volume: 0.1
       pitch: 1
       loop: 1
       fadeInDuration: 2

@@ -21,13 +21,21 @@ MonoBehaviour:
   customTypingSpeed: 0
   canNotBeSkipped: 0
   options:
-  - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
+  - validInputs: {fileID: 11400000, guid: 59921cc1611cd494fa4c5de13ee9b91d, type: 2}
     nextNode: {fileID: 11400000, guid: e2f140e2e2294e246a86221e6bac181d, type: 2}
     actionType: 0
     disableIfVisited: 0
     alternateNodeIfBlocked: {fileID: 0}
   popups: []
-  nodeSounds: []
+  nodeSounds:
+  - channel: 0
+    soundSettings:
+      clip: {fileID: 8300000, guid: 78e3a3cca75e5414c9894a2cdd780456, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
   randomSounds: []
   ambientSounds: []
   onEnterEvent: {fileID: 0}

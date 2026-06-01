@@ -1096,6 +1096,11 @@ MonoBehaviour:
     overrideKeywords:
     - reparar
     - arregla
+    - repare
+    - repara
+    - reparala
+    - repararla
+    - arreglala
     eventToTrigger: {fileID: 11400000, guid: a06f6a2657fbe1c429c16244594761d4, type: 2}
 --- !u!1 &2429488750968471625
 GameObject:
@@ -1418,7 +1423,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Asistente perdida.exe
+  m_text: Asistente
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dfae47ea23a8a0d4788d643a2b17dfc2, type: 2}
   m_sharedMaterial: {fileID: 4779611292267169484, guid: dfae47ea23a8a0d4788d643a2b17dfc2, type: 2}
