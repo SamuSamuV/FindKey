@@ -12,12 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH FOREST END 3
   m_EditorClassIdentifier: 
-  storyText: "3\r"
+  storyText: "El aire es casi irrespirable.\n\nLos \xE1rboles se han acercado tanto
+    entre s\xED que apenas dejan pasar espacio entre los troncos. Frente a ti, el
+    sendero termina abruptamente en una mara\xF1a imposible de ra\xEDces negras y
+    madera podrida.\n\nNo hay paso.\n\nDurante unos segundos permaneces inm\xF3vil
+    observando aquella barrera. Entonces una sensaci\xF3n desagradable te recorre
+    la espalda.\n\nNo puedes seguir de frente... VUELVE.\r"
   customTypingSpeed: 0
   canNotBeSkipped: 0
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
-    nextNode: {fileID: 11400000, guid: 930c9baf3f638294ab876ad855a1eb5e, type: 2}
+    nextNode: {fileID: 11400000, guid: e2f140e2e2294e246a86221e6bac181d, type: 2}
     actionType: 0
     disableIfVisited: 0
     alternateNodeIfBlocked: {fileID: 0}

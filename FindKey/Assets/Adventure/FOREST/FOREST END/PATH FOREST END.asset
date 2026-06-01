@@ -12,14 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH FOREST END
   m_EditorClassIdentifier: 
-  storyText: "1\r"
+  storyText: "No recuerdas haber llegado aqu\xED.\n\nEl cielo parece m\xE1s oscuro
+    de lo que deber\xEDa y el aire huele a humedad, tierra removida y algo m\xE1s
+    profundo. Algo muerto.\n\nA ambos lados del camino crecen \xE1rboles desnudos
+    y retorcidos. Sus ramas se inclinan sobre el sendero formando una especie de
+    t\xFAnel natural.\n\nNo parece haber ning\xFAn otro camino.\n\nPuedes seguir
+    de FRENTE.\r"
+  customTypingSpeed: 0
+  canNotBeSkipped: 0
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: 4bcf6c3a29203554bac93f935a997fed, type: 2}
     actionType: 0
+    disableIfVisited: 0
+    alternateNodeIfBlocked: {fileID: 0}
   popups: []
-  masterSound: {fileID: 0}
-  frontSound: {fileID: 0}
-  backSound: {fileID: 0}
-  leftSound: {fileID: 0}
-  rightSound: {fileID: 0}
+  nodeSounds: []
+  randomSounds: []
+  ambientSounds: []
+  onEnterEvent: {fileID: 0}
+  aiMemoryLevel: 0
+  aiMemoryUpdate: 
+  aiProactivePrompt: 
+  forceMemoryUpdate: 0

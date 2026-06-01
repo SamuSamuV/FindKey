@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: CAT ENCOUNTER
   m_EditorClassIdentifier: 
-  storyText: "EJECUTAR JUEGO GATO\r"
+  storyText: "Te acercas despacio. El gato no huye. Tampoco aparta la mirada.\n\nA
+    medida que reduces la distancia, sus ojos parecen demasiado humanos, demasiado
+    atentos. La llave amarilla sigue bajo su pata, inm\xF3vil, como si supiera exactamente
+    por qu\xE9 has venido.\n\nEntonces el gato habla.\n\n\u2014Abre la aplicaci\xF3n
+    Enemy Encounter\u2014\r"
   customTypingSpeed: 0
   canNotBeSkipped: 0
   options:

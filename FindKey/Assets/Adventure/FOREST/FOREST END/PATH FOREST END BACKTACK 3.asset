@@ -12,7 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH FOREST END BACKTACK 3
   m_EditorClassIdentifier: 
-  storyText: "CERCA...\r"
+  storyText: "El olor desaparece poco a poco hasta convertirse en simple aire fr\xEDo.
+    Los \xE1rboles vuelven a separarse y la oscuridad deja de sentirse tan pesada.\n\nSin
+    embargo, antes de seguir por el sendero, miras una \xFAltima vez hacia atr\xE1s.\n\nEntre
+    los \xE1rboles, muy lejos, donde deber\xEDa encontrarse el final del camino,
+    algo parece observarte.\n\nNo se mueve.\n\nNo parpadea.\n\nY aun as\xED tienes
+    la sensaci\xF3n de que te ha seguido durante todo el trayecto.\n\nJusto donde
+    apareciste al llegar aqu\xED, sentado en medio del sendero, hay un gato blanco.
+    Est\xE1 completamente inm\xF3vil, observ\xE1ndote con unos ojos muertos y vac\xEDos.
+    No parece asustado. Tampoco amistoso.\n\nBajo una de sus patas descansa una peque\xF1a
+    llave amarilla.\n\nEl gato inclina ligeramente la cabeza.\n\nComo si estuviera
+    esperando.\n\nPuedes... SEGUIR.\r"
   customTypingSpeed: 0
   canNotBeSkipped: 0
   options:

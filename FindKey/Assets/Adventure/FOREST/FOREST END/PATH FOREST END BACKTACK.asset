@@ -12,14 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH FOREST END BACKTACK
   m_EditorClassIdentifier: 
-  storyText: "SEGUIR\r"
+  storyText: "Te giras.\n\nEl sendero sigue ah\xED.\n\nO al menos algo muy parecido.\n\nLos
+    \xE1rboles parecen m\xE1s altos. Algunos que recordabas desnudos ahora conservan
+    hojas oscuras. Las marcas en los troncos han desaparecido.\n\nQuiz\xE1 simplemente
+    no estabas prestando atenci\xF3n.\n\nQuiz\xE1.\n\nEl camino de regreso es la
+    \xFAnica opci\xF3n.\n\nPuedes seguir... de FRENTE.\r"
+  customTypingSpeed: 0
+  canNotBeSkipped: 0
   options:
   - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
     nextNode: {fileID: 11400000, guid: 14d914c5f6541834eb4517c46b1ec5c6, type: 2}
     actionType: 0
+    disableIfVisited: 0
+    alternateNodeIfBlocked: {fileID: 0}
   popups: []
-  masterSound: {fileID: 0}
-  frontSound: {fileID: 0}
-  backSound: {fileID: 0}
-  leftSound: {fileID: 0}
-  rightSound: {fileID: 0}
+  nodeSounds: []
+  randomSounds: []
+  ambientSounds: []
+  onEnterEvent: {fileID: 0}
+  aiMemoryLevel: 0
+  aiMemoryUpdate: 
+  aiProactivePrompt: 
+  forceMemoryUpdate: 0
