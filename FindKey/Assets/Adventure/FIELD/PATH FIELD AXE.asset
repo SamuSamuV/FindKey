@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PATH FIELD AXE
   m_EditorClassIdentifier: 
   storyText: "Sigues avanzando, dejando el barranco atr\xE1s, pero notas algo detr\xE1s
-    de ti.\n\nNo lo ves todav\xEDa, pero est\xE1 ah\xED.\n\nPuedes mirar para investigar
-    que es o puedes continuar.\r"
+    de ti.\n\nNo lo ves todav\xEDa, pero [3s] est\xE1 ah\xED.\n\nPuedes MIRAR para
+    investigar que es o puedes continuar.\r"
   customTypingSpeed: 0
   canNotBeSkipped: 0
   options:
@@ -33,7 +33,7 @@ MonoBehaviour:
   - channel: 2
     soundSettings:
       clip: {fileID: 8300000, guid: 36871d85d9146f443970eade3cf82bc3, type: 3}
-      volume: 0.3
+      volume: 0.072
       pitch: 1
       loop: 0
       fadeInDuration: 2

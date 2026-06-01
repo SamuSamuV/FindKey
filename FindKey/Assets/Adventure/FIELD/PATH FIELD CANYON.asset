@@ -16,12 +16,17 @@ MonoBehaviour:
     se vuelve quebradiza. Frente a ti se abre un barranco oscuro, una ca\xEDda abrupta
     donde el terreno se rompe y desaparece en sombras. El viento sopla desde abajo
     con un silbido largo y fr\xEDo. No parece haber forma segura de bajar. Al menos
-    sin morir.\nPero puedes seguir de frente bordeando el barranco.\r"
+    sin morir.\nPero puedes ir a la IZQUIERDA bordeando el barranco o quedarte MIRANDO.\r"
   customTypingSpeed: 0
   canNotBeSkipped: 0
   options:
-  - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
+  - validInputs: {fileID: 11400000, guid: ac428914eae63c4488c2d718afd0d788, type: 2}
     nextNode: {fileID: 11400000, guid: 032ecc5e629ba1e4eba6f70404d15062, type: 2}
+    actionType: 0
+    disableIfVisited: 0
+    alternateNodeIfBlocked: {fileID: 0}
+  - validInputs: {fileID: 11400000, guid: e9849b6b24f104a428f17cda840099d9, type: 2}
+    nextNode: {fileID: 11400000, guid: ad5fc4c31b3137a4ea792f2346bff12f, type: 2}
     actionType: 0
     disableIfVisited: 0
     alternateNodeIfBlocked: {fileID: 0}

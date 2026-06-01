@@ -15,9 +15,9 @@ MonoBehaviour:
   storyText: "Corres sin mirar atr\xE1s. El campo se abre delante de ti y un camino
     de tierra aparece entre la hierba, dividi\xE9ndose en dos direcciones mientras
     el viento te golpea la cara y tu respiraci\xF3n se vuelve desesperada.\n\nDetr\xE1s
-    de ti ESO tambi\xE9n se mueve\u2026 lo oyes entre la hierba.\n\nPuedes seguir
-    el camino hacia la derecha o abandonar el camino y correr campo a trav\xE9s hacia
-    la izquierda.\r"
+    de ti[2s] ESO [1s]tambi\xE9n se mueve\u2026 lo oyes entre la hierba.\n\nPuedes
+    seguir el camino hacia la DERECHA o abandonar el camino y correr campo a trav\xE9s
+    hacia la IZQUIERDA.\r"
   customTypingSpeed: 0
   canNotBeSkipped: 0
   options:

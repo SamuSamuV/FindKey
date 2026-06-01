@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH FIELD RETURN DEAD END
   m_EditorClassIdentifier: 
-  storyText: "SIGUE\r"
+  storyText: "Abandonas el camino y te lanzas hacia la izquierda. La hierba seca
+    te golpea las piernas mientras corres sin direcci\xF3n clara, guiado \xFAnicamente
+    por el instinto de alejarte de aquello que te persigue.\n\nDetr\xE1s de ti contin\xFAan
+    los sonidos. [1s]\n\nPezu\xF1as.[1s]\n\nRespiraci\xF3n.[1s]\n\nAlgo grande abri\xE9ndose
+    paso entre la vegetaci\xF3n.[1s]\n\nDurante unos segundos crees haber ganado
+    distancia, hasta que el terreno comienza a elevarse y la hierba desaparece. Frenas
+    de golpe.\n\nDebes[2s] AVANZAR...\r"
   customTypingSpeed: 0
   canNotBeSkipped: 0
   options:

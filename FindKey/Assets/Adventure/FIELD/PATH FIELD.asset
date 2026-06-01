@@ -18,7 +18,7 @@ MonoBehaviour:
     si algo invisible caminara entre ella. El campo parece abandonado desde hace
     a\xF1os\u2026 pero no se siente vac\xEDo. Hay una sensaci\xF3n dif\xEDcil de
     explicar, como si alguien estuviera observando desde alg\xFAn punto que no logras
-    localizar.\n\nSolo puedes avanzar de frente."
+    localizar.\n\nSolo puedes AVANZAR de FRENTE."
   customTypingSpeed: 0
   canNotBeSkipped: 0
   options:
@@ -43,7 +43,7 @@ MonoBehaviour:
     channel: 0
     soundSettings:
       clip: {fileID: 8300000, guid: 5687b48d2cf723d4796fa4215a0ccba9, type: 3}
-      volume: 0.6
+      volume: 0.122
       pitch: 1
       loop: 1
       fadeInDuration: 2
@@ -53,7 +53,7 @@ MonoBehaviour:
     channel: 0
     soundSettings:
       clip: {fileID: 8300000, guid: a1d43d722a2310e4e93b35e25160bd3d, type: 3}
-      volume: 0.4
+      volume: 0.108
       pitch: 1
       loop: 1
       fadeInDuration: 2

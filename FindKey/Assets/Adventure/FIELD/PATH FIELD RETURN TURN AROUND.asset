@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH FIELD RETURN TURN AROUND
   m_EditorClassIdentifier: 
-  storyText: "Te giras.\n\nLa cosa que estaba detr\xE1s de ti se mueve cuando la
-    miras: una forma alta y torcida que surge entre la hierba como si hubiera estado
-    agachada observ\xE1ndote. No tiene forma clara, solo extremidades demasiado largas
-    y un movimiento irregular que hace que tu mente no quiera comprender lo que ve.\n\nNo
-    piensas. \nEmpiezas a correr.\r"
+  storyText: "Te giras. [3s]\n\nLa cosa que estaba detr\xE1s de ti se mueve cuando
+    la miras: una forma alta y torcida que surge entre la hierba como si hubiera
+    estado agachada observ\xE1ndote. No tiene forma clara, solo extremidades demasiado
+    largas y un movimiento irregular que hace que tu mente no quiera comprender lo
+    que ve. [5s]\n\nNo piensas. \nEmpiezas a CORRER.\r"
   customTypingSpeed: 0
   canNotBeSkipped: 0
   options:
@@ -25,12 +25,27 @@ MonoBehaviour:
     actionType: 0
     disableIfVisited: 0
     alternateNodeIfBlocked: {fileID: 0}
-  popups: []
+  popups:
+  - popupType: 1
+    delayBeforeSpawn: 10
+    duration: 1
+    position: {x: 0, y: 0}
+    specificPrefab: {fileID: 0}
+    title: CORRECORRECORRECORRECORRE
+    message: 
+    image: {fileID: 21300000, guid: d541878882193d841b436e7a3547b984, type: 3}
+    sound:
+      clip: {fileID: 0}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
   nodeSounds:
   - channel: 0
     soundSettings:
       clip: {fileID: 8300000, guid: 1a2075e2ae72b28428618a3afa8a0673, type: 3}
-      volume: 0.8
+      volume: 0.362
       pitch: 1
       loop: 0
       fadeInDuration: 2
@@ -38,7 +53,7 @@ MonoBehaviour:
   - channel: 1
     soundSettings:
       clip: {fileID: 8300000, guid: a222bc907e437e74da0425caec28d80c, type: 3}
-      volume: 0.6
+      volume: 0.362
       pitch: 1
       loop: 0
       fadeInDuration: 2

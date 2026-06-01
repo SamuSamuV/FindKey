@@ -10,45 +10,43 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
-  m_Name: PATH FIELD 2
+  m_Name: PATH FIELD CANYON LOOK
   m_EditorClassIdentifier: 
-  storyText: "Decides seguir avanzando, dejando el espantap\xE1jaros atr\xE1s. El
-    viento se vuelve m\xE1s fuerte aqu\xED, empujando la hierba seca contra tus piernas
-    con un sonido constante. \n\nPuedes SEGUIR avanzando.\r"
+  storyText: "Las vistas te hacen sentir[1s].[1s].[1s]. \nMin\xFAsculo. Un ser diminuto
+    en un gran lugar.\nPuedes VOLVER.\r"
   customTypingSpeed: 0
   canNotBeSkipped: 0
   options:
-  - validInputs: {fileID: 11400000, guid: 7259145ef06392549b3c7daecbd89051, type: 2}
+  - validInputs: {fileID: 11400000, guid: 59921cc1611cd494fa4c5de13ee9b91d, type: 2}
     nextNode: {fileID: 11400000, guid: 16bafe78214d7de4a9eb57f132106111, type: 2}
     actionType: 0
     disableIfVisited: 0
     alternateNodeIfBlocked: {fileID: 0}
-  popups: []
-  nodeSounds:
-  - channel: 0
-    soundSettings:
-      clip: {fileID: 8300000, guid: 1af775d0eebe2af4eb6dba8f1274a68f, type: 3}
-      volume: 1
-      pitch: 1
+  popups:
+  - popupType: 1
+    delayBeforeSpawn: 0.5
+    duration: 0
+    position: {x: 700, y: 0}
+    specificPrefab: {fileID: 0}
+    title: Me das envidia.
+    message: 
+    image: {fileID: 21300000, guid: 1db9d3db3a63fe74cb3f9e9e8f7648e3, type: 3}
+    sound:
+      clip: {fileID: 0}
+      volume: 0
+      pitch: 0
       loop: 0
       fadeInDuration: 0
       fadeOutDuration: 0
-  - channel: 3
+  nodeSounds:
+  - channel: 0
     soundSettings:
       clip: {fileID: 8300000, guid: ab51126ceea8c2845a1b24d6805b7bf1, type: 3}
-      volume: 0.079
+      volume: 0.3
       pitch: 1
       loop: 1
       fadeInDuration: 2
-      fadeOutDuration: 5
-  - channel: 4
-    soundSettings:
-      clip: {fileID: 8300000, guid: ab51126ceea8c2845a1b24d6805b7bf1, type: 3}
-      volume: 0.065
-      pitch: 1
-      loop: 1
-      fadeInDuration: 2
-      fadeOutDuration: 5
+      fadeOutDuration: 2
   randomSounds: []
   ambientSounds: []
   onEnterEvent: {fileID: 0}

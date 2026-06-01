@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
   m_Name: PATH FIELD RETURN GOAT CLOSEUP 1
   m_EditorClassIdentifier: 
-  storyText: "AY QUE MIEDO, SIGUE CORRIENDO\r"
+  storyText: "Las espinas desgarran tu ropa y ara\xF1an tu piel mientras te abres
+    paso a la fuerza. Cada paso cuesta m\xE1s que el anterior. Detr\xE1s de ti, el
+    sonido de las pezu\xF1as desaparece por un instante. [2s]\n\nEso es peor. [1s]
+    Porque significa que ya no sabes d\xF3nde est\xE1. [1s]\n\nFinalmente atraviesas
+    la barrera de zarzas y caes al otro lado. El campo contin\xFAa, pero aqu\xED
+    la hierba es extra\xF1amente baja, como si algo enorme la hubiera aplastado una
+    y otra vez durante a\xF1os.\n\nSigue AVANZANDO.\r"
   customTypingSpeed: 0
   canNotBeSkipped: 0
   options:
