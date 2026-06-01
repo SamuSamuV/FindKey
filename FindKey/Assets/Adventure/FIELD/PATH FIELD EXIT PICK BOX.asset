@@ -10,27 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ee4a8208a7d8e54484fe915a37735a6, type: 3}
-  m_Name: PATH FIELD EXIT 1
+  m_Name: PATH FIELD EXIT PICK BOX
   m_EditorClassIdentifier: 
-  storyText: "Sigues corriendo en l\xEDnea recta. El aire quema en tus pulmones y
-    el sonido detr\xE1s de ti se vuelve m\xE1s fuerte, m\xE1s fren\xE9tico. La criatura
-    corre casi pegada a tus talones ahora. Puedes o\xEDr su respiraci\xF3n h\xFAmeda
-    y pesada, y el golpeteo furioso de sus pezu\xF1as sobre la tierra.\n\nEl camino
-    empieza a descender y el terreno se vuelve inestable. La criatura lanza un sonido
-    macabro, agudo y antinatural, como si celebrara la caza.\n\nDelante de ti el
-    terreno desaparece en una ladera de tierra suelta que cae abruptamente hacia
-    abajo. Tus pies ya est\xE1n resbalando hacia el borde. Debes hacer un impulso
-    para saltar, por favor[1s].[1s].[1s].[1s] SALTA [1s]y s\xE1lvate de ser devorado
-    vivo por la criatura. [1s]No puedes fallarme ahora.[1s] SALTA\r"
+  storyText: "UH?[2s]\n.[1s].[1s].[2s] \nLa caja est\xE1 rota. \r"
   customTypingSpeed: 0
   canNotBeSkipped: 0
-  options:
-  - validInputs: {fileID: 11400000, guid: 3e049ed054064764b9faf3596a89ef4d, type: 2}
-    nextNode: {fileID: 11400000, guid: 7396c9859d63e3d45adea8827803b8bc, type: 2}
-    actionType: 0
-    disableIfVisited: 0
-    alternateNodeIfBlocked: {fileID: 0}
-  popups: []
+  options: []
+  popups:
+  - popupType: 1
+    delayBeforeSpawn: 0
+    duration: 0
+    position: {x: 0, y: 0}
+    specificPrefab: {fileID: 0}
+    title: 
+    message: 
+    image: {fileID: 0}
+    sound:
+      clip: {fileID: 0}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
   nodeSounds:
   - channel: 2
     soundSettings:

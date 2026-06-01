@@ -20,14 +20,39 @@ MonoBehaviour:
     furioso\u2026 pero no baja.\n\nTras unos segundos desaparece entre la oscuridad.\n\nCuando
     finalmente te pones en pie, el bosque vuelve a rodearte. [1s]Justo en frente
     tuyo. [1s]Respiras. [1s]Vives.\n[1s] \nHay una caja peque\xF1a en el suelo, parece
-    rota.\r"
+    rota.\n[1s] .[1s] .[1s] .[1s]  \nC\xD3GELA.\r"
   customTypingSpeed: 0
   canNotBeSkipped: 0
-  options: []
+  options:
+  - validInputs: {fileID: 11400000, guid: d611042d84834ba428963a87bb4e7364, type: 2}
+    nextNode: {fileID: 11400000, guid: 1c2e01d17e8c5944eb6ade062ef8180e, type: 2}
+    actionType: 0
+    disableIfVisited: 0
+    alternateNodeIfBlocked: {fileID: 0}
   popups: []
   nodeSounds: []
   randomSounds: []
-  ambientSounds: []
+  ambientSounds:
+  - ambientTag: 
+    channel: 0
+    soundSettings:
+      clip: {fileID: 8300000, guid: 352af40ac1bd696438f0ec99ce90f425, type: 3}
+      volume: 0
+      pitch: 0
+      loop: 0
+      fadeInDuration: 0
+      fadeOutDuration: 0
+    stopAmbient: 1
+  - ambientTag: 
+    channel: 0
+    soundSettings:
+      clip: {fileID: 0}
+      volume: 0.129
+      pitch: 0.23
+      loop: 1
+      fadeInDuration: 3
+      fadeOutDuration: 0
+    stopAmbient: 1
   onEnterEvent: {fileID: 0}
   aiMemoryLevel: 0
   aiMemoryUpdate: 

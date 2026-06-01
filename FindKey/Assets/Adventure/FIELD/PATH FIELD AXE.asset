@@ -33,13 +33,23 @@ MonoBehaviour:
   - channel: 2
     soundSettings:
       clip: {fileID: 8300000, guid: 36871d85d9146f443970eade3cf82bc3, type: 3}
-      volume: 0.072
+      volume: 0.046
       pitch: 1
       loop: 0
       fadeInDuration: 2
       fadeOutDuration: 2
   randomSounds: []
-  ambientSounds: []
+  ambientSounds:
+  - ambientTag: 
+    channel: 0
+    soundSettings:
+      clip: {fileID: 8300000, guid: afd07df1c9fd1064395bcaf9b0827769, type: 3}
+      volume: 0.079
+      pitch: 1.09
+      loop: 1
+      fadeInDuration: 2
+      fadeOutDuration: 2
+    stopAmbient: 0
   onEnterEvent: {fileID: 0}
   aiMemoryLevel: 0
   aiMemoryUpdate: 
