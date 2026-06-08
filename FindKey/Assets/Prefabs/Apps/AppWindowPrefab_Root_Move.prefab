@@ -1691,6 +1691,16 @@ MonoBehaviour:
   nodeAfterCatWin: {fileID: 0}
   globalAIMemory: 
   globalAIMemoryLevel: -1
+  nodosDeEmergencia:
+  - {fileID: 11400000, guid: 121a56b363ff3a04e828cbcc6403ddb5, type: 2}
+  - {fileID: 11400000, guid: 7396c9859d63e3d45adea8827803b8bc, type: 2}
+  - {fileID: 11400000, guid: aa6b58bff5bb47e4083ccd4e46187acc, type: 2}
+  - {fileID: 11400000, guid: 05e5250ac0456244880f1fcdc05500a7, type: 2}
+  - {fileID: 11400000, guid: 1cc1729f2992efd4d85ddca19bc1712c, type: 2}
+  eventosDeEmergencia:
+  - {fileID: 11400000, guid: efa12974d3b3eb447bbf1bf8bc1f6dcf, type: 2}
+  - {fileID: 11400000, guid: 3449b38bb08488746a357d1eba2c2a2c, type: 2}
+  - {fileID: 11400000, guid: a06f6a2657fbe1c429c16244594761d4, type: 2}
 --- !u!82 &8916219043748113361
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4956,7 +4966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee2599d3cd375e44b8b4466d2a8c099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: llama3.1:8b
+  model: llama3.2:3b
   baseUrl: http://localhost:11434/api/generate
   contextSize: 2048
 --- !u!1 &8968409186146594419

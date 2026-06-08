@@ -51,6 +51,13 @@ public class AdventureManager : MonoBehaviour
     [HideInInspector] public string globalAIMemory = "";
     [HideInInspector] public int globalAIMemoryLevel = -1;
 
+    [Header("Debug / Modo Exhibición")]
+    [Tooltip("Arrastra aquí los StoryNodes clave (ej: Mitad del juego, Final, Evento del cofre)")]
+    public StoryNode[] nodosDeEmergencia;
+
+    [Tooltip("Arrastra aquí los GameEvents que quieras forzar en cualquier momento.")]
+    public GameEvent[] eventosDeEmergencia;
+
     void Start() // Initialization moved to a separate method to allow for better control when enabling/disabling the script
     {
         audioMasterObj = GameObject.Find("Main Camera");
@@ -477,6 +484,39 @@ public class AdventureManager : MonoBehaviour
         input = input.ToLower().Trim();
         inputField.text = "";
         inputField.ActivateInputField();
+
+        if (input.StartsWith("/warp "))
+        {
+            string[] partes = input.Split(' ');
+
+            if (partes.Length == 2 && int.TryParse(partes[1], out int indice))
+            {
+                if (nodosDeEmergencia != null && indice >= 0 && indice < nodosDeEmergencia.Length)
+                {
+                    Debug.Log($"<color=magenta>[DEV MODE]</color> Forzando salto al nodo: {nodosDeEmergencia[indice].name}");
+                    ForceLoadNode(nodosDeEmergencia[indice]);
+                    return;
+                }
+            }
+        }
+
+        if (input.StartsWith("/event "))
+        {
+            string[] partes = input.Split(' ');
+            if (partes.Length == 2 && int.TryParse(partes[1], out int indice))
+            {
+                if (eventosDeEmergencia != null && indice >= 0 && indice < eventosDeEmergencia.Length)
+                {
+                    Debug.Log($"<color=cyan>[DEV MODE]</color> Forzando la ejecución del evento: {eventosDeEmergencia[indice].name}");
+                    if (EventManager.Instance != null)
+                    {
+                        EventManager.Instance.TriggerEvent(eventosDeEmergencia[indice]);
+                    }
+
+                    return;
+                }
+            }
+        }
 
         foreach (var option in currentNode.options) // We loop through the options of the current node to find one that matches the player's input. This allows for a flexible command system where each option can have multiple valid inputs (synonyms) that can trigger it, making it more user-friendly and accommodating different player preferences in how they type their commands.
         {
